@@ -1,0 +1,378 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Aze.Publicise.MSBuild.Task.1.0.0\build\Aze.Publicise.MSBuild.Task.props" Condition="Exists('..\packages\Aze.Publicise.MSBuild.Task.1.0.0\build\Aze.Publicise.MSBuild.Task.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9A5FDAB0-E419-472E-A88B-AA0D977802AD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TomeOfTheFirebird</RootNamespace>
+    <AssemblyName>TomeOfTheFirebird</AssemblyName>
+    <LangVersion>latest</LangVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <WrathPath Condition=" '$(WrathPath)' == '' ">C:\Program Files (x86)\Steam\steamapps\common\Pathfinder Second Adventure</WrathPath>
+  </PropertyGroup>
+  <Target Name="Publicise" AfterTargets="Clean">
+    <ItemGroup>
+      <PubliciseInputAssemblies Include="$(WrathPath)\Wrath_Data\Managed\Assembly-CSharp.dll" />
+      <PubliciseInputAssemblies Include="$(WrathPath)\Wrath_Data\Managed\Owlcat.Runtime.Core.dll" />
+      <PubliciseInputAssemblies Include="$(WrathPath)\Wrath_Data\Managed\Owlcat.Runtime.Visual.dll" />
+      <PubliciseInputAssemblies Include="$(WrathPath)\Wrath_Data\Managed\Owlcat.Runtime.UI.dll" />
+      <PubliciseInputAssemblies Include="$(WrathPath)\Wrath_Data\Managed\UnityEngine.dll" />
+      <PubliciseInputAssemblies Include="$(WrathPath)\Wrath_Data\Managed\UnityEngine.CoreModule.dll" />
+    </ItemGroup>
+    <Publicise InputAssemblies="@(PubliciseInputAssemblies)" OutputPath="$(SolutionDir)lib/" PubliciseCompilerGenerated="true" />
+  </Target>
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Pathfinder Second Adventure\Wrath_Data\Managed\UnityModManager\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Build.Framework" />
+    <Reference Include="Microsoft.Build.Utilities.v4.0" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Pathfinder Second Adventure\Wrath_Data\Managed\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnityModManager">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Pathfinder Second Adventure\Wrath_Data\Managed\UnityModManager\UnityModManager.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BlueprintCore\Abilities\Restrictions\New\TargetHasBuffsFromCaster.cs" />
+    <Compile Include="BlueprintCore\Actions\Builder\ActionsBuilder.cs" />
+    <Compile Include="BlueprintCore\Actions\Builder\AreaEx\ActionsBuilderAreaEx.cs" />
+    <Compile Include="BlueprintCore\Actions\Builder\AVEx\ActionsBuilderAVEx.cs" />
+    <Compile Include="BlueprintCore\Actions\Builder\BasicEx\ActionsBuilderBasicEx.cs" />
+    <Compile Include="BlueprintCore\Actions\Builder\ContextEx\ActionsBuilderContextEx.cs" />
+    <Compile Include="BlueprintCore\Actions\Builder\KingdomEx\ActionsBuilderKingdomEx.cs" />
+    <Compile Include="BlueprintCore\Actions\Builder\MiscEx\ActionsBuilderMiscEx.cs" />
+    <Compile Include="BlueprintCore\Actions\Builder\NewEx\ActionsBuilderNewEx.cs" />
+    <Compile Include="BlueprintCore\Actions\Builder\StoryEx\ActionsBuilderStoryEx.cs" />
+    <Compile Include="BlueprintCore\Actions\Builder\UpgraderEx\ActionsBuilderUpgraderEx.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Components\ContextRankConfigs.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Abilities\Ability.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Abilities\AbilityAreaEffect.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Abilities\AbilityResource.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Achievements\AchievementData.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\ActionList.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\ActiveCommandConsideration.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\AiAction.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\AiAttack.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\AiCastSpell.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\AiFollow.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\AiRandomMove.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\AiRunAway.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\AiSwitchWeapon.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\AiTouch.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\AlignmentConsideration.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\ArmorTypeConsideration.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\Brain.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\BuffConsideration.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\BuffNotFromCasterConsideration.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\BuffsAroundConsideration.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\CanMakeFullAttackConsideration.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\CanUseSpellCombatConsideration.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\CasterClassConsideration.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\CommandCooldownConsideration.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\ComplexConsideration.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\ConditionConsideration.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\Consideration.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\ConsiderationCustom.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\CustomAiConsiderationsRoot.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\DistanceConsideration.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\DistanceRangeConsideration.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\FactConsideration.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\HasAutoCastConsideraion.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\HasManualTargetConsideration.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\HealthAroundConsideration.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\HealthConsideration.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\HitThisRoundConsideration.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\InRangeConsideration.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\IsEngagedConsideration.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\LastTargetConsideration.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\LifeStateConsideration.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\LineOfSightConsideration.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\ManualTargetConsideration.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\NotImpatientConsideration.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\RandomConsideration.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\SavingThrowConsideration.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\SpecificUnitConsideration.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\StatConsideration.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\SwarmTargetsConsideration.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\TargetClassConsideration.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\TargetMainCharacter.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\TargetSelfConsideration.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\ThreatedByConsideration.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\UnitsAroundConsideration.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AI\UnitsThreateningConsideration.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AreaLogic\Cutscenes\Cutscene.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AreaLogic\Cutscenes\Gate.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AreaLogic\Etudes\Etude.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\AreaLogic\Etudes\EtudeConflictingGroup.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Area\Area.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Area\AreaEnterPoint.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Area\AreaMechanics.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Area\AreaPart.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Area\AreaPreset.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Area\AreaTransition.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Area\DynamicMapObject.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Area\LogicConnector.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Area\MapObject.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Area\ScriptZone.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Area\SettlementAreaPreset.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Area\Trap.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Armies\ArmyLeader.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Armies\ArmyPreset.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Armies\Brain\ArmyHealthConsideration.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Armies\Brain\TacticalCombatAiAction.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Armies\Brain\TacticalCombatAiAttack.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Armies\Brain\TacticalCombatAiCastSpell.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Armies\Brain\TacticalCombatAiPostponeTurn.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Armies\Brain\TacticalCombatBrain.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Armies\Brain\TacticalCombatCanAttackThisTurnConsideration.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Armies\Brain\TacticalCombatTagConsideration.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Armies\LeaderProgression.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Armies\LeaderSkill.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Armies\LeaderSkillsList.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Armies\MoraleRoot.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Armies\TacticalCombatArea.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Armies\TacticalCombatObstaclesMap.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Armies\TacticalCombatRoot.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\BarkBanters\BarkBanter.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Blueprint.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Buffs\Buff.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\CharGen\RaceVisualPreset.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Classes\Archetype.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Classes\CharacterClass.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Classes\CharacterClassGroup.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Classes\ClassAdditionalVisualSettings.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Classes\ClassAdditionalVisualSettingsProgression.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Classes\Feature.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Classes\FeatureBase.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Classes\FeatureReplaceSpellbook.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Classes\FeatureSelectMythicSpellbook.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Classes\LevelUpPlanFeaturesList.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Classes\Progression.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Classes\Race.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Classes\Selection\FeatureSelection.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Classes\Selection\ParametrizedFeature.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Classes\Spells\Spellbook.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Classes\Spells\SpellList.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Classes\Spells\SpellsTable.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Classes\StatProgression.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Collections\BuffCollection.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\CompanionStory.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\ComponentList.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Console\GamePadTexts.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\ControllableProjectile.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Cooking\CookingRecipe.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Corruption\CorruptionRoot.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Craft\CraftRoot.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Craft\Ingredient.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Credits\CreditsGroup.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Credits\CreditsRoles.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Credits\CreditsTeams.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Crusade\GlobalMagicSpell.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Crusade\SettlementArea.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\DialogSystem\Answer.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\DialogSystem\AnswerBase.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\DialogSystem\AnswersList.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\DialogSystem\BookPage.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\DialogSystem\Check.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\DialogSystem\Cue.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\DialogSystem\CueBase.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\DialogSystem\CueSequence.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\DialogSystem\Dialog.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\DialogSystem\DialogExperienceModifierTable.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\DialogSystem\MythicInfo.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\DialogSystem\MythicsSettings.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\DialogSystem\SequenceExit.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\DLC\Dlc.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\DLC\DlcReward.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\DLC\DlcRewardCampaign.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Dungeon\DungeonArea.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Dungeon\DungeonBoon.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Dungeon\DungeonLocalizedStrings.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Dungeon\DungeonRoot.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Dungeon\DungeonShrine.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Dungeon\GenericPackLoot.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Encyclopedia\EncyclopediaChapter.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Encyclopedia\EncyclopediaNode.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Encyclopedia\EncyclopediaPage.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Encyclopedia\EncyclopediaSkillPage.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\EntitySystem\UnitUpgrader.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Faction.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Facts\Fact.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Facts\UnitFact.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Footrprints\Footprint.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Footrprints\FootprintType.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Formations\FollowersFormation.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Formations\PartyFormation.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Globalmap\GlobalMap.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Globalmap\GlobalMapEdge.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Globalmap\GlobalMapPoint.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Globalmap\GlobalMapPointVariation.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Globalmap\MultiEntrance.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Globalmap\MultiEntranceEntry.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Interaction\InteractionRoot.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Items\Armors\ArmorType.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Items\Armors\ItemArmor.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Items\Armors\ShieldType.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Items\Ecnchantments\ArmorEnchantment.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Items\Ecnchantments\EquipmentEnchantment.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Items\Ecnchantments\ItemEnchantment.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Items\Ecnchantments\WeaponEnchantment.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Items\Equipment\ItemEquipment.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Items\Equipment\ItemEquipmentBelt.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Items\Equipment\ItemEquipmentFeet.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Items\Equipment\ItemEquipmentGlasses.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Items\Equipment\ItemEquipmentGloves.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Items\Equipment\ItemEquipmentHand.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Items\Equipment\ItemEquipmentHandSimple.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Items\Equipment\ItemEquipmentHead.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Items\Equipment\ItemEquipmentNeck.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Items\Equipment\ItemEquipmentRing.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Items\Equipment\ItemEquipmentShirt.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Items\Equipment\ItemEquipmentShoulders.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Items\Equipment\ItemEquipmentSimple.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Items\Equipment\ItemEquipmentUsable.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Items\Equipment\ItemEquipmentWrist.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Items\HiddenItem.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Items\Item.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Items\ItemKey.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Items\ItemNote.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Items\ItemsList.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Items\ItemThiefTool.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Items\SharedVendorTable.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Items\Shields\ItemShield.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Items\Weapons\CategoryDefaults.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Items\Weapons\ItemWeapon.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Items\Weapons\WeaponType.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Kingdom\AI\SettlementBuildList.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Kingdom\ArmyPresetList.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Kingdom\ArmyRoot.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Kingdom\Artisans\ArtisanItemDeck.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Kingdom\Artisans\KingdomArtisan.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Kingdom\CrusadeEvent.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Kingdom\CrusadeEventTimeline.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Kingdom\Flags\KingdomMoraleFlag.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Kingdom\KingdomBuff.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Kingdom\KingdomClaim.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Kingdom\KingdomDeck.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Kingdom\KingdomEvent.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Kingdom\KingdomEventBase.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Kingdom\KingdomEventTimeline.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Kingdom\KingdomProject.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Kingdom\KingdomRoot.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Kingdom\KingdomUIRoot.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Kingdom\KingdomUpgrade.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Kingdom\LeadersRoot.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Kingdom\Region.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Kingdom\Settlement.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Kingdom\Settlements\SettlementBuilding.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Loot\Loot.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Loot\TrashLootSettings.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Loot\UnitLoot.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Pet.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Portrait.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Projectile.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\ProjectileTrajectory.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\QA\ArbiterInstruction.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\QA\ClockworkScenario.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\QA\ClockworkScenarioPart.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Quests\Quest.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Quests\QuestGroups.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Quests\QuestObjective.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\RandomEncounters\CampingEncounter.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\RandomEncounters\RandomEncounter.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\RandomEncounters\RandomEncountersRoot.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\RandomEncounters\SpawnableObject.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\RomanceCounter.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Root\ConsoleRoot.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Root\CutscenesRoot.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Root\FormationsRoot.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Root\Fx\CastsGroup.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Root\Fx\FxRoot.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Root\Root.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\SummonPool.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\TrapSettings.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\TrapSettingsRoot.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Tutorial\Tutorial.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\UI\UISound.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Unit.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\UnitLogic\Abilities\AreaEffectPitVisualSettings.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\UnitLogic\ActivatableAbilities\ActivatableAbility.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\UnitLogic\Customization\RaceGenderDistribution.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\UnitLogic\Customization\RandomParameters.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\UnitLogic\Customization\UnitCustomizationPreset.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\UnitLogic\Properties\UnitProperty.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\UnitTemplate.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\UnitType.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\UnlockableFlag.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Visual\HitSystemRoot.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Visual\KingmakerEquipmentEntity.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Visual\TimeOfDaySettings.cs" />
+    <Compile Include="BlueprintCore\Blueprints\Configurators\Visual\UnitAsksList.cs" />
+    <Compile Include="BlueprintCore\Conditions\Builder\AreaEx\ConditionsBuilderAreaEx.cs" />
+    <Compile Include="BlueprintCore\Conditions\Builder\BasicEx\ConditionsBuilderBasicEx.cs" />
+    <Compile Include="BlueprintCore\Conditions\Builder\ConditionsBuilder.cs" />
+    <Compile Include="BlueprintCore\Conditions\Builder\ContextEx\ConditionsBuilderContextEx.cs" />
+    <Compile Include="BlueprintCore\Conditions\Builder\KingdomEx\ConditionsBuilderKingdomEx.cs" />
+    <Compile Include="BlueprintCore\Conditions\Builder\MiscEx\ConditionsBuilderMiscEx.cs" />
+    <Compile Include="BlueprintCore\Conditions\Builder\NewEx\ConditionsBuilderNewEx.cs" />
+    <Compile Include="BlueprintCore\Conditions\Builder\StoryEx\ConditionsBuilderStoryEx.cs" />
+    <Compile Include="BlueprintCore\Conditions\New\TargetInMeleeRange.cs" />
+    <Compile Include="BlueprintCore\Utils\Attributes.cs" />
+    <Compile Include="BlueprintCore\Utils\BlueprintTool.cs" />
+    <Compile Include="BlueprintCore\Utils\CommonTool.cs" />
+    <Compile Include="BlueprintCore\Utils\Constants.cs" />
+    <Compile Include="BlueprintCore\Utils\ContextDuration.cs" />
+    <Compile Include="BlueprintCore\Utils\ContextValues.cs" />
+    <Compile Include="BlueprintCore\Utils\ElementTool.cs" />
+    <Compile Include="BlueprintCore\Utils\LocalizationTool.cs" />
+    <Compile Include="BlueprintCore\Utils\LogWrapper.cs" />
+    <Compile Include="BlueprintCore\Utils\PrereqTool.cs" />
+    <Compile Include="BlueprintCore\Utils\Validator.cs" />
+    <Compile Include="Main.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="BlueprintCore\changes.md" />
+    <None Include="BlueprintCore\LICENSE" />
+    <None Include="BlueprintCore\README.md" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
