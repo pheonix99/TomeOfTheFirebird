@@ -3,7 +3,7 @@ using System.IO;
 using System.Reflection;
 using static UnityModManagerNet.UnityModManager;
 
-namespace CrusaderForge.Config
+namespace TomeOfTheFirebird.Config
 {
     class ModSettings
     {
@@ -45,7 +45,7 @@ namespace CrusaderForge.Config
         {
             JsonSerializer serializer = JsonSerializer.Create(SerializerSettings);
             var assembly = Assembly.GetExecutingAssembly();
-            var resourcePath = $"CrusaderForge.Config.{fileName}";
+            var resourcePath = $"TomeOfTheFirebird.Config.{fileName}";
             var userPath = $"{userConfigFolder}{Path.DirectorySeparatorChar}{fileName}";
 
             Directory.CreateDirectory(userConfigFolder);

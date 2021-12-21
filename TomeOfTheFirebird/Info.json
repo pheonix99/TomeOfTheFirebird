@@ -1,0 +1,10 @@
+{
+  "Id": "TomeOfTheFirebird",
+  "DisplayName": "Tome Of TheFire bird",
+  "Author": "pheonix99",
+  "Version": "0.0.1",
+  "ManagerVersion": "0.21.3",
+  "Requirements": [],
+  "AssemblyName": "TomeOfTheFirebird.dll",
+  "EntryMethod": "TomeOfTheFirebird.Main.Load"
+}

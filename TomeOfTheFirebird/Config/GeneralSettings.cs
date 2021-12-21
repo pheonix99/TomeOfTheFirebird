@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CrusaderForge.Config
+namespace TomeOfTheFirebird.Config
 {
     public class GeneralSettings : IUpdatableSettings
     {
         public bool NewSettingsOffByDefault = false;
-        public SettingGroup SlotlessItems;
+        //public SettingGroup SlotlessItems;
 
         public void Init()
         {
@@ -21,7 +21,7 @@ namespace CrusaderForge.Config
         {
             var loadedSettings = userSettings as GeneralSettings;
             NewSettingsOffByDefault = loadedSettings.NewSettingsOffByDefault;
-            SlotlessItems.LoadSettingGroup(loadedSettings.SlotlessItems, NewSettingsOffByDefault);
+            //SlotlessItems.LoadSettingGroup(loadedSettings.SlotlessItems, NewSettingsOffByDefault);
         }
     }
 }

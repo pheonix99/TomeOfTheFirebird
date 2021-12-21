@@ -1,4 +1,4 @@
-﻿namespace CrusaderForge.Config
+﻿namespace TomeOfTheFirebird.Config
 {
     public interface IDisableableGroup : ICollapseableGroup
     {

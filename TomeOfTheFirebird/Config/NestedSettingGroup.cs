@@ -1,6 +1,6 @@
 ﻿using JetBrains.Annotations;
 
-namespace CrusaderForge.Config
+namespace TomeOfTheFirebird.Config
 {
     public class NestedSettingGroup : SettingGroup
     {

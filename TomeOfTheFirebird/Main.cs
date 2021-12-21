@@ -1,6 +1,4 @@
-﻿using CrusaderForge.Config;
-using CrusaderForge.Utilities;
-using HarmonyLib;
+﻿using HarmonyLib;
 using JetBrains.Annotations;
 using Kingmaker;
 using Kingmaker.Blueprints.JsonSystem;
@@ -9,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TomeOfTheFirebird.Config;
 using UnityModManagerNet;
 
 namespace TomeOfTheFirebird
@@ -32,13 +31,9 @@ namespace TomeOfTheFirebird
                 ModSettings.LoadAllSettings();
                 ModSettings.ModEntry.OnSaveGUI = OnSaveGUI;
                 //ModSettings.ModEntry.OnGUI = UMMSettingsUI.OnGUI;
-                //AssetLoader.AddBundle("tutorialcanvas");
-                if (UnityModManager.gameVersion.Minor == 1)
-                    UIHelpers.WidgetPaths = new WidgetPaths_1_1();
-                else
-                    UIHelpers.WidgetPaths = new WidgetPaths_1_0();
+                
                 harmony.PatchAll();
-                //CraftSystemWrapper.Install();
+                
                 //PostPatchInitializer.Initialize();
 
                 return true;
