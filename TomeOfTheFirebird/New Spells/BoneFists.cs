@@ -61,14 +61,7 @@ namespace TomeOfTheFirebird.New_Spells
             var actoion = ActionsBuilder.New().ApplyBuff(builtBuff.AssetGuidThreadSafe, duration: SpellMakerTools.GetContextDurationValue(DurationRate.Minutes, true), isFromSpell: true);
             BoneFists.RunActions(actoion);
             BoneFists.AddAbilityTargetsAround(radius: new Kingmaker.Utility.Feet(15f), new Kingmaker.Utility.Feet(11f), targetType: Kingmaker.UnitLogic.Abilities.Components.TargetType.Ally);
-            BoneFists.AddSpellListComponent(Guids.BloodragerSpellList, 2);
-            BoneFists.AddSpellListComponent(Guids.ClericSpellList, 2);
-            BoneFists.AddSpellListComponent(Guids.DruidSPellList, 2);
-            BoneFists.AddSpellListComponent(Guids.ShamanSpellList, 2);
-            BoneFists.AddSpellListComponent(Guids.WitchSpellList, 2);
-            BoneFists.AddSpellListComponent(Guids.WizSpellList, 2);
-            BoneFists.AddSpellListComponent(Guids.HunterSpellList, 2);
-            BoneFists.AddSpellListComponent(Guids.RangerSpellList, 2);
+          
            
 
             return BoneFists.Configure();

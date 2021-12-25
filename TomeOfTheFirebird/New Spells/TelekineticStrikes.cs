@@ -29,8 +29,7 @@ namespace TomeOfTheFirebird.New_Spells
             TKStrikeBuilder.SetDurationText(LocalizedStrings.OneMinutePerLevelDuration);
             TKStrikeBuilder.AllowTargeting(false, false, true, true);
             TKStrikeBuilder.SetEffectOn(AbilityEffectOnUnit.Helpful);
-            TKStrikeBuilder.AddSpellListComponent(Guids.MagusSpellList, 2);
-            TKStrikeBuilder.AddSpellListComponent(Guids.WizSpellList, 2);
+           
             TKStrikeBuilder.SetAnimationStyle(Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle.Touch);
             TKStrikeBuilder.SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard);
             TKStrikeBuilder.SetMetamagics(Metamagic.Quicken, Metamagic.Heighten, Metamagic.Extend, Metamagic.CompletelyNormal, Metamagic.Reach);

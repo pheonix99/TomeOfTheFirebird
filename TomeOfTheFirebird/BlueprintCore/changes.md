@@ -1,5 +1,12 @@
 ﻿# Changelog
 
+# v1.3.0 Release
+
+* BlueprintCore is a DLL again! This should be the last time this changes.
+    * The DLL is unsigned and **must be merged into your assembly**. Follow the instructions in [Getting Started](intro.md) to configure it.
+* The tutorials, including on the modding wiki, are now setup to use SDK style project syntax
+* New components available that were added in recent game patches
+
 ## v1.2.2 Release
 
 * Flatten namespace structure for configurators and remove "Configurator" from file names

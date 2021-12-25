@@ -35,7 +35,7 @@ namespace TomeOfTheFirebird.New_Spells
             ChainsMaker.SetSavingThrowText(LocalizedStrings.RefHalf);
             ChainsMaker.SetIcon(ChainsOfFireSprite);
      
-            ChainsMaker.AddSpellListComponent(Guids.WizSpellList, 6).AddSpellListComponent(Guids.MagusSpellList, 6);
+            
             ChainsMaker.AddSpellDescriptors(SpellDescriptor.Fire);
             ChainsMaker.AddAbilityEffectRunActionOnClickedTarget(ActionsBuilder.New().DealDamage(new Kingmaker.RuleSystem.Rules.Damage.DamageTypeDescription() { Energy = Kingmaker.Enums.Damage.DamageEnergyType.Fire }, new Kingmaker.UnitLogic.Mechanics.ContextDiceValue() { DiceType = Kingmaker.RuleSystem.DiceType.D6, DiceCountValue = new Kingmaker.UnitLogic.Mechanics.ContextValue() { ValueType = Kingmaker.UnitLogic.Mechanics.ContextValueType.Rank }, BonusValue = new Kingmaker.UnitLogic.Mechanics.ContextValue() { ValueType = Kingmaker.UnitLogic.Mechanics.ContextValueType.Shared } }, dealHalfIfSaved: true, isAOE: true)).AddContextRankConfig(ContextRankConfigs.CasterLevel(type: Kingmaker.Enums.AbilityRankType.DamageDice, min: 1, max: 20)).AddContextRankConfig(ContextRankConfigs.CasterLevel(min: 1, max: 2, type: Kingmaker.Enums.AbilityRankType.ProjectilesCount, useMax: true)).AddAbilityDeliverChain(radius: new Kingmaker.Utility.Feet(30), projectile: "8cc159ce94d29fe46a94b80ce549161f", projectileFirst: "8cc159ce94d29fe46a94b80ce549161f", targetsCount: new ContextValue() { ValueType = ContextValueType.Rank, ValueRank = Kingmaker.Enums.AbilityRankType.ProjectilesCount });
 

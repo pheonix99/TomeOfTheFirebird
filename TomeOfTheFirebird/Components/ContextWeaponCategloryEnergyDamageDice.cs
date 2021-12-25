@@ -21,8 +21,12 @@ namespace TomeOfTheFirebird.Components
     public class ContextWeaponCategloryEnergyDamageDice : UnitFactComponentDelegate, IInitiatorRulebookHandler<RuleCalculateWeaponStats>, IRulebookHandler<RuleCalculateWeaponStats>, ISubscriber, IInitiatorRulebookSubscriber
     {
         public WeaponCategory[] categories;
+
+        public bool ToAllAttacks = false;
         // Token: 0x04007F6D RID: 32621
         public DiceFormula EnergyDamageDice;
+
+        public bool Ascendant = false;
 
         // Token: 0x04007F6E RID: 32622
         public DamageTypeDescription Element;
@@ -30,14 +34,15 @@ namespace TomeOfTheFirebird.Components
         {
             
 
-            if (categories.Contains(evt.Weapon.Blueprint.Category))
+            if ( ToAllAttacks || categories.Contains(evt.Weapon.Blueprint.Category))
             {
 
                 DamageDescription item = new DamageDescription
                 {
                     TypeDescription = Element,
                     Dice = this.EnergyDamageDice,
-                    SourceFact = base.Fact
+                    SourceFact = base.Fact,
+                    IgnoreImmunities = Ascendant
                 };
                 evt.DamageDescription.Add(item);
             }

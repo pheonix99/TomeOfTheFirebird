@@ -45,6 +45,7 @@ namespace TabletopTweaks.Utilities
                     AddToListIfMissing(SpellList.WarpriestSpelllist);
                 }
             }
+            
             void AddComponentIfMissing(BlueprintSpellList list)
             {
                 if (list == null) { return; }

@@ -13,5 +13,7 @@ namespace TomeOfTheFirebird.Reference
         public static LocalizedString OneMinutePerLevelDuration => Resources.GetBlueprint<BlueprintAbility>("a5e23522eda32dc45801e32c05dc9f96").LocalizedDuration;
         public static LocalizedString RefHalf => Resources.GetBlueprint<BlueprintAbility>("645558d63604747428d55f0dd3a4cb58").LocalizedSavingThrow;
 
+        
+        public static LocalizedString TenMinutePerLevelDuration => Resources.GetBlueprint<BlueprintAbility>("72d9f5adda6387a40a63c49d7781bbbf").LocalizedDuration;
     }
 }

@@ -29,6 +29,18 @@ namespace TomeOfTheFirebird.Helpers
 
         }
 
+        public static IEnumerable<AbilityConfigurator> ApplyToAll(this IEnumerable<AbilityConfigurator> targets, Func<AbilityConfigurator, AbilityConfigurator> act)
+        {
+            return targets.Select(x => act(x));
+        }
+
+        public static AbilityConfigurator SetTouchBuff(this AbilityConfigurator abilityConfigurator)
+        {
+            return abilityConfigurator.SetRange(Kingmaker.UnitLogic.Abilities.Blueprints.AbilityRange.Touch).AllowTargeting(false, false, true, true).SetAnimationStyle(Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle.Touch);
+        }
+
+        
+
         public static ContextDurationValue GetContextDurationValue(DurationRate duration, bool extendable)
         {
             return new ContextDurationValue() { m_IsExtendable = extendable, Rate = duration, BonusValue = new ContextValue() { ValueType = Kingmaker.UnitLogic.Mechanics.ContextValueType.Rank }, DiceType = Kingmaker.RuleSystem.DiceType.One, DiceCountValue = new ContextValue() };

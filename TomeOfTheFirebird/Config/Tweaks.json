@@ -1,0 +1,15 @@
+{
+  "NewSettingsOffByDefault": false,
+  "Mythic": {
+    "DisableAll": false,
+    "Settings": {
+
+      "FlawlessAttacksAppliesToAttackCount": {
+        "Enabled": true,
+        "Description": "Flawless Attacks's reduction of the iterative attack penalty now also makes you get a new attack every four BAB"
+      }
+
+    }
+  }
+
+}

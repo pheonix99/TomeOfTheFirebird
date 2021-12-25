@@ -1,0 +1,45 @@
+{
+  "NewSettingsOffByDefault": false,
+  "Spells": {
+    "DisableAll": false,
+    "Settings": {
+      "BoneFists": {
+        "Enabled": true,
+        "Description": "Level 2 spell for many classes, gives +1 natural armor (form-type) and +2 natural weapons damage to group",
+        "Homebrew": false
+      },
+      "ChainsOfFire": {
+        "Enabled": true,
+        "Description": "A fire damage knockoff of chain lightning.",
+        "Homebrew": false
+
+      },
+      "GloomblindBolts": {
+        "Enabled": true,
+        "Description": "Basically Negative Energy Scorching Ray with a very short duration blind rider. Is Illusion (Shadow) for some ungodly reason",
+        "Homebrew": false
+      },
+      "KeenEdge": {
+        "Enabled": true,
+        "Description": "Make your weapons Keen for a while",
+        "Homebrew": false
+      },
+      "SpearOfPurity": {
+        "Enabled": true,
+        "Description": "Arrow Of Law, only [Good] rather than [Lawful]. Level 2 divine ray spell.",
+        "Homebrew": false
+      },
+      "TelekineticStrikes": {
+        "Enabled": true,
+        "Description": "Add 1d4 force damage rider to natural weapons",
+        "Homebrew": false
+      },
+      "VitrolicMist": {
+        "Enabled": true,
+        "Description": "Fire Shield, but for acid damage",
+        "Homebrew": false
+
+      }
+    }
+  }
+}

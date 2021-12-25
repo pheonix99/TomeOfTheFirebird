@@ -1,7 +1,7 @@
-﻿using BlueprintCore.Actions.Builder;
+﻿
+using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.Components;
-using BlueprintCore.Blueprints.Configurators.Abilities;
 using BlueprintCore.Conditions.Builder;
 using BlueprintCore.Conditions.Builder.ContextEx;
 using BlueprintCore.Utils;
@@ -60,7 +60,7 @@ namespace TomeOfTheFirebird.New_Spells
 
             gloomblind.AddSpellDescriptors(new SpellDescriptor[] { SpellDescriptor.None });
 
-            gloomblind.AddSpellListComponent(Guids.BloodragerSpellList, 3).AddSpellListComponent(Guids.MagusSpellList, 3).AddSpellListComponent(Guids.WitchSpellList, 3).AddSpellListComponent(Guids.WizSpellList, 3);
+          
 
             Main.Log("Building Damage/blind living for gloomblind");
             var damageAndBlindLiving = ActionsBuilder.New().Conditional(construct, ActionsBuilder.New().DealDamage(new DamageTypeDescription() { Energy = DamageEnergyType.NegativeEnergy }, value: damage).SavingThrow(SavingThrowType.Reflex, onResult: ActionsBuilder.New().AfterSavingThrow(ifFailed: ActionsBuilder.New().ApplyBuff(blind, useDurationSeconds: true, durationSeconds: 6))));
