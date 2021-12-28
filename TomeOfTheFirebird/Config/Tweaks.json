@@ -6,9 +6,47 @@
 
       "FlawlessAttacksAppliesToAttackCount": {
         "Enabled": true,
-        "Description": "Flawless Attacks's reduction of the iterative attack penalty now also makes you get a new attack every four BAB"
+        "Description": "Flawless Attacks reduction of the iterative attack penalty now also makes you get a new attack every four BAB (Not working ATM)."
       }
 
+    }
+  },
+  "Spells": {
+    "DisableAll": false,
+    "Settings": {
+      "DispelsAreBuffSafe": {
+        "Enabled": true,
+        "Description": "Dispel Magic, Greater Dispel Magic, and Slayer Dispelling Attacks should no longer dispel buffs on the casters allies or debuffs on enemies."
+      }
+    }
+  },
+  "Quests": {
+    "DisableAll": false,
+    "Settings": {
+      "DawnOfDragonsRewardFeaturize": {
+        "Enabled": true,
+        "Description": "Converts the Holy Aura you get from siding with the silver dragon in Dawn Of Dragons to a feature from a permabuff to make it harder to lose and clear what is up"
+
+      },
+      "DawnOfDragonsCustomRewardAngelOnly": {
+        "Enabled": false,
+        "Description": "Replaces the redundant perma-Holy-Aura effect with a more thematic perk - bit of cold weapon damage and cold resist. Select this to only do the replacement for Angel."
+      },
+      "DawnOfDragonsCustomRewardEveryone": {
+        "Enabled": false,
+        "Description": "Do the replacement for everyone, not just Angel."
+      }
+    }
+
+  },
+  "Crusade": {
+    "DisableAll": false,
+    "Settings": {
+      "MovanicDevasWeaponFix": {
+        "Enabled": true,
+        "Description": "Fixes Movanic Devas to greatswords as per TT rather than longswords wielded in both hands, making their damage quite a bit less bad."
+
+      }
     }
   }
 

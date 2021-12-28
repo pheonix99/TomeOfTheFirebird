@@ -13,7 +13,9 @@ using System.Text;
 using System.Threading.Tasks;
 using TabletopTweaks.Utilities;
 using TomeOfTheFirebird.Config;
+using TomeOfTheFirebird.Crusade;
 using TomeOfTheFirebird.New_Spells;
+using TomeOfTheFirebird.QuestTweaks;
 using TomeOfTheFirebird.Reference;
 
 namespace TomeOfTheFirebird
@@ -23,7 +25,7 @@ namespace TomeOfTheFirebird
         static BlueprintAbility gloomblind;
         static BlueprintAbility bonefists;
         static BlueprintAbility chainsOfFire;
-        static BlueprintAbility tkstrike;
+   
         static BlueprintAbility keenEdge;
         [HarmonyPatch(typeof(BlueprintsCache), "Init")]
         static class BlueprintsCache_Init_Patch
@@ -40,15 +42,15 @@ namespace TomeOfTheFirebird
                     gloomblind = GloomblindBolts.BuildSpell();
                 Resources.AddBlueprint(gloomblind);
                 bonefists = BoneFists.BuildSpell();
-                
-
+                TelekineticStrikes.BuildSpell();
+                SpearOfPurity.BuildSpearOfPurity();
                 Resources.AddBlueprint(bonefists);
                     chainsOfFire = ChainsOfFire.BuildSpell();
                 Resources.AddBlueprint(chainsOfFire);
-                    tkstrike = TelekineticStrikes.BuildSpell();
-                Resources.AddBlueprint(tkstrike);
+                ElementalShieldSpells.Build();
                 keenEdge = KeenEdge.BuildSPell();
-                
+                MonavicsUseTwoHanders.Do();
+                DawnOfDragons.Fix();
                 
             }
         }
@@ -65,19 +67,15 @@ namespace TomeOfTheFirebird
                 Initialized = true;
                 Main.Log("Adding to spell lists");
 
-                if (ModSettings.GeneralSettings.Spells.IsEnabled("GloomblindBolts"))
+                if (ModSettings.NewContent.Spells.IsEnabled("GloomblindBolts"))
                 {
                     gloomblind.AddToSpellList(SpellTools.SpellList.BloodragerSpellList, 3);
                     gloomblind.AddToSpellList(SpellTools.SpellList.MagusSpellList, 3);
                     gloomblind.AddToSpellList(SpellTools.SpellList.WizardSpellList, 3);
                     gloomblind.AddToSpellList(SpellTools.SpellList.WitchSpellList, 3);
                 }
-                if (ModSettings.GeneralSettings.Spells.IsEnabled("TelekineticStrikes"))
-                {
-                    tkstrike.AddToSpellList(SpellTools.SpellList.WizardSpellList, 2);
-                    tkstrike.AddToSpellList(SpellTools.SpellList.MagusSpellList, 2);
-                }
-                if (ModSettings.GeneralSettings.Spells.IsEnabled("BoneFists"))
+                
+                if (ModSettings.NewContent.Spells.IsEnabled("BoneFists"))
                 {
                     bonefists.AddToSpellList(SpellTools.SpellList.BloodragerSpellList, 2);
                     bonefists.AddToSpellList(SpellTools.SpellList.ClericSpellList, 2);
@@ -88,14 +86,14 @@ namespace TomeOfTheFirebird
                     bonefists.AddToSpellList(SpellTools.SpellList.WitchSpellList, 2);
                     bonefists.AddToSpellList(SpellTools.SpellList.WizardSpellList, 2);
                 }
-                if (ModSettings.GeneralSettings.Spells.IsEnabled("ChainsOfFire"))
+                if (ModSettings.NewContent.Spells.IsEnabled("ChainsOfFire"))
                 {
                     chainsOfFire.AddToSpellList(SpellTools.SpellList.WizardSpellList, 6);
                     chainsOfFire.AddToSpellList(SpellTools.SpellList.MagusSpellList, 6);
 
                 }
 
-                if (ModSettings.GeneralSettings.Spells.IsEnabled("KeenEdge"))
+                if (ModSettings.NewContent.Spells.IsEnabled("KeenEdge"))
                 {
                     keenEdge.AddToSpellList(SpellTools.SpellList.BloodragerSpellList, 3);
                     keenEdge.AddToSpellList(SpellTools.SpellList.InquisitorSpellList, 3);

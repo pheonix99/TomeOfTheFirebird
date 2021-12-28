@@ -15,7 +15,7 @@ using TomeOfTheFirebird.Config;
 namespace TomeOfTheFirebird.Tweaks
 {
     static class FlawlessAttacks
-    {
+    {/*
         [HarmonyPatch(typeof(RuleCalculateAttacksCount), "OnTrigger", new Type[] {typeof(RulebookEventContext) })]
         static bool Prefix(RuleCalculateAttacksCount __instance, RulebookEventContext context)
         {
@@ -29,10 +29,12 @@ namespace TomeOfTheFirebird.Tweaks
             }
             else
             {
+				
 				__instance.Result.PrimaryHand.FlawlessAttacks = __instance.Initiator.State.Features.FlawlessAttacks;
 				__instance.Result.SecondaryHand.FlawlessAttacks = __instance.Initiator.State.Features.FlawlessAttacks;
 				int num = __instance.Initiator.Stats.BaseAttackBonus;
 				int num2 = Math.Max(0, num / 4 - ((num % 4 == 0) ? 1 : 0));
+				Main.Log($"Attack Count Modifier for {__instance.Initiator.CharacterName} in effect, calc'd new attack count {num2}");
 				if (num2 > 3 && __instance.Initiator.Get<UnitPartCompanion>() == null)
 				{
 					num2 = 3;
@@ -85,6 +87,6 @@ namespace TomeOfTheFirebird.Tweaks
 			}
 
         }
-
+		*/
     }
 }

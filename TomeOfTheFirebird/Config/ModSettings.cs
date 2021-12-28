@@ -8,7 +8,7 @@ namespace TomeOfTheFirebird.Config
     class ModSettings
     {
         public static ModEntry ModEntry;
-        public static NewContent GeneralSettings;
+        public static NewContent NewContent;
         public static Tweaks Tweaks;
         public static Blueprints Blueprints;
         private static string userConfigFolder => ModEntry.Path + "UserSettings";
@@ -39,7 +39,7 @@ namespace TomeOfTheFirebird.Config
 
         public static void LoadAllSettings()
         {
-            LoadSettings("NewContent.json", ref GeneralSettings);
+            LoadSettings("NewContent.json", ref NewContent);
             LoadSettings("Tweaks.json", ref Tweaks);
             LoadSettings("Blueprints.json", ref Blueprints);
         }

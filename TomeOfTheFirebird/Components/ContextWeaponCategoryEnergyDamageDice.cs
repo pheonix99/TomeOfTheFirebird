@@ -1,5 +1,6 @@
 ﻿using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Facts;
+using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.Enums;
 using Kingmaker.Enums.Damage;
 using Kingmaker.PubSubSystem;
@@ -18,31 +19,40 @@ namespace TomeOfTheFirebird.Components
 
     [AllowedOn(typeof(BlueprintUnitFact))]
     [ComponentName("Damage bonus for specific weapon types")]
-    public class ContextWeaponCategloryEnergyDamageDice : UnitFactComponentDelegate, IInitiatorRulebookHandler<RuleCalculateWeaponStats>, IRulebookHandler<RuleCalculateWeaponStats>, ISubscriber, IInitiatorRulebookSubscriber
+    public class ContextWeaponCategoryEnergyDamageDice : UnitFactComponentDelegate, IInitiatorRulebookHandler<RuleCalculateWeaponStats>, IRulebookHandler<RuleCalculateWeaponStats>, ISubscriber, IInitiatorRulebookSubscriber
     {
         public WeaponCategory[] categories;
 
         public bool ToAllAttacks = false;
         // Token: 0x04007F6D RID: 32621
         public DiceFormula EnergyDamageDice;
-
+        
         public bool Ascendant = false;
-
+        
         // Token: 0x04007F6E RID: 32622
         public DamageTypeDescription Element;
         public void OnEventAboutToTrigger(RuleCalculateWeaponStats evt)
         {
             
-
+            
             if ( ToAllAttacks || categories.Contains(evt.Weapon.Blueprint.Category))
             {
+                bool localAscend = false;
+                if ( base.Context.SourceAbilityContext != null && base.Context.SourceAbilityContext.Caster != null && Element.IsEnergy)
+                {
+                    if (base.Context.SourceAbilityContext.Caster.Facts.List.OfType<AscendantElement>().Any(x=>x.Element == Element.Energy))
+                    {
+                        localAscend = true;
+                    }
+                }
 
+               
                 DamageDescription item = new DamageDescription
                 {
                     TypeDescription = Element,
                     Dice = this.EnergyDamageDice,
                     SourceFact = base.Fact,
-                    IgnoreImmunities = Ascendant
+                    IgnoreImmunities = Ascendant || localAscend
                 };
                 evt.DamageDescription.Add(item);
             }

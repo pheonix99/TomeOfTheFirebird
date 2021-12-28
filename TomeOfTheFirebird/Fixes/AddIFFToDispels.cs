@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TomeOfTheFirebird.Config;
 
 namespace TomeOfTheFirebird.Fixes
 {
@@ -31,6 +32,8 @@ namespace TomeOfTheFirebird.Fixes
             {
                 if (Initialized) return;
                 Initialized = true;
+                if (ModSettings.Tweaks.Spells.IsDisabled("DispelsAreBuffSafe"))
+                    return;
                 Main.Log("Patching Dispel IFF");
                 FeatureConfigurator.For("1b92146b8a9830d4bb97ab694335fa7c").EditComponent<AddInitiatorAttackRollTrigger>(x => x.Action.Actions.OfType<ContextActionDispelMagic>().FirstOrDefault().OnlyTargetEnemyBuffs = true).Configure();
                 

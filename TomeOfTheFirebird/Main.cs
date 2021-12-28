@@ -30,7 +30,8 @@ namespace TomeOfTheFirebird
 
                 ModSettings.LoadAllSettings();
                 ModSettings.ModEntry.OnSaveGUI = OnSaveGUI;
-                //ModSettings.ModEntry.OnGUI = UMMSettingsUI.OnGUI;
+                ModSettings.ModEntry.OnGUI = UMMSettingsUI.OnGUI;
+                
                 
                 harmony.PatchAll();
                 
@@ -53,7 +54,8 @@ namespace TomeOfTheFirebird
 
         static void OnSaveGUI(UnityModManager.ModEntry modEntry)
         {
-            ModSettings.SaveSettings("GeneralSettings.json", ModSettings.GeneralSettings);
+            ModSettings.SaveSettings("NewContent.json", ModSettings.NewContent);
+            ModSettings.SaveSettings("Tweaks.json", ModSettings.Tweaks);
 
         }
 

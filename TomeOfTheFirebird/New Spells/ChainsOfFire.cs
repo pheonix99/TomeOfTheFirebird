@@ -25,7 +25,7 @@ namespace TomeOfTheFirebird.New_Spells
             Sprite ChainsOfFireSprite = ChainLightning.Icon;
             BlueprintProjectile ScorchingRayBeam = Resources.GetBlueprint<BlueprintProjectile>("8cc159ce94d29fe46a94b80ce549161f");
             
-            var ChainsMaker = SpellMakerTools.MakeSpell("ChainsOfFire", "Chains Of Fire", $"This spell functions like chain lightning, except as noted above, and the spell deals fire damage instead of electricity damage. \n \nChain Lightning: {ChainLightning.Description}", ChainsOfFireSprite, SpellSchool.Evocation);
+            var ChainsMaker = MakerTools.MakeSpell("ChainsOfFire", "Chains Of Fire", $"This spell functions like chain lightning, except as noted above, and the spell deals fire damage instead of electricity damage. \n \nChain Lightning: {ChainLightning.Description}", ChainsOfFireSprite, SpellSchool.Evocation);
             ChainsMaker.SetRange(AbilityRange.Medium);
             ChainsMaker.AllowTargeting(enemies: true);
             ChainsMaker.ApplySpellResistance(true);

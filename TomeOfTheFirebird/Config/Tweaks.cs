@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace TomeOfTheFirebird.Config
 {
-    class Tweaks : IUpdatableSettings
+    public class Tweaks : IUpdatableSettings
     {
         public bool NewSettingsOffByDefault = false;
         public SettingGroup Mythic;
-
+        public SettingGroup Spells;
+        public SettingGroup Quests;
+        public SettingGroup Crusade;
         public void Init()
         {
 
@@ -19,9 +21,15 @@ namespace TomeOfTheFirebird.Config
 
         public void OverrideSettings(IUpdatableSettings userSettings)
         {
-            var loadedSettings = userSettings as NewContent;
+            var loadedSettings = userSettings as Tweaks;
             NewSettingsOffByDefault = loadedSettings.NewSettingsOffByDefault;
-            Mythic.LoadSettingGroup(loadedSettings.Spells, NewSettingsOffByDefault);
+            Mythic.LoadSettingGroup(loadedSettings.Mythic, NewSettingsOffByDefault);
+            Spells.LoadSettingGroup(loadedSettings.Spells, NewSettingsOffByDefault);
+            Quests.LoadSettingGroup(loadedSettings.Quests, NewSettingsOffByDefault);
+            Crusade.LoadSettingGroup(loadedSettings.Crusade, NewSettingsOffByDefault);
+
+
+
         }
     
     }

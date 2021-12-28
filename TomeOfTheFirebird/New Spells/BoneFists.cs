@@ -28,7 +28,7 @@ namespace TomeOfTheFirebird.New_Spells
         {
 
             Sprite BoneFistsSprite = AssetLoader.LoadInternal("Spells", "BoneFists.png");
-            var BoneFists = SpellMakerTools.MakeSpell("BoneFists", "Bone Fists", "The bones of your targets’ joints grow thick and sharp, protruding painfully through the skin at the knuckles, elbows, shoulders, spine, and knees. The targets each gain a +1 bonus to natural armor and a +2 bonus on damage rolls with natural weapons.", BoneFistsSprite, Kingmaker.Blueprints.Classes.Spells.SpellSchool.Necromancy);
+            var BoneFists = MakerTools.MakeSpell("BoneFists", "Bone Fists", "The bones of your targets’ joints grow thick and sharp, protruding painfully through the skin at the knuckles, elbows, shoulders, spine, and knees. The targets each gain a +1 bonus to natural armor and a +2 bonus on damage rolls with natural weapons.", BoneFistsSprite, Kingmaker.Blueprints.Classes.Spells.SpellSchool.Necromancy);
             Main.Log("Bone Fists Build Started");
          
             BoneFists.AllowTargeting(true, false, true, true);
@@ -39,8 +39,8 @@ namespace TomeOfTheFirebird.New_Spells
             BoneFists.SetMetamagics(Metamagic.Extend, Metamagic.Heighten, Metamagic.CompletelyNormal, Metamagic.Quicken, Metamagic.Reach);
             BoneFists.SetDurationText(LocalizedStrings.OneMinutePerLevelDuration);
 
-
-            var BoneFistsBuff = SpellMakerTools.MakeBuff("BoneFistsBuff", "Bone Fists", "The bones of your joints grow thick and sharp, protruding painfully through the skin at the knuckles, elbows, shoulders, spine, and knees. You gain a +1 bonus to natural armor and a +2 bonus on damage rolls with natural weapons.", BoneFistsSprite);
+            BoneFists.SetSavingThrowText(new Kingmaker.Localization.LocalizedString());
+            var BoneFistsBuff = MakerTools.MakeBuff("BoneFistsBuff", "Bone Fists", "The bones of your joints grow thick and sharp, protruding painfully through the skin at the knuckles, elbows, shoulders, spine, and knees. You gain a +1 bonus to natural armor and a +2 bonus on damage rolls with natural weapons.", BoneFistsSprite);
             BoneFistsBuff.SetFlags(BlueprintBuff.Flags.IsFromSpell);
        
             
@@ -58,7 +58,7 @@ namespace TomeOfTheFirebird.New_Spells
             
             Main.Log("Built Buff");
             var builtBuff = BoneFistsBuff.Configure();
-            var actoion = ActionsBuilder.New().ApplyBuff(builtBuff.AssetGuidThreadSafe, duration: SpellMakerTools.GetContextDurationValue(DurationRate.Minutes, true), isFromSpell: true);
+            var actoion = ActionsBuilder.New().ApplyBuff(builtBuff.AssetGuidThreadSafe, duration: MakerTools.GetContextDurationValue(DurationRate.Minutes, true), isFromSpell: true);
             BoneFists.RunActions(actoion);
             BoneFists.AddAbilityTargetsAround(radius: new Kingmaker.Utility.Feet(15f), new Kingmaker.Utility.Feet(11f), targetType: Kingmaker.UnitLogic.Abilities.Components.TargetType.Ally);
           

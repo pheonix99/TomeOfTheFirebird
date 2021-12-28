@@ -23,19 +23,19 @@ namespace TomeOfTheFirebird.New_Spells
         public static BlueprintAbility BuildSPell()
         {
             keenSprite = Resources.GetBlueprint<BlueprintActivatableAbility>("27d76f1afda08a64d897cc81201b5218").Icon;//Keen weapon bond
-            var maker = SpellMakerTools.MakeSpell("KeenEdge", "Keen Edge",desc , keenSprite, Kingmaker.Blueprints.Classes.Spells.SpellSchool.Transmutation);
+            var maker = MakerTools.MakeSpell("KeenEdge", "Keen Edge",desc , keenSprite, Kingmaker.Blueprints.Classes.Spells.SpellSchool.Transmutation);
 
 
-            
-            
+            maker.SetSavingThrowText(new Kingmaker.Localization.LocalizedString());
 
+            maker.SetRange(AbilityRange.Close).AllowTargeting(false, false, true, true).SetAnimationStyle(Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle.Directional).SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard).SetMetamagics(Metamagic.Quicken, Metamagic.Extend, Metamagic.Heighten, Metamagic.Reach, Metamagic.CompletelyNormal);
             var mainMaker = MakeHandedVersion(true);
             var offhandMaker = MakeHandedVersion(false);
 
-            IEnumerable<AbilityConfigurator> allThree = new AbilityConfigurator[] { maker, maker, offhandMaker };
            
-            allThree.ApplyToAll(x => x.SetRange(AbilityRange.Close).AllowTargeting(false, false, true, true).SetAnimationStyle(Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle.Directional).SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard).SetMetamagics(Metamagic.Quicken, Metamagic.Extend, Metamagic.Heighten, Metamagic.Reach, Metamagic.CompletelyNormal));
-            allThree.ApplyToAll(x => x.SetDurationText(LocalizedStrings.TenMinutePerLevelDuration));
+
+            maker.SetDurationText(LocalizedStrings.TenMinutePerLevelDuration);
+           
             
 
 
@@ -49,14 +49,14 @@ namespace TomeOfTheFirebird.New_Spells
 
         private static AbilityConfigurator MakeHandedVersion(bool main)
         {
-            var maker = SpellMakerTools.MakeSpell(main ? "KeenEdgePrimary" : "KeenEdgeSecondary", main ? "Keen Edge (Main Hand)" : "Keen Edge (Off Hand)", desc, keenSprite, Kingmaker.Blueprints.Classes.Spells.SpellSchool.Transmutation);
+            var maker = MakerTools.MakeSpell(main ? "KeenEdgePrimary" : "KeenEdgeSecondary", main ? "Keen Edge (Main Hand)" : "Keen Edge (Off Hand)", desc, keenSprite, Kingmaker.Blueprints.Classes.Spells.SpellSchool.Transmutation);
+            maker.SetRange(AbilityRange.Close).AllowTargeting(false, false, true, true).SetAnimationStyle(Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle.Directional).SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard).SetMetamagics(Metamagic.Quicken, Metamagic.Extend, Metamagic.Heighten, Metamagic.Reach, Metamagic.CompletelyNormal);
+            maker.SetSavingThrowText(new Kingmaker.Localization.LocalizedString());
+   
+            maker.SetDurationText(LocalizedStrings.TenMinutePerLevelDuration);
             string keen = "102a9c8c9b7a75e4fb5844e79deaf4c0";
-            var buff = SpellMakerTools.MakeBuff(main ? "KeenEdgePrimaryBuff" : "KeenEdgeSecondaryBuff", main ? "Keen Edge (Main Hand)" : "Keen Edge(Off Hand)", desc, keenSprite);
-            buff.AddBuffEnchantWornItem(keen, false, main ? Kingmaker.UI.GenericSlot.EquipSlotBase.SlotType.PrimaryHand : Kingmaker.UI.GenericSlot.EquipSlotBase.SlotType.SecondaryHand);
-
-
-            var buffBuild = buff.Configure();
-            var actions = ActionsBuilder.New().ApplyBuff(buffBuild.AssetGuidThreadSafe, duration: SpellMakerTools.GetContextDurationValue(Kingmaker.UnitLogic.Mechanics.DurationRate.TenMinutes, true), isFromSpell: true);
+            
+            var actions = ActionsBuilder.New().EnchantWornItem(keen, main ? Kingmaker.UI.GenericSlot.EquipSlotBase.SlotType.PrimaryHand : Kingmaker.UI.GenericSlot.EquipSlotBase.SlotType.SecondaryHand, duration: MakerTools.GetContextDurationValue(Kingmaker.UnitLogic.Mechanics.DurationRate.TenMinutes, true));
             maker.RunActions(actions);
             maker.AddComponent<AbilityTargetHasSlashingPiercingWeaponInRelevantHand>(new Action<AbilityTargetHasSlashingPiercingWeaponInRelevantHand>(x => x.MainHand = main));
 

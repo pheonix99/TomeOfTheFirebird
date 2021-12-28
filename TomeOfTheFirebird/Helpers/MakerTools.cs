@@ -1,5 +1,6 @@
 ﻿using BlueprintCore.Blueprints.Configurators.Abilities;
 using BlueprintCore.Blueprints.Configurators.Buffs;
+using BlueprintCore.Blueprints.Configurators.Classes;
 using BlueprintCore.Utils;
 using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.Localization;
@@ -14,8 +15,25 @@ using UnityEngine;
 
 namespace TomeOfTheFirebird.Helpers
 {
-    public static class SpellMakerTools
+    public static class MakerTools
     {
+        public static FeatureConfigurator MakeFeature(string systemName, string displayName, string description, bool hide = false, Sprite icon = null)
+        {
+            Main.Log($"Building New Feature: {systemName}");
+            var guid = ModSettings.Blueprints.GetGUID(systemName);
+            LocalizedString name = LocalizationTool.CreateString(systemName + ".Name", displayName);
+            LocalizedString desc = LocalizationTool.CreateString(systemName + ".Desc", description);
+
+            var res = FeatureConfigurator.New(systemName, guid.ToString()).SetDisplayName(name).SetDescription(desc);
+            if (icon != null)
+            {
+                res.SetIcon(icon);
+            }
+           
+            return res;
+
+        }
+
         public static AbilityConfigurator MakeSpell(string systemName, string displayName, string description, Sprite icon, SpellSchool school)
         {
             Main.Log($"Building New Spell: {systemName}");

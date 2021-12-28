@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TomeOfTheFirebird.Assets;
 using TomeOfTheFirebird.Config;
 using TomeOfTheFirebird.Helpers;
 using TomeOfTheFirebird.Reference;
@@ -34,23 +35,24 @@ namespace TomeOfTheFirebird.New_Spells
         {
             
             string umbralStrikeGUid = "474ed0aa656cc38499cc9a073d113716";
-            Sprite gloomicon = Resources.GetBlueprint<BlueprintAbility>(umbralStrikeGUid).Icon;
+            Sprite gloomicon = AssetLoader.LoadInternal("Spells", "GloomblindBolts.png");
             Main.Log($"Got Umbral Strike");
             string beamGUID = "72aa6191e153a31468d76668cbc72fc7"; //Enervation
             
-                ConditionsBuilder undead = ConditionsBuilder.New().HasFact("734a29b693e9ec346ba2951b27987e33", true);
+                ConditionsBuilder TargetIsNotUndead = ConditionsBuilder.New().HasFact("734a29b693e9ec346ba2951b27987e33", true);
                 Main.Log($"Built isUndead ConditionsBuilder");
-                ConditionsBuilder construct = ConditionsBuilder.New().HasFact("fd389783027d63343b4a5634bd81645f", false);
+                ConditionsBuilder TargetIsConstruct = ConditionsBuilder.New().HasFact("fd389783027d63343b4a5634bd81645f", false);
                 Main.Log("Built is not Construct condition");
                 ContextDiceValue damage = new ContextDiceValue()
                 {
                     DiceCountValue = new ContextValue() { Value = 4 },
-                    DiceType = Kingmaker.RuleSystem.DiceType.D6
+                    DiceType = Kingmaker.RuleSystem.DiceType.D6,
+                    BonusValue = 0
                 };
             
                 string blind = "187f88d96a0ef464280706b63635f2af";
             Main.Log("Built damage dice");
-            var gloomblind = SpellMakerTools.MakeSpell("GloomblindBolts", "Gloomblind Bolts", "You create one or more bolts of negative energy infused with shadow pulled from the Shadow Plane. You can fire one bolt, plus one for every four levels beyond 5th (to a maximum of three bolts at 13th level) at the same or different targets, but all bolts must be aimed at targets within 30 feet of each other and require a ranged touch attack to hit. Each bolt deals 4d6 points of damage to a living creature or heals 4d6 points of damage to an undead creature. Furthermore, the bolt’s energy spreads over the skin of creature, possibly blinding it for a short time. Any creature struck by a bolt must succeed at a Reflex saving throw or become blinded for 1 round.", gloomicon, SpellSchool.Conjuration);
+            var gloomblind = MakerTools.MakeSpell("GloomblindBolts", "Gloomblind Bolts", "You create one or more bolts of negative energy infused with shadow pulled from the Shadow Plane. You can fire one bolt, plus one for every four levels beyond 5th (to a maximum of three bolts at 13th level) at the same or different targets, but all bolts must be aimed at targets within 30 feet of each other and require a ranged touch attack to hit. Each bolt deals 4d6 points of damage to a living creature or heals 4d6 points of damage to an undead creature. Furthermore, the bolt’s energy spreads over the skin of creature, possibly blinding it for a short time. Any creature struck by a bolt must succeed at a Reflex saving throw or become blinded for 1 round.", gloomicon, SpellSchool.Conjuration);
 
 
             gloomblind.SetRange(AbilityRange.Close);
@@ -63,7 +65,7 @@ namespace TomeOfTheFirebird.New_Spells
           
 
             Main.Log("Building Damage/blind living for gloomblind");
-            var damageAndBlindLiving = ActionsBuilder.New().Conditional(construct, ActionsBuilder.New().DealDamage(new DamageTypeDescription() { Energy = DamageEnergyType.NegativeEnergy }, value: damage).SavingThrow(SavingThrowType.Reflex, onResult: ActionsBuilder.New().AfterSavingThrow(ifFailed: ActionsBuilder.New().ApplyBuff(blind, useDurationSeconds: true, durationSeconds: 6))));
+            var damageAndBlindLiving = ActionsBuilder.New().Conditional(TargetIsConstruct, ifFalse: ActionsBuilder.New().DealDamage(new DamageTypeDescription() { Energy = DamageEnergyType.NegativeEnergy, Type = DamageType.Energy }, value: damage).SavingThrow(SavingThrowType.Reflex, onResult: ActionsBuilder.New().AfterSavingThrow(ifFailed: ActionsBuilder.New().ApplyBuff(blind, useDurationSeconds: true, durationSeconds: 6))));
 
 
 
@@ -73,7 +75,7 @@ namespace TomeOfTheFirebird.New_Spells
             Main.Log("Adding effect to gloomblind");
 
 
-              gloomblind.AddAbilityEffectRunActionOnClickedUnit(ActionsBuilder.New().Conditional(undead, ActionsBuilder.New().HealTarget(damage), damageAndBlindLiving));
+              gloomblind.RunActions(ActionsBuilder.New().Conditional(TargetIsNotUndead, ifTrue: damageAndBlindLiving, ifFalse: ActionsBuilder.New().HealTarget(damage) ));
             Main.Log("Adding Projectile To Gloomblind");
             gloomblind.AddAbilityDeliverProjectile(new Kingmaker.Utility.Feet(), new Kingmaker.Utility.Feet(5.0f), new string[] { beamGUID, beamGUID, beamGUID }, needAttackRoll: true, weapon: "f6ef95b1f7bb52b408a5b345a330ffe8", useMaxProjectilesCount: true, delayBetweenProjectiles: 0.2f);
             Main.Log("Adding CL to gloomblind");

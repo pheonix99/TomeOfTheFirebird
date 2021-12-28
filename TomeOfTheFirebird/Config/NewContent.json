@@ -34,6 +34,11 @@
         "Description": "Add 1d4 force damage rider to natural weapons",
         "Homebrew": false
       },
+      "FireShield": {
+        "Enabled": true,
+        "Description": "Resist Fire/Cold, deal backlash damage of other element",
+        "Homebrew" :  false
+      },
       "VitrolicMist": {
         "Enabled": true,
         "Description": "Fire Shield, but for acid damage",
