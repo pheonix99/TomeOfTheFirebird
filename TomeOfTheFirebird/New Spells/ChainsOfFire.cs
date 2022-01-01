@@ -11,6 +11,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TabletopTweaks.Utilities;
+using TomeOfTheFirebird.Config;
 using TomeOfTheFirebird.Helpers;
 using TomeOfTheFirebird.Reference;
 using UnityEngine;
@@ -19,7 +21,7 @@ namespace TomeOfTheFirebird.New_Spells
 {
     static class ChainsOfFire
     {
-        public static BlueprintAbility BuildSpell()
+        public static void BuildSpell()
         {
             var ChainLightning = Resources.GetBlueprint<BlueprintAbility>("645558d63604747428d55f0dd3a4cb58");
             Sprite ChainsOfFireSprite = ChainLightning.Icon;
@@ -38,8 +40,14 @@ namespace TomeOfTheFirebird.New_Spells
             
             ChainsMaker.AddSpellDescriptors(SpellDescriptor.Fire);
             ChainsMaker.AddAbilityEffectRunActionOnClickedTarget(ActionsBuilder.New().DealDamage(new Kingmaker.RuleSystem.Rules.Damage.DamageTypeDescription() { Energy = Kingmaker.Enums.Damage.DamageEnergyType.Fire }, new Kingmaker.UnitLogic.Mechanics.ContextDiceValue() { DiceType = Kingmaker.RuleSystem.DiceType.D6, DiceCountValue = new Kingmaker.UnitLogic.Mechanics.ContextValue() { ValueType = Kingmaker.UnitLogic.Mechanics.ContextValueType.Rank }, BonusValue = new Kingmaker.UnitLogic.Mechanics.ContextValue() { ValueType = Kingmaker.UnitLogic.Mechanics.ContextValueType.Shared } }, dealHalfIfSaved: true, isAOE: true)).AddContextRankConfig(ContextRankConfigs.CasterLevel(type: Kingmaker.Enums.AbilityRankType.DamageDice, min: 1, max: 20)).AddContextRankConfig(ContextRankConfigs.CasterLevel(min: 1, max: 2, type: Kingmaker.Enums.AbilityRankType.ProjectilesCount, useMax: true)).AddAbilityDeliverChain(radius: new Kingmaker.Utility.Feet(30), projectile: "8cc159ce94d29fe46a94b80ce549161f", projectileFirst: "8cc159ce94d29fe46a94b80ce549161f", targetsCount: new ContextValue() { ValueType = ContextValueType.Rank, ValueRank = Kingmaker.Enums.AbilityRankType.ProjectilesCount });
+            var made = ChainsMaker.Configure();
+            if (ModSettings.NewContent.Spells.IsEnabled("ChainsOfFire"))
+            {
+                made.AddToSpellList(SpellTools.SpellList.WizardSpellList, 6);
+                made.AddToSpellList(SpellTools.SpellList.MagusSpellList, 6);
 
-            return ChainsMaker.Configure();
+            }
+          
         }
 
 

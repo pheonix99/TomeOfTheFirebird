@@ -19,13 +19,13 @@ namespace TomeOfTheFirebird.Components
 
     [AllowedOn(typeof(BlueprintUnitFact))]
     [ComponentName("Damage bonus for specific weapon types")]
-    public class ContextWeaponCategoryEnergyDamageDice : UnitFactComponentDelegate, IInitiatorRulebookHandler<RuleCalculateWeaponStats>, IRulebookHandler<RuleCalculateWeaponStats>, ISubscriber, IInitiatorRulebookSubscriber
+    public class ContextWeaponCategoryExtraDamageDice : UnitFactComponentDelegate, IInitiatorRulebookHandler<RuleCalculateWeaponStats>, IRulebookHandler<RuleCalculateWeaponStats>, ISubscriber, IInitiatorRulebookSubscriber
     {
         public WeaponCategory[] categories;
 
         public bool ToAllAttacks = false;
         // Token: 0x04007F6D RID: 32621
-        public DiceFormula EnergyDamageDice;
+        public DiceFormula DamageDice;
         
         public bool Ascendant = false;
         
@@ -33,24 +33,24 @@ namespace TomeOfTheFirebird.Components
         public DamageTypeDescription Element;
         public void OnEventAboutToTrigger(RuleCalculateWeaponStats evt)
         {
-            
-            
+              
+
             if ( ToAllAttacks || categories.Contains(evt.Weapon.Blueprint.Category))
             {
                 bool localAscend = false;
                 if ( base.Context.SourceAbilityContext != null && base.Context.SourceAbilityContext.Caster != null && Element.IsEnergy)
                 {
-                    if (base.Context.SourceAbilityContext.Caster.Facts.List.OfType<AscendantElement>().Any(x=>x.Element == Element.Energy))
+                    if (Element.IsEnergy && base.Context.SourceAbilityContext.Caster.Facts.List.OfType<AscendantElement>().Any(x=>x.Element == Element.Energy))
                     {
                         localAscend = true;
                     }
                 }
 
-               
+                
                 DamageDescription item = new DamageDescription
                 {
                     TypeDescription = Element,
-                    Dice = this.EnergyDamageDice,
+                    Dice = this.DamageDice,
                     SourceFact = base.Fact,
                     IgnoreImmunities = Ascendant || localAscend
                 };

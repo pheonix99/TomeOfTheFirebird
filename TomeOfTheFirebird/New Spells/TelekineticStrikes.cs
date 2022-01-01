@@ -50,10 +50,10 @@ namespace TomeOfTheFirebird.New_Spells
             
             var TKStrikeBuff = MakerTools.MakeBuff("TelekineticStrikesBuff", "Telekinetic Strikes", "Your limbs are charged with telekinetic force. \n \n For the duration of the spell,  your unarmed attacks or natural weapons deal an additional 1d4 points of force damage on each successful unarmed melee attack.", TKStrikeSprite);
             var allowed_categories = new WeaponCategory[] { WeaponCategory.Claw, WeaponCategory.Bite, WeaponCategory.Gore, WeaponCategory.OtherNaturalWeapons, WeaponCategory.UnarmedStrike, WeaponCategory.Tail };
-            ContextWeaponCategoryEnergyDamageDice dmg = new ContextWeaponCategoryEnergyDamageDice()
+            ContextWeaponCategoryExtraDamageDice dmg = new ContextWeaponCategoryExtraDamageDice()
             {
                 categories = allowed_categories,
-                EnergyDamageDice = new Kingmaker.RuleSystem.DiceFormula() { m_Dice = Kingmaker.RuleSystem.DiceType.D4, m_Rolls = 1},
+                DamageDice = new Kingmaker.RuleSystem.DiceFormula() { m_Dice = Kingmaker.RuleSystem.DiceType.D4, m_Rolls = 1},
                 Element = new Kingmaker.RuleSystem.Rules.Damage.DamageTypeDescription()
                 {
                     Type = Kingmaker.RuleSystem.Rules.Damage.DamageType.Force

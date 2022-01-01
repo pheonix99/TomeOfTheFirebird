@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using TabletopTweaks.Utilities;
 using TomeOfTheFirebird.Config;
 using TomeOfTheFirebird.Crusade;
+using TomeOfTheFirebird.Fixes;
 using TomeOfTheFirebird.New_Spells;
 using TomeOfTheFirebird.QuestTweaks;
 using TomeOfTheFirebird.Reference;
@@ -24,7 +25,7 @@ namespace TomeOfTheFirebird
     {
         static BlueprintAbility gloomblind;
         static BlueprintAbility bonefists;
-        static BlueprintAbility chainsOfFire;
+      
    
         static BlueprintAbility keenEdge;
         [HarmonyPatch(typeof(BlueprintsCache), "Init")]
@@ -45,13 +46,15 @@ namespace TomeOfTheFirebird
                 TelekineticStrikes.BuildSpell();
                 SpearOfPurity.BuildSpearOfPurity();
                 Resources.AddBlueprint(bonefists);
-                    chainsOfFire = ChainsOfFire.BuildSpell();
-                Resources.AddBlueprint(chainsOfFire);
+
+                ChainsOfFire.BuildSpell();
                 ElementalShieldSpells.Build();
+                FreezingSphere.Build();
                 keenEdge = KeenEdge.BuildSPell();
                 MonavicsUseTwoHanders.Do();
                 DawnOfDragons.Fix();
-                
+                FixExtraHitsOnProcs.FixFirebrand();
+                FixExtraHitsOnProcs.FixRandomWeaponsRiders();
             }
         }
 
@@ -86,12 +89,7 @@ namespace TomeOfTheFirebird
                     bonefists.AddToSpellList(SpellTools.SpellList.WitchSpellList, 2);
                     bonefists.AddToSpellList(SpellTools.SpellList.WizardSpellList, 2);
                 }
-                if (ModSettings.NewContent.Spells.IsEnabled("ChainsOfFire"))
-                {
-                    chainsOfFire.AddToSpellList(SpellTools.SpellList.WizardSpellList, 6);
-                    chainsOfFire.AddToSpellList(SpellTools.SpellList.MagusSpellList, 6);
-
-                }
+                
 
                 if (ModSettings.NewContent.Spells.IsEnabled("KeenEdge"))
                 {

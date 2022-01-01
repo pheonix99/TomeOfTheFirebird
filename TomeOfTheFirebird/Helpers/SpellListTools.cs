@@ -14,6 +14,10 @@ namespace TabletopTweaks.Utilities
     {
         public static void AddToSpellList(this BlueprintAbility spell, BlueprintSpellList spellList, int level)
         {
+#if DEBUG
+
+            Main.Log($"Adding {spell.Name} to {spellList.name}");
+                #endif
             AddComponentIfMissing(spellList);
             AddToListIfMissing(spellList);
             if (spellList == SpellList.WizardSpellList)

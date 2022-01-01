@@ -40,12 +40,12 @@ namespace TomeOfTheFirebird.QuestTweaks
             string isAngelEtude = "3a82aba4de71b89458ac82949ed957c4";
             var AuraFeatureBuilt = auraFeature.Configure();
 
-            var AngelIce = new ContextWeaponCategoryEnergyDamageDice()
+            var AngelIce = new ContextWeaponCategoryExtraDamageDice()
             {
                 Ascendant = true,
                 ToAllAttacks = true,
                 Element = new Kingmaker.RuleSystem.Rules.Damage.DamageTypeDescription() { Energy = Kingmaker.Enums.Damage.DamageEnergyType.Cold, Type = Kingmaker.RuleSystem.Rules.Damage.DamageType.Energy, Common = new Kingmaker.RuleSystem.Rules.Damage.DamageTypeDescription.CommomData() { Reality = Kingmaker.Enums.Damage.DamageRealityType.Ghost } },
-                EnergyDamageDice = new Kingmaker.RuleSystem.DiceFormula(1, Kingmaker.RuleSystem.DiceType.D6)
+                DamageDice = new Kingmaker.RuleSystem.DiceFormula(1, Kingmaker.RuleSystem.DiceType.D6)
 
             };
             var AngelIceResist = new AddDamageResistanceEnergy() { Type = Kingmaker.Enums.Damage.DamageEnergyType.Cold, Value = 20 };

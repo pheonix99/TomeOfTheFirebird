@@ -23,7 +23,8 @@ namespace TomeOfTheFirebird.Components
         public void OnEventAboutToTrigger(RuleCalculateWeaponStats evt)
         {
             int num = Value.Calculate(this.Fact.MaybeContext);
-
+            if (evt.Weapon == null)
+                return;
             if (categories.Contains(evt.Weapon.Blueprint.Category))
             {
                
