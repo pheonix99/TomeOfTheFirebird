@@ -108,10 +108,8 @@
     <Compile Include="Helpers\Extensions.cs" />
     <Compile Include="Helpers\FeatTools.cs" />
     <Compile Include="Modified Content\Archetypes\Purifier.cs" />
-    <Compile Include="Modified Content\Items\IPromiseSetBonus.cs" />
     <Compile Include="New Components\ContextDamageValueEnergyDamageDice.cs" />
     <Compile Include="New Components\IncreaseSpecificSpellsCasterLevel.cs" />
-    <Compile Include="New Content\DivineFightingTechniques\DivineFightingTechnique.cs" />
     <Compile Include="New Content\Feats\DiscordantSong.cs" />
     <Compile Include="New Content\Feats\SunderingStrike.cs" />
     <Compile Include="New Content\Features\PurifierEarlyCures.cs" />
@@ -132,7 +130,6 @@
     <Compile Include="Config\IUpdatableSettings.cs" />
     <Compile Include="Config\SettingGroup.cs" />
     <Compile Include="Config\Tweaks.cs" />
-    <Compile Include="Modified Content\Crusade\Ch5_GladiatorFix.cs" />
     <Compile Include="Modified Content\Crusade\MonavicsUseTwoHanders.cs" />
     <Compile Include="Fixes\AddIFFToDispels.cs" />
     <Compile Include="Fixes\FixExtraHitsOnProcs.cs" />
@@ -144,11 +141,8 @@
     <Compile Include="Config\NestedSettingGroup.cs" />
     <Compile Include="New Content\Feats\ProdigiousTWF.cs" />
     <Compile Include="New Content\Items\PaladinGear.cs" />
-    <Compile Include="New Content\Items\PrismaticLongbow.cs" />
     <Compile Include="New Content\Mercies\Ensorcelled.cs" />
     <Compile Include="New Content\Mercies\Injured.cs" />
-    <Compile Include="New Content\Obedience\Obedience.cs" />
-    <Compile Include="New Content\SpellListAdjustments\GodSpecificSpellLists.cs" />
     <Compile Include="New Content\Spells\BoneFists.cs" />
     <Compile Include="New Content\Spells\ChainsOfFire.cs" />
     <Compile Include="New Content\Spells\EntropicShield.cs" />
@@ -196,6 +190,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Crusade\" />
+    <Folder Include="Modified Content\Items\" />
+    <Folder Include="New Content\DivineFightingTechniques\" />
+    <Folder Include="New Content\Obedience\" />
+    <Folder Include="New Content\SpellListAdjustments\" />
     <Folder Include="New Spells\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
