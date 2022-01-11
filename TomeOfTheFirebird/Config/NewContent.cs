@@ -10,7 +10,8 @@ namespace TomeOfTheFirebird.Config
     {
         public bool NewSettingsOffByDefault = false;
         public SettingGroup Spells;
-
+        public SettingGroup Feats;
+        public SettingGroup Mercies;
         public void Init()
         {
             
@@ -22,6 +23,10 @@ namespace TomeOfTheFirebird.Config
             var loadedSettings = userSettings as NewContent;
             NewSettingsOffByDefault = loadedSettings.NewSettingsOffByDefault;
             Spells.LoadSettingGroup(loadedSettings.Spells, NewSettingsOffByDefault);
+            Feats.LoadSettingGroup(loadedSettings.Feats, NewSettingsOffByDefault);
+            Mercies.LoadSettingGroup(loadedSettings.Mercies, NewSettingsOffByDefault);
+
+
         }
     }
 }

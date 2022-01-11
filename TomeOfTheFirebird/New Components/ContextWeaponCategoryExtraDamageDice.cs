@@ -40,9 +40,18 @@ namespace TomeOfTheFirebird.Components
                 bool localAscend = false;
                 if ( base.Context.SourceAbilityContext != null && base.Context.SourceAbilityContext.Caster != null && Element.IsEnergy)
                 {
-                    if (Element.IsEnergy && base.Context.SourceAbilityContext.Caster.Facts.List.OfType<AscendantElement>().Any(x=>x.Element == Element.Energy))
+                    
+                    
+
+                    if (Element.IsEnergy && base.Context.SourceAbilityContext.Caster.Progression.Features.SelectFactComponents<AscendantElement>().Any(x=>x.Element == Element.Energy))
                     {
+                        
                         localAscend = true;
+                        
+                    }
+                    else if (Element.IsEnergy)
+                    {
+                        
                     }
                 }
 
@@ -52,7 +61,8 @@ namespace TomeOfTheFirebird.Components
                     TypeDescription = Element,
                     Dice = this.DamageDice,
                     SourceFact = base.Fact,
-                    IgnoreImmunities = Ascendant || localAscend
+                    IgnoreImmunities = Ascendant || localAscend,
+                    IgnoreReduction = Ascendant || localAscend
                 };
                 evt.DamageDescription.Add(item);
             }

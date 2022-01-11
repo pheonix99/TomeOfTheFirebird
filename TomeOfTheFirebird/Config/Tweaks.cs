@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Kingmaker.Utility;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ namespace TomeOfTheFirebird.Config
         public SettingGroup Spells;
         public SettingGroup Quests;
         public SettingGroup Crusade;
+        public SettingGroup Purifier;
         public void Init()
         {
 
@@ -31,6 +33,8 @@ namespace TomeOfTheFirebird.Config
 
 
         }
-    
+
+        
+
     }
 }

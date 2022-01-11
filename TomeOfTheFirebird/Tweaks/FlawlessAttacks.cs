@@ -14,6 +14,8 @@ using TomeOfTheFirebird.Config;
 
 namespace TomeOfTheFirebird.Tweaks
 {
+	//This don't work.
+
     static class FlawlessAttacks
     {/*
         [HarmonyPatch(typeof(RuleCalculateAttacksCount), "OnTrigger", new Type[] {typeof(RulebookEventContext) })]

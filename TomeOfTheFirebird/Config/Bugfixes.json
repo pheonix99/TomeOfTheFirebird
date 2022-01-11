@@ -1,0 +1,30 @@
+{
+  "NewSettingsOffByDefault": false,
+  "FixExtraHits": {
+    "DisableAll": false,
+    "Settings": {
+      "Firebrand": {
+        "Enabled": true,
+        "Description": "Firebrand now adds a 1d6 fire rider to all attacks, rather than a 1d6 fire extra hit. Ascendant Element should work on both the caster *and* weapon wielder. Not 100% confident that save/reboot/load will perserve Ascendant's effects on the caster, but mostly confident of such."
+      },
+      "SmallDragon": {
+        "Enabled": true,
+        "Description": "The adorable little dragon from Dawn Of Dragons now gives his random extra damage as part of the attack, not as an extra hit."
+      },
+      "ClawsOfASacredBeast": {
+        "Enabled": true,
+        "Description": "Claws Of A Sacred Beast no longer gives an extra hit, now simply adds the correct slash damage. (Known issue"
+      }
+    }
+  },
+  "Purifier": {
+    "DisableAll": false,
+    "Settings": {
+      "Level3Revelation": {
+        "Enabled": true,
+        "Description": "Restores Purifier Level 3 relevation - TT forced pick was not implemented and is unimplementable so pick should be available."
+      }
+    }
+  }
+
+}

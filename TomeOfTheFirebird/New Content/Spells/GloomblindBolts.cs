@@ -52,7 +52,7 @@ namespace TomeOfTheFirebird.New_Spells
             
                 string blind = "187f88d96a0ef464280706b63635f2af";
             Main.Log("Built damage dice");
-            var gloomblind = MakerTools.MakeSpell("GloomblindBolts", "Gloomblind Bolts", "You create one or more bolts of negative energy infused with shadow pulled from the Shadow Plane. You can fire one bolt, plus one for every four levels beyond 5th (to a maximum of three bolts at 13th level) at the same or different targets, but all bolts must be aimed at targets within 30 feet of each other and require a ranged touch attack to hit. Each bolt deals 4d6 points of damage to a living creature or heals 4d6 points of damage to an undead creature. Furthermore, the bolt’s energy spreads over the skin of creature, possibly blinding it for a short time. Any creature struck by a bolt must succeed at a Reflex saving throw or become blinded for 1 round.", gloomicon, SpellSchool.Conjuration);
+            var gloomblind = MakerTools.MakeSpell("GloomblindBolts", "Gloomblind Bolts", "You create one or more bolts of negative energy infused with shadow pulled from the Shadow Plane. You can fire one bolt, plus one for every four levels beyond 5th (to a maximum of three bolts at 13th level) at the same or different targets, but all bolts must be aimed at targets within 30 feet of each other and require a ranged touch attack to hit. Each bolt deals 4d6 points of damage to a living creature or heals 4d6 points of damage to an undead creature. Furthermore, the bolt’s energy spreads over the skin of creature, possibly blinding it for a short time. Any creature struck by a bolt must succeed at a Reflex saving throw or become blinded for 1 round.", gloomicon, SpellSchool.Conjuration, LocalizedStrings.ReflexPartial, new LocalizedString());
 
 
             gloomblind.SetRange(AbilityRange.Close);
@@ -81,7 +81,7 @@ namespace TomeOfTheFirebird.New_Spells
             Main.Log("Adding CL to gloomblind");
             gloomblind.AddContextRankConfig(ContextRankConfigs.CasterLevel(max: 3, min: 1).WithStartPlusDivStepProgression(4, 3));
             Main.Log("Building Gloomblind");
-            
+            gloomblind.AddCraftInfoComponent(Kingmaker.Craft.CraftSpellType.Damage, Kingmaker.Craft.CraftSavingThrow.Reflex, Kingmaker.Craft.CraftAOE.None);
                 Main.Log("Built Gloomblind");
                 return gloomblind.Configure();
             

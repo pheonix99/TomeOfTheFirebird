@@ -15,7 +15,12 @@ using TabletopTweaks.Utilities;
 using TomeOfTheFirebird.Config;
 using TomeOfTheFirebird.Crusade;
 using TomeOfTheFirebird.Fixes;
+using TomeOfTheFirebird.New_Content.Feats;
+using TomeOfTheFirebird.New_Content.Items;
+using TomeOfTheFirebird.New_Content.Mercies;
+using TomeOfTheFirebird.New_Content.Spells;
 using TomeOfTheFirebird.New_Spells;
+using TomeOfTheFirebird.NewContent.Features;
 using TomeOfTheFirebird.QuestTweaks;
 using TomeOfTheFirebird.Reference;
 
@@ -24,7 +29,7 @@ namespace TomeOfTheFirebird
     static class BuildContent
     {
         static BlueprintAbility gloomblind;
-        static BlueprintAbility bonefists;
+       
       
    
         static BlueprintAbility keenEdge;
@@ -41,20 +46,31 @@ namespace TomeOfTheFirebird
                 Main.Log("Building new spells");
                 
                     gloomblind = GloomblindBolts.BuildSpell();
-                Resources.AddBlueprint(gloomblind);
-                bonefists = BoneFists.BuildSpell();
+               
+                BoneFists.BuildSpell();
                 TelekineticStrikes.BuildSpell();
                 SpearOfPurity.BuildSpearOfPurity();
-                Resources.AddBlueprint(bonefists);
+                
 
                 ChainsOfFire.BuildSpell();
+                PurifierLimitedCures.AddPurifierLimitedCures();
                 ElementalShieldSpells.Build();
-                FreezingSphere.Build();
+                ProdigiousTWF.AddProdigiousTWF();
+                HealMount.Build();
                 keenEdge = KeenEdge.BuildSPell();
+                FreezingSphere.Build();
                 MonavicsUseTwoHanders.Do();
                 DawnOfDragons.Fix();
                 FixExtraHitsOnProcs.FixFirebrand();
                 FixExtraHitsOnProcs.FixRandomWeaponsRiders();
+                FixExtraHitsOnProcs.FixClawsOfSacredBeast();
+                RadianceLevel2Fix.Fixes();
+                PaladinGear.Build();
+                Ensorcelled.Build();
+                Injured.Build();
+                SunderingStrike.Build();
+                DiscordantSong.Make();
+                EntropicShield.Make();
             }
         }
 
@@ -78,17 +94,7 @@ namespace TomeOfTheFirebird
                     gloomblind.AddToSpellList(SpellTools.SpellList.WitchSpellList, 3);
                 }
                 
-                if (ModSettings.NewContent.Spells.IsEnabled("BoneFists"))
-                {
-                    bonefists.AddToSpellList(SpellTools.SpellList.BloodragerSpellList, 2);
-                    bonefists.AddToSpellList(SpellTools.SpellList.ClericSpellList, 2);
-                    bonefists.AddToSpellList(SpellTools.SpellList.DruidSpellList, 2);
-                    bonefists.AddToSpellList(SpellTools.SpellList.ShamanSpelllist, 2);
-                    bonefists.AddToSpellList(SpellTools.SpellList.HunterSpelllist, 2);
-                    bonefists.AddToSpellList(SpellTools.SpellList.RangerSpellList, 2);
-                    bonefists.AddToSpellList(SpellTools.SpellList.WitchSpellList, 2);
-                    bonefists.AddToSpellList(SpellTools.SpellList.WizardSpellList, 2);
-                }
+               
                 
 
                 if (ModSettings.NewContent.Spells.IsEnabled("KeenEdge"))

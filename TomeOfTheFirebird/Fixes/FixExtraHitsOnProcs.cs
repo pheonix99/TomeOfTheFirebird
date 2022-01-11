@@ -1,8 +1,13 @@
 ﻿using BlueprintCore.Blueprints.Configurators.Buffs;
+using BlueprintCore.Blueprints.Configurators.Classes;
+using BlueprintCore.Conditions.Builder;
+using BlueprintCore.Conditions.Builder.ContextEx;
+using Kingmaker.Enums;
 using Kingmaker.Enums.Damage;
 using Kingmaker.RuleSystem.Rules.Damage;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.Mechanics.Components;
+using Kingmaker.UnitLogic.Mechanics.Conditions;
 using Kingmaker.Utility;
 using System;
 using System.Collections.Generic;
@@ -10,6 +15,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TomeOfTheFirebird.Components;
+using TomeOfTheFirebird.Config;
 
 namespace TomeOfTheFirebird.Fixes
 {
@@ -17,40 +23,60 @@ namespace TomeOfTheFirebird.Fixes
     {
         public static void FixFirebrand()
         {
-            Main.Log("Fixing Firebrand");
-            var firebrandBuff = Resources.GetBlueprint<BlueprintBuff>("c6cc1c5356db4674dbd2be20ea205c86");
-            if (firebrandBuff.Components.OfType<AddInitiatorAttackWithWeaponTrigger>().Any())
+            if (ModSettings.Bugfixes.FixExtraHits.IsEnabled("Firebrand"))
             {
-                Main.Log("Removing base weapon damage effect");
-                //firebrandBuff.Components.Remove(x => x is AddInitiatorAttackWithWeaponTrigger);
-               var editer=  BuffConfigurator.For(firebrandBuff.AssetGuidThreadSafe).RemoveComponents(x => x is AddInitiatorAttackWithWeaponTrigger);
-                editer.AddComponent(new ContextWeaponCategoryExtraDamageDice()
+                Main.Log("Fixing Firebrand");
+                var firebrandBuff = Resources.GetBlueprint<BlueprintBuff>("c6cc1c5356db4674dbd2be20ea205c86");
+                if (firebrandBuff.Components.OfType<AddInitiatorAttackWithWeaponTrigger>().Any())
                 {
-                    ToAllAttacks = true,
-                    Element = new DamageTypeDescription()
+                    Main.Log("Removing base weapon damage effect");
+                    //firebrandBuff.Components.Remove(x => x is AddInitiatorAttackWithWeaponTrigger);
+                    var editer = BuffConfigurator.For(firebrandBuff.AssetGuidThreadSafe).RemoveComponents(x => x is AddInitiatorAttackWithWeaponTrigger);
+                    editer.AddComponent(new ContextWeaponCategoryExtraDamageDice()
                     {
-                        Energy = Kingmaker.Enums.Damage.DamageEnergyType.Fire,
-                        Type = DamageType.Energy,
+                        ToAllAttacks = true,
+                        Element = new DamageTypeDescription()
+                        {
+                            Energy = Kingmaker.Enums.Damage.DamageEnergyType.Fire,
+                            Type = DamageType.Energy,
 
-                    },
-                    DamageDice = new Kingmaker.RuleSystem.DiceFormula(1, Kingmaker.RuleSystem.DiceType.D6)
-                });
-                editer.Configure();
+                        },
+                        DamageDice = new Kingmaker.RuleSystem.DiceFormula(1, Kingmaker.RuleSystem.DiceType.D6)
+                    });
+                    editer.Configure();
+                }
+
             }
         }
 
         public static void FixRandomWeaponsRiders()
         {
-            var smdbuff = BuffConfigurator.For("d37d0c19b37808d4895c836c474f04e3");
-            smdbuff.RemoveComponents(x => x is AddInitiatorAttackWithWeaponTrigger);
-            smdbuff.AddComponent(new RandomEnergyDamageOnWeaponAttack()
+            if (ModSettings.Bugfixes.FixExtraHits.IsEnabled("SmallDragon"))
             {
-                amount = new Kingmaker.RuleSystem.DiceFormula(1, Kingmaker.RuleSystem.DiceType.D4),
-                damageDescriptions = new DamageEnergyType[] { DamageEnergyType.Acid, DamageEnergyType.Fire, DamageEnergyType.Cold, DamageEnergyType.Electricity }
+                var smdbuff = BuffConfigurator.For("d37d0c19b37808d4895c836c474f04e3");
+                smdbuff.RemoveComponents(x => x is AddInitiatorAttackWithWeaponTrigger);
+                smdbuff.AddComponent(new RandomEnergyDamageOnWeaponAttack()
+                {
+                    amount = new Kingmaker.RuleSystem.DiceFormula(1, Kingmaker.RuleSystem.DiceType.D4),
+                    damageDescriptions = new DamageEnergyType[] { DamageEnergyType.Acid, DamageEnergyType.Fire, DamageEnergyType.Cold, DamageEnergyType.Electricity }
 
-            }) ;
-            //If I find hodos torch and it's busted, fix
-            smdbuff.Configure();
+                });
+                //If I find hodos torch and it's busted, fix
+                smdbuff.Configure();
+            }
+        }
+
+        public static void FixClawsOfSacredBeast()
+        {
+            if (ModSettings.Bugfixes.FixExtraHits.IsEnabled("ClawsOfASacredBeast"))
+            {
+                var natweapons = new WeaponCategory[] { WeaponCategory.Claw, WeaponCategory.Bite, WeaponCategory.Gore, WeaponCategory.OtherNaturalWeapons, WeaponCategory.UnarmedStrike, WeaponCategory.Tail };
+                Main.Log("Patching Claws Of A Sacred Beast");
+                var claws = FeatureConfigurator.For("27d7b88ee7438cf4697224a870e0d129").RemoveComponents(x => x is AddInitiatorAttackWithWeaponTrigger);
+                claws.AddComponent(new ContextWeaponCategoryPhysDamageDiceWithChangeOnCondition() { categories = natweapons, form = PhysicalDamageForm.Slashing, NormalDamage = new Kingmaker.RuleSystem.DiceFormula() { m_Dice = Kingmaker.RuleSystem.DiceType.D8, m_Rolls = 1 }, IncreasedDamage = new Kingmaker.RuleSystem.DiceFormula() { m_Dice = Kingmaker.RuleSystem.DiceType.D6, m_Rolls = 2 }, TargetConditions = ConditionsBuilder.New().ContextConditionAlignment(false, Kingmaker.Enums.AlignmentComponent.Evil).Build() });
+
+                claws.Configure();
+            }
         }
 
     }

@@ -50,14 +50,14 @@
     <Publicise InputAssemblies="@(PubliciseInputAssemblies)" OutputPath="$(SolutionDir)lib/" PubliciseCompilerGenerated="true" />
   </Target>
   <ItemGroup>
-    <Reference Include="0Harmony, Version=2.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Lib.Harmony.2.1.1\lib\net472\0Harmony.dll</HintPath>
+    <Reference Include="0Harmony, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Lib.Harmony.2.2.0\lib\net472\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp_public">
       <HintPath>..\lib\Assembly-CSharp_public.dll</HintPath>
     </Reference>
-    <Reference Include="BlueprintCore, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WW-Blueprint-Core.1.3.0\lib\net472\BlueprintCore.dll</HintPath>
+    <Reference Include="BlueprintCore, Version=1.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WW-Blueprint-Core.1.3.1\lib\net472\BlueprintCore.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="Microsoft.Build.Utilities.v4.0" />
@@ -104,21 +104,36 @@
   <ItemGroup>
     <Compile Include="Assets\AssetLoader.cs" />
     <Compile Include="BuildContent.cs" />
-    <Compile Include="Components\AbilityTargetHasSlashingPiercingWeaponInRelevantHand.cs" />
-    <Compile Include="Components\ContextWeaponCategoryExtraDamageDice.cs" />
-    <Compile Include="Components\ContextWeaponCategoryFlatDamageBonus.cs" />
-    <Compile Include="Components\ElementalBarrierDamageDivisor.cs" />
-    <Compile Include="Components\RandomEnergyDamageOnWeaponAttack.cs" />
-    <Compile Include="Components\UniversalEnergyDamageAdder.cs" />
+    <Compile Include="Fixes\RadianceLevel2Fix.cs" />
+    <Compile Include="Helpers\Extensions.cs" />
+    <Compile Include="Helpers\FeatTools.cs" />
+    <Compile Include="Modified Content\Archetypes\Purifier.cs" />
+    <Compile Include="Modified Content\Items\IPromiseSetBonus.cs" />
+    <Compile Include="New Components\ContextDamageValueEnergyDamageDice.cs" />
+    <Compile Include="New Components\IncreaseSpecificSpellsCasterLevel.cs" />
+    <Compile Include="New Content\DivineFightingTechniques\DivineFightingTechnique.cs" />
+    <Compile Include="New Content\Feats\DiscordantSong.cs" />
+    <Compile Include="New Content\Feats\SunderingStrike.cs" />
+    <Compile Include="New Content\Features\PurifierEarlyCures.cs" />
+    <Compile Include="New Components\AbilityTargetHasSlashingPiercingWeaponInRelevantHand.cs" />
+    <Compile Include="New Components\ContextWeaponCategoryExtraDamageDice.cs" />
+    <Compile Include="New Components\ContextWeaponCategoryFlatDamageBonus.cs" />
+    <Compile Include="New Components\ContextWeaponCategoryPhysDamageDiceWithChangeOnCondition.cs" />
+    <Compile Include="New Components\ElementalBarrierDamageDivisor.cs" />
+    <Compile Include="New Components\Prerequisites\PrerequisiteAbstractLogical.cs" />
+    <Compile Include="New Components\Prerequisites\PrerequisiteLogicalAND.cs" />
+    <Compile Include="New Components\RandomEnergyDamageOnWeaponAttack.cs" />
+    <Compile Include="New Components\TWFNoPenaltyFromNotLight.cs" />
     <Compile Include="Config\Blueprints.cs" />
+    <Compile Include="Config\Bugfixes.cs" />
     <Compile Include="Config\NewContent.cs" />
     <Compile Include="Config\ICollapseableGroup.cs" />
     <Compile Include="Config\IDisableableGroup.cs" />
     <Compile Include="Config\IUpdatableSettings.cs" />
     <Compile Include="Config\SettingGroup.cs" />
     <Compile Include="Config\Tweaks.cs" />
-    <Compile Include="Crusade\Ch5_GladiatorFix.cs" />
-    <Compile Include="Crusade\MonavicsUseTwoHanders.cs" />
+    <Compile Include="Modified Content\Crusade\Ch5_GladiatorFix.cs" />
+    <Compile Include="Modified Content\Crusade\MonavicsUseTwoHanders.cs" />
     <Compile Include="Fixes\AddIFFToDispels.cs" />
     <Compile Include="Fixes\FixExtraHitsOnProcs.cs" />
     <Compile Include="Fixes\FixingIFFTagging.cs" />
@@ -127,18 +142,25 @@
     <Compile Include="Main.cs" />
     <Compile Include="Config\ModSettings.cs" />
     <Compile Include="Config\NestedSettingGroup.cs" />
-    <Compile Include="New Content\IceSubdomain.cs" />
-    <Compile Include="New Content\SubdomainBuilder.cs" />
-    <Compile Include="New Spells\BoneFists.cs" />
-    <Compile Include="New Spells\ChainsOfFire.cs" />
-    <Compile Include="New Spells\FreezingSphere.cs" />
-    <Compile Include="New Spells\GloomblindBolts.cs" />
-    <Compile Include="New Spells\KeenEdge.cs" />
-    <Compile Include="New Spells\SpearOfPurity.cs" />
-    <Compile Include="New Spells\TelekineticStrikes.cs" />
-    <Compile Include="New Spells\ElementalShieldSpells.cs" />
+    <Compile Include="New Content\Feats\ProdigiousTWF.cs" />
+    <Compile Include="New Content\Items\PaladinGear.cs" />
+    <Compile Include="New Content\Items\PrismaticLongbow.cs" />
+    <Compile Include="New Content\Mercies\Ensorcelled.cs" />
+    <Compile Include="New Content\Mercies\Injured.cs" />
+    <Compile Include="New Content\Obedience\Obedience.cs" />
+    <Compile Include="New Content\SpellListAdjustments\GodSpecificSpellLists.cs" />
+    <Compile Include="New Content\Spells\BoneFists.cs" />
+    <Compile Include="New Content\Spells\ChainsOfFire.cs" />
+    <Compile Include="New Content\Spells\EntropicShield.cs" />
+    <Compile Include="New Content\Spells\FreezingSphere.cs" />
+    <Compile Include="New Content\Spells\GloomblindBolts.cs" />
+    <Compile Include="New Content\Spells\HealMount.cs" />
+    <Compile Include="New Content\Spells\KeenEdge.cs" />
+    <Compile Include="New Content\Spells\SpearOfPurity.cs" />
+    <Compile Include="New Content\Spells\TelekineticStrikes.cs" />
+    <Compile Include="New Content\Spells\ElementalShieldSpells.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QuestTweaks\DawnOfDragons.cs" />
+    <Compile Include="Modified Content\Quests\DawnOfDragons.cs" />
     <Compile Include="Reference\Guids.cs" />
     <Compile Include="Reference\LocalizedStrings.cs" />
     <Compile Include="Resources.cs" />
@@ -149,6 +171,7 @@
     <EmbeddedResource Include="Config\Blueprints.json" />
     <EmbeddedResource Include="Config\NewContent.json" />
     <EmbeddedResource Include="Config\Tweaks.json" />
+    <EmbeddedResource Include="Config\Bugfixes.json" />
     <None Include="BlueprintCore\changes.md" />
     <None Include="BlueprintCore\LICENSE" />
     <None Include="BlueprintCore\README.md" />
@@ -171,7 +194,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Crusade\" />
+    <Folder Include="New Spells\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>(robocopy "$(TargetDir) " "%25WrathPath%25\Mods\TomeOfTheFirebird\ " /s /e )^&amp; IF %25ERRORLEVEL%25 LEQ 1 exit 0</PostBuildEvent>

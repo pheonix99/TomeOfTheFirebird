@@ -56,6 +56,9 @@ namespace TomeOfTheFirebird
         {
             ModSettings.SaveSettings("NewContent.json", ModSettings.NewContent);
             ModSettings.SaveSettings("Tweaks.json", ModSettings.Tweaks);
+            ModSettings.SaveSettings("Bugfixes.json", ModSettings.Bugfixes);
+
+
 
         }
 

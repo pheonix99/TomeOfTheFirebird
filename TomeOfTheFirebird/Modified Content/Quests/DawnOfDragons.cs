@@ -12,6 +12,7 @@ using Kingmaker.Designers.EventConditionActionSystem.Actions;
 using Kingmaker.Designers.EventConditionActionSystem.Evaluators;
 using Kingmaker.Designers.EventConditionActionSystem.Events;
 using Kingmaker.ElementsSystem;
+using Kingmaker.RuleSystem.Rules.Damage;
 using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.Utility;
@@ -23,6 +24,7 @@ using System.Threading.Tasks;
 using TomeOfTheFirebird.Components;
 using TomeOfTheFirebird.Config;
 using TomeOfTheFirebird.Helpers;
+using TomeOfTheFirebird.New_Components;
 
 namespace TomeOfTheFirebird.QuestTweaks
 {
@@ -38,18 +40,30 @@ namespace TomeOfTheFirebird.QuestTweaks
 
             FeatureConfigurator auraFeature = FeatureConfigurator.New("DragonHolyAuraFeature", ModSettings.Blueprints.GetGUID("DragonHolyAuraFeature").ToString()).SetDisplayName(LocalizationTool.CreateString("HukugolHolyAuraFeature.Name", "Hokugol's Blessing (Aura)")).SetDescription(LocalizationTool.CreateString("HukugolHolyAuraFeature.Desc", "The silver dragon Hokugol blessed you with a permanent Holy Aura effect for aiding him")).AddFacts(new string[] { "a33bf327207a5904d9e38d6a80eb09e2" }, casterLevel: 23);
             string isAngelEtude = "3a82aba4de71b89458ac82949ed957c4";
+            //auraFeature.AddFeatureSurvivesRespec();
+            auraFeature.SetRanks(1);
             var AuraFeatureBuilt = auraFeature.Configure();
-
+            
             var AngelIce = new ContextWeaponCategoryExtraDamageDice()
             {
                 Ascendant = true,
                 ToAllAttacks = true,
-                Element = new Kingmaker.RuleSystem.Rules.Damage.DamageTypeDescription() { Energy = Kingmaker.Enums.Damage.DamageEnergyType.Cold, Type = Kingmaker.RuleSystem.Rules.Damage.DamageType.Energy, Common = new Kingmaker.RuleSystem.Rules.Damage.DamageTypeDescription.CommomData() { Reality = Kingmaker.Enums.Damage.DamageRealityType.Ghost } },
+                Element = new Kingmaker.RuleSystem.Rules.Damage.DamageTypeDescription() { Energy = Kingmaker.Enums.Damage.DamageEnergyType.Cold, Type = DamageType.Energy, Common = new Kingmaker.RuleSystem.Rules.Damage.DamageTypeDescription.CommomData() { Reality = Kingmaker.Enums.Damage.DamageRealityType.Ghost } },
                 DamageDice = new Kingmaker.RuleSystem.DiceFormula(1, Kingmaker.RuleSystem.DiceType.D6)
 
             };
+
+            
+
             var AngelIceResist = new AddDamageResistanceEnergy() { Type = Kingmaker.Enums.Damage.DamageEnergyType.Cold, Value = 20 };
-            var angelBlessingFeature = MakerTools.MakeFeature("DragonAngelBlessingFeature", "Hokugol's Blessing (Frost)", "The silver dragon Hokugol blessed you with a portion of his frost for aiding him").AddComponent(AngelIce).AddResistEnergy(Kingmaker.Enums.Damage.DamageEnergyType.Cold, value: new ContextValue() { Value = 10 }).AddStatBonus(Kingmaker.Enums.ModifierDescriptor.NaturalArmorEnhancement, stat: Kingmaker.EntitySystem.Stats.StatType.AC, value: 5);
+            var angelBlessingFeature = MakerTools.MakeFeature("DragonAngelBlessingFeature", "Hokugol's Blessing (Frost)", "The silver dragon Hokugol blessed you with a portion of his frost for aiding him");
+
+            angelBlessingFeature.AddComponent(AngelIce);
+            angelBlessingFeature.SetRanks(1);
+            //angelBlessingFeature.AddComponent(new IncorperateAdditonalDiceOnAttackIntoUI());
+            //angelBlessingFeature.AdditionalDiceOnAttack(new Feet(0f), new DamageTypeDescription() { Type = DamageType.Energy, Energy = Kingmaker.Enums.Damage.DamageEnergyType.Cold }, onHit: true, value: new ContextDiceValue() { DiceType = Kingmaker.RuleSystem.DiceType.D6, DiceCountValue = 1, BonusValue = 0 }, initiatorConditions: ConditionsBuilder.New(), targetConditions: ConditionsBuilder.New());
+            angelBlessingFeature.AddResistEnergy(Kingmaker.Enums.Damage.DamageEnergyType.Cold, value: new ContextValue() { Value = 10 }).AddStatBonus(Kingmaker.Enums.ModifierDescriptor.NaturalArmorEnhancement, stat: Kingmaker.EntitySystem.Stats.StatType.AC, value: 5);
+            //angelBlessingFeature.AddFeatureSurvivesRespec();
             var angelBuilt = angelBlessingFeature.Configure();
             if (ModSettings.Tweaks.Quests.IsDisabled("DawnOfDragonsRewardFeaturize"))
                 return;

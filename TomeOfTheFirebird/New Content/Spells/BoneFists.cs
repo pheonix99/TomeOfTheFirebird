@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TabletopTweaks.Utilities;
 using TomeOfTheFirebird.Assets;
 using TomeOfTheFirebird.Components;
 using TomeOfTheFirebird.Config;
@@ -24,11 +25,11 @@ namespace TomeOfTheFirebird.New_Spells
 {
     public static class BoneFists
     {
-        public static BlueprintAbility BuildSpell()
+        public static void BuildSpell()
         {
 
             Sprite BoneFistsSprite = AssetLoader.LoadInternal("Spells", "BoneFists.png");
-            var BoneFists = MakerTools.MakeSpell("BoneFists", "Bone Fists", "The bones of your targets’ joints grow thick and sharp, protruding painfully through the skin at the knuckles, elbows, shoulders, spine, and knees. The targets each gain a +1 bonus to natural armor and a +2 bonus on damage rolls with natural weapons.", BoneFistsSprite, Kingmaker.Blueprints.Classes.Spells.SpellSchool.Necromancy);
+            var BoneFists = MakerTools.MakeSpell("BoneFists", "Bone Fists", "The bones of your targets’ joints grow thick and sharp, protruding painfully through the skin at the knuckles, elbows, shoulders, spine, and knees. The targets each gain a +1 bonus to natural armor and a +2 bonus on damage rolls with natural weapons.", BoneFistsSprite, Kingmaker.Blueprints.Classes.Spells.SpellSchool.Necromancy, new Kingmaker.Localization.LocalizedString(), LocalizedStrings.OneMinutePerLevelDuration);
             Main.Log("Bone Fists Build Started");
          
             BoneFists.AllowTargeting(true, false, true, true);
@@ -37,7 +38,7 @@ namespace TomeOfTheFirebird.New_Spells
             BoneFists.SetAnimationStyle(Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle.Omni);
             BoneFists.SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard);
             BoneFists.SetMetamagics(Metamagic.Extend, Metamagic.Heighten, Metamagic.CompletelyNormal, Metamagic.Quicken, Metamagic.Reach);
-            BoneFists.SetDurationText(LocalizedStrings.OneMinutePerLevelDuration);
+         
 
             BoneFists.SetSavingThrowText(new Kingmaker.Localization.LocalizedString());
             var BoneFistsBuff = MakerTools.MakeBuff("BoneFistsBuff", "Bone Fists", "The bones of your joints grow thick and sharp, protruding painfully through the skin at the knuckles, elbows, shoulders, spine, and knees. You gain a +1 bonus to natural armor and a +2 bonus on damage rolls with natural weapons.", BoneFistsSprite);
@@ -61,10 +62,20 @@ namespace TomeOfTheFirebird.New_Spells
             var actoion = ActionsBuilder.New().ApplyBuff(builtBuff.AssetGuidThreadSafe, duration: MakerTools.GetContextDurationValue(DurationRate.Minutes, true), isFromSpell: true);
             BoneFists.RunActions(actoion);
             BoneFists.AddAbilityTargetsAround(radius: new Kingmaker.Utility.Feet(15f), new Kingmaker.Utility.Feet(11f), targetType: Kingmaker.UnitLogic.Abilities.Components.TargetType.Ally);
-          
-           
-
-            return BoneFists.Configure();
+            BoneFists.AddCraftInfoComponent(Kingmaker.Craft.CraftSpellType.Buff, Kingmaker.Craft.CraftSavingThrow.None, Kingmaker.Craft.CraftAOE.AOE);
+            var build = BoneFists.Configure();
+            if (ModSettings.NewContent.Spells.IsEnabled("BoneFists"))
+            {
+                build.AddToSpellList(SpellTools.SpellList.BloodragerSpellList, 2);
+                build.AddToSpellList(SpellTools.SpellList.ClericSpellList, 2);
+                build.AddToSpellList(SpellTools.SpellList.DruidSpellList, 2);
+                build.AddToSpellList(SpellTools.SpellList.ShamanSpelllist, 2);
+                build.AddToSpellList(SpellTools.SpellList.HunterSpelllist, 2);
+                build.AddToSpellList(SpellTools.SpellList.RangerSpellList, 2);
+                build.AddToSpellList(SpellTools.SpellList.WitchSpellList, 2);
+                build.AddToSpellList(SpellTools.SpellList.WizardSpellList, 2);
+            }
+            
 
 
 

@@ -59,5 +59,34 @@ namespace TomeOfTheFirebird
                 Main.Log($"Asset ID: {assetId} already in use by: {loadedBlueprint.name}");
             }
         }
+
+        public static T GetTabletopTweaksBlueprint<T>(string name) where T : SimpleBlueprint
+        {
+            var assetId = ModSettings.Blueprints.GetGUID(name);
+            bool modBPExists = ModBlueprints.TryGetValue(assetId, out var value);
+            if (modBPExists)
+            {
+                return value as T;
+            }
+            else
+            {
+                //Main.Log($"{name} not found locally");
+                T blueprint = GetBlueprint<T>(assetId);
+                if (blueprint != null)
+                {
+
+                    //Main.Log($"{name} located in Tabletop Tweaks");
+                    //ModSettings.Blueprints.SetTTBPUsed(name, assetId);
+                    return blueprint;
+                }
+                else
+                {
+                    //Main.Log($"{name} not built");
+                    return null;
+                }
+
+            }
+
+        }
     }
 }

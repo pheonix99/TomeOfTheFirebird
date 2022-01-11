@@ -19,7 +19,8 @@ namespace TomeOfTheFirebird
             UI.TabBar(ref selectedTab,
                     () => UI.Label("SETTINGS WILL NOT BE UPDATED UNTIL YOU RESTART YOUR GAME.".yellow().bold()),
                     new NamedAction("Added Content", () => SettingsTabs.NewContent()),
-                    new NamedAction("Tweaks Content", () => SettingsTabs.Tweaks())
+                    new NamedAction("Tweaks", () => SettingsTabs.Tweaks()),
+                    new NamedAction("Bugfixes", () => SettingsTabs.Bugfixes())
 
             );
         }
@@ -39,6 +40,24 @@ namespace TomeOfTheFirebird
                 UI.Space(25);
 
                 SetttingUI.SettingGroup("Spells", TabLevel, AddedContent.Spells);
+                SetttingUI.SettingGroup("Feats", TabLevel, AddedContent.Feats);
+                SetttingUI.SettingGroup("Mercies", TabLevel, AddedContent.Mercies);
+              
+
+            }
+        }
+        public static void Bugfixes()
+        {
+            var TabLevel = SetttingUI.TabLevel.Zero;
+            var Bugfixes = ModSettings.Bugfixes;
+            UI.Div(0, 15);
+            using (UI.VerticalScope())
+            {
+                UI.Toggle("New Settings Off By Default".bold(), ref Bugfixes.NewSettingsOffByDefault);
+                UI.Space(25);
+
+                SetttingUI.SettingGroup("Fix Extra Hits", TabLevel, Bugfixes.FixExtraHits);
+                SetttingUI.SettingGroup("Purifier", TabLevel, Bugfixes.Purifier);
 
             }
         }
@@ -56,6 +75,7 @@ namespace TomeOfTheFirebird
                 SetttingUI.SettingGroup("Spells", TabLevel, Tweaks.Spells);
                 SetttingUI.SettingGroup("Crusade", TabLevel, Tweaks.Crusade);
                 SetttingUI.SettingGroup("Quests", TabLevel, Tweaks.Quests);
+                SetttingUI.SettingGroup("Purifier", TabLevel, Tweaks.Purifier);
 
             }
         }

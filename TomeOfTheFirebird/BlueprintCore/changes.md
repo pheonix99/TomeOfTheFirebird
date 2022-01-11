@@ -1,5 +1,15 @@
 ﻿# Changelog
 
+#v1.3.1 Release
+
+### New Features
+
+* Updated for compatibility w/ 1.1.6
+
+### Fixes 
+
+* Fixed `ConditionsBuilder.Add<C>()`, `ActionsBuilder.Add<A>()`, and `BlueprintConfigurator.AddComponent<C>()` so they actually do not require an init action 
+
 # v1.3.0 Release
 
 * BlueprintCore is a DLL again! This should be the last time this changes.

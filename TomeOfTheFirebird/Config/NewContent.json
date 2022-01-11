@@ -14,6 +14,11 @@
         "Homebrew": false
 
       },
+      "FreezingSphere": {
+        "Enabled": true,
+        "Description": "Level 6 ice spherical AoE attack, has normal and supersized blast modes",
+        "Homebrow": false
+      },
       "GloomblindBolts": {
         "Enabled": true,
         "Description": "Basically Negative Energy Scorching Ray with a very short duration blind rider. Is Illusion (Shadow) for some ungodly reason",
@@ -37,14 +42,41 @@
       "FireShield": {
         "Enabled": true,
         "Description": "Resist Fire/Cold, deal backlash damage of other element",
-        "Homebrew" :  false
+        "Homebrew": false
       },
       "VitrolicMist": {
         "Enabled": true,
         "Description": "Fire Shield, but for acid damage",
         "Homebrew": false
 
+      },
+      "HealMount": {
+        "Enabled": true,
+        "Description": "Cast Heal on mount only. Paladin Level 3",
+        "Homebrew": false
       }
     }
+  },
+  "Feats": {
+    "DisableAll": false,
+    "Settings": {
+      "ProdigiousTWF": {
+        "Enabled": true,
+        "Description": "Use Strength For TWF Prerequisites, Ignore Heavy Offhand Weapon Penalty",
+        "Homebrew": false
+      }
+    }
+  },
+  "Mercies": {
+    "DisableAll": false,
+    "Settings": {
+      "Ensorcelled": {
+        "Enabled": true,
+        "Description": "Attempt to dispel hostile effects on the target while healing with lay on hands, or dispel buffs while using Lay on Hands offensively.",
+        "Homebrew": false
+      }
+    }
+
   }
+
 }

@@ -13,7 +13,7 @@ BuffConfigurator.New(MyBuffName, MyBuffGuid).AddStatBonus(stat: StatType.Strengt
 * Runtime validation and warnings when potential problems are detected
     * Uses custom logic along with validation checks provided in the game library
 
-If you're interested in contributing, see [How to Contribute](articles/contributing.md).
+If you're interested in contributing, see [How to Contribute](https://wittlewolfie.github.io/WW-Blueprint-Core/articles/contributing.html).
 
 For usage see [Getting Started](https://wittlewolfie.github.io/WW-Blueprint-Core/articles/intro.html).
 
@@ -47,7 +47,7 @@ For more details see the [documentation](https://wittlewolfie.github.io/WW-Bluep
 
 **Partial Implementation of Skald's Vigor**
 ```C# 
-BuffConfigurator.For(SkladsVigorBuff)
+BuffConfigurator.For(SkaldsVigorBuff)
     .ContextRankConfig(ContextRankConfigs.ClassLevel(new string[] { SkaldClass }).WithStartPlusDoubleDivStepProgression(8))
     .FastHealing(1, bonusValue: ContextValues.Rank(AbilityRankType.Default))
     .Configure();

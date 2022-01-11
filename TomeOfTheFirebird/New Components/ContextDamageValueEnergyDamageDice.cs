@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TomeOfTheFirebird.Components
+namespace TomeOfTheFirebird.New_Components
 {
-    class UniversalEnergyDamageAdder
+    class ContextDamageValueEnergyDamageDice
     {
     }
 }
