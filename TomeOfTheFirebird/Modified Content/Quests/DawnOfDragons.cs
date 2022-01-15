@@ -65,7 +65,7 @@ namespace TomeOfTheFirebird.QuestTweaks
             angelBlessingFeature.AddResistEnergy(Kingmaker.Enums.Damage.DamageEnergyType.Cold, value: new ContextValue() { Value = 10 }).AddStatBonus(Kingmaker.Enums.ModifierDescriptor.NaturalArmorEnhancement, stat: Kingmaker.EntitySystem.Stats.StatType.AC, value: 5);
             //angelBlessingFeature.AddFeatureSurvivesRespec();
             var angelBuilt = angelBlessingFeature.Configure();
-            if (ModSettings.Tweaks.Quests.IsDisabled("DawnOfDragonsRewardFeaturize"))
+            if (ModSettings.Tweaks.RewardFeatureConversion.IsDisabled("DawnOfDragons"))
                 return;
             BlueprintEtude BuffGiver = Resources.GetBlueprint<BlueprintEtude>("ed86bf33a6a58cd40bf17ed141b6b94a");
             ActionList BuffGiverList = BuffGiver.Components.OfType<EtudePlayTrigger>().First().Actions;
@@ -73,11 +73,11 @@ namespace TomeOfTheFirebird.QuestTweaks
             var DragonPowerAdd = ActionsBuilder.New().AddFact(angelBuilt.AssetGuidThreadSafe, new PlayerCharacter());
 
             GameAction adder;
-            if (ModSettings.Tweaks.Quests.IsEnabled("DawnOfDragonsCustomRewardEveryone"))
+            if (ModSettings.ContentModifications.DawnOfDragons.IsEnabled("CustomRewardForEveryone"))
             {
                 adder = DragonPowerAdd.Build().Actions[0];
             }
-            else if (ModSettings.Tweaks.Quests.IsEnabled("DawnOfDragonsCustomRewardAngelOnly"))
+            else if (ModSettings.ContentModifications.DawnOfDragons.IsEnabled("CustomRewardForAngelOnly"))
             {
                 
                 
@@ -85,7 +85,6 @@ namespace TomeOfTheFirebird.QuestTweaks
                 
 
 
-                //TODO add paralysis and sleep save bonus!
 
 
 

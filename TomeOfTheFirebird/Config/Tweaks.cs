@@ -12,7 +12,7 @@ namespace TomeOfTheFirebird.Config
         public bool NewSettingsOffByDefault = false;
         public SettingGroup Mythic;
         public SettingGroup Spells;
-        public SettingGroup Quests;
+        public SettingGroup RewardFeatureConversion;
         public SettingGroup Crusade;
         public SettingGroup Purifier;
         public void Init()
@@ -21,15 +21,19 @@ namespace TomeOfTheFirebird.Config
 
         }
 
+
+        
         public void OverrideSettings(IUpdatableSettings userSettings)
         {
             var loadedSettings = userSettings as Tweaks;
             NewSettingsOffByDefault = loadedSettings.NewSettingsOffByDefault;
             Mythic.LoadSettingGroup(loadedSettings.Mythic, NewSettingsOffByDefault);
             Spells.LoadSettingGroup(loadedSettings.Spells, NewSettingsOffByDefault);
-            Quests.LoadSettingGroup(loadedSettings.Quests, NewSettingsOffByDefault);
+            RewardFeatureConversion.LoadSettingGroup(loadedSettings.RewardFeatureConversion, NewSettingsOffByDefault);
             Crusade.LoadSettingGroup(loadedSettings.Crusade, NewSettingsOffByDefault);
+            Purifier.LoadSettingGroup(loadedSettings.Purifier, NewSettingsOffByDefault);
 
+            
 
 
         }

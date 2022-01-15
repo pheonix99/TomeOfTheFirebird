@@ -104,6 +104,7 @@
   <ItemGroup>
     <Compile Include="Assets\AssetLoader.cs" />
     <Compile Include="BuildContent.cs" />
+    <Compile Include="Config\ContentModifications.cs" />
     <Compile Include="Fixes\RadianceLevel2Fix.cs" />
     <Compile Include="Helpers\Extensions.cs" />
     <Compile Include="Helpers\FeatTools.cs" />
@@ -169,6 +170,7 @@
     <None Include="BlueprintCore\changes.md" />
     <None Include="BlueprintCore\LICENSE" />
     <None Include="BlueprintCore\README.md" />
+    <EmbeddedResource Include="Config\ContentModifications.json" />
     <None Include="Info.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

@@ -1,0 +1,17 @@
+{
+  "NewSettingsOffByDefault": true,
+  "DawnOfDragons": {
+    "DisableAll": false,
+    "Settings": {
+      "CustomRewardForAngelOnly": {
+        "Enabled": false,
+        "Description": "Replaces the redundant perma-Holy-Aura effect with a more thematic perk - bit of cold weapon damage, natural armor and cold resist. Perks are comparable to the level 5 Geniekind as opposed to the level 8 Holy Aura. Select this to only do the replacement for Angel. Requires Reward Feature Conversion for Dawn Of Dragons to be active"
+      },
+      "CustomRewardForEveryone": {
+        "Enabled": false,
+        "Description": "Do the replacement for everyone, not just Angel."
+      }
+    }
+  }
+}
+

@@ -14,10 +14,15 @@
         "Homebrew": false
 
       },
+      "EntropicShield": {
+        "Enabled": true,
+        "Description": "Level 1 Cleric/Oracle spell, gives 20% miss chance to incoming ranged attacks",
+        "Homebrew": false
+      },
       "FreezingSphere": {
         "Enabled": true,
         "Description": "Level 6 ice spherical AoE attack, has normal and supersized blast modes",
-        "Homebrow": false
+        "Homebrew": false
       },
       "GloomblindBolts": {
         "Enabled": true,
@@ -60,9 +65,19 @@
   "Feats": {
     "DisableAll": false,
     "Settings": {
+      "DiscordantSong": {
+        "Enabled": true,
+        "Description": "Bard Song adds 1d6 sonic damage rider",
+        "Homebrew": false
+      },
       "ProdigiousTWF": {
         "Enabled": true,
         "Description": "Use Strength For TWF Prerequisites, Ignore Heavy Offhand Weapon Penalty",
+        "Homebrew": false
+      },
+      "SunderingStrike": {
+        "Enabled": true,
+        "Description": "Perform Sunder Armor on critical hit",
         "Homebrew": false
       }
     }
@@ -74,6 +89,12 @@
         "Enabled": true,
         "Description": "Attempt to dispel hostile effects on the target while healing with lay on hands, or dispel buffs while using Lay on Hands offensively.",
         "Homebrew": false
+      },
+      "Injured": {
+        "Enabled": true,
+        "Description": "Grant target fast healing 3 for one round per two paladin levels",
+        "Homebrew": false
+          
       }
     }
 

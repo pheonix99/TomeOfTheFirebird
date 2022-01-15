@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TabletopTweaks.Utilities;
+using TomeOfTheFirebird.Config;
 using TomeOfTheFirebird.Helpers;
 using TomeOfTheFirebird.Reference;
 using UnityEngine;
@@ -36,9 +37,10 @@ namespace TomeOfTheFirebird.New_Content.Spells
 
             var build = maker.Configure();
 
-
-            SpellTools.AddToSpellList(build, SpellTools.SpellList.ClericSpellList, 1);
-
+            if (ModSettings.NewContent.Spells.IsEnabled("EntropicShield"))
+            {
+                SpellTools.AddToSpellList(build, SpellTools.SpellList.ClericSpellList, 1);
+            }
         }
 
     }

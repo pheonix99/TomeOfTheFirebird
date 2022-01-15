@@ -20,7 +20,8 @@ namespace TomeOfTheFirebird
                     () => UI.Label("SETTINGS WILL NOT BE UPDATED UNTIL YOU RESTART YOUR GAME.".yellow().bold()),
                     new NamedAction("Added Content", () => SettingsTabs.NewContent()),
                     new NamedAction("Tweaks", () => SettingsTabs.Tweaks()),
-                    new NamedAction("Bugfixes", () => SettingsTabs.Bugfixes())
+                    new NamedAction("Bugfixes", () => SettingsTabs.Bugfixes()),
+                    new NamedAction("Content Modifications", () => SettingsTabs.ContentModifications())
 
             );
         }
@@ -58,6 +59,7 @@ namespace TomeOfTheFirebird
 
                 SetttingUI.SettingGroup("Fix Extra Hits", TabLevel, Bugfixes.FixExtraHits);
                 SetttingUI.SettingGroup("Purifier", TabLevel, Bugfixes.Purifier);
+                SetttingUI.SettingGroup("Items", TabLevel, Bugfixes.Items);
 
             }
         }
@@ -74,8 +76,24 @@ namespace TomeOfTheFirebird
                 SetttingUI.SettingGroup("Mythic", TabLevel, Tweaks.Mythic);
                 SetttingUI.SettingGroup("Spells", TabLevel, Tweaks.Spells);
                 SetttingUI.SettingGroup("Crusade", TabLevel, Tweaks.Crusade);
-                SetttingUI.SettingGroup("Quests", TabLevel, Tweaks.Quests);
+                SetttingUI.SettingGroup("Reward Feature Conversion", TabLevel, Tweaks.RewardFeatureConversion);
                 SetttingUI.SettingGroup("Purifier", TabLevel, Tweaks.Purifier);
+
+            }
+        }
+
+        public static void ContentModifications()
+        {
+            var TabLevel = SetttingUI.TabLevel.Zero;
+            var ContentMods = ModSettings.ContentModifications;
+            UI.Div(0, 15);
+            using (UI.VerticalScope())
+            {
+                UI.Toggle("New Settings Off By Default".bold(), ref ContentMods.NewSettingsOffByDefault);
+                UI.Space(25);
+
+                SetttingUI.SettingGroup("Dawn Of Dragons", TabLevel, ContentMods.DawnOfDragons);
+             
 
             }
         }

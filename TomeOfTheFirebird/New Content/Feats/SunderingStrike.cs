@@ -50,10 +50,12 @@ namespace TomeOfTheFirebird.New_Content.Feats
             SunderingFeat.SetFeatureTags(FeatureTag.Attack, FeatureTag.CombatManeuver);
 
             var sunderprocbuild = SunderingFeat.Configure();
+            if (ModSettings.NewContent.Feats.IsEnabled("SunderingStrike"))
+            {
+                FeatureConfigurator.For("9719015edcbf142409592e2cbaab7fe1").AddToIsPrerequisiteFor(sunderprocbuild.AssetGuidThreadSafe);
 
-            FeatureConfigurator.For("9719015edcbf142409592e2cbaab7fe1").AddToIsPrerequisiteFor(sunderprocbuild.AssetGuidThreadSafe);
-
-            FeatTools.AddAsFeat(sunderprocbuild);
+                FeatTools.AddAsFeat(sunderprocbuild);
+            }
         }
 
     }

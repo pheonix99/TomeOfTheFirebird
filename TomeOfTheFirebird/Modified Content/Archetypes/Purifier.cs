@@ -40,7 +40,7 @@ namespace TomeOfTheFirebird.Modified_Content.Archetypes
                 void PatchLevel3Revelation()
                 {
 
-                    if (ModSettings.Bugfixes.Purifier.IsDisabled("Level3Revelation")) { return; }
+                    if (ModSettings.Bugfixes.Purifier.IsDisabled("LevelThreeRevelation")) { return; }
                     
                     //var PuriferArchetype = Resources.GetBlueprint<BlueprintArchetype>("c9df67160a77ecd4a97928f2455545d7");
                     LevelEntry target = PuriferArchetype.RemoveFeatures.FirstOrDefault(x => x.Level == 3);

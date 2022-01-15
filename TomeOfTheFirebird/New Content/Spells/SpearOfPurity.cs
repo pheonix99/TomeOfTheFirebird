@@ -26,7 +26,7 @@ namespace TomeOfTheFirebird.New_Spells
         public static void BuildSpearOfPurity()
         {
             Sprite sprite = AssetLoader.LoadInternal("Spells", "SpearOfPurity.png"); 
-            string desc = "You hurl a pure white or golden spear of light from your holy symbol, affecting any one target within range as a ranged touch attack.\n\nAn evil creature struck by the spear takes 1d8 points of damage per two caster levels (maximum 5d8). An evil outsider instead takes 1d6 points of damage per caster level(maximum 10d6) and is blinded for 1 round.A successful Will save reduces the damage to half and negates the blinded effect.This spell deals only half damage to creatures that are neither evil nor good, and they are not blinded.The spear has no effect on good creatures.";
+            string desc = "You hurl a pure white or golden spear of light from your holy symbol, affecting any one target within range as a ranged touch attack.\n\nAn evil creature struck by the spear takes 1d8 points of damage per two caster levels (maximum 5d8). An evil outsider instead takes 1d6 points of damage per caster level(maximum 10d6) and is blinded for 1 round.A successful Will save reduces the damage to half and negates the blinded effect. This spell deals only half damage to creatures that are neither evil nor good, and they are not blinded. The spear has no effect on good creatures.";
             var builder = MakerTools.MakeSpell("SpearOfPurity", "Spear Of Purity", desc, sprite, Kingmaker.Blueprints.Classes.Spells.SpellSchool.Evocation, LocalizedStrings.WillPartial, new Kingmaker.Localization.LocalizedString());
             string blind = "187f88d96a0ef464280706b63635f2af";
             builder.SetRange(AbilityRange.Close);

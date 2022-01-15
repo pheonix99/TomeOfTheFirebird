@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TomeOfTheFirebird.Config;
 using TomeOfTheFirebird.Helpers;
 
 namespace TomeOfTheFirebird.New_Content.Mercies
@@ -63,15 +64,10 @@ namespace TomeOfTheFirebird.New_Content.Mercies
             LoHSCond.IfTrue.Actions = LoHSCond.IfTrue.Actions.Append(dispelAct).ToArray();
             LoHSCond.IfFalse.Actions = LoHSCond.IfTrue.Actions.Append(dispelAct).ToArray();
 
-            //Make Feature
-
-            //Add To Selectors
-
-            //Add Effect On Heal to all three
-
-            //Add Effect On Kill Mode to LoH - Ohter
-
-            FeatureSelectionConfigurator.For("02b187038a8dce545bb34bbfb346428d").AddToFeatures(madeFeature.AssetGuidThreadSafe).Configure();
+            if (ModSettings.NewContent.Mercies.IsEnabled("Ensorcelled"))
+            {
+                FeatureSelectionConfigurator.For("02b187038a8dce545bb34bbfb346428d").AddToFeatures(madeFeature.AssetGuidThreadSafe).Configure();
+            }
         }
     }
 }

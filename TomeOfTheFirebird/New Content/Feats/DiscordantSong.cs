@@ -111,18 +111,18 @@ namespace TomeOfTheFirebird.New_Content.Feats
 
             var DiscordantSong = DiscordantFeatMaker.Configure();
 
-
-
-            FeatTools.AddAsFeat(DiscordantSong);
-
-            
-
-
-            FeatureSelectionConfigurator.For("94e2cd84bf3a8e04f8609fe502892f4f").AddToFeatures(DiscordantSong.AssetGuidThreadSafe);
-            FeatureSelectionConfigurator.For("d2a8fde8985691045b90e1ec57e3cc57").AddToFeatures(DiscordantSong.AssetGuidThreadSafe);
+            if (ModSettings.NewContent.Feats.IsEnabled("DiscordantSong"))
+            {
+                FeatTools.AddAsFeat(DiscordantSong);
 
 
 
+
+                FeatureSelectionConfigurator.For("94e2cd84bf3a8e04f8609fe502892f4f").AddToFeatures(DiscordantSong.AssetGuidThreadSafe);
+                FeatureSelectionConfigurator.For("d2a8fde8985691045b90e1ec57e3cc57").AddToFeatures(DiscordantSong.AssetGuidThreadSafe);
+
+
+            }
             
 
 

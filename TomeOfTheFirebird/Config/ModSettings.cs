@@ -12,6 +12,7 @@ namespace TomeOfTheFirebird.Config
         public static Tweaks Tweaks;
         public static Bugfixes Bugfixes;
         public static Blueprints Blueprints;
+        public static ContentModifications ContentModifications;
         private static string userConfigFolder => ModEntry.Path + "UserSettings";
         private static JsonSerializerSettings cachedSettings;
         private static JsonSerializerSettings SerializerSettings
@@ -44,6 +45,7 @@ namespace TomeOfTheFirebird.Config
             LoadSettings("Tweaks.json", ref Tweaks);
             LoadSettings("Bugfixes.json", ref Bugfixes);
             LoadSettings("Blueprints.json", ref Blueprints);
+            LoadSettings("ContentModifications.json", ref ContentModifications);
         }
         private static void LoadSettings<T>(string fileName, ref T setting) where T : IUpdatableSettings
         {

@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TomeOfTheFirebird.Config;
 using TomeOfTheFirebird.Helpers;
 using UnityEngine;
 
@@ -76,7 +77,7 @@ namespace TomeOfTheFirebird.New_Content.Mercies
             Conditional LoHSCond = LayOnHandsSpecial.Components.OfType<AbilityEffectRunAction>().First().Actions.Actions.OfType<Conditional>().First();
 
             LoHSCond.IfTrue.Actions = LoHSCond.IfTrue.Actions.Append(actDone).ToArray();
-            
+
 
             //Make Feature
 
@@ -85,9 +86,10 @@ namespace TomeOfTheFirebird.New_Content.Mercies
             //Add Effect On Heal to all three
 
             //Add Effect On Kill Mode to LoH - Ohter
-
-            FeatureSelectionConfigurator.For("02b187038a8dce545bb34bbfb346428d").AddToFeatures(madeFeature.AssetGuidThreadSafe).Configure();
-
+            if (ModSettings.NewContent.Mercies.IsEnabled("Injured"))
+            {
+                FeatureSelectionConfigurator.For("02b187038a8dce545bb34bbfb346428d").AddToFeatures(madeFeature.AssetGuidThreadSafe).Configure();
+            }
         }
 
     }
