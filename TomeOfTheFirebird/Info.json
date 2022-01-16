@@ -6,5 +6,6 @@
   "ManagerVersion": "0.21.3",
   "Requirements": [],
   "AssemblyName": "TomeOfTheFirebird.dll",
-  "EntryMethod": "TomeOfTheFirebird.Main.Load"
+  "EntryMethod": "TomeOfTheFirebird.Main.Load",
+  "HomePage": "https://github.com/pheonix99/TomeOfTheFirebird/releases"
 }

@@ -46,6 +46,10 @@ Injured: Grants fast healing for 1 round per 2 paladin levels.
 
 Ensorcelled: Attempts Dispel Magic on lay on hands - does not ever dispel buffs on friendlies. Unlike other mercies I let this effect work in damage mode - dispells buffs there.
 
+###Items:
+---
+Bracers Of The Merciful Knight: Available for purchase from Arsinoe, these increase a paladin's effective level for Lay On Hands power and uses by four. 
+
 ##Bugfixes
 ---
 ###Items
