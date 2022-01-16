@@ -141,6 +141,7 @@
     <Compile Include="Config\ModSettings.cs" />
     <Compile Include="Config\NestedSettingGroup.cs" />
     <Compile Include="New Content\Feats\ProdigiousTWF.cs" />
+    <Compile Include="New Content\Items\AddItemsToShop.cs" />
     <Compile Include="New Content\Items\PaladinGear.cs" />
     <Compile Include="New Content\Mercies\Ensorcelled.cs" />
     <Compile Include="New Content\Mercies\Injured.cs" />

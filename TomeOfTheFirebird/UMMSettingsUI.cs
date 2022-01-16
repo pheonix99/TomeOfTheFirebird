@@ -43,6 +43,7 @@ namespace TomeOfTheFirebird
                 SetttingUI.SettingGroup("Spells", TabLevel, AddedContent.Spells);
                 SetttingUI.SettingGroup("Feats", TabLevel, AddedContent.Feats);
                 SetttingUI.SettingGroup("Mercies", TabLevel, AddedContent.Mercies);
+                SetttingUI.SettingGroup("Items", TabLevel, AddedContent.Items);
               
 
             }

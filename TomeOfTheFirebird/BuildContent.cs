@@ -71,6 +71,7 @@ namespace TomeOfTheFirebird
                 SunderingStrike.Build();
                 DiscordantSong.Make();
                 EntropicShield.Make();
+                AddItemsToShop.Add();
             }
         }
 

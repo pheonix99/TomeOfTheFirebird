@@ -43,28 +43,32 @@ namespace TomeOfTheFirebird.New_Content.Items
             //Damage *and uses*?
         }
 
+        public static BlueprintItemEquipmentWrist merciful;
+
         private static void BuildMercy()
         {
             var MercyFeature = MakerTools.MakeFeature("BracersOfTheMercifulKnightFeature", "Bracers Of The Merciful Knight Feature", "You Shouldn't See This", true);
-            var LayOnHandsSelf = Resources.GetBlueprint<BlueprintAbility>("8d6073201e5395d458b8251386d72df1");
+            if (ModSettings.NewContent.Items.IsEnabled("BracersOfTheMercifulKnight"))
+            {
+                var LayOnHandsSelf = Resources.GetBlueprint<BlueprintAbility>("8d6073201e5395d458b8251386d72df1");
 
-            LayOnHandsSelf.Components.OfType<ContextRankConfig>().FirstOrDefault().m_UseMax = false;//There's no reason for this and we don't want the item crapping out at 20
+                LayOnHandsSelf.Components.OfType<ContextRankConfig>().FirstOrDefault().m_UseMax = false;//There's no reason for this and we don't want the item crapping out at 20
 
-            var LayOnHandsOther = Resources.GetBlueprint<BlueprintAbility>("caae1dc6fcf7b37408686971ee27db13");
+                var LayOnHandsOther = Resources.GetBlueprint<BlueprintAbility>("caae1dc6fcf7b37408686971ee27db13");
 
-            LayOnHandsOther.Components.OfType<ContextRankConfig>().FirstOrDefault().m_UseMax = false;//There's no reason for this and we don't want the item crapping out at 20
-            var LayOnHandsSpecial = Resources.GetBlueprint<BlueprintAbility>("8337cea04c8afd1428aad69defbfc365");
+                LayOnHandsOther.Components.OfType<ContextRankConfig>().FirstOrDefault().m_UseMax = false;//There's no reason for this and we don't want the item crapping out at 20
+                var LayOnHandsSpecial = Resources.GetBlueprint<BlueprintAbility>("8337cea04c8afd1428aad69defbfc365");
 
-            LayOnHandsSpecial.Components.OfType<ContextRankConfig>().FirstOrDefault().m_UseMax = false;//There's no reason for this and we don't want the item crapping out at 20
+                LayOnHandsSpecial.Components.OfType<ContextRankConfig>().FirstOrDefault().m_UseMax = false;//There's no reason for this and we don't want the item crapping out at 20
 
 
-            MercyFeature.AddComponent(new IncreaseSpecificSPellsCasterLevel() { spells = new BlueprintAbility[] { LayOnHandsSelf, LayOnHandsOther, LayOnHandsSpecial }, Descriptor = Kingmaker.Enums.ModifierDescriptor.Sacred, Value = new Kingmaker.UnitLogic.Mechanics.ContextValue() { Value = 4 } }).AddIncreaseResourceAmount("9dedf41d995ff4446a181f143c3db98c", 2);
-
+                MercyFeature.AddComponent(new IncreaseSpecificSPellsCasterLevel() { spells = new BlueprintAbility[] { LayOnHandsSelf, LayOnHandsOther, LayOnHandsSpecial }, Descriptor = Kingmaker.Enums.ModifierDescriptor.Sacred, Value = new Kingmaker.UnitLogic.Mechanics.ContextValue() { Value = 4 } }).AddIncreaseResourceAmount("9dedf41d995ff4446a181f143c3db98c", 2);
+            }
             //TODO - add resoration effect with smartness
 
             var mercyFeatureBuilt = MercyFeature.Configure();
 
-            var enchant = MakerTools.MakeItemEnchantment("BracersOfTheMercifulKnightEnchant", "Bracers Of The Merciful Knight", "When worn by a paladin, he is considered four levels higher for the purposes of determining the uses per day and healing provided by his lay on hands class feature.", 1);
+            var enchant = MakerTools.MakeItemEnchantment("BracersOfTheMercifulKnightEnchant", "Bracers Of The Merciful Knight", "When worn by a paladin, she is considered four levels higher for the purposes of determining the uses per day and healing provided by her lay on hands class feature. This does not increase the power of her Channel Energy ability.", 1);
             enchant.AddUnitFeatureEquipment(mercyFeatureBuilt.AssetGuidThreadSafe);
 
             var enchantBuilt = enchant.Configure();
@@ -73,8 +77,8 @@ namespace TomeOfTheFirebird.New_Content.Items
 
             string itemSysName = "BracersOfTheMercifulKnight";
             string itemName = "Bracers Of The Merciful Knight";
-            string itemDesc = "These golden bracers are engraved with images of celestial creatures.\n When worn by a paladin, he is considered four levels higher for the purposes of determining the uses per day and healing provided by his lay on hands class feature. \n (NYI): Additionally, once per day, the wearer can infuse a use of lay on hands with additional power, providing relief as a lesser restoration spell.";
-
+            string itemDesc = "These golden bracers are engraved with images of celestial creatures.\n When worn by a paladin, she is considered four levels higher for the purposes of determining the uses per day and healing provided by her lay on hands class feature. This does not increase the power of her Channel Energy ability.";
+            //TODO add the 1/day lesser resto on LoH
             var guid = ModSettings.Blueprints.GetGUID(itemSysName);
             LocalizedString name = LocalizationTool.CreateString(itemSysName + ".Name", itemName);
             LocalizedString desc = LocalizationTool.CreateString(itemSysName + ".Desc", itemDesc);
@@ -93,7 +97,7 @@ namespace TomeOfTheFirebird.New_Content.Items
             item.SetNonIdentifiedDescriptionText(new LocalizedString());
 
 
-            item.Configure();
+             merciful = item.Configure();
         }
 
     }

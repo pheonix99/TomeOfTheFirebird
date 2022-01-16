@@ -1,0 +1,44 @@
+﻿using BlueprintCore.Blueprints.Configurators.Dungeon;
+using BlueprintCore.Blueprints.Configurators.Items;
+using Kingmaker.Blueprints;
+using Kingmaker.Blueprints.Items;
+using Kingmaker.Blueprints.Items.Equipment;
+using Kingmaker.Blueprints.Loot;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using TomeOfTheFirebird.Config;
+
+namespace TomeOfTheFirebird.New_Content.Items
+{
+    class AddItemsToShop
+    {
+        public static void Add()
+        {
+            if (ModSettings.NewContent.Items.IsDisabled("BracersOfTheMercifulKnight"))
+                return;
+          
+            //var merciful = Resources.GetModBlueprint<BlueprintItemEquipmentWrist>("BracersOfTheMercifulKnight");
+            var merciful = PaladinGear.merciful;
+            
+
+            LootItem add = new LootItem()
+            {
+                m_Item = merciful.ToReference<BlueprintItemReference>(),
+                m_Type = LootItemType.Item,
+                m_Loot = null
+
+            };
+          
+
+            var editArsinoe = SharedVendorTableConfigurator.For("d33d4c7396fc1d74c9569bc38e887e86").AddLootItemsPackFixed(add, 1).Configure();
+
+            
+
+
+        }
+
+    }
+}

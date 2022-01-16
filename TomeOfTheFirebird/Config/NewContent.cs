@@ -12,6 +12,7 @@ namespace TomeOfTheFirebird.Config
         public SettingGroup Spells;
         public SettingGroup Feats;
         public SettingGroup Mercies;
+        public SettingGroup Items;
         public void Init()
         {
             
@@ -25,6 +26,7 @@ namespace TomeOfTheFirebird.Config
             Spells.LoadSettingGroup(loadedSettings.Spells, NewSettingsOffByDefault);
             Feats.LoadSettingGroup(loadedSettings.Feats, NewSettingsOffByDefault);
             Mercies.LoadSettingGroup(loadedSettings.Mercies, NewSettingsOffByDefault);
+            Items.LoadSettingGroup(loadedSettings.Items, NewSettingsOffByDefault);
 
 
         }
