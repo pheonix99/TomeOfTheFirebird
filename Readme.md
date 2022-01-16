@@ -1,12 +1,12 @@
-#Tome Of The Firebird
+# Tome Of The Firebird
 ---
 A package of spells, feats, other abilities and some fixes.
 
 And also some more random stuff I made when I got annoyed at the game.
 
-##New Content
+## New Content
 ---
-###Spells
+### Spells
 ---
 Bone Fists: Level 2 Bloodrager/Cleric/Druid/Shaman/Hunter/Ranger/Wizard/Witch. 1/minute per level party buff giving +1 natural armor (form-type) and +2 damage to natural weapons.
 
@@ -40,55 +40,55 @@ Prodigious TWF: Use strength rather than dex for TWF prereqs, no penalty for lar
 
 Sundering Strike: On critical hit, attempt Sunder maneuver.
 
-###Paladin Mercies:
+### Paladin Mercies:
 ---
 Injured: Grants fast healing for 1 round per 2 paladin levels.
 
 Ensorcelled: Attempts Dispel Magic on lay on hands - does not ever dispel buffs on friendlies. Unlike other mercies I let this effect work in damage mode - dispells buffs there.
 
-###Items:
+### Items:
 ---
 Bracers Of The Merciful Knight: Available for purchase from Arsinoe, these increase a paladin's effective level for Lay On Hands power and uses by four. 
 
-##Bugfixes
+## Bugfixes
 ---
-###Items
+### Items
 ---
 Radiance +6 (uncorrupted) now gets Holy like it should
 
-###Archetypes
+### Archetypes
 ---
 Purifier: Gets back level 3 revelation - TT purifier has forced unique pick, said ability is not implemented and probably not implementable so giving the pick back.
 
-###Other
+### Other
 ---
 Fixed extra hits: Fixed some (not all) cases where an effect that should add extra damage to an attack added extra hits instead. Currently: Firebrand, Claws Of A Sacred Beast, and the chibi dragon from Dawn Of Dragons
 Note: Custom Implementation used on Claws of a Sacred Beast to preserve DR peirce properties from weapon attack isn't getting the damage type completely right - is doing all phys types instead of just slashing. 
 
-##Tweaks
+## Tweaks
 ---
 Little things that aren't new content but aren't bug fixes either:
-###Spells
+### Spells
 ---
 Dispels are now buff/debuff safe - dispel magic series and slayer Dispelling Attack don't dispel buffs on user's allies or debuffs on their enemies. 
 
-###Reward Feature Conversion
+### Reward Feature Conversion
 ---
 Dawn Of Dragons gave you a perma Holy Aura effect for one resolution but this was implemented as a perma-buff meaning it wouldn't persist on respec and might be losable other ways. I turned this into a feature - see modified content for more.
 
-###Crusade
+### Crusade
 ---
 Movanic Devas now use greatswords properly
 
-###Archetypes
+### Archetypes
 ---
 Purifers now get Cure Light / Cure Moderate automatically - the archetype takes till level five to not be Oracle But Worse In Literally Every Way otherwise.
 
-##Content Modifications
+## Content Modifications
 ---
 Not-so-little changes I've made to base game things. These all default to off.
 
-###Dawn Of Dragons Custom Reward
+### Dawn Of Dragons Custom Reward
 ---
 The reward for picking the good option in this quest is almost insultingly bad. A vendor trash item and a perma-buff of a spell you almost certainly already have on most paths and that Angel gets a strictly better version of automatically.
 
