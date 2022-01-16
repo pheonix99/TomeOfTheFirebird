@@ -4,6 +4,8 @@ A package of spells, feats, other abilities and some fixes.
 
 And also some more random stuff I made when I got annoyed at the game.
 
+All homebrew content or divergences from TT will be called out.
+
 ## New Content
 ---
 ### Spells
@@ -14,15 +16,18 @@ Chains Of Fire: Level 6  Wizard/Magus evocation. Is literally just Chain Lightni
 
 Fire Shield: Level 4 Alchemist/Bloodrager/Magus/Wizard/ Sun Domain, Level 5 Fire Domain. Pick between Warm and Cold shield. Warm shield cuts incoming cold damage in half, reduces to none on successful save, and retaliates with fire damage when hit in melee. Cold Shield works the same but protecting from fire and retaliating with cold.
 Existing domain picks were not removed - Sun 4 / Fire 5 have two picks. 1 round per level.
+Changes From Tabletop: Damage cancel on successful save works on all saves not reflex. Will patch this one later.
 
 Vitrolic Mist: Level 4 Alchemist/Bloodrager/Magus/Wizard: Fire Sheild, only the protection and backlash are both acid.
+Changes From Tabletop: Damage cancel on successful save works on all saves not reflex. Will patch this one later.
 
 Entropic Shield: Cleric 1 self-buff. Incoming ranged attacks have 20% miss chance, non-illusion. 1 minute per level.
 
-Freezing Sphere: Wizard/Magus 6 evocation. 1d6/level cold damage to a spherical area, increased damage to water subtype. Damage cap is 20d6 instead of 15d6 to make vaguely relevant at the same level as chain lightning/chains of fire (effectively have selective baked in), Hellfire Ray (massively more damage and defenses against it are rarer) and Cold Ice Strike (natively quickened). Available in both tabletop 40ft blast and fireball standard 20ft blast - again, to make relevant when other on-level spells have much better form factor than nuking almost everything you can see.
+Freezing Sphere: Wizard/Magus 6 evocation. 1d6/level cold damage to a spherical area, increased damage to water subtype.
+Changes From Tabletop: Damage cap is 20d6 instead of 15d6 to make vaguely relevant at the same level as chain lightning/chains of fire (effectively have selective baked in), Hellfire Ray (massively more damage and defenses against it are rarer) and Cold Ice Strike (natively quickened). Available in both tabletop 40ft blast and fireball standard 20ft blast - again, to make relevant when other on-level spells have much better form factor than nuking almost everything you can see.
 
 Gloomblind bolts: Level 3 Bloodrager/Magus/Witch/Wizard necromancy. Scorching ray, only dealing negative energy damage and blinding if the target doesn't save. 
-Was Conjuration (creation)[shadow] on TT but that makes about zero kinds of sense so I changed it.
+Changes From Tabletop: Was Conjuration (creation)[shadow] on TT but that makes about zero kinds of sense so I changed it to necromancy.
 
 Heal Mount: Level 3 Paladin. Is literally heal but you can only cast it on your animal companion. At last something to do with Paladin level 3 spell slots!
 
@@ -44,7 +49,8 @@ Sundering Strike: On critical hit, attempt Sunder maneuver.
 ---
 Injured: Grants fast healing for 1 round per 2 paladin levels.
 
-Ensorcelled: Attempts Dispel Magic on lay on hands - does not ever dispel buffs on friendlies. Unlike other mercies I let this effect work in damage mode - dispells buffs there.
+Ensorcelled: Attempts Dispel Magic on lay on hands - does not ever dispel buffs on friendlies.
+(Arguable) Changes from Tabletop: Unlike other mercies this effect makes sense when used offensively so it works when used on enemies - it dispels buffs there.
 
 ### Items:
 ---
@@ -87,6 +93,7 @@ Purifers now get Cure Light / Cure Moderate automatically - the archetype takes 
 ## Content Modifications
 ---
 Not-so-little changes I've made to base game things. These all default to off.
+These have nothing to do with the tabletop game - my changes to Owlcat Original Content.
 
 ### Dawn Of Dragons Custom Reward
 ---
