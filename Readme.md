@@ -32,7 +32,7 @@ Spear Of Purity: Level 2 Cleric / Angel: Range touch attack, deals 1d8 per 2 lev
 
 Telekinetic Strikes: Level 2 Magus/Wizard buff: Target ally deals 1d4 extra force damage on natural weapon hits, 1 minute per level
 
-###Feats:
+### Feats:
 ---
 Discordant Song: Bardsong adds 1d6 sonic damage to ally weapon attacks. For ranged attacks, targets must also be in the area of effect.
 
