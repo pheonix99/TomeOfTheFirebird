@@ -2,6 +2,7 @@
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Conditions.Builder;
 using Kingmaker.UnitLogic.Abilities;
+using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace TomeOfTheFirebird.New_Content.Spells
     {
         public static void Make()
         {
-            Sprite entSprie = null;
+            Sprite entSprie = Resources.GetBlueprint<BlueprintAbility>("2433d465095a9984398a0482b1af0877").Icon;
             var maker = MakerTools.MakeSpell("EntropicShield", "Entropic Shield", "A magical field appears around you, glowing with a chaotic blast of multicolored hues. This field deflects incoming arrows, rays, and other ranged attacks. Each ranged attack directed at you for which the attacker must make an attack roll has a 20% miss chance (similar to the effects of concealment). Other attacks that simply work at a distance are not affected.", entSprie, Kingmaker.Blueprints.Classes.Spells.SpellSchool.Abjuration, new Kingmaker.Localization.LocalizedString(), LocalizedStrings.OneMinutePerLevelDuration);
             maker.SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard);
             maker.AllowTargeting(self: true);

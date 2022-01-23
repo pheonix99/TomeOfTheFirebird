@@ -106,7 +106,13 @@
         "Enabled": true,
         "Description": "Adds a set of magic bracers that improve Paladin Lay On Hands to Arsinoe's stock. Uncaps Lay On Hands healing as a side effect. I do not know what will happen if you disable this mid-game.",
         "Homebrew": false
-          
+
+      },
+      "BracersOfTheAvengingKnight": {
+        "Enabled": true,
+        "Description": "Adds a set of magic bracers that improve Paladin Smite Evil to Arsinoe's stock. Uncaps Lay On Hands healing as a side effect. I do not know what will happen if you disable this mid-game.",
+        "Homebrew": false
+
       }
     }
   }

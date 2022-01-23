@@ -35,16 +35,16 @@ namespace TomeOfTheFirebird.New_Content.Mercies
 
 
             Sprite icon = Resources.GetBlueprint<BlueprintBuff>("9017213d83ccddb4ab720e0a0efe36ff").Icon;
-            var maker = MakerTools.MakeFeature("MercyInjured", "Injured", "Temp: Grant Fast Healing", false, icon);
+            var maker = MakerTools.MakeFeature("MercyInjured", "Mercy - Injured", "The target gains fast healing 3 for a number of rounds equal to 1/2 the paladin’s level.", false, icon);
             maker.SetFeatureGroups(FeatureGroup.Mercy);
-
+            maker.PrerequisiteClassLevel("bfa11238e7ae3544bbeb4d0b92e897ec", 9);
             maker.SetRanks(1);
 
 
 
             var madeFeature = maker.Configure();
 
-            var MercyFastHealingBuff = MakerTools.MakeBuff("MercyInjuredBuff", "Mercy: Injured", "Fast Healing Three", icon);
+            var MercyFastHealingBuff = MakerTools.MakeBuff("MercyInjuredBuff", "Mercy: Injured", "Granted Fast Healing 3 by Lay On Hands", icon);
             MercyFastHealingBuff.AddEffectContextFastHealing(bonus: new ContextValue() { Value = 3 });
             
 
@@ -62,13 +62,13 @@ namespace TomeOfTheFirebird.New_Content.Mercies
 
             Conditional LoHOCond = LayOnHandsOther.Components.OfType<AbilityEffectRunAction>().First().Actions.Actions.OfType<Conditional>().First();
 
-            Main.Log($"LoHO Actions before add{LoHOCond.IfTrue.Actions.Length}");
+            
 
             LoHOCond.IfTrue.Actions = LoHOCond.IfTrue.Actions.Append(actDone).ToArray();
 
 
 
-            Main.Log($"LoHO Actions after add{LoHOCond.IfTrue.Actions.Length}");
+            
 
 
 

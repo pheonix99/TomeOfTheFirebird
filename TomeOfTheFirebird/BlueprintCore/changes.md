@@ -1,5 +1,14 @@
 ﻿# Changelog
 
+#v1.3.2 Release
+
+### New Features
+
+* Added `EncyclopediaTool` for adding tooltips to localized text
+    * If you create strings using `LocalizationTool` this is automatically called so no changes needed
+    * Credit to Hypebringer | Aegonek for porting from Vek's TabletopTweaks
+* Updated for compatibility w/ 1.1.7
+
 #v1.3.1 Release
 
 ### New Features

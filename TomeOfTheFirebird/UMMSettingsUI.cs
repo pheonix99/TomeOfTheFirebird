@@ -60,6 +60,7 @@ namespace TomeOfTheFirebird
 
                 SetttingUI.SettingGroup("Fix Extra Hits", TabLevel, Bugfixes.FixExtraHits);
                 SetttingUI.SettingGroup("Purifier", TabLevel, Bugfixes.Purifier);
+                SetttingUI.SettingGroup("Cavalier", TabLevel, Bugfixes.Cavalier);
                 SetttingUI.SettingGroup("Items", TabLevel, Bugfixes.Items);
 
             }
@@ -79,6 +80,7 @@ namespace TomeOfTheFirebird
                 SetttingUI.SettingGroup("Crusade", TabLevel, Tweaks.Crusade);
                 SetttingUI.SettingGroup("Reward Feature Conversion", TabLevel, Tweaks.RewardFeatureConversion);
                 SetttingUI.SettingGroup("Purifier", TabLevel, Tweaks.Purifier);
+              
 
             }
         }

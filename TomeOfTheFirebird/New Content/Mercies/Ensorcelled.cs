@@ -28,9 +28,9 @@ namespace TomeOfTheFirebird.New_Content.Mercies
         {
 
             var dispel = Resources.GetBlueprint<BlueprintAbility>("b9be852b03568064b8d2275a6cf9e2de");
-            var maker = MakerTools.MakeFeature("MercyEnsorcelled", "Ensorcelled", "Temp: Dispel debuffs and stuff on LoH", false, dispel.Icon);
+            var maker = MakerTools.MakeFeature("MercyEnsorcelled", "Mercy - Ensorcelled", "The paladin’s lay on hands also acts as dispel magic, using the paladin’s level as her caster level.", false, dispel.Icon);
             maker.SetFeatureGroups(FeatureGroup.Mercy);
-
+            maker.PrerequisiteClassLevel("bfa11238e7ae3544bbeb4d0b92e897ec", 12);
             maker.SetRanks(1);
 
             var madeFeature = maker.Configure();

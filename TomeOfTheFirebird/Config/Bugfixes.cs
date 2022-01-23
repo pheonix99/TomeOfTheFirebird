@@ -11,6 +11,7 @@ namespace TomeOfTheFirebird.Config
         public bool NewSettingsOffByDefault = false;
         public SettingGroup FixExtraHits;
         public SettingGroup Purifier;
+        public SettingGroup Cavalier;
         public SettingGroup Items;
         public void Init()
         {
@@ -23,6 +24,7 @@ namespace TomeOfTheFirebird.Config
             NewSettingsOffByDefault = loadedSettings.NewSettingsOffByDefault;
             FixExtraHits.LoadSettingGroup(loadedSettings.FixExtraHits, NewSettingsOffByDefault);
             Purifier.LoadSettingGroup(loadedSettings.Purifier, NewSettingsOffByDefault);
+            Cavalier.LoadSettingGroup(loadedSettings.Cavalier, NewSettingsOffByDefault);
             Items.LoadSettingGroup(loadedSettings.Items, NewSettingsOffByDefault);
             
 

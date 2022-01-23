@@ -33,9 +33,9 @@ namespace TomeOfTheFirebird.New_Content.Feats
          
             var aoeFriendlyGUID = ModSettings.Blueprints.GetGUID(aoeFriendlyName);
             var aoeHostileGUID = ModSettings.Blueprints.GetGUID(aoeEnemyName);
-            var DiscordantSongAllyBuff = MakerTools.MakeBuff("DiscordantSongAllyBuff", "Discordant Song", "Temp: Song grants 1d6 sonic damage", sound_burst.Icon);
+            var DiscordantSongAllyBuff = MakerTools.MakeBuff("DiscordantSongAllyBuff", "Discordant Song (Friendly)", "Bardic performance is granting an extra 1d6 sonic damage to melee attacks and ranged attacks to targets in the performance area.", sound_burst.Icon);
             
-            var DiscordantSongEnemyBuff = MakerTools.MakeBuff("DiscordantSongEnemyBuff", "Discordant Song", "Temp: Valid Target For Discordant Song Shooting", sound_burst.Icon);
+            var DiscordantSongEnemyBuff = MakerTools.MakeBuff("DiscordantSongEnemyBuff", "Discordant Song (Hostile)", "Discordant Song is causing extra sonic damage on ranged hits.", sound_burst.Icon);
             var DiscordantSongEnemyBuffMade = DiscordantSongEnemyBuff.Configure();
 
             DiscordantSongAllyBuff.AdditionalDiceOnAttack(new Kingmaker.Utility.Feet(0f), new DamageTypeDescription() { Type = DamageType.Energy, Energy = Kingmaker.Enums.Damage.DamageEnergyType.Sonic }, checkWeaponRangeType: true, rangeType: Kingmaker.Enums.WeaponRangeType.Melee, initiatorConditions: ConditionsBuilder.New(), targetConditions: ConditionsBuilder.New(), value: new Kingmaker.UnitLogic.Mechanics.ContextDiceValue() { BonusValue = 0, DiceCountValue = 1, DiceType = Kingmaker.RuleSystem.DiceType.D6 });
@@ -71,8 +71,8 @@ namespace TomeOfTheFirebird.New_Content.Feats
 
             var DiscordantAoEFriendlyBuilt = DiscordantAoEFriendly.Configure();
             var DiscordantAoEHostileBuilt = DiscordantAoEHostile.Configure();
-            var DiscordantSongBuff = MakerTools.MakeBuff("DiscordantSongBuff", "Performing Discordant Song", "Temp: Song grants 1d6 sonic damage", sound_burst.Icon);
-            var DiscordantSongBuff2 = MakerTools.MakeBuff("DiscordantSongBuff2", "Performing Discordant Song", "Temp: Song grants 1d6 sonic damage");
+            var DiscordantSongBuff = MakerTools.MakeBuff("DiscordantSongBuff", "Performing Discordant Song", "Allies within 30 feet of you deal an extra 1d6 points of sonic damage with successful weapon attacks. This damage stacks with other energy damage a weapon might deal. Projectile weapons bestow this extra damage on their ammunition, but the extra damage is dealt only if the projectile hits a target within 30 feet of you.", sound_burst.Icon);
+            var DiscordantSongBuff2 = MakerTools.MakeBuff("DiscordantSongBuff2", "Performing Discordant Song", "You Shouldn't See This!");
             Main.Log($"Friendly AOE Type is {DiscordantAoEFriendlyBuilt.GetType().ToString()}, guid is :{DiscordantAoEFriendlyBuilt.AssetGuidThreadSafe}");
             //DiscordantSongBuff.AddAreaEffect("79779e46999bca8469f9978a27fa58f7");
             //DiscordantSongBuff.AddAreaEffect("79779e46999bca8469f9978a27fa58f7");
@@ -96,7 +96,7 @@ namespace TomeOfTheFirebird.New_Content.Feats
 
 
             var HatOfHearteningSong = Resources.GetBlueprint<BlueprintFeature>("c25df29d2599a81428a7badf51ebd4d1");
-            var DiscordantFeatMaker = MakerTools.MakeFeature("DiscordantSong", "Discordant Song", "Temp: Song grants 1d6 sonic damage");
+            var DiscordantFeatMaker = MakerTools.MakeFeature("DiscordantSong", "Discordant Song", "Whenever you are using bardic performance to create a spell-like or supernatural effect, allies within 30 feet of you deal an extra 1d6 points of sonic damage with successful weapon attacks. This damage stacks with other energy damage a weapon might deal. Projectile weapons bestow this extra damage on their ammunition, but the extra damage is dealt only if the projectile hits a target within 30 feet of you.");
             DiscordantFeatMaker.SetRanks(1);
             DiscordantFeatMaker.SetFeatureGroups(FeatureGroup.Feat);
 
@@ -106,6 +106,7 @@ namespace TomeOfTheFirebird.New_Content.Feats
                 DiscordantFeatMaker.AddBuffExtraEffects(v.CheckedBuff.AssetGuidThreadSafe, DiscordantSongBuff2Made.AssetGuidThreadSafe);
 
             }
+            //Bard or Skald
             DiscordantFeatMaker.PrerequisiteClassLevel("772c83a25e2268e448e841dcd548235f", 10, group: Kingmaker.Blueprints.Classes.Prerequisites.Prerequisite.GroupType.Any);
             DiscordantFeatMaker.PrerequisiteClassLevel("6afa347d804838b48bda16acb0573dc0", 10, group: Kingmaker.Blueprints.Classes.Prerequisites.Prerequisite.GroupType.Any);
 

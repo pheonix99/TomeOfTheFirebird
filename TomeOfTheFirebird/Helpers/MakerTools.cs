@@ -3,6 +3,7 @@ using BlueprintCore.Blueprints.Configurators.Buffs;
 using BlueprintCore.Blueprints.Configurators.Classes;
 using BlueprintCore.Blueprints.Configurators.Items.Ecnchantments;
 using BlueprintCore.Blueprints.Configurators.Items.Equipment;
+using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using BlueprintCore.Utils;
 using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.Blueprints.Items.Equipment;
@@ -90,6 +91,20 @@ namespace TomeOfTheFirebird.Helpers
 
         }
 
+
+        public static ActivatableAbilityConfigurator MakeToggle(string systemName, string displayName, string description, Sprite icon)
+        {
+            Main.Log($"Building New Toggle: {systemName}");
+            var guid = ModSettings.Blueprints.GetGUID(systemName);
+            LocalizedString name = LocalizationTool.CreateString(systemName + ".Name", displayName);
+            LocalizedString desc = LocalizationTool.CreateString(systemName + ".Desc", description);
+
+
+
+            return ActivatableAbilityConfigurator.New(systemName, guid.ToString()).SetDisplayName(name).SetDescription(desc).SetIcon(icon);
+
+
+        }
         public static IEnumerable<AbilityConfigurator> ApplyToAll(this IEnumerable<AbilityConfigurator> targets, Func<AbilityConfigurator, AbilityConfigurator> act)
         {
             return targets.Select(x => act(x));

@@ -56,11 +56,20 @@ Ensorcelled: Attempts Dispel Magic on lay on hands - does not ever dispel buffs 
 ---
 Bracers Of The Merciful Knight: Available for purchase from Arsinoe, these increase a paladin's effective level for Lay On Hands power and uses by four. 
 
+Bracers Of The Avenging Knight: Available for purchase from Arsinoe, these increase the wearer's effective level when using Smite abilities by four.
+
+
 ## Bugfixes
 ---
 ### Items
 ---
 Radiance +6 (uncorrupted) now gets Holy like it should
+
+###Classes
+Cavalier: Made Order abilities actually show up in the UI. 
+
+Made Order Of The Stars's Calling Channeling support ability work. 
+Changes from Tabletop: Works on anything with a Channel Positive / Channel Negative keyword set, which means it will work on Warpriest and Oracle and Necromancer channels. No idea if it works on Warpriest fervor used normally.
 
 ### Archetypes
 ---
@@ -69,6 +78,8 @@ Purifier: Gets back level 3 revelation - TT purifier has forced unique pick, sai
 ### Other
 ---
 Fixed extra hits: Fixed some (not all) cases where an effect that should add extra damage to an attack added extra hits instead. Currently: Firebrand, Claws Of A Sacred Beast, and the chibi dragon from Dawn Of Dragons
+ONLY USE ONE OF TABLETOP TWEAKS's FIX AND MINE! The game won't load if you have both active!
+
 Note: Custom Implementation used on Claws of a Sacred Beast to preserve DR peirce properties from weapon attack isn't getting the damage type completely right - is doing all phys types instead of just slashing. 
 
 ## Tweaks

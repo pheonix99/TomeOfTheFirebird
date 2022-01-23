@@ -61,9 +61,7 @@ namespace TomeOfTheFirebird
                 FreezingSphere.Build();
                 MonavicsUseTwoHanders.Do();
                 DawnOfDragons.Fix();
-                FixExtraHitsOnProcs.FixFirebrand();
-                FixExtraHitsOnProcs.FixRandomWeaponsRiders();
-                FixExtraHitsOnProcs.FixClawsOfSacredBeast();
+                
                 RadianceLevel2Fix.Fixes();
                 PaladinGear.Build();
                 Ensorcelled.Build();
@@ -71,7 +69,7 @@ namespace TomeOfTheFirebird
                 SunderingStrike.Build();
                 DiscordantSong.Make();
                 EntropicShield.Make();
-                AddItemsToShop.Add();
+                
             }
         }
 
@@ -105,6 +103,14 @@ namespace TomeOfTheFirebird
                     keenEdge.AddToSpellList(SpellTools.SpellList.MagusSpellList, 3);
                     keenEdge.AddToSpellList(SpellTools.SpellList.WizardSpellList, 3);
                 }
+                AddItemsToShop.Add();
+                FixExtraHitsOnProcs.FixFirebrand();
+                FixExtraHitsOnProcs.FixRandomWeaponsRiders();
+                FixExtraHitsOnProcs.FixClawsOfSacredBeast();
+
+                BoneFists.AddToLists();
+                CavalierFixes.FixOrderAbilityDisplays();
+                CavalierFixes.FixOrderOfTheStarChannelAssistance();
             }
         }
 

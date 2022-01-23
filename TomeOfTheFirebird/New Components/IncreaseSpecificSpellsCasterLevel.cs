@@ -25,9 +25,9 @@ namespace TomeOfTheFirebird.New_Components
         {
             if (spells.Select(x => x.ToReference<BlueprintAbilityReference>()).Contains(evt.AbilityData.Blueprint.ToReference<BlueprintAbilityReference>()))
             {
-
-                evt.AddBonusCasterLevel(this.Value.Calculate(base.Context), this.Descriptor);
                 
+                evt.AddBonusCasterLevel(this.Value.Calculate(base.Context), this.Descriptor);
+               
             }
 
           

@@ -17,6 +17,16 @@
       }
     }
   },
+  "Cavalier": {
+    "DisableAll": false,
+    "Settings": {
+      "FixOrderOfTheStarCallingChannelingSupport": {
+        "Enabled": true,
+        "Description": "Order Of The Stars is supposed to grant half class level to Paladin and Cleric channeling progression. It didn't. Now it does."
+      }
+
+    }
+  },
   "Items": {
     "DisableAll": false,
     "Settings": {
