@@ -65,7 +65,7 @@ Bracers Of The Avenging Knight: Available for purchase from Arsinoe, these incre
 ---
 Radiance +6 (uncorrupted) now gets Holy like it should
 
-###Classes
+### Classes
 Cavalier: Made Order abilities actually show up in the UI. 
 
 Made Order Of The Stars's Calling Channeling support ability work. 
