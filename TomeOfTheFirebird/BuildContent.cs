@@ -1,6 +1,7 @@
 ﻿using BlueprintCore.Blueprints.Configurators.Classes.Spells;
 using HarmonyLib;
 using Kingmaker.Blueprints;
+using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
@@ -15,6 +16,7 @@ using TabletopTweaks.Utilities;
 using TomeOfTheFirebird.Config;
 using TomeOfTheFirebird.Crusade;
 using TomeOfTheFirebird.Fixes;
+using TomeOfTheFirebird.Modified_Content.Crusade;
 using TomeOfTheFirebird.New_Content.Feats;
 using TomeOfTheFirebird.New_Content.Items;
 using TomeOfTheFirebird.New_Content.Mercies;
@@ -45,13 +47,13 @@ namespace TomeOfTheFirebird
                 Initialized = true;
                 Main.Log("Building new spells");
                 
-                    gloomblind = GloomblindBolts.BuildSpell();
+                 gloomblind = GloomblindBolts.BuildSpell();
                
                 BoneFists.BuildSpell();
                 TelekineticStrikes.BuildSpell();
                 SpearOfPurity.BuildSpearOfPurity();
-                
 
+                ArcanistFixes.DoFixes();
                 ChainsOfFire.BuildSpell();
                 PurifierLimitedCures.AddPurifierLimitedCures();
                 ElementalShieldSpells.Build();
@@ -60,16 +62,29 @@ namespace TomeOfTheFirebird
                 keenEdge = KeenEdge.BuildSPell();
                 FreezingSphere.Build();
                 MonavicsUseTwoHanders.Do();
+                CrusadeBuffTweaks.PermaMonsterSlayers();
+                CrusadeBuffTweaks.PermaLocalProduction();
                 DawnOfDragons.Fix();
                 
                 RadianceLevel2Fix.Fixes();
                 PaladinGear.Build();
-                Ensorcelled.Build();
-                Injured.Build();
+                ExtraMercies.Build();
+              
                 SunderingStrike.Build();
                 DiscordantSong.Make();
                 EntropicShield.Make();
-                
+
+                BlueprintFeature ActsBook = Resources.GetBlueprint<BlueprintFeature>("f16ea400ed67470b83cfd6c0dedbce6f");
+                if (ActsBook.Icon != null)
+                {
+                    Main.Log($"Acts Of Iomedae reports Icon Name {ActsBook.Icon.name} ");
+                    
+                }
+                else
+                {
+                    Main.Log($"Acts Of Iomedae Reports No Icon");
+                }
+
             }
         }
 
@@ -87,6 +102,7 @@ namespace TomeOfTheFirebird
 
                 if (ModSettings.NewContent.Spells.IsEnabled("GloomblindBolts"))
                 {
+                    //TODO check bloodrager access
                     gloomblind.AddToSpellList(SpellTools.SpellList.BloodragerSpellList, 3);
                     gloomblind.AddToSpellList(SpellTools.SpellList.MagusSpellList, 3);
                     gloomblind.AddToSpellList(SpellTools.SpellList.WizardSpellList, 3);
@@ -111,6 +127,7 @@ namespace TomeOfTheFirebird
                 BoneFists.AddToLists();
                 CavalierFixes.FixOrderAbilityDisplays();
                 CavalierFixes.FixOrderOfTheStarChannelAssistance();
+                ExtraMercies.AddToThings();
             }
         }
 

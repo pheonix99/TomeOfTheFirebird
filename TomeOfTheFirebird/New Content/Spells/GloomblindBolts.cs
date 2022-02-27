@@ -34,9 +34,9 @@ namespace TomeOfTheFirebird.New_Spells
         public static BlueprintAbility BuildSpell()
         {
             
-            string umbralStrikeGUid = "474ed0aa656cc38499cc9a073d113716";
+           
             Sprite gloomicon = AssetLoader.LoadInternal("Spells", "GloomblindBolts.png");
-            Main.Log($"Got Umbral Strike");
+            
             string beamGUID = "72aa6191e153a31468d76668cbc72fc7"; //Enervation
             
                 ConditionsBuilder TargetIsNotUndead = ConditionsBuilder.New().HasFact("734a29b693e9ec346ba2951b27987e33", true);

@@ -1,5 +1,20 @@
 ﻿# Changelog
 
+#v1.3.3 Release (Patch 1.2)
+
+Changes here are minimal to maintain support with Patch 1.2. If you are not working on the Beta branch you'll need to
+use 1.3.2 release. I may push an additional update once the patch goes live just in case there are any changes.
+
+* Migrated from System.Text.Json to Newtonsoft.Json since it is already included with Wrath
+
+### Breaking Changes
+
+* New dependency on `Owlcat.Runtime.Validation.dll`
+* The game's validation system was refactored and this update makes it compile and run but there may new warnings, duplicate warnings, or missing warnings
+* References to GameObject have migrated to PrefabLink
+* References to asset types have migrated to Link, e.g. Sprite is now SpriteLink
+* A lot of blueprints, components, actions, and conditions have small changes
+
 #v1.3.2 Release
 
 ### New Features

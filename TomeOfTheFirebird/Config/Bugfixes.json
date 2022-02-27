@@ -27,6 +27,16 @@
 
     }
   },
+  "Arcanist": {
+    "DisableAll": false,
+    "Settings": {
+      "FixHolyWaterJet": {
+        "Enabled": true,
+        "Description": "Holy Water Jet has correct prereqs."
+      }
+
+    }
+  },
   "Items": {
     "DisableAll": false,
     "Settings": {

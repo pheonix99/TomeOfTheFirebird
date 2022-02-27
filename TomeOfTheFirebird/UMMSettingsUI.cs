@@ -61,6 +61,7 @@ namespace TomeOfTheFirebird
                 SetttingUI.SettingGroup("Fix Extra Hits", TabLevel, Bugfixes.FixExtraHits);
                 SetttingUI.SettingGroup("Purifier", TabLevel, Bugfixes.Purifier);
                 SetttingUI.SettingGroup("Cavalier", TabLevel, Bugfixes.Cavalier);
+                SetttingUI.SettingGroup("Arcanist", TabLevel, Bugfixes.Arcanist);
                 SetttingUI.SettingGroup("Items", TabLevel, Bugfixes.Items);
 
             }
@@ -96,6 +97,7 @@ namespace TomeOfTheFirebird
                 UI.Space(25);
 
                 SetttingUI.SettingGroup("Dawn Of Dragons", TabLevel, ContentMods.DawnOfDragons);
+                SetttingUI.SettingGroup("Crusade", TabLevel, ContentMods.Crusade);
              
 
             }

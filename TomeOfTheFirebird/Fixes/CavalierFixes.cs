@@ -45,10 +45,8 @@ namespace TomeOfTheFirebird.Fixes
 
             var starChannelAssist = FeatureConfigurator.For("eff49ecc28a0ce54caf416bdacedf4f3");
 
-            starChannelAssist.AddIncreaseSpellDescriptorCasterLevel(descriptor: new SpellDescriptorWrapper(SpellDescriptor.ChannelPositiveHeal), 1, modifierDescriptor: Kingmaker.Enums.ModifierDescriptor.UntypedStackable);
-            starChannelAssist.AddIncreaseSpellDescriptorCasterLevel(descriptor: new SpellDescriptorWrapper(SpellDescriptor.ChannelNegativeHeal), 1, modifierDescriptor: Kingmaker.Enums.ModifierDescriptor.UntypedStackable);
-            starChannelAssist.AddIncreaseSpellDescriptorCasterLevel(descriptor: new SpellDescriptorWrapper(SpellDescriptor.ChannelNegativeHarm), 1, modifierDescriptor: Kingmaker.Enums.ModifierDescriptor.UntypedStackable);
-            starChannelAssist.AddIncreaseSpellDescriptorCasterLevel(descriptor: new SpellDescriptorWrapper(SpellDescriptor.ChannelPositiveHarm), 1, modifierDescriptor: Kingmaker.Enums.ModifierDescriptor.UntypedStackable);
+            starChannelAssist.AddIncreaseSpellDescriptorCasterLevel(descriptor: new SpellDescriptorWrapper(SpellDescriptor.ChannelPositiveHeal | SpellDescriptor.ChannelPositiveHarm | SpellDescriptor.ChannelNegativeHeal | SpellDescriptor.ChannelNegativeHarm), 1, modifierDescriptor: Kingmaker.Enums.ModifierDescriptor.UntypedStackable);
+            
 
 
 

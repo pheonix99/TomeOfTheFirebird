@@ -81,10 +81,20 @@ namespace TomeOfTheFirebird.Helpers
         {
             Main.Log($"Building New Spell: {systemName}");
             var guid = ModSettings.Blueprints.GetGUID(systemName);
-            LocalizedString name = LocalizationTool.CreateString(systemName + ".Name", displayName);
-            LocalizedString desc = LocalizationTool.CreateString(systemName + ".Desc", description);
-
-            
+            LocalizedString name = null;
+            LocalizedString desc = null;
+            Main.Log("About to try localization");
+            try
+            {
+                name = LocalizationTool.CreateString(systemName + ".Name", displayName);
+                desc = LocalizationTool.CreateString(systemName + ".Desc", description);
+                Main.Log("Localization done");
+            }
+            catch(Exception e)
+            {
+                Main.Error(e.Message);
+            }
+           
 
             return AbilityConfigurator.New(systemName, guid.ToString()).SetDisplayName(name).SetDescription(desc).SetIcon(icon).SetSpellSchool(school).SetSavingThrowText(savestring).SetDurationText(durationString);
 

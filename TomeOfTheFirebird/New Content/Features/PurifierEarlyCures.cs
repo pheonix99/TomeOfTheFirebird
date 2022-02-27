@@ -20,7 +20,7 @@ namespace TomeOfTheFirebird.NewContent.Features
             var PuriferArchetype = Resources.GetBlueprint<BlueprintArchetype>("c9df67160a77ecd4a97928f2455545d7");
             var Oracle = PuriferArchetype.GetParentClass();
 
-
+           
             BlueprintFeature earlyCures = null;
             try
             {

@@ -67,7 +67,7 @@ namespace TomeOfTheFirebird.New_Spells
             bonefists = BoneFists.Configure();
             
 
-
+           
 
 
         }

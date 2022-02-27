@@ -10,6 +10,7 @@ namespace TomeOfTheFirebird.Config
     {
         public bool NewSettingsOffByDefault = true;
         public SettingGroup DawnOfDragons;
+        public SettingGroup Crusade;
         public void Init()
         {
             
@@ -20,6 +21,7 @@ namespace TomeOfTheFirebird.Config
             var loadedSettings = userSettings as ContentModifications;
             NewSettingsOffByDefault = loadedSettings.NewSettingsOffByDefault;
             DawnOfDragons.LoadSettingGroup(loadedSettings.DawnOfDragons, NewSettingsOffByDefault);
+            Crusade.LoadSettingGroup(loadedSettings.Crusade, NewSettingsOffByDefault);
         }
     }
 }

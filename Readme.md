@@ -71,6 +71,8 @@ Cavalier: Made Order abilities actually show up in the UI.
 Made Order Of The Stars's Calling Channeling support ability work. 
 Changes from Tabletop: Works on anything with a Channel Positive / Channel Negative keyword set, which means it will work on Warpriest and Oracle and Necromancer channels. No idea if it works on Warpriest fervor used normally.
 
+Arcanist: Holy Water Jet no longer requires Azata/Angel mythic class
+
 ### Archetypes
 ---
 Purifier: Gets back level 3 revelation - TT purifier has forced unique pick, said ability is not implemented and probably not implementable so giving the pick back.
@@ -114,6 +116,9 @@ This annoyed me so I changed it.
 
 If you enable the Custom Reward, instead of giving you a perma holy aura buff the silver dragon gives you what's more or less perma-sorta-geniekind with this setting enabled. 1d6 cold on attacks (not an extra hit just damage, it's like having Elder Frost on everything) and +5 natural armor enhancement. Overall weaker effect but one that's much less likely to overlapped. Can set to be Angel only or for all paths with settings.
 
+### Crusade Events
+---
+Made rewards from Monster Slayers and Local Production crusade events permanent if options are selected because it makes more sense.
 
 
 
