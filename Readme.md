@@ -5,6 +5,12 @@ A package of spells, feats, other abilities and some fixes.
 And also some more random stuff I made when I got annoyed at the game.
 
 All homebrew content or divergences from TT will be called out.
+##Changelog
+1.1
+Updated for v1.2 beta
+Added Arcanist Holy Water Jet fix
+Added Monster Slayers and Local Production Crusade Event Modifications
+
 
 ## New Content
 ---
