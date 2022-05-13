@@ -97,14 +97,17 @@ namespace TomeOfTheFirebird.New_Content.Mercies
                 injured = maker.Configure();
           
                 var MercyFastHealingBuff = MakerTools.MakeBuff("MercyInjuredBuff", "Mercy: Injured", "Granted Fast Healing 3 by Lay On Hands", icon);
-                MercyFastHealingBuff.AddEffectContextFastHealing(bonus: new ContextValue() { Value = 3 });
-
-
+                MercyFastHealingBuff.AddEffectContextFastHealing(bonus: new ContextValue() { Value = 3 }).SetIsClassFeature(true);
+                
+                var conditionsBuilder = ConditionsBuilder.New().CasterHasFact(injured.AssetGuidThreadSafe);
+               
                 var buffDone = MercyFastHealingBuff.Configure();
-                var buffAct = ActionsBuilder.New().ApplyBuff(buffDone.AssetGuidThreadSafe, duration: MakerTools.GetContextDurationValue(DurationRate.Minutes, false));
+                
+                var buffAct = ActionsBuilder.New().ApplyBuff(buffDone.AssetGuidThreadSafe, duration: MakerTools.GetContextDurationValue(DurationRate.Minutes, false), isFromSpell: false, dispellable: false, permanent:false);
+                var buffActWrapper = ActionsBuilder.New().Conditional(conditionsBuilder, buffAct);
 
 
-                var actDone = buffAct.Build().Actions[0];
+                var actDone = buffActWrapper.Build().Actions[0];
                 var LayOnHandsSelf = Resources.GetBlueprint<BlueprintAbility>("8d6073201e5395d458b8251386d72df1");
                 Conditional LoHMeCond = LayOnHandsSelf.Components.OfType<AbilityEffectRunAction>().First().Actions.Actions.OfType<Conditional>().First();
                 LoHMeCond.IfTrue.Actions = LoHMeCond.IfTrue.Actions.Append(actDone).ToArray();
@@ -131,13 +134,7 @@ namespace TomeOfTheFirebird.New_Content.Mercies
                 LoHSCond.IfTrue.Actions = LoHSCond.IfTrue.Actions.Append(actDone).ToArray();
 
 
-                //Make Feature
-
-                //Add To Selectors
-
-                //Add Effect On Heal to all three
-
-                //Add Effect On Kill Mode to LoH - Ohter
+                
                
             }
 

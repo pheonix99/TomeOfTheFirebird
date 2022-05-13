@@ -1,5 +1,17 @@
 ﻿# Changelog
 
+#v1.3.6 Release
+
+Updated for compatibility w/ 1.3.
+
+#v1.3.5 Release
+
+Updated for compatibility w/ 1.2.1h.
+
+#v1.3.4 Release
+
+Updated for Patch 1.2 release version. There were some additional changes from the beta branch.
+
 #v1.3.3 Release (Patch 1.2)
 
 Changes here are minimal to maintain support with Patch 1.2. If you are not working on the Beta branch you'll need to

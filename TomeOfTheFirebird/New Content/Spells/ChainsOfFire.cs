@@ -41,9 +41,10 @@ namespace TomeOfTheFirebird.New_Spells
             
             ChainsMaker.AddSpellDescriptors(SpellDescriptor.Fire);
             //ActionsBuilder chainAct = 
-
-
-            ChainsMaker.AddAbilityEffectRunActionOnClickedUnit(ActionsBuilder.New().DealDamage(new Kingmaker.RuleSystem.Rules.Damage.DamageTypeDescription() { Energy = Kingmaker.Enums.Damage.DamageEnergyType.Fire, Type = Kingmaker.RuleSystem.Rules.Damage.DamageType.Energy }, new ContextDiceValue() { DiceType = Kingmaker.RuleSystem.DiceType.D6, DiceCountValue = new Kingmaker.UnitLogic.Mechanics.ContextValue() { ValueType = ContextValueType.Rank }, BonusValue = new Kingmaker.UnitLogic.Mechanics.ContextValue() { ValueType = ContextValueType.Shared } }, dealHalfIfSaved: true, isAOE: true)).AddContextRankConfig(ContextRankConfigs.CasterLevel(type: Kingmaker.Enums.AbilityRankType.DamageDice, min: 1, max: 20)).AddContextRankConfig(ContextRankConfigs.CasterLevel(min: 1, max: 20, type: Kingmaker.Enums.AbilityRankType.ProjectilesCount, useMax: true));
+            
+            ChainsMaker.RunActions(ActionsBuilder.New().DealDamage(new Kingmaker.RuleSystem.Rules.Damage.DamageTypeDescription() { Energy = Kingmaker.Enums.Damage.DamageEnergyType.Fire, Type = Kingmaker.RuleSystem.Rules.Damage.DamageType.Energy }, new ContextDiceValue() { DiceType = Kingmaker.RuleSystem.DiceType.D6, DiceCountValue = new Kingmaker.UnitLogic.Mechanics.ContextValue() { ValueType = ContextValueType.Rank }, BonusValue = new Kingmaker.UnitLogic.Mechanics.ContextValue() { ValueType = ContextValueType.Shared } }, dealHalfIfSaved: true, isAOE: true), Kingmaker.EntitySystem.Stats.SavingThrowType.Reflex);
+                
+                ChainsMaker.AddContextRankConfig(ContextRankConfigs.CasterLevel(type: Kingmaker.Enums.AbilityRankType.DamageDice, min: 1, max: 20)).AddContextRankConfig(ContextRankConfigs.CasterLevel(min: 1, max: 20, type: Kingmaker.Enums.AbilityRankType.ProjectilesCount, useMax: true));
             
             ChainsMaker.AddAbilityDeliverChain(radius: new Kingmaker.Utility.Feet(30), projectile: "8cc159ce94d29fe46a94b80ce549161f", projectileFirst: "8cc159ce94d29fe46a94b80ce549161f", targetsCount: new ContextValue() { ValueType = ContextValueType.Rank, ValueRank = Kingmaker.Enums.AbilityRankType.ProjectilesCount });
             ChainsMaker.AddCraftInfoComponent(Kingmaker.Craft.CraftSpellType.Damage, Kingmaker.Craft.CraftSavingThrow.Reflex, Kingmaker.Craft.CraftAOE.AOE);
