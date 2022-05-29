@@ -1,17 +1,10 @@
 ﻿using BlueprintCore.Blueprints.Configurators.Classes;
-using BlueprintCore.Blueprints.Configurators.Classes.Selection;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Prerequisites;
 using Kingmaker.Blueprints.Classes.Selection;
-using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.EntitySystem.Stats;
-using Kingmaker.Enums;
-using Kingmaker.UnitLogic.FactLogic;
-using Kingmaker.UnitLogic.Mechanics;
-using Kingmaker.UnitLogic.Mechanics.Components;
 using Kingmaker.Utility;
-using System;
 using System.Linq;
 using TabletopTweaksExtended.NewComponents.Prerequisites;
 
@@ -20,6 +13,7 @@ namespace TomeOfTheFirebird.Helpers
 {
     static class FeatTools
     {
+        /*
         public static void AddAsFeat(params BlueprintFeature[] features)
         {
             foreach (var feature in features)
@@ -33,7 +27,7 @@ namespace TomeOfTheFirebird.Helpers
                 }
                 
             }
-        }
+        }*/
        
 
         /// <summary>

@@ -1,21 +1,12 @@
 ﻿using BlueprintCore.Blueprints.Configurators.Abilities;
-using BlueprintCore.Blueprints.Configurators.Buffs;
 using BlueprintCore.Blueprints.Configurators.Classes.Selection;
 using BlueprintCore.Conditions.Builder;
 using BlueprintCore.Conditions.Builder.ContextEx;
-using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
-using Kingmaker.Blueprints.Classes.Selection;
 using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.RuleSystem.Rules.Damage;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
-using Kingmaker.UnitLogic.Abilities.Components.AreaEffects;
-using Kingmaker.UnitLogic.Buffs.Components;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TomeOfTheFirebird.Config;
 using TomeOfTheFirebird.Helpers;
 
@@ -114,7 +105,8 @@ namespace TomeOfTheFirebird.New_Content.Feats
 
             if (ModSettings.NewContent.Feats.IsEnabled("DiscordantSong"))
             {
-                FeatTools.AddAsFeat(DiscordantSong);
+                TabletopTweaks.Core.Utilities.FeatTools.AddAsFeat(DiscordantSong);
+                
 
 
 

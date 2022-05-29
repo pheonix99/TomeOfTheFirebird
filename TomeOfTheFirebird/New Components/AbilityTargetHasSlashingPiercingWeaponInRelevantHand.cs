@@ -1,7 +1,4 @@
-﻿using System;
-using Kingmaker.Blueprints;
-using Kingmaker.Blueprints.JsonSystem;
-using Kingmaker.Blueprints.Root;
+﻿using Kingmaker.Blueprints;
 using Kingmaker.EntitySystem.Entities;
 using Kingmaker.Items;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
@@ -10,8 +7,8 @@ using Kingmaker.Utility;
 
 namespace TomeOfTheFirebird.Components
 {
-	// Token: 0x02001A1F RID: 6687
-	[AllowedOn(typeof(BlueprintAbility), false)]
+    // Token: 0x02001A1F RID: 6687
+    [AllowedOn(typeof(BlueprintAbility), false)]
 	
 	public class AbilityTargetHasSlashingPiercingWeaponInRelevantHand : BlueprintComponent, IAbilityTargetRestriction
 	{

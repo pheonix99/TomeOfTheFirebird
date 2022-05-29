@@ -1,13 +1,10 @@
 ﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.BasicEx;
-using BlueprintCore.Blueprints.Configurators.AreaLogic.Etudes;
 using BlueprintCore.Blueprints.Configurators.Classes;
 using BlueprintCore.Conditions.Builder;
 using BlueprintCore.Conditions.Builder.StoryEx;
 using BlueprintCore.Utils;
 using Kingmaker.AreaLogic.Etudes;
-using Kingmaker.Blueprints;
-using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.Designers.EventConditionActionSystem.Actions;
 using Kingmaker.Designers.EventConditionActionSystem.Evaluators;
 using Kingmaker.Designers.EventConditionActionSystem.Events;
@@ -16,15 +13,10 @@ using Kingmaker.RuleSystem.Rules.Damage;
 using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.Utility;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TomeOfTheFirebird.Components;
 using TomeOfTheFirebird.Config;
 using TomeOfTheFirebird.Helpers;
-using TomeOfTheFirebird.New_Components;
 
 namespace TomeOfTheFirebird.QuestTweaks
 {
@@ -32,7 +24,7 @@ namespace TomeOfTheFirebird.QuestTweaks
     /// For some shitty reason the good pick gets a perma buff (that won't persist over respec and might be dispellable) and some vendor trash while evil gets you a contendor for Best-In-Slot
     /// And Angel Already *has* an uprated version of said buff
     /// </summary>
-    
+
     public static class DawnOfDragons
     {
         public static void Fix()

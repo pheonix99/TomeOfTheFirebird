@@ -1,11 +1,7 @@
 ﻿using TomeOfTheFirebird.Config;
 using JetBrains.Annotations;
 using Kingmaker.Blueprints;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TomeOfTheFirebird
 {

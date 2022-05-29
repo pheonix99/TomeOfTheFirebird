@@ -7,10 +7,7 @@ using Kingmaker.RuleSystem.Rules;
 using Kingmaker.RuleSystem.Rules.Damage;
 using Kingmaker.UnitLogic;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TomeOfTheFirebird.Components
 {
@@ -29,6 +26,7 @@ namespace TomeOfTheFirebird.Components
 
         public void OnEventAboutToTrigger(RuleCalculateWeaponStats evt)
         {
+            
             //Main.Log($"Context-Scaled Phys Damage calc called. Set DmgType is  {form}");
             if (evt.Weapon == null)
             {
@@ -49,6 +47,7 @@ namespace TomeOfTheFirebird.Components
                    // Main.Log("AttackWithWeapon.Target Is Not Null, This Should Mean Combat Modo");
                     using (base.Context.GetDataScope(evt.AttackWithWeapon.Target))
                     {
+                        
                        
                         dmg = MakeDamageDesc(evt, this.TargetConditions.Check());
                     }
@@ -75,6 +74,7 @@ namespace TomeOfTheFirebird.Components
                     Physical = new DamageTypeDescription.PhysicalData()
                     {
                         Form = form
+
                     }
 
                 },

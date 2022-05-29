@@ -1,14 +1,5 @@
-﻿using BlueprintCore.Blueprints.Configurators.Classes;
-using Kingmaker.Blueprints;
-using Kingmaker.Blueprints.Classes;
-using Kingmaker.Blueprints.Classes.Selection;
-using Kingmaker.UnitLogic.Abilities.Blueprints;
-using Kingmaker.UnitLogic.FactLogic;
+﻿using Kingmaker.Blueprints.Classes;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TomeOfTheFirebird.Helpers;
 
 namespace TomeOfTheFirebird.NewContent.Features

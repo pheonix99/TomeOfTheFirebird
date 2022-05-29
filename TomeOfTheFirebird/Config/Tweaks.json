@@ -15,6 +15,19 @@
       }
     }
   },
+  "Bloodlines": {
+    "DisableAll": false,
+    "Settings": {
+      "UnlimitedSorcererBloodlineClaws": {
+        "Enabled": true,
+        "Description": "Abyssal and Draconic sorcerer bloodline power claws no longer have a use limit."
+      },
+      "CombineSorcererDragonClaws": {
+        "Enabled": true,
+        "Description": "Combine all sorcerer dragon bloodline claw powers into the same ability, stacking elemental damage from each bloodline."
+      }
+    }
+  },
   "RewardFeatureConversion": {
     "DisableAll": false,
     "Settings": {

@@ -1,20 +1,6 @@
-﻿using HarmonyLib;
-using Kingmaker.Blueprints.Items.Weapons;
-using Kingmaker.Items;
-using Kingmaker.Items.Slots;
-using Kingmaker.RuleSystem;
-using Kingmaker.RuleSystem.Rules;
-using Kingmaker.UnitLogic.Parts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TomeOfTheFirebird.Config;
-
-namespace TomeOfTheFirebird.Tweaks
+﻿namespace TomeOfTheFirebird.Tweaks
 {
-	//This don't work.
+    //This don't work.
 
     static class FlawlessAttacks
     {/*

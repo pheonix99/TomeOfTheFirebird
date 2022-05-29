@@ -3,21 +3,15 @@ using BlueprintCore.Blueprints.Configurators.Classes;
 using HarmonyLib;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.Designers.EventConditionActionSystem.Actions;
-using Kingmaker.ElementsSystem;
 using Kingmaker.UnitLogic.Abilities.Components;
-using Kingmaker.UnitLogic.Buffs;
 using Kingmaker.UnitLogic.Mechanics.Actions;
 using Kingmaker.UnitLogic.Mechanics.Components;
 using Kingmaker.Utility;
 using Owlcat.Runtime.Core;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TomeOfTheFirebird.Config;
 
-namespace TomeOfTheFirebird.Fixes
+namespace TomeOfTheFirebird.Bugfixes.Abilities
 {
     static class AddIFFToDispels
     {

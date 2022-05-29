@@ -5,17 +5,13 @@ using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
-using Kingmaker.UnitLogic.Abilities.Components;
-using Kingmaker.UnitLogic.Mechanics.Actions;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TabletopTweaks.Utilities;
+using TabletopTweaks.Core.Utilities;
 using TomeOfTheFirebird.Config;
 using TomeOfTheFirebird.Crusade;
-using TomeOfTheFirebird.Fixes;
+using TomeOfTheFirebird.Bugfixes;
+using TomeOfTheFirebird.Modified_Content.Bloodlines;
 using TomeOfTheFirebird.Modified_Content.Crusade;
 using TomeOfTheFirebird.New_Content.Feats;
 using TomeOfTheFirebird.New_Content.Items;
@@ -25,6 +21,7 @@ using TomeOfTheFirebird.New_Spells;
 using TomeOfTheFirebird.NewContent.Features;
 using TomeOfTheFirebird.QuestTweaks;
 using TomeOfTheFirebird.Reference;
+using TomeOfTheFirebird.Bugfixes.Classes;
 
 namespace TomeOfTheFirebird
 {
@@ -74,6 +71,9 @@ namespace TomeOfTheFirebird
                 DiscordantSong.Make();
                 EntropicShield.Make();
 
+                DraconicBloodlineModifications.SorcererClawsOverhaul();
+                AbyssalBloodlineModifications.GiveInfiniteUses();
+                BreathWeaponFeats.BuildAbilityFocusBreathWeapons();
                 BlueprintFeature ActsBook = Resources.GetBlueprint<BlueprintFeature>("f16ea400ed67470b83cfd6c0dedbce6f");
                 if (ActsBook.Icon != null)
                 {

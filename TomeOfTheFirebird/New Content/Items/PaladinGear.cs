@@ -1,26 +1,16 @@
-﻿using BlueprintCore.Blueprints.Configurators.Abilities;
-using BlueprintCore.Blueprints.Configurators.Buffs;
-using BlueprintCore.Blueprints.Configurators.Classes;
-using BlueprintCore.Blueprints.Configurators.Items.Ecnchantments;
+﻿using BlueprintCore.Blueprints.Configurators.Buffs;
 using BlueprintCore.Blueprints.Configurators.Items.Equipment;
 using BlueprintCore.Utils;
 using Kingmaker.Blueprints.Items.Armors;
 using Kingmaker.Blueprints.Items.Equipment;
 using Kingmaker.Localization;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
-using Kingmaker.UnitLogic.Buffs.Blueprints;
-using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics.Components;
 using Kingmaker.Utility;
 using Owlcat.Runtime.Core;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TomeOfTheFirebird.Config;
 using TomeOfTheFirebird.Helpers;
-using TomeOfTheFirebird.New_Components;
 
 namespace TomeOfTheFirebird.New_Content.Items
 {

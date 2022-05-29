@@ -2,11 +2,6 @@
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Selection;
 using Kingmaker.EntitySystem.Stats;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TomeOfTheFirebird.Config;
 using TomeOfTheFirebird.Helpers;
 using TomeOfTheFirebird.NewComponents;
@@ -30,7 +25,7 @@ namespace TomeOfTheFirebird.New_Content.Feats
             var result = maker.Configure();
             if (ModSettings.NewContent.Feats.IsDisabled("ProdigiousTWF")) { return; }
 
-            FeatTools.AddAsFeat(result);
+            TabletopTweaks.Core.Utilities.FeatTools.AddAsFeat(result);
             AlterTWFFeatCascade();
 
             FeatureSelectionConfigurator.For(FeatTools.Selections.RangerStyleTwoWeaponSelection2.AssetGuidThreadSafe).AddToFeatures(result.AssetGuidThreadSafe);

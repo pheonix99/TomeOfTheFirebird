@@ -5,11 +5,7 @@ using Kingmaker.ElementsSystem;
 using Kingmaker.Kingdom.Actions;
 using Kingmaker.Kingdom.Blueprints;
 using Kingmaker.Kingdom.Buffs;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TomeOfTheFirebird.Config;
 
 namespace TomeOfTheFirebird.Modified_Content.Crusade

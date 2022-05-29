@@ -2,13 +2,8 @@
 using HarmonyLib;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace TomeOfTheFirebird.Fixes
+namespace TomeOfTheFirebird.Bugfixes
 {
     class FixingIFFTagging
     {

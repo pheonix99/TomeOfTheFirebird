@@ -5,7 +5,15 @@ A package of spells, feats, other abilities and some fixes.
 And also some more random stuff I made when I got annoyed at the game.
 
 All homebrew content or divergences from TT will be called out.
+
+NOW REQUIRES TabletopTweaks Core Module!
 ##Changelog
+1.2.0
+Requires Tabletop Tweaks Core Module
+Added Infinite-use sorc bloodline claw powers
+Added merged sorc draconic bloodline claw powers
+Added Ability Focus: Breath Weapon
+
 1.1.1
 Fixed Mercy: Injured always applying
 Fixed Chains Of Fire doing all hits on primary target.
@@ -50,6 +58,8 @@ Telekinetic Strikes: Level 2 Magus/Wizard buff: Target ally deals 1d4 extra forc
 
 ### Feats:
 ---
+Ability Focus- Breath Weapon: Adds +2 DC to breath weapons. Requires a breath weapon to take (or mixblooded bloodrager). This prereq uses significant hardcoding to detect polymorphs granting breath attacks and hasn't been fully tested.
+
 Discordant Song: Bardsong adds 1d6 sonic damage to ally weapon attacks. For ranged attacks, targets must also be in the area of effect.
 
 Prodigious TWF: Use strength rather than dex for TWF prereqs, no penalty for large offhand weapon.
@@ -113,6 +123,10 @@ Movanic Devas now use greatswords properly
 ### Archetypes
 ---
 Purifers now get Cure Light / Cure Moderate automatically - the archetype takes till level five to not be Oracle But Worse In Literally Every Way otherwise.
+
+### Bloodline Powers
+Unlimited Sorcerer Bloodline Claws: Removes use limit on abyssal/draconic bloodline claws. 
+Combine Sorcerer Dragon Claws: Unifies all sorc bloodline claw abilities into one - if you have multiple bloodlines you get the lvl 11 energy damage for every last one.
 
 ## Content Modifications
 ---

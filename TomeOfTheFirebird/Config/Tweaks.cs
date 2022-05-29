@@ -1,11 +1,4 @@
-﻿using Kingmaker.Utility;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TomeOfTheFirebird.Config
+﻿namespace TomeOfTheFirebird.Config
 {
     public class Tweaks : IUpdatableSettings
     {
@@ -15,6 +8,7 @@ namespace TomeOfTheFirebird.Config
         public SettingGroup RewardFeatureConversion;
         public SettingGroup Crusade;
         public SettingGroup Purifier;
+        public SettingGroup Bloodlines;
         public void Init()
         {
 
@@ -32,6 +26,7 @@ namespace TomeOfTheFirebird.Config
             RewardFeatureConversion.LoadSettingGroup(loadedSettings.RewardFeatureConversion, NewSettingsOffByDefault);
             Crusade.LoadSettingGroup(loadedSettings.Crusade, NewSettingsOffByDefault);
             Purifier.LoadSettingGroup(loadedSettings.Purifier, NewSettingsOffByDefault);
+            Bloodlines.LoadSettingGroup(loadedSettings.Bloodlines, NewSettingsOffByDefault);
 
             
 

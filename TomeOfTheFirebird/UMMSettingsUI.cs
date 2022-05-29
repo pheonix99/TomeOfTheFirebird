@@ -81,6 +81,7 @@ namespace TomeOfTheFirebird
                 SetttingUI.SettingGroup("Crusade", TabLevel, Tweaks.Crusade);
                 SetttingUI.SettingGroup("Reward Feature Conversion", TabLevel, Tweaks.RewardFeatureConversion);
                 SetttingUI.SettingGroup("Purifier", TabLevel, Tweaks.Purifier);
+                SetttingUI.SettingGroup("Bloodlines", TabLevel, Tweaks.Bloodlines);
               
 
             }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TomeOfTheFirebird.Config
+﻿namespace TomeOfTheFirebird.Config
 {
     public class Bugfixes : IUpdatableSettings
     {

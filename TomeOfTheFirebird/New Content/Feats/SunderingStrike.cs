@@ -1,14 +1,7 @@
-﻿using BlueprintCore.Blueprints.Configurators.Buffs;
-using BlueprintCore.Blueprints.Configurators.Classes;
-using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
+﻿using BlueprintCore.Blueprints.Configurators.Classes;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Selection;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TomeOfTheFirebird.Config;
 using TomeOfTheFirebird.Helpers;
 
@@ -64,7 +57,7 @@ namespace TomeOfTheFirebird.New_Content.Feats
             {
                 FeatureConfigurator.For("9719015edcbf142409592e2cbaab7fe1").AddToIsPrerequisiteFor(sunderprocbuild.AssetGuidThreadSafe);
 
-                FeatTools.AddAsFeat(sunderprocbuild);
+                TabletopTweaks.Core.Utilities.FeatTools.AddAsFeat(sunderprocbuild);
             }
         }
 

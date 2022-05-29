@@ -3,14 +3,8 @@ using BlueprintCore.Actions.Builder.ContextEx;
 using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
-using Kingmaker.UnitLogic.Abilities.Components.Base;
 using Kingmaker.UnitLogic.Mechanics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TabletopTweaks.Utilities;
+using TabletopTweaks.Core.Utilities;
 using TomeOfTheFirebird.Components;
 using TomeOfTheFirebird.Config;
 using TomeOfTheFirebird.Helpers;
@@ -70,7 +64,7 @@ namespace TomeOfTheFirebird.New_Spells
             var acidSpellBuilt = VitrolicMistBuilder.Configure();
 
             var rootFireShieldBuilder = MakerTools.MakeSpell("FireShield", "Fire Shield", "This spell wreathes you in flame and causes damage to each creature that attacks you in melee.The flames also protect you from either cold-based or fire-based attacks, depending on if you choose cool or warm flames for your fire shield. \n Any creature striking you with its body or a hand-held weapon deals normal damage, but at the same time the attacker takes 1d6 points of damage + 1 point per caster level(maximum +15). This damage is either cold damage(if you choose a chill shield) or fire damage(if you choose a warm shield). If the attacker has spell resistance, it applies to this effect.Creatures wielding melee weapons with reach are not subject to this damage if they attack you.\n When casting this spell, you appear to immolate yourself, but the flames are thin and wispy, increasing the light level within 10 feet by one step, up to normal light.The color of the flames is blue or green if the chill shield is cast, violet or red if the warm shield is employed.The special powers of each version are as follows. \nChill Shield: The flames are cool to the touch.You take only half damage from fire-based attacks.If such an attack allows a Reflex save for half damage, you take no damage on a successful saving throw.\nWarm Shield: The flames are warm to the touch.You take only half damage from cold-based attacks. If such an attack allows a Reflex save for half damage, you take no damage on a successful saving throw.", shieldIcon, SpellSchool.Evocation, new Kingmaker.Localization.LocalizedString(), LocalizedStrings.OneRoundPerLevelDuration);
-            rootFireShieldBuilder.SetRange(AbilityRange.Personal).AllowTargeting(friends: true, self: true).SetAnimationStyle(Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle.Self).SetMetamagics(Metamagic.Quicken, Metamagic.Extend, Metamagic.Heighten, Metamagic.CompletelyNormal);
+            rootFireShieldBuilder.SetRange(AbilityRange.Personal).AllowTargeting(friends: true, self: true).SetAnimationStyle(Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle.Self).SetMetamagics(Metamagic.Quicken, Metamagic.Extend, Metamagic.Heighten, Metamagic.CompletelyNormal );
      
             rootFireShieldBuilder.AddVariants(warmSpellBuilt.AssetGuidThreadSafe, coldSpellBuilt.AssetGuidThreadSafe);
             var rootFireIceSpell = rootFireShieldBuilder.Configure();

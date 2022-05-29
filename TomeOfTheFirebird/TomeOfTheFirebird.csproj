@@ -117,6 +117,9 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="TabletopTweaks-Core">
+      <HintPath>..\..\TabletopTweaks-Core\TabletopTweaks-Core\bin\Debug\TabletopTweaks-Core.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.CoreModule_public">
       <HintPath>..\lib\UnityEngine.CoreModule_public.dll</HintPath>
     </Reference>
@@ -137,16 +140,19 @@
     <Compile Include="Assets\AssetLoader.cs" />
     <Compile Include="BuildContent.cs" />
     <Compile Include="Config\ContentModifications.cs" />
-    <Compile Include="Fixes\ArcanistFixes.cs" />
-    <Compile Include="Fixes\CavalierFixes.cs" />
-    <Compile Include="Fixes\RadianceLevel2Fix.cs" />
+    <Compile Include="Bugfixes\Classes\ArcanistFixes.cs" />
+    <Compile Include="Bugfixes\Classes\CavalierFixes.cs" />
+    <Compile Include="Bugfixes\RadianceLevel2Fix.cs" />
     <Compile Include="Helpers\Extensions.cs" />
     <Compile Include="Helpers\FeatTools.cs" />
     <Compile Include="Modified Content\Archetypes\Purifier.cs" />
+    <Compile Include="Modified Content\Bloodlines\AbyssalBloodlineModifications.cs" />
+    <Compile Include="Modified Content\Bloodlines\DraconicBloodlineModifications.cs" />
     <Compile Include="Modified Content\Crusade\BetterDisplay.cs" />
     <Compile Include="Modified Content\Crusade\CrusadeBuffTweaks.cs" />
     <Compile Include="New Components\ContextDamageValueEnergyDamageDice.cs" />
     <Compile Include="New Components\IncreaseSpecificSpellsCasterLevel.cs" />
+    <Compile Include="New Components\Prerequisites\PrerequisiteBreathWeaponAccess.cs" />
     <Compile Include="New Content\Feats\BreathWeaponFeats.cs" />
     <Compile Include="New Content\Feats\DiscordantSong.cs" />
     <Compile Include="New Content\Feats\SunderingStrike.cs" />
@@ -169,9 +175,9 @@
     <Compile Include="Config\SettingGroup.cs" />
     <Compile Include="Config\Tweaks.cs" />
     <Compile Include="Modified Content\Crusade\MonavicsUseTwoHanders.cs" />
-    <Compile Include="Fixes\AddIFFToDispels.cs" />
-    <Compile Include="Fixes\FixExtraHitsOnProcs.cs" />
-    <Compile Include="Fixes\FixingIFFTagging.cs" />
+    <Compile Include="Bugfixes\Abilities\AddIFFToDispels.cs" />
+    <Compile Include="Bugfixes\FixExtraHitsOnProcs.cs" />
+    <Compile Include="Bugfixes\FixingIFFTagging.cs" />
     <Compile Include="Helpers\SpellListTools.cs" />
     <Compile Include="Helpers\MakerTools.cs" />
     <Compile Include="Main.cs" />
@@ -231,10 +237,6 @@
   <ItemGroup>
     <Folder Include="Crusade\" />
     <Folder Include="Modified Content\Items\" />
-    <Folder Include="New Content\DivineFightingTechniques\" />
-    <Folder Include="New Content\Obedience\" />
-    <Folder Include="New Content\SpellListAdjustments\" />
-    <Folder Include="New Spells\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

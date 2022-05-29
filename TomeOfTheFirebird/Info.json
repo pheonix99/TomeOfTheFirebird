@@ -2,10 +2,11 @@
   "Id": "TomeOfTheFirebird",
   "DisplayName": "Tome Of The Firebird",
   "Author": "pheonix99",
-  "Version": "1.1.1",
+  "Version": "1.2.0",
   "ManagerVersion": "0.21.3",
-  "Requirements": [],
   "AssemblyName": "TomeOfTheFirebird.dll",
   "EntryMethod": "TomeOfTheFirebird.Main.Load",
-  "HomePage": "https://github.com/pheonix99/TomeOfTheFirebird/releases"
+  "HomePage": "https://github.com/pheonix99/TomeOfTheFirebird/releases",
+  "Requirements": [ "TabletopTweaks-Core" ],
+  "LoadAfter": [ "TabletopTweaks-Core" ]
 }

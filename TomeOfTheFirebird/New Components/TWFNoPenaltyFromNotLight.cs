@@ -3,12 +3,11 @@ using Kingmaker.Items;
 using Kingmaker.PubSubSystem;
 using Kingmaker.RuleSystem.Rules;
 using Kingmaker.UnitLogic.Parts;
-using Kingmaker.EntitySystem;
 using Kingmaker.UnitLogic;
 
 namespace TomeOfTheFirebird.NewComponents
 {
-	public class TWFNoPenaltyFromNotLight : UnitFactComponentDelegate, ISubscriber, IInitiatorRulebookSubscriber, IInitiatorRulebookHandler<RuleCalculateAttackBonusWithoutTarget>, IRulebookHandler<RuleCalculateAttackBonusWithoutTarget>
+    public class TWFNoPenaltyFromNotLight : UnitFactComponentDelegate, ISubscriber, IInitiatorRulebookSubscriber, IInitiatorRulebookHandler<RuleCalculateAttackBonusWithoutTarget>, IRulebookHandler<RuleCalculateAttackBonusWithoutTarget>
 	{
 		public void OnEventAboutToTrigger(RuleCalculateAttackBonusWithoutTarget evt)
 		{

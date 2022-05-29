@@ -1,25 +1,16 @@
 ﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
-using BlueprintCore.Blueprints.Configurators.Items.Ecnchantments;
-using BlueprintCore.Conditions.Builder;
-using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Items.Ecnchantments;
-using Kingmaker.Blueprints.Items.Weapons;
 using Kingmaker.ElementsSystem;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
-using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics.Components;
 using Kingmaker.Utility;
 using Owlcat.Runtime.Core;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TomeOfTheFirebird.Config;
 using TomeOfTheFirebird.Helpers;
 
-namespace TomeOfTheFirebird.Fixes
+namespace TomeOfTheFirebird.Bugfixes
 {
     public class RadianceLevel2Fix
     {

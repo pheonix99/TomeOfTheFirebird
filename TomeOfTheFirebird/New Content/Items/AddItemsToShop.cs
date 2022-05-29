@@ -1,14 +1,6 @@
-﻿using BlueprintCore.Blueprints.Configurators.Dungeon;
-using BlueprintCore.Blueprints.Configurators.Items;
+﻿using BlueprintCore.Blueprints.Configurators.Items;
 using Kingmaker.Blueprints;
-using Kingmaker.Blueprints.Items;
-using Kingmaker.Blueprints.Items.Equipment;
 using Kingmaker.Blueprints.Loot;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TomeOfTheFirebird.Config;
 
 namespace TomeOfTheFirebird.New_Content.Items

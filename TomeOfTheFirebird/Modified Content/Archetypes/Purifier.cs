@@ -1,12 +1,7 @@
-﻿using BlueprintCore.Blueprints.Configurators.Classes;
-using HarmonyLib;
+﻿using HarmonyLib;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.JsonSystem;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TomeOfTheFirebird.Config;
 using TomeOfTheFirebird.Helpers;
 

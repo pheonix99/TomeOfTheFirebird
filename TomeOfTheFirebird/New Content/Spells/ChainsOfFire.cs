@@ -6,16 +6,12 @@ using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Mechanics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TabletopTweaks.Utilities;
+using TabletopTweaks.Core.Utilities;
 using TomeOfTheFirebird.Config;
 using TomeOfTheFirebird.Helpers;
 using TomeOfTheFirebird.Reference;
 using UnityEngine;
+using static TabletopTweaks.Core.MechanicsChanges.MetamagicExtention;
 
 namespace TomeOfTheFirebird.New_Spells
 {
@@ -34,7 +30,7 @@ namespace TomeOfTheFirebird.New_Spells
             ChainsMaker.ApplySpellResistance(true);
             ChainsMaker.SetEffectOn(onEnemy: AbilityEffectOnUnit.Harmful);
             ChainsMaker.SetAnimationStyle(Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle.Directional);
-            ChainsMaker.SetMetamagics(Metamagic.Empower, Metamagic.Maximize, Metamagic.Quicken, Metamagic.Bolstered, Metamagic.CompletelyNormal, Metamagic.Persistent);
+            ChainsMaker.SetMetamagics(Metamagic.Empower, Metamagic.Maximize, Metamagic.Quicken, Metamagic.Bolstered, Metamagic.CompletelyNormal, Metamagic.Persistent, (Metamagic)CustomMetamagic.Burning, (Metamagic)CustomMetamagic.Flaring, (Metamagic)CustomMetamagic.Intensified, (Metamagic)CustomMetamagic.Piercing);
             
             //ChainsMaker.SetIcon(ChainsOfFireSprite);
      

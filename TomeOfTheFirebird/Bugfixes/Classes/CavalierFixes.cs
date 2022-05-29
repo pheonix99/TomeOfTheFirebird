@@ -1,14 +1,9 @@
 ﻿using BlueprintCore.Blueprints.Configurators.Classes;
 using BlueprintCore.Utils;
 using Kingmaker.Blueprints.Classes.Spells;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TomeOfTheFirebird.Config;
 
-namespace TomeOfTheFirebird.Fixes
+namespace TomeOfTheFirebird.Bugfixes.Classes
 {
     public static class CavalierFixes
     {

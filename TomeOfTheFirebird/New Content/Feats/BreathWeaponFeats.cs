@@ -1,10 +1,8 @@
 ﻿using Kingmaker.Blueprints.Classes;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using TomeOfTheFirebird.Config;
+using TomeOfTheFirebird.Helpers;
+using TomeOfTheFirebird.New_Components.Prerequisites;
 
 namespace TomeOfTheFirebird.New_Content.Feats
 {
@@ -32,13 +30,29 @@ namespace TomeOfTheFirebird.New_Content.Feats
 
         };
 
-        private static string GoldDragonBreathWeaponFeatureId = "63bb12d87f99c4748a890956e5f6b4c7";
+      
 
         private static BlueprintFeature AbilityFocusBreathWeapons;
 
         private static BlueprintFeature EnergizedMaw;
         public static void BuildBreathWeaponFeats()
         {
+            
+
+        }
+
+        public static void BuildAbilityFocusBreathWeapons()
+        {
+            var abilityFocusconfig = MakerTools.MakeFeature("AbilityFocusBreathWeapon", "Ability Focus - Breath Weapons", "Add +2 to breath weapon DCs");
+            abilityFocusconfig.AddIncreaseSpellDescriptorDC(new Kingmaker.Blueprints.Classes.Spells.SpellDescriptorWrapper(Kingmaker.Blueprints.Classes.Spells.SpellDescriptor.BreathWeapon), bonusDC: 2);
+            abilityFocusconfig.SetFeatureGroups(FeatureGroup.Feat);
+            abilityFocusconfig.SetRanks(1);
+            abilityFocusconfig.AddComponent<PrerequisiteBreathWeaponAccess>();
+
+            var finished = abilityFocusconfig.Configure();
+            if (ModSettings.NewContent.Feats.IsDisabled("AbilityFocusBreathWeapons"))
+                return;
+            TabletopTweaks.Core.Utilities.FeatTools.AddAsFeat(finished);
 
         }
 

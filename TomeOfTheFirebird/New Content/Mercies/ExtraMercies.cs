@@ -4,7 +4,6 @@ using BlueprintCore.Blueprints.Configurators.Classes.Selection;
 using BlueprintCore.Conditions.Builder;
 using BlueprintCore.Conditions.Builder.ContextEx;
 using Kingmaker.Blueprints.Classes;
-using Kingmaker.Blueprints.Classes.Selection;
 using Kingmaker.Designers.EventConditionActionSystem.Actions;
 using Kingmaker.ElementsSystem;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
@@ -12,10 +11,7 @@ using Kingmaker.UnitLogic.Abilities.Components;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.Mechanics;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TomeOfTheFirebird.Config;
 using TomeOfTheFirebird.Helpers;
 using UnityEngine;
@@ -98,7 +94,7 @@ namespace TomeOfTheFirebird.New_Content.Mercies
           
                 var MercyFastHealingBuff = MakerTools.MakeBuff("MercyInjuredBuff", "Mercy: Injured", "Granted Fast Healing 3 by Lay On Hands", icon);
                 MercyFastHealingBuff.AddEffectContextFastHealing(bonus: new ContextValue() { Value = 3 }).SetIsClassFeature(true);
-                
+                MercyFastHealingBuff.SetRanks(1);
                 var conditionsBuilder = ConditionsBuilder.New().CasterHasFact(injured.AssetGuidThreadSafe);
                
                 var buffDone = MercyFastHealingBuff.Configure();

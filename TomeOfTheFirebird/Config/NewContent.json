@@ -65,6 +65,11 @@
   "Feats": {
     "DisableAll": false,
     "Settings": {
+      "AbilityFocusBreathWeapons": {
+        "Enabled": true,
+        "Description": "Increases DC of breath weapon attacks by 2",
+        "Homebrew": false
+      },
       "DiscordantSong": {
         "Enabled": true,
         "Description": "Bard Song adds 1d6 sonic damage rider",

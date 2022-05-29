@@ -8,17 +8,13 @@ using Kingmaker.RuleSystem.Rules.Damage;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Components;
-using Kingmaker.UnitLogic.Mechanics.Conditions;
 using Kingmaker.Utility;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TomeOfTheFirebird.Components;
 using TomeOfTheFirebird.Config;
 
-namespace TomeOfTheFirebird.Fixes
+namespace TomeOfTheFirebird.Bugfixes
 {
     public static class FixExtraHitsOnProcs
     {

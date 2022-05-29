@@ -4,7 +4,6 @@ using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.Components;
 using BlueprintCore.Conditions.Builder;
 using BlueprintCore.Conditions.Builder.ContextEx;
-using BlueprintCore.Utils;
 using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums.Damage;
@@ -13,19 +12,13 @@ using Kingmaker.RuleSystem.Rules.Damage;
 using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Mechanics;
-using Kingmaker.UnitLogic.Mechanics.Components;
 using Kingmaker.Visual.Animation.Kingmaker.Actions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TomeOfTheFirebird.Assets;
-using TomeOfTheFirebird.Config;
 using TomeOfTheFirebird.Helpers;
 using TomeOfTheFirebird.Reference;
 using UnityEngine;
 using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
+using static TabletopTweaks.Core.MechanicsChanges.MetamagicExtention;
 
 namespace TomeOfTheFirebird.New_Spells
 {
@@ -58,7 +51,7 @@ namespace TomeOfTheFirebird.New_Spells
             gloomblind.SetRange(AbilityRange.Close);
             gloomblind.AllowTargeting(enemies: true, self: true);
                 
-                gloomblind.ApplySpellResistance(true).SetEffectOn(onEnemy: AbilityEffectOnUnit.Harmful).SetAnimationStyle(UnitAnimationActionCastSpell.CastAnimationStyle.Directional).SetActionType(CommandType.Standard).SetMetamagics(new Metamagic[] { Metamagic.Empower, Metamagic.Maximize, Metamagic.Quicken, Metamagic.Heighten, Metamagic.Reach, Metamagic.CompletelyNormal, Metamagic.Bolstered, Metamagic.Persistent });
+                gloomblind.ApplySpellResistance(true).SetEffectOn(onEnemy: AbilityEffectOnUnit.Harmful).SetAnimationStyle(UnitAnimationActionCastSpell.CastAnimationStyle.Directional).SetActionType(CommandType.Standard).SetMetamagics(new Metamagic[] { Metamagic.Empower, Metamagic.Maximize, Metamagic.Quicken, Metamagic.Heighten, Metamagic.Reach, Metamagic.CompletelyNormal, Metamagic.Bolstered, Metamagic.Persistent, (Metamagic)CustomMetamagic.Piercing });
 
             gloomblind.AddSpellDescriptors(new SpellDescriptor[] { SpellDescriptor.None });
 
