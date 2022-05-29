@@ -137,7 +137,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\AssetLoader.cs" />
     <Compile Include="BuildContent.cs" />
     <Compile Include="Config\ContentModifications.cs" />
     <Compile Include="Bugfixes\Classes\ArcanistFixes.cs" />
@@ -150,6 +149,7 @@
     <Compile Include="Modified Content\Bloodlines\DraconicBloodlineModifications.cs" />
     <Compile Include="Modified Content\Crusade\BetterDisplay.cs" />
     <Compile Include="Modified Content\Crusade\CrusadeBuffTweaks.cs" />
+    <Compile Include="ModLogic\ModContextTomeOfTheFirebird.cs" />
     <Compile Include="New Components\ContextDamageValueEnergyDamageDice.cs" />
     <Compile Include="New Components\IncreaseSpecificSpellsCasterLevel.cs" />
     <Compile Include="New Components\Prerequisites\PrerequisiteBreathWeaponAccess.cs" />
@@ -166,23 +166,15 @@
     <Compile Include="New Components\Prerequisites\PrerequisiteLogicalAND.cs" />
     <Compile Include="New Components\RandomEnergyDamageOnWeaponAttack.cs" />
     <Compile Include="New Components\TWFNoPenaltyFromNotLight.cs" />
-    <Compile Include="Config\Blueprints.cs" />
     <Compile Include="Config\Bugfixes.cs" />
     <Compile Include="Config\NewContent.cs" />
-    <Compile Include="Config\ICollapseableGroup.cs" />
-    <Compile Include="Config\IDisableableGroup.cs" />
-    <Compile Include="Config\IUpdatableSettings.cs" />
-    <Compile Include="Config\SettingGroup.cs" />
     <Compile Include="Config\Tweaks.cs" />
     <Compile Include="Modified Content\Crusade\MonavicsUseTwoHanders.cs" />
     <Compile Include="Bugfixes\Abilities\AddIFFToDispels.cs" />
     <Compile Include="Bugfixes\FixExtraHitsOnProcs.cs" />
     <Compile Include="Bugfixes\FixingIFFTagging.cs" />
-    <Compile Include="Helpers\SpellListTools.cs" />
     <Compile Include="Helpers\MakerTools.cs" />
     <Compile Include="Main.cs" />
-    <Compile Include="Config\ModSettings.cs" />
-    <Compile Include="Config\NestedSettingGroup.cs" />
     <Compile Include="New Content\Feats\ProdigiousTWF.cs" />
     <Compile Include="New Content\Items\AddItemsToShop.cs" />
     <Compile Include="New Content\Items\PaladinGear.cs" />
@@ -206,7 +198,6 @@
     <Compile Include="UMMSettingsUI.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Config\Blueprints.json" />
     <EmbeddedResource Include="Config\NewContent.json" />
     <EmbeddedResource Include="Config\Tweaks.json" />
     <EmbeddedResource Include="Config\Bugfixes.json" />
@@ -215,6 +206,7 @@
     <None Include="BlueprintCore\changes.md" />
     <None Include="BlueprintCore\LICENSE" />
     <None Include="BlueprintCore\README.md" />
+    <EmbeddedResource Include="Config\Blueprints.json" />
     <None Include="Info.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

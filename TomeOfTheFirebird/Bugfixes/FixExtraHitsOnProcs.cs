@@ -11,8 +11,8 @@ using Kingmaker.UnitLogic.Mechanics.Components;
 using Kingmaker.Utility;
 using System.Collections.Generic;
 using System.Linq;
+using TabletopTweaks.Core.Utilities;
 using TomeOfTheFirebird.Components;
-using TomeOfTheFirebird.Config;
 
 namespace TomeOfTheFirebird.Bugfixes
 {
@@ -20,13 +20,13 @@ namespace TomeOfTheFirebird.Bugfixes
     {
         public static void FixFirebrand()
         {
-            if (ModSettings.Bugfixes.FixExtraHits.IsEnabled("Firebrand"))
+            if (Main.TotFContext.Bugfixes.FixExtraHits.IsEnabled("Firebrand"))
             {
-                Main.Log("Fixing Firebrand");
-                var firebrandBuff = Resources.GetBlueprint<BlueprintBuff>("c6cc1c5356db4674dbd2be20ea205c86");
+                Main.TotFContext.Logger.Log("Fixing Firebrand");
+                var firebrandBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("c6cc1c5356db4674dbd2be20ea205c86");
                 if (firebrandBuff.Components.OfType<AddInitiatorAttackWithWeaponTrigger>().Any())
                 {
-                    Main.Log("Removing base weapon damage effect");
+                    Main.TotFContext.Logger.Log("Removing base weapon damage effect");
                     //firebrandBuff.Components.Remove(x => x is AddInitiatorAttackWithWeaponTrigger);
                     var editer = BuffConfigurator.For(firebrandBuff.AssetGuidThreadSafe).RemoveComponents(x => x is AddInitiatorAttackWithWeaponTrigger);
                     editer.AddComponent(new ContextWeaponCategoryExtraDamageDice()
@@ -48,7 +48,7 @@ namespace TomeOfTheFirebird.Bugfixes
 
         public static void FixRandomWeaponsRiders()
         {
-            if (ModSettings.Bugfixes.FixExtraHits.IsEnabled("SmallDragon"))
+            if (Main.TotFContext.Bugfixes.FixExtraHits.IsEnabled("SmallDragon"))
             {
                 var smdbuff = BuffConfigurator.For("d37d0c19b37808d4895c836c474f04e3");
                 smdbuff.RemoveComponents(x => x is AddInitiatorAttackWithWeaponTrigger);
@@ -77,10 +77,10 @@ namespace TomeOfTheFirebird.Bugfixes
 
         public static void FixClawsOfSacredBeast()
         {
-            if (ModSettings.Bugfixes.FixExtraHits.IsEnabled("ClawsOfASacredBeast"))
+            if (Main.TotFContext.Bugfixes.FixExtraHits.IsEnabled("ClawsOfASacredBeast"))
             {
                 var natweapons = new WeaponCategory[] { WeaponCategory.Claw, WeaponCategory.Bite, WeaponCategory.Gore, WeaponCategory.OtherNaturalWeapons, WeaponCategory.UnarmedStrike, WeaponCategory.Tail };
-                Main.Log("Patching Claws Of A Sacred Beast");
+                Main.TotFContext.Logger.Log("Patching Claws Of A Sacred Beast");
                 var claws = FeatureConfigurator.For("27d7b88ee7438cf4697224a870e0d129").RemoveComponents(x => x is AddInitiatorAttackWithWeaponTrigger);
                 claws.AddComponent(new ContextWeaponCategoryPhysDamageDiceWithChangeOnCondition() { categories = natweapons, form = PhysicalDamageForm.Slashing, NormalDamage = new Kingmaker.RuleSystem.DiceFormula() { m_Dice = Kingmaker.RuleSystem.DiceType.D8, m_Rolls = 1 }, IncreasedDamage = new Kingmaker.RuleSystem.DiceFormula() { m_Dice = Kingmaker.RuleSystem.DiceType.D6, m_Rolls = 2 }, TargetConditions = ConditionsBuilder.New().ContextConditionAlignment(false, Kingmaker.Enums.AlignmentComponent.Evil).Build() });
 

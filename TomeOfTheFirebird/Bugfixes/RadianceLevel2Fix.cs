@@ -7,7 +7,7 @@ using Kingmaker.UnitLogic.Mechanics.Components;
 using Kingmaker.Utility;
 using Owlcat.Runtime.Core;
 using System.Linq;
-using TomeOfTheFirebird.Config;
+using TabletopTweaks.Core.Utilities;
 using TomeOfTheFirebird.Helpers;
 
 namespace TomeOfTheFirebird.Bugfixes
@@ -16,9 +16,9 @@ namespace TomeOfTheFirebird.Bugfixes
     {
         public static void Fixes()
         {
-            var radianceBuff = Resources.GetBlueprint<BlueprintBuff>("f10cba2c41612614ea28b5fc2743bc4c");
+            var radianceBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("f10cba2c41612614ea28b5fc2743bc4c");
 
-            Main.Log("Patching Radiance +6");
+            Main.TotFContext.Logger.Log("Patching Radiance +6");
             
 
             var buff = MakerTools.MakeBuff("Radiance+6HolyBuff", "Radiance Holy Hidden", "", radianceBuff.Icon);
@@ -30,10 +30,10 @@ namespace TomeOfTheFirebird.Bugfixes
             var apply = ActionsBuilder.New().ApplyBuff(builtBuff.AssetGuidThreadSafe, toCaster:true, asChild:true, permanent: true);
 
             var remove = ActionsBuilder.New().RemoveBuff(builtBuff.AssetGuidThreadSafe, toCaster: true);
-            var HolyAvengerEnchant = Resources.GetBlueprint<BlueprintWeaponEnchantment>("119b0b2ddae69d4438e6a4bedff32412");
+            var HolyAvengerEnchant = BlueprintTools.GetBlueprint<BlueprintWeaponEnchantment>("119b0b2ddae69d4438e6a4bedff32412");
 
            var list =  HolyAvengerEnchant.Components.OfType<AddFactContextActions>().FirstOrDefault();
-            if (ModSettings.Bugfixes.Items.IsEnabled("FixRadianceFinalForm"))
+            if (Main.TotFContext.Bugfixes.Items.IsEnabled("FixRadianceFinalForm"))
             {
 
                 list.Activated.Actions = list.Activated.Actions.Append<GameAction>(apply.Build().Actions[0]).ToArray();

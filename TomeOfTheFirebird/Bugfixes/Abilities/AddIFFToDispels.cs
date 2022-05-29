@@ -9,7 +9,6 @@ using Kingmaker.UnitLogic.Mechanics.Components;
 using Kingmaker.Utility;
 using Owlcat.Runtime.Core;
 using System.Linq;
-using TomeOfTheFirebird.Config;
 
 namespace TomeOfTheFirebird.Bugfixes.Abilities
 {
@@ -26,9 +25,9 @@ namespace TomeOfTheFirebird.Bugfixes.Abilities
             {
                 if (Initialized) return;
                 Initialized = true;
-                if (ModSettings.Tweaks.Spells.IsDisabled("DispelsAreBuffSafe"))
+                if (Main.TotFContext.Tweaks.Spells.IsDisabled("DispelsAreBuffSafe"))
                     return;
-                Main.Log("Patching Dispel IFF");
+                Main.TotFContext.Logger.Log("Patching Dispel IFF");
                 FeatureConfigurator.For("1b92146b8a9830d4bb97ab694335fa7c").EditComponent<AddInitiatorAttackRollTrigger>(x => x.Action.Actions.OfType<ContextActionDispelMagic>().FirstOrDefault().OnlyTargetEnemyBuffs = true).Configure();
                 
                 AbilityConfigurator.For("b9be852b03568064b8d2275a6cf9e2de").EditComponent<AbilityEffectRunAction>(x =>

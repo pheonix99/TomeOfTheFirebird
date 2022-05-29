@@ -1,5 +1,4 @@
-﻿using TomeOfTheFirebird.Config;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using Kingmaker.Blueprints;
 using System.Collections.Generic;
 
@@ -7,11 +6,11 @@ namespace TomeOfTheFirebird
 {
     static class Resources
     {
-
+        /*
         public static readonly Dictionary<BlueprintGuid, SimpleBlueprint> ModBlueprints = new Dictionary<BlueprintGuid, SimpleBlueprint>();
         public static T GetModBlueprint<T>(string name) where T : SimpleBlueprint
         {
-            var assetId = ModSettings.Blueprints.GetGUID(name);
+            var assetId = Main.TotFContext.Blueprints.GetGUID(name);
             ModBlueprints.TryGetValue(assetId, out var value);
             return value as T;
         }
@@ -27,7 +26,7 @@ namespace TomeOfTheFirebird
         {
             SimpleBlueprint asset = ResourcesLibrary.TryGetBlueprint(id);
             T value = asset as T;
-            if (value == null) { Main.Error($"COULD NOT LOAD: {id} - {typeof(T)}"); }
+            if (value == null) { Main.TotFContext.Logger.LogError($"COULD NOT LOAD: {id} - {typeof(T)}"); }
             return value;
         }
         public static void AddBlueprint([NotNull] SimpleBlueprint blueprint)
@@ -47,18 +46,18 @@ namespace TomeOfTheFirebird
                 ModBlueprints[assetId] = blueprint;
                 ResourcesLibrary.BlueprintsCache.AddCachedBlueprint(assetId, blueprint);
                 blueprint.OnEnable();
-                Main.LogPatch("Added", blueprint);
+                Main.TotFContext.Logger.LogPatch("Added", blueprint);
             }
             else
             {
-                Main.Log($"Failed to Add: {blueprint.name}");
-                Main.Log($"Asset ID: {assetId} already in use by: {loadedBlueprint.name}");
+                Main.TotFContext.Logger.Log($"Failed to Add: {blueprint.name}");
+                Main.TotFContext.Logger.Log($"Asset ID: {assetId} already in use by: {loadedBlueprint.name}");
             }
         }
 
         public static T GetTabletopTweaksBlueprint<T>(string name) where T : SimpleBlueprint
         {
-            var assetId = ModSettings.Blueprints.GetGUID(name);
+            var assetId = Main.TotFContext.Blueprints.GetGUID(name);
             bool modBPExists = ModBlueprints.TryGetValue(assetId, out var value);
             if (modBPExists)
             {
@@ -72,7 +71,7 @@ namespace TomeOfTheFirebird
                 {
 
                     //Main.Log($"{name} located in Tabletop Tweaks");
-                    //ModSettings.Blueprints.SetTTBPUsed(name, assetId);
+                    //Main.TotFContext.Blueprints.SetTTBPUsed(name, assetId);
                     return blueprint;
                 }
                 else
@@ -84,5 +83,6 @@ namespace TomeOfTheFirebird
             }
 
         }
+        */
     }
 }

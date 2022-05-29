@@ -1,7 +1,6 @@
 ﻿using BlueprintCore.Blueprints.Configurators.Classes;
 using BlueprintCore.Utils;
 using Kingmaker.Blueprints.Classes.Spells;
-using TomeOfTheFirebird.Config;
 
 namespace TomeOfTheFirebird.Bugfixes.Classes
 {
@@ -35,7 +34,7 @@ namespace TomeOfTheFirebird.Bugfixes.Classes
 
         public static void FixOrderOfTheStarChannelAssistance()
         {
-            if (ModSettings.Bugfixes.Cavalier.IsDisabled("FixOrderOfTheStarCallingChannelingSupport"))
+            if (Main.TotFContext.Bugfixes.Cavalier.IsDisabled("FixOrderOfTheStarCallingChannelingSupport"))
                 return;
 
             var starChannelAssist = FeatureConfigurator.For("eff49ecc28a0ce54caf416bdacedf4f3");

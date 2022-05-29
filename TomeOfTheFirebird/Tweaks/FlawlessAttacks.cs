@@ -7,7 +7,7 @@
         [HarmonyPatch(typeof(RuleCalculateAttacksCount), "OnTrigger", new Type[] {typeof(RulebookEventContext) })]
         static bool Prefix(RuleCalculateAttacksCount __instance, RulebookEventContext context)
         {
-            if (ModSettings.Tweaks.Mythic.IsDisabled("FlawlessAttacksAppliesToAttackCount"))
+            if (Main.TotFContext.Tweaks.Mythic.IsDisabled("FlawlessAttacksAppliesToAttackCount"))
             {
                 return true;
             }

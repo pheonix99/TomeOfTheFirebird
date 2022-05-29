@@ -6,9 +6,7 @@ using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.Mechanics;
 using TabletopTweaks.Core.Utilities;
-using TomeOfTheFirebird.Assets;
 using TomeOfTheFirebird.Components;
-using TomeOfTheFirebird.Config;
 using TomeOfTheFirebird.Helpers;
 using TomeOfTheFirebird.Reference;
 using UnityEngine;
@@ -21,9 +19,9 @@ namespace TomeOfTheFirebird.New_Spells
         public static void BuildSpell()
         {
 
-            Sprite BoneFistsSprite = Assets.AssetLoader.LoadInternal("Spells", "BoneFists.png");
+            Sprite BoneFistsSprite = AssetLoader.LoadInternal(Main.TotFContext, "Spells", "BoneFists.png");
             var BoneFists = MakerTools.MakeSpell("BoneFists", "Bone Fists", "The bones of your targets’ joints grow thick and sharp, protruding painfully through the skin at the knuckles, elbows, shoulders, spine, and knees. The targets each gain a +1 bonus to natural armor and a +2 bonus on damage rolls with natural weapons.", BoneFistsSprite, Kingmaker.Blueprints.Classes.Spells.SpellSchool.Necromancy, new Kingmaker.Localization.LocalizedString(), LocalizedStrings.OneMinutePerLevelDuration);
-            Main.Log("Bone Fists Build Started");
+            Main.TotFContext.Logger.Log("Bone Fists Build Started");
 
             BoneFists.AllowTargeting(true, false, true, true);
             BoneFists.SetRange(AbilityRange.Personal);
@@ -40,7 +38,7 @@ namespace TomeOfTheFirebird.New_Spells
 
             BoneFistsBuff.AddStatBonus(Kingmaker.Enums.ModifierDescriptor.NaturalArmor, Kingmaker.EntitySystem.Stats.StatType.AC, 1);
             var allowed_categories = new WeaponCategory[] { WeaponCategory.Claw, WeaponCategory.Bite, WeaponCategory.Gore, WeaponCategory.OtherNaturalWeapons, WeaponCategory.UnarmedStrike, WeaponCategory.Tail };
-            Main.Log("Building Bone Fists Natural Weapon Damage");
+            Main.TotFContext.Logger.Log("Building Bone Fists Natural Weapon Damage");
             ContextWeaponCategoryFlatDamageBonus bonefistsDMG = new ContextWeaponCategoryFlatDamageBonus()
             {
                 categories = allowed_categories,
@@ -50,7 +48,7 @@ namespace TomeOfTheFirebird.New_Spells
             };
             BoneFistsBuff.AddComponent(bonefistsDMG);
 
-            Main.Log("Built Buff");
+            Main.TotFContext.Logger.Log("Built Buff");
             var builtBuff = BoneFistsBuff.Configure();
             var actoion = ActionsBuilder.New().ApplyBuff(builtBuff.AssetGuidThreadSafe, duration: MakerTools.GetContextDurationValue(DurationRate.Minutes, true), isFromSpell: true);
             BoneFists.RunActions(actoion);
@@ -66,7 +64,7 @@ namespace TomeOfTheFirebird.New_Spells
 
         public static void AddToLists()
         {
-            if (ModSettings.NewContent.Spells.IsEnabled("BoneFists"))
+            if (Main.TotFContext.NewContent.Spells.IsEnabled("BoneFists"))
             {
                 bonefists.AddToSpellList(SpellTools.SpellList.BloodragerSpellList, 2);
                 bonefists.AddToSpellList(SpellTools.SpellList.ClericSpellList, 2);

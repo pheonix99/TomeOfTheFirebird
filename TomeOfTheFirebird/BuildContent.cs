@@ -8,7 +8,6 @@ using Kingmaker.UnitLogic.Abilities.Blueprints;
 using System.Collections.Generic;
 using System.Linq;
 using TabletopTweaks.Core.Utilities;
-using TomeOfTheFirebird.Config;
 using TomeOfTheFirebird.Crusade;
 using TomeOfTheFirebird.Bugfixes;
 using TomeOfTheFirebird.Modified_Content.Bloodlines;
@@ -22,6 +21,7 @@ using TomeOfTheFirebird.NewContent.Features;
 using TomeOfTheFirebird.QuestTweaks;
 using TomeOfTheFirebird.Reference;
 using TomeOfTheFirebird.Bugfixes.Classes;
+using TomeOfTheFirebird.Modified_Content.Archetypes;
 
 namespace TomeOfTheFirebird
 {
@@ -42,7 +42,7 @@ namespace TomeOfTheFirebird
             {
                 if (Initialized) return;
                 Initialized = true;
-                Main.Log("Building new spells");
+                Main.TotFContext.Logger.Log("Building new spells");
                 
                  gloomblind = GloomblindBolts.BuildSpell();
                
@@ -74,15 +74,18 @@ namespace TomeOfTheFirebird
                 DraconicBloodlineModifications.SorcererClawsOverhaul();
                 AbyssalBloodlineModifications.GiveInfiniteUses();
                 BreathWeaponFeats.BuildAbilityFocusBreathWeapons();
-                BlueprintFeature ActsBook = Resources.GetBlueprint<BlueprintFeature>("f16ea400ed67470b83cfd6c0dedbce6f");
+
+               
+
+                BlueprintFeature ActsBook = BlueprintTools.GetBlueprint<BlueprintFeature>("f16ea400ed67470b83cfd6c0dedbce6f");
                 if (ActsBook.Icon != null)
                 {
-                    Main.Log($"Acts Of Iomedae reports Icon Name {ActsBook.Icon.name} ");
+                    Main.TotFContext.Logger.Log($"Acts Of Iomedae reports Icon Name {ActsBook.Icon.name} ");
                     
                 }
                 else
                 {
-                    Main.Log($"Acts Of Iomedae Reports No Icon");
+                    Main.TotFContext.Logger.Log($"Acts Of Iomedae Reports No Icon");
                 }
 
             }
@@ -98,9 +101,10 @@ namespace TomeOfTheFirebird
             {
                 if (Initialized) return;
                 Initialized = true;
-                Main.Log("Adding to spell lists");
+          
+                Main.TotFContext.Logger.Log("Adding to spell lists");
 
-                if (ModSettings.NewContent.Spells.IsEnabled("GloomblindBolts"))
+                if (Main.TotFContext.NewContent.Spells.IsEnabled("GloomblindBolts"))
                 {
                     //TODO check bloodrager access
                     gloomblind.AddToSpellList(SpellTools.SpellList.BloodragerSpellList, 3);
@@ -112,7 +116,7 @@ namespace TomeOfTheFirebird
                
                 
 
-                if (ModSettings.NewContent.Spells.IsEnabled("KeenEdge"))
+                if (Main.TotFContext.NewContent.Spells.IsEnabled("KeenEdge"))
                 {
                     keenEdge.AddToSpellList(SpellTools.SpellList.BloodragerSpellList, 3);
                     keenEdge.AddToSpellList(SpellTools.SpellList.InquisitorSpellList, 3);
@@ -120,6 +124,7 @@ namespace TomeOfTheFirebird
                     keenEdge.AddToSpellList(SpellTools.SpellList.WizardSpellList, 3);
                 }
                 AddItemsToShop.Add();
+                Purifier.PatchPurifier();
                 FixExtraHitsOnProcs.FixFirebrand();
                 FixExtraHitsOnProcs.FixRandomWeaponsRiders();
                 FixExtraHitsOnProcs.FixClawsOfSacredBeast();
@@ -131,142 +136,6 @@ namespace TomeOfTheFirebird
             }
         }
 
-        private static void AddToSpellLists(BlueprintAbility spell)
-        {
-            Main.Log($"Adding {spell.Name} to spell lists");
-            foreach(SpellListComponent f in spell.Components.OfType<SpellListComponent>())
-            {
-                Main.Log($"Adding {spell.Name} to ${f.SpellList.NameSafe()}");
-                if (f.SpellList.AssetGuidThreadSafe == Guids.WizSpellList)
-                {
-                    AddToWizardSpellLists(spell, f.SpellLevel);
-                }
-                else if(f.SpellList.AssetGuidThreadSafe == Guids.ClericSpellList)
-                {
-                    SpellListConfigurator.For(Guids.ClericSpellList).AddToSpellsByLevel(new SpellLevelList(f.SpellLevel) { m_Spells = new List<BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    if (f.SpellLevel <= 6)
-                    {
-                        SpellListConfigurator.For(Guids.WarpriestSpellList).AddToSpellsByLevel(new SpellLevelList(f.SpellLevel) { m_Spells = new List<BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    }
-                }
-                else
-                {
-                    SpellListConfigurator.For(f.SpellList.AssetGuidThreadSafe).AddToSpellsByLevel(new SpellLevelList(f.SpellLevel) { m_Spells = new List<BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                }
-                
-            }
-        }
-
-        public static void AddToWizardSpellLists(BlueprintAbility spell, int level)
-        {
-            SpellListConfigurator.For(Guids.WizSpellList).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-            switch (spell.School)
-            {
-                case SpellSchool.None:
-                    SpellListConfigurator.For(Guids.ThasAbj).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.ThasConj).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.THasEnch).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.ThasEvo).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.ThasIllu).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.ThasNecro).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.ThasTrans).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    break;
-                case SpellSchool.Abjuration:
-                    SpellListConfigurator.For(Guids.WizAbjSpellList).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.ThasAbj).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.ThasConj).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.THasEnch).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                   
-                    SpellListConfigurator.For(Guids.ThasIllu).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    
-                    SpellListConfigurator.For(Guids.ThasTrans).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    break;
-                case SpellSchool.Conjuration:
-                    SpellListConfigurator.For(Guids.WizConjSpellList).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.ThasAbj).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.ThasConj).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.THasEnch).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.ThasEvo).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    
-                    SpellListConfigurator.For(Guids.ThasNecro).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    
-                    break;
-                case SpellSchool.Divination:
-                    SpellListConfigurator.For(Guids.WizDivSpellList).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.ThasAbj).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.ThasConj).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.THasEnch).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.ThasEvo).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.ThasIllu).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.ThasNecro).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.ThasTrans).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    break;
-                case SpellSchool.Enchantment:
-                    SpellListConfigurator.For(Guids.WizEnchSpellList).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-
-                    SpellListConfigurator.For(Guids.ThasAbj).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.ThasConj).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.THasEnch).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.ThasEvo).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.ThasIllu).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-
-
-                    SpellListConfigurator.For(Guids.FeyspeakerSpellList).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    break;
-                case SpellSchool.Evocation:
-                    SpellListConfigurator.For(Guids.WizEvocSpellList).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    
-                    SpellListConfigurator.For(Guids.ThasConj).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.THasEnch).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.ThasEvo).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.ThasIllu).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    
-                    SpellListConfigurator.For(Guids.ThasTrans).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    break;
-                case SpellSchool.Illusion:
-                    SpellListConfigurator.For(Guids.WizIlluSpellList).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.ThasAbj).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    
-                    SpellListConfigurator.For(Guids.THasEnch).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.ThasEvo).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.ThasIllu).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.ThasNecro).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.FeyspeakerSpellList).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    
-                    break;
-                case SpellSchool.Necromancy:
-                    SpellListConfigurator.For(Guids.WizNecSpellList).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                   
-                    SpellListConfigurator.For(Guids.ThasConj).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    
-                    SpellListConfigurator.For(Guids.ThasEvo).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.ThasIllu).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.ThasNecro).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.ThasTrans).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    break;
-                case SpellSchool.Transmutation:
-                    SpellListConfigurator.For(Guids.WizTransSpellList).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.ThasAbj).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.ThasConj).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    
-                    SpellListConfigurator.For(Guids.ThasEvo).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    
-                    SpellListConfigurator.For(Guids.ThasNecro).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.ThasTrans).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    break;
-                case SpellSchool.Universalist:
-                    SpellListConfigurator.For(Guids.ThasAbj).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.ThasConj).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.THasEnch).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.ThasEvo).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.ThasIllu).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.ThasNecro).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    SpellListConfigurator.For(Guids.ThasTrans).AddToSpellsByLevel(new SpellLevelList(level) { m_Spells = new List<Kingmaker.Blueprints.BlueprintAbilityReference>() { spell.ToReference<BlueprintAbilityReference>() } }).Configure();
-                    break;
-                default:
-                    break;
-            }
-        }
 
     }
 }

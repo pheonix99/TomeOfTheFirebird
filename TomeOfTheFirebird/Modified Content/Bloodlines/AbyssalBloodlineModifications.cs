@@ -2,7 +2,6 @@
 using Kingmaker.UnitLogic.ActivatableAbilities;
 using System.Linq;
 using TabletopTweaks.Core.Utilities;
-using TomeOfTheFirebird.Config;
 
 namespace TomeOfTheFirebird.Modified_Content.Bloodlines
 {
@@ -14,7 +13,7 @@ namespace TomeOfTheFirebird.Modified_Content.Bloodlines
 "f68af48f9ebf32549b5f9fdc4edfd475" };
         public static void GiveInfiniteUses()
         {
-            if (ModSettings.Tweaks.Bloodlines.IsDisabled("UnlimitedSorcererBloodlineClaws"))
+            if (Main.TotFContext.Tweaks.Bloodlines.IsDisabled("UnlimitedSorcererBloodlineClaws"))
             {
                 return;
             }

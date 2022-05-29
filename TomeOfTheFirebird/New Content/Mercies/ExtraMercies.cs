@@ -12,7 +12,7 @@ using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.Mechanics;
 using System;
 using System.Linq;
-using TomeOfTheFirebird.Config;
+using TabletopTweaks.Core.Utilities;
 using TomeOfTheFirebird.Helpers;
 using UnityEngine;
 
@@ -34,7 +34,7 @@ namespace TomeOfTheFirebird.New_Content.Mercies
             void BuildEnsorcelled()
             {
 
-                var dispel = Resources.GetBlueprint<BlueprintAbility>("b9be852b03568064b8d2275a6cf9e2de");
+                var dispel = BlueprintTools.GetBlueprint<BlueprintAbility>("b9be852b03568064b8d2275a6cf9e2de");
                 var maker = MakerTools.MakeFeature("MercyEnsorcelled", "Mercy - Ensorcelled", "The paladin’s lay on hands also acts as dispel magic, using the paladin’s level as her caster level.", false, dispel.Icon);
                 maker.SetFeatureGroups(FeatureGroup.Mercy);
                 maker.PrerequisiteClassLevel("bfa11238e7ae3544bbeb4d0b92e897ec", 12);
@@ -46,12 +46,12 @@ namespace TomeOfTheFirebird.New_Content.Mercies
 
                 GameAction dispelAct = dispelActMake.Build().Actions[0];
 
-                var LayOnHandsSelf = Resources.GetBlueprint<BlueprintAbility>("8d6073201e5395d458b8251386d72df1");
+                var LayOnHandsSelf = BlueprintTools.GetBlueprint<BlueprintAbility>("8d6073201e5395d458b8251386d72df1");
                 Conditional LoHMeCond = LayOnHandsSelf.Components.OfType<AbilityEffectRunAction>().First().Actions.Actions.OfType<Conditional>().First();
                 LoHMeCond.IfTrue.Actions = LoHMeCond.IfTrue.Actions.Append(dispelAct).ToArray();
                 LoHMeCond.IfFalse.Actions = LoHMeCond.IfTrue.Actions.Append(dispelAct).ToArray();
 
-                var LayOnHandsOther = Resources.GetBlueprint<BlueprintAbility>("caae1dc6fcf7b37408686971ee27db13");
+                var LayOnHandsOther = BlueprintTools.GetBlueprint<BlueprintAbility>("caae1dc6fcf7b37408686971ee27db13");
 
                 Conditional LoHOCond = LayOnHandsOther.Components.OfType<AbilityEffectRunAction>().First().Actions.Actions.OfType<Conditional>().First();
 
@@ -64,7 +64,7 @@ namespace TomeOfTheFirebird.New_Content.Mercies
 
 
 
-                var LayOnHandsSpecial = Resources.GetBlueprint<BlueprintAbility>("8337cea04c8afd1428aad69defbfc365");
+                var LayOnHandsSpecial = BlueprintTools.GetBlueprint<BlueprintAbility>("8337cea04c8afd1428aad69defbfc365");
 
                 Conditional LoHSCond = LayOnHandsSpecial.Components.OfType<AbilityEffectRunAction>().First().Actions.Actions.OfType<Conditional>().First();
 
@@ -82,7 +82,7 @@ namespace TomeOfTheFirebird.New_Content.Mercies
                 //Add To All Three LoH types
 
 
-                Sprite icon = Resources.GetBlueprint<BlueprintBuff>("9017213d83ccddb4ab720e0a0efe36ff").Icon;
+                Sprite icon = BlueprintTools.GetBlueprint<BlueprintBuff>("9017213d83ccddb4ab720e0a0efe36ff").Icon;
                 var maker = MakerTools.MakeFeature("MercyInjured", "Mercy - Injured", "The target gains fast healing 3 for a number of rounds equal to 1/2 the paladin’s level.", false, icon);
                 maker.SetFeatureGroups(FeatureGroup.Mercy);
                 maker.PrerequisiteClassLevel("bfa11238e7ae3544bbeb4d0b92e897ec", 9);
@@ -104,12 +104,12 @@ namespace TomeOfTheFirebird.New_Content.Mercies
 
 
                 var actDone = buffActWrapper.Build().Actions[0];
-                var LayOnHandsSelf = Resources.GetBlueprint<BlueprintAbility>("8d6073201e5395d458b8251386d72df1");
+                var LayOnHandsSelf = BlueprintTools.GetBlueprint<BlueprintAbility>("8d6073201e5395d458b8251386d72df1");
                 Conditional LoHMeCond = LayOnHandsSelf.Components.OfType<AbilityEffectRunAction>().First().Actions.Actions.OfType<Conditional>().First();
                 LoHMeCond.IfTrue.Actions = LoHMeCond.IfTrue.Actions.Append(actDone).ToArray();
 
 
-                var LayOnHandsOther = Resources.GetBlueprint<BlueprintAbility>("caae1dc6fcf7b37408686971ee27db13");
+                var LayOnHandsOther = BlueprintTools.GetBlueprint<BlueprintAbility>("caae1dc6fcf7b37408686971ee27db13");
 
                 Conditional LoHOCond = LayOnHandsOther.Components.OfType<AbilityEffectRunAction>().First().Actions.Actions.OfType<Conditional>().First();
 
@@ -123,7 +123,7 @@ namespace TomeOfTheFirebird.New_Content.Mercies
 
 
 
-                var LayOnHandsSpecial = Resources.GetBlueprint<BlueprintAbility>("8337cea04c8afd1428aad69defbfc365");
+                var LayOnHandsSpecial = BlueprintTools.GetBlueprint<BlueprintAbility>("8337cea04c8afd1428aad69defbfc365");
 
                 Conditional LoHSCond = LayOnHandsSpecial.Components.OfType<AbilityEffectRunAction>().First().Actions.Actions.OfType<Conditional>().First();
 
@@ -139,7 +139,7 @@ namespace TomeOfTheFirebird.New_Content.Mercies
         public static void AddToThings()
         {
             string TTTExtraMercies = "6e76496c2748405d9946949977bd3e8d";
-            if (ModSettings.NewContent.Mercies.IsEnabled("Injured"))
+            if (Main.TotFContext.NewContent.Mercies.IsEnabled("Injured"))
             {
                 FeatureSelectionConfigurator.For("02b187038a8dce545bb34bbfb346428d").AddToFeatures(injured.AssetGuidThreadSafe).Configure();
                 try
@@ -150,10 +150,10 @@ namespace TomeOfTheFirebird.New_Content.Mercies
                 }
                 catch (Exception e)
                 {
-                    Main.Log("Outright error throwin trying to add to TTT selector");
+                    Main.TotFContext.Logger.Log("Outright error throwin trying to add to TTT selector");
                 }
             }
-            if (ModSettings.NewContent.Mercies.IsEnabled("Ensorcelled"))
+            if (Main.TotFContext.NewContent.Mercies.IsEnabled("Ensorcelled"))
             {
                 FeatureSelectionConfigurator.For("02b187038a8dce545bb34bbfb346428d").AddToFeatures(ensorcelled.AssetGuidThreadSafe).Configure();
                 try
@@ -164,7 +164,7 @@ namespace TomeOfTheFirebird.New_Content.Mercies
                 }
                 catch (Exception e)
                 {
-                    Main.Log("Outright error throwin trying to add to TTT selector");
+                    Main.TotFContext.Logger.Log("Outright error throwin trying to add to TTT selector");
                 }
             }
         }

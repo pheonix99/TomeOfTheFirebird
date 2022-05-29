@@ -6,7 +6,6 @@ using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Mechanics;
 using TabletopTweaks.Core.Utilities;
 using TomeOfTheFirebird.Components;
-using TomeOfTheFirebird.Config;
 using TomeOfTheFirebird.Helpers;
 using TomeOfTheFirebird.Reference;
 using UnityEngine;
@@ -17,7 +16,7 @@ namespace TomeOfTheFirebird.New_Spells
     {
         public static void Build()
         {
-            Sprite shieldIcon = Resources.GetBlueprint<BlueprintAbility>("62888999171921e4dafb46de83f4d67d").Icon;
+            Sprite shieldIcon = BlueprintTools.GetBlueprint<BlueprintAbility>("62888999171921e4dafb46de83f4d67d").Icon;
            
 
             var FireShieldWarmBuilder = MakerTools.MakeSpell("FireShieldWarm", "Fire Shield (Warm)", "This spell wreathes you in flame and causes damage to each creature that attacks you in melee.The flames also protect you from cold-based attacks. You take only half damage from cold-based attacks. If such an attack allows a Reflex save for half damage, you take no damage on a successful saving throw. \n Any creature striking you with its body or a hand-held weapon deals normal damage, but at the same time the attacker takes 1d6 points of fire damage + 1 point per caster level(maximum +15). If the attacker has spell resistance, it applies to this effect. Creatures wielding melee weapons with reach are not subject to this damage if they attack you.", shieldIcon, Kingmaker.Blueprints.Classes.Spells.SpellSchool.Evocation, new Kingmaker.Localization.LocalizedString(), LocalizedStrings.OneRoundPerLevelDuration);
@@ -68,7 +67,7 @@ namespace TomeOfTheFirebird.New_Spells
      
             rootFireShieldBuilder.AddVariants(warmSpellBuilt.AssetGuidThreadSafe, coldSpellBuilt.AssetGuidThreadSafe);
             var rootFireIceSpell = rootFireShieldBuilder.Configure();
-            if (ModSettings.NewContent.Spells.IsEnabled("FireShield"))
+            if (Main.TotFContext.NewContent.Spells.IsEnabled("FireShield"))
             {
                 rootFireIceSpell.AddToSpellList(SpellTools.SpellList.AlchemistSpellList, 4);
                 rootFireIceSpell.AddToSpellList(SpellTools.SpellList.BloodragerSpellList, 4);
@@ -79,7 +78,7 @@ namespace TomeOfTheFirebird.New_Spells
                     
 
             }
-            if (ModSettings.NewContent.Spells.IsEnabled("VitrolicMist"))
+            if (Main.TotFContext.NewContent.Spells.IsEnabled("VitrolicMist"))
             {
                 acidSpellBuilt.AddToSpellList(SpellTools.SpellList.AlchemistSpellList, 4);
                 acidSpellBuilt.AddToSpellList(SpellTools.SpellList.BloodragerSpellList, 4);

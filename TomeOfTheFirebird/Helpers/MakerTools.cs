@@ -11,7 +11,7 @@ using Kingmaker.UnitLogic.Mechanics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TomeOfTheFirebird.Config;
+using TabletopTweaks.Core.Utilities;
 using UnityEngine;
 
 namespace TomeOfTheFirebird.Helpers
@@ -20,9 +20,9 @@ namespace TomeOfTheFirebird.Helpers
     {
         public static FeatureConfigurator MakeFeature(string systemName, string displayName, string description, bool hide = false, Sprite icon = null)
         {
-            Main.Log($"Building New Feature: {systemName}");
+            Main.TotFContext.Logger.Log($"Building New Feature: {systemName}");
             
-            var guid = ModSettings.Blueprints.GetGUID(systemName);
+            var guid = Main.TotFContext.Blueprints.GetGUID(systemName);
             LocalizedString name = LocalizationTool.CreateString(systemName + ".Name", displayName);
             LocalizedString desc = LocalizationTool.CreateString(systemName + ".Desc", description);
             
@@ -44,8 +44,8 @@ namespace TomeOfTheFirebird.Helpers
 
         public static EquipmentEnchantmentConfigurator MakeItemEnchantment(string systemName, string displayName, string description, int cost)
         {
-            Main.Log($"Building New Enchantment: {systemName}");
-            var guid = ModSettings.Blueprints.GetGUID(systemName);
+            Main.TotFContext.Logger.Log($"Building New Enchantment: {systemName}");
+            var guid = Main.TotFContext.Blueprints.GetGUID(systemName);
             LocalizedString name = LocalizationTool.CreateString(systemName + ".Name", displayName);
             LocalizedString desc = LocalizationTool.CreateString(systemName + ".Desc", description);
 
@@ -58,8 +58,8 @@ namespace TomeOfTheFirebird.Helpers
 
         public static WeaponEnchantmentConfigurator MakeWeaponEnchant(string systemName, string displayName, string description, string affixName, bool prefix, int effectivePlus, bool hidden = false)
         {
-            Main.Log($"Building New Weapon Enchant: {systemName}");
-            var guid = ModSettings.Blueprints.GetGUID(systemName);
+            Main.TotFContext.Logger.Log($"Building New Weapon Enchant: {systemName}");
+            var guid = Main.TotFContext.Blueprints.GetGUID(systemName);
             LocalizedString name = LocalizationTool.CreateString(systemName + ".Name", displayName);
             LocalizedString desc = LocalizationTool.CreateString(systemName + ".Desc", description);
             LocalizedString affix = LocalizationTool.CreateString(systemName + ".Affix", affixName);
@@ -80,20 +80,20 @@ namespace TomeOfTheFirebird.Helpers
 
         public static AbilityConfigurator MakeSpell(string systemName, string displayName, string description, Sprite icon, SpellSchool school, LocalizedString savestring, LocalizedString durationString)
         {
-            Main.Log($"Building New Spell: {systemName}");
-            var guid = ModSettings.Blueprints.GetGUID(systemName);
+            Main.TotFContext.Logger.Log($"Building New Spell: {systemName}");
+            var guid = Main.TotFContext.Blueprints.GetGUID(systemName);
             LocalizedString name = null;
             LocalizedString desc = null;
-            Main.Log("About to try localization");
+            Main.TotFContext.Logger.Log("About to try localization");
             try
             {
                 name = LocalizationTool.CreateString(systemName + ".Name", displayName);
                 desc = LocalizationTool.CreateString(systemName + ".Desc", description);
-                Main.Log("Localization done");
+                Main.TotFContext.Logger.Log("Localization done");
             }
             catch(Exception e)
             {
-                Main.Error(e.Message);
+                Main.TotFContext.Logger.LogError(e.Message);
             }
             
            
@@ -106,8 +106,8 @@ namespace TomeOfTheFirebird.Helpers
 
         public static ActivatableAbilityConfigurator MakeToggle(string systemName, string displayName, string description, Sprite icon)
         {
-            Main.Log($"Building New Toggle: {systemName}");
-            var guid = ModSettings.Blueprints.GetGUID(systemName);
+            Main.TotFContext.Logger.Log($"Building New Toggle: {systemName}");
+            var guid = Main.TotFContext.Blueprints.GetGUID(systemName);
             LocalizedString name = LocalizationTool.CreateString(systemName + ".Name", displayName);
             LocalizedString desc = LocalizationTool.CreateString(systemName + ".Desc", description);
 
@@ -121,8 +121,8 @@ namespace TomeOfTheFirebird.Helpers
 
         public static ProgressionConfigurator MakeProg(string systemName, string displayName, string description, Sprite icon = null)
         {
-            Main.Log($"Building New Toggle: {systemName}");
-            var guid = ModSettings.Blueprints.GetGUID(systemName);
+            Main.TotFContext.Logger.Log($"Building New Toggle: {systemName}");
+            var guid = Main.TotFContext.Blueprints.GetGUID(systemName);
             LocalizedString name = LocalizationTool.CreateString(systemName + ".Name", displayName);
             LocalizedString desc = LocalizationTool.CreateString(systemName + ".Desc", description);
 
@@ -152,8 +152,8 @@ namespace TomeOfTheFirebird.Helpers
 
         public static BuffConfigurator MakeBuff(string systemName, string displayName, string description, Sprite icon = null)
         {
-            Main.Log($"Building New Buff: {systemName}");
-            var guid = ModSettings.Blueprints.GetGUID(systemName);
+            Main.TotFContext.Logger.Log($"Building New Buff: {systemName}");
+            var guid = Main.TotFContext.Blueprints.GetGUID(systemName);
             LocalizedString name = LocalizationTool.CreateString(systemName + ".Name", displayName);
             LocalizedString desc = LocalizationTool.CreateString(systemName + ".Desc", description);
 

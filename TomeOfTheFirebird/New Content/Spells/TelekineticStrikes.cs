@@ -7,7 +7,6 @@ using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using TabletopTweaks.Core.Utilities;
 using TomeOfTheFirebird.Components;
-using TomeOfTheFirebird.Config;
 using TomeOfTheFirebird.Helpers;
 using TomeOfTheFirebird.Reference;
 using UnityEngine;
@@ -19,7 +18,7 @@ namespace TomeOfTheFirebird.New_Spells
 
         public static void BuildSpell()
         {
-            Sprite TKStrikeSprite = Resources.GetBlueprint<BlueprintAbility>("810992c76efdde84db707a0444cf9a1c").Icon;//Transmutation school TK PUUUUNCH
+            Sprite TKStrikeSprite = BlueprintTools.GetBlueprint<BlueprintAbility>("810992c76efdde84db707a0444cf9a1c").Icon;//Transmutation school TK PUUUUNCH
             var TKStrikeBuilder = MakerTools.MakeSpell("TelekineticStrikes", "Telekinetic Strikes", "The touched creature’s limbs are charged with telekinetic force. \n \n For the duration of the spell, the target’s unarmed attacks or natural weapons deal an additional 1d4 points of force damage on each successful unarmed melee attack.", TKStrikeSprite, SpellSchool.Evocation, new Kingmaker.Localization.LocalizedString(), LocalizedStrings.OneMinutePerLevelDuration);
             var TKStrikeBuilderCast = MakerTools.MakeSpell("TelekineticStrikesCast", "Telekinetic Strikes", "The touched creature’s limbs are charged with telekinetic force. \n \n For the duration of the spell, the target’s unarmed attacks or natural weapons deal an additional 1d4 points of force damage on each successful unarmed melee attack.", TKStrikeSprite, SpellSchool.Evocation, new Kingmaker.Localization.LocalizedString(), LocalizedStrings.OneMinutePerLevelDuration);
 
@@ -65,7 +64,7 @@ namespace TomeOfTheFirebird.New_Spells
             TKStrikeBuilderCast.AddCraftInfoComponent(Kingmaker.Craft.CraftSpellType.Buff, Kingmaker.Craft.CraftSavingThrow.None, Kingmaker.Craft.CraftAOE.None);
             var builtCast = TKStrikeBuilderCast.Configure();
             
-            if (ModSettings.NewContent.Spells.IsEnabled("TelekineticStrikes"))
+            if (Main.TotFContext.NewContent.Spells.IsEnabled("TelekineticStrikes"))
             {
                 builtCast.AddToSpellList(SpellTools.SpellList.MagusSpellList, 2);
                 builtCast.AddToSpellList(SpellTools.SpellList.WizardSpellList, 2);

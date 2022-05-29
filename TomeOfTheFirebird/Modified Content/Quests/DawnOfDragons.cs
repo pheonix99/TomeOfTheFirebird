@@ -14,8 +14,8 @@ using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.Utility;
 using System.Linq;
+using TabletopTweaks.Core.Utilities;
 using TomeOfTheFirebird.Components;
-using TomeOfTheFirebird.Config;
 using TomeOfTheFirebird.Helpers;
 
 namespace TomeOfTheFirebird.QuestTweaks
@@ -30,7 +30,7 @@ namespace TomeOfTheFirebird.QuestTweaks
         public static void Fix()
         {
 
-            FeatureConfigurator auraFeature = FeatureConfigurator.New("DragonHolyAuraFeature", ModSettings.Blueprints.GetGUID("DragonHolyAuraFeature").ToString()).SetDisplayName(LocalizationTool.CreateString("HukugolHolyAuraFeature.Name", "Hokugol's Blessing (Aura)")).SetDescription(LocalizationTool.CreateString("HukugolHolyAuraFeature.Desc", "The silver dragon Hokugol blessed you with a permanent Holy Aura effect for aiding him")).AddFacts(new string[] { "a33bf327207a5904d9e38d6a80eb09e2" }, casterLevel: 23);
+            FeatureConfigurator auraFeature = FeatureConfigurator.New("DragonHolyAuraFeature", Main.TotFContext.Blueprints.GetGUID("DragonHolyAuraFeature").ToString()).SetDisplayName(LocalizationTool.CreateString("HukugolHolyAuraFeature.Name", "Hokugol's Blessing (Aura)")).SetDescription(LocalizationTool.CreateString("HukugolHolyAuraFeature.Desc", "The silver dragon Hokugol blessed you with a permanent Holy Aura effect for aiding him")).AddFacts(new string[] { "a33bf327207a5904d9e38d6a80eb09e2" }, casterLevel: 23);
             string isAngelEtude = "3a82aba4de71b89458ac82949ed957c4";
             //auraFeature.AddFeatureSurvivesRespec();
             auraFeature.SetRanks(1);
@@ -57,19 +57,19 @@ namespace TomeOfTheFirebird.QuestTweaks
             angelBlessingFeature.AddResistEnergy(Kingmaker.Enums.Damage.DamageEnergyType.Cold, value: new ContextValue() { Value = 10 }).AddStatBonus(Kingmaker.Enums.ModifierDescriptor.NaturalArmorEnhancement, stat: Kingmaker.EntitySystem.Stats.StatType.AC, value: 5);
             //angelBlessingFeature.AddFeatureSurvivesRespec();
             var angelBuilt = angelBlessingFeature.Configure();
-            if (ModSettings.Tweaks.RewardFeatureConversion.IsDisabled("DawnOfDragons"))
+            if (Main.TotFContext.Tweaks.RewardFeatureConversion.IsDisabled("DawnOfDragons"))
                 return;
-            BlueprintEtude BuffGiver = Resources.GetBlueprint<BlueprintEtude>("ed86bf33a6a58cd40bf17ed141b6b94a");
+            BlueprintEtude BuffGiver = BlueprintTools.GetBlueprint<BlueprintEtude>("ed86bf33a6a58cd40bf17ed141b6b94a");
             ActionList BuffGiverList = BuffGiver.Components.OfType<EtudePlayTrigger>().First().Actions;
             var AuraFeatureAdder = ActionsBuilder.New().AddFact(AuraFeatureBuilt.AssetGuidThreadSafe, new PlayerCharacter());
             var DragonPowerAdd = ActionsBuilder.New().AddFact(angelBuilt.AssetGuidThreadSafe, new PlayerCharacter());
 
             GameAction adder;
-            if (ModSettings.ContentModifications.DawnOfDragons.IsEnabled("CustomRewardForEveryone"))
+            if (Main.TotFContext.ContentModifications.DawnOfDragons.IsEnabled("CustomRewardForEveryone"))
             {
                 adder = DragonPowerAdd.Build().Actions[0];
             }
-            else if (ModSettings.ContentModifications.DawnOfDragons.IsEnabled("CustomRewardForAngelOnly"))
+            else if (Main.TotFContext.ContentModifications.DawnOfDragons.IsEnabled("CustomRewardForAngelOnly"))
             {
                 
                 

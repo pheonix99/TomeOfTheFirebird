@@ -1,4 +1,6 @@
-﻿namespace TomeOfTheFirebird.Config
+﻿using TabletopTweaks.Core.Config;
+
+namespace TomeOfTheFirebird.Config
 {
     public class Bugfixes : IUpdatableSettings
     {

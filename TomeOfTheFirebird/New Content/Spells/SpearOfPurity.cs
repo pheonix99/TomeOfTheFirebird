@@ -7,8 +7,6 @@ using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Mechanics;
 using TabletopTweaks.Core.Utilities;
-using TomeOfTheFirebird.Assets;
-using TomeOfTheFirebird.Config;
 using TomeOfTheFirebird.Helpers;
 using TomeOfTheFirebird.Reference;
 using UnityEngine;
@@ -20,7 +18,7 @@ namespace TomeOfTheFirebird.New_Spells
     {
         public static void BuildSpearOfPurity()
         {
-            Sprite sprite = Assets.AssetLoader.LoadInternal("Spells", "SpearOfPurity.png"); 
+            Sprite sprite = AssetLoader.LoadInternal(Main.TotFContext, "Spells", "SpearOfPurity.png"); 
             string desc = "You hurl a pure white or golden spear of light from your holy symbol, affecting any one target within range as a ranged touch attack.\n\nAn evil creature struck by the spear takes 1d8 points of damage per two caster levels (maximum 5d8). An evil outsider instead takes 1d6 points of damage per caster level(maximum 10d6) and is blinded for 1 round.A successful Will save reduces the damage to half and negates the blinded effect. This spell deals only half damage to creatures that are neither evil nor good, and they are not blinded. The spear has no effect on good creatures.";
             var builder = MakerTools.MakeSpell("SpearOfPurity", "Spear Of Purity", desc, sprite, Kingmaker.Blueprints.Classes.Spells.SpellSchool.Evocation, LocalizedStrings.WillPartial, new Kingmaker.Localization.LocalizedString());
             string blind = "187f88d96a0ef464280706b63635f2af";
@@ -86,7 +84,7 @@ namespace TomeOfTheFirebird.New_Spells
             builder.AddCraftInfoComponent(Kingmaker.Craft.CraftSpellType.Damage, Kingmaker.Craft.CraftSavingThrow.Will, Kingmaker.Craft.CraftAOE.None);
             var result = builder.Configure();
 
-            if (ModSettings.NewContent.Spells.IsEnabled("SpearOfPurity"))
+            if (Main.TotFContext.NewContent.Spells.IsEnabled("SpearOfPurity"))
             {
                 result.AddToSpellList(SpellTools.SpellList.ClericSpellList, 2);
                 result.AddToSpellList(SpellTools.SpellList.AngelClericSpelllist, 2);

@@ -5,6 +5,7 @@ using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.ActivatableAbilities;
 using System;
+using TabletopTweaks.Core.Utilities;
 using TomeOfTheFirebird.Components;
 using TomeOfTheFirebird.Helpers;
 using TomeOfTheFirebird.Reference;
@@ -18,7 +19,7 @@ namespace TomeOfTheFirebird.New_Spells
         static Sprite keenSprite;
         public static BlueprintAbility BuildSPell()
         {
-            keenSprite = Resources.GetBlueprint<BlueprintActivatableAbility>("27d76f1afda08a64d897cc81201b5218").Icon;//Keen weapon bond
+            keenSprite = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("27d76f1afda08a64d897cc81201b5218").Icon;//Keen weapon bond
             var maker = MakerTools.MakeSpell("KeenEdge", "Keen Edge",desc , keenSprite, Kingmaker.Blueprints.Classes.Spells.SpellSchool.Transmutation, new Kingmaker.Localization.LocalizedString(), LocalizedStrings.TenMinutePerLevelDuration);
 
 

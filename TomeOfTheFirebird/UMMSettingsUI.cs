@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using TomeOfTheFirebird.Config;
+using TabletopTweaks.Core.Config;
 using UnityEngine;
 using UnityModManagerNet;
 
@@ -33,7 +33,7 @@ namespace TomeOfTheFirebird
         public static void NewContent()
         {
             var TabLevel = SetttingUI.TabLevel.Zero;
-            var AddedContent = ModSettings.NewContent;
+            var AddedContent = Main.TotFContext.NewContent;
             UI.Div(0, 15);
             using (UI.VerticalScope())
             {
@@ -51,7 +51,7 @@ namespace TomeOfTheFirebird
         public static void Bugfixes()
         {
             var TabLevel = SetttingUI.TabLevel.Zero;
-            var Bugfixes = ModSettings.Bugfixes;
+            var Bugfixes = Main.TotFContext.Bugfixes;
             UI.Div(0, 15);
             using (UI.VerticalScope())
             {
@@ -69,7 +69,7 @@ namespace TomeOfTheFirebird
         public static void Tweaks()
         {
             var TabLevel = SetttingUI.TabLevel.Zero;
-            var Tweaks = ModSettings.Tweaks;
+            var Tweaks = Main.TotFContext.Tweaks;
             UI.Div(0, 15);
             using (UI.VerticalScope())
             {
@@ -90,7 +90,7 @@ namespace TomeOfTheFirebird
         public static void ContentModifications()
         {
             var TabLevel = SetttingUI.TabLevel.Zero;
-            var ContentMods = ModSettings.ContentModifications;
+            var ContentMods = Main.TotFContext.ContentModifications;
             UI.Div(0, 15);
             using (UI.VerticalScope())
             {
@@ -213,7 +213,7 @@ namespace TomeOfTheFirebird
             var changed = ModKit.Private.UI.CheckBox(title, value, UI.toggleStyle, options);
             if (changed)
             {
-                Main.Log($"Changed: {!value}");
+                Main.TotFContext.Logger.Log($"Changed: {!value}");
                 action.Invoke(!value);
             }
             return changed;

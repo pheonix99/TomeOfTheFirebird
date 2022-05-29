@@ -8,8 +8,6 @@ using Kingmaker.RuleSystem.Rules.Damage;
 using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using TabletopTweaks.Core.Utilities;
-using TomeOfTheFirebird.Assets;
-using TomeOfTheFirebird.Config;
 using TomeOfTheFirebird.Helpers;
 using TomeOfTheFirebird.Reference;
 using UnityEngine;
@@ -21,7 +19,7 @@ namespace TomeOfTheFirebird.New_Spells
     {
         public static void Build()
         {
-            Sprite freezingSphere = Assets.AssetLoader.LoadInternal("Spells", "FreezingSphere.png");
+            Sprite freezingSphere = AssetLoader.LoadInternal(Main.TotFContext, "Spells", "FreezingSphere.png");
             var BigFreezeBuild = MakerTools.MakeSpell("FreezingSphereBig", "Freezing Sphere: Large Blast", "Freezing sphere creates a frigid globe of cold energy that streaks from your fingertips to the location you select, where it explodes in a 40-foot-radius burst, dealing 1d6 points of cold damage per caster level(maximum 20d6) to each creature in the area.A creature of the water subtype instead takes 1d8 points of cold damage per caster level (maximum 20d8) and is staggered for 1d4 rounds.", freezingSphere, Kingmaker.Blueprints.Classes.Spells.SpellSchool.Evocation, LocalizedStrings.RefHalf, new Kingmaker.Localization.LocalizedString());
             var SmallFreezeBuild = MakerTools.MakeSpell("FreezingSphereSmall", "Freezing Sphere: Small Blast", "Freezing sphere creates a frigid globe of cold energy that streaks from your fingertips to the location you select, where it explodes in a 20-foot-radius burst, dealing 1d6 points of cold damage per caster level(maximum 20d6) to each creature in the area.A creature of the water subtype instead takes 1d8 points of cold damage per caster level (maximum 20d8) and is staggered for 1d4 rounds.", freezingSphere, Kingmaker.Blueprints.Classes.Spells.SpellSchool.Evocation, LocalizedStrings.RefHalf, new Kingmaker.Localization.LocalizedString());
             var SelectFreezeBuild = MakerTools.MakeSpell("FreezingSphere", "Freezing Sphere", "Freezing sphere creates a frigid globe of cold energy that streaks from your fingertips to the location you select, where it explodes in a 20 or 40-foot-radius burst, dealing 1d6 points of cold damage per caster level(maximum 20d6) to each creature in the area.A creature of the water subtype instead takes 1d8 points of cold damage per caster level (maximum 20d8) and is staggered for 1d4 rounds.", freezingSphere, Kingmaker.Blueprints.Classes.Spells.SpellSchool.Evocation, LocalizedStrings.RefHalf, new Kingmaker.Localization.LocalizedString());
@@ -57,7 +55,7 @@ namespace TomeOfTheFirebird.New_Spells
 
             SelectFreezeBuild.AddVariants(bigbuilt.AssetGuidThreadSafe, smallbuilt.AssetGuidThreadSafe);
             var built = SelectFreezeBuild.Configure();
-            if (ModSettings.NewContent.Spells.IsEnabled("FreezingSphere"))
+            if (Main.TotFContext.NewContent.Spells.IsEnabled("FreezingSphere"))
             {
                 //built.AddToSpellList(SpellTools.SpellList.FrostSpiritSpellList, 6);
                 built.AddToSpellList(SpellTools.SpellList.WizardSpellList, 6);

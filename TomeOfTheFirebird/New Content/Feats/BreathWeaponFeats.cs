@@ -1,6 +1,5 @@
 ﻿using Kingmaker.Blueprints.Classes;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
-using TomeOfTheFirebird.Config;
 using TomeOfTheFirebird.Helpers;
 using TomeOfTheFirebird.New_Components.Prerequisites;
 
@@ -50,7 +49,7 @@ namespace TomeOfTheFirebird.New_Content.Feats
             abilityFocusconfig.AddComponent<PrerequisiteBreathWeaponAccess>();
 
             var finished = abilityFocusconfig.Configure();
-            if (ModSettings.NewContent.Feats.IsDisabled("AbilityFocusBreathWeapons"))
+            if (Main.TotFContext.NewContent.Feats.IsDisabled("AbilityFocusBreathWeapons"))
                 return;
             TabletopTweaks.Core.Utilities.FeatTools.AddAsFeat(finished);
 

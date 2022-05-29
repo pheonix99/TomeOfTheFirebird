@@ -13,7 +13,6 @@ using Kingmaker.UnitLogic.Mechanics.Components;
 using System.Linq;
 using TabletopTweaks.Core.Utilities;
 using TomeOfTheFirebird.Components;
-using TomeOfTheFirebird.Config;
 using TomeOfTheFirebird.Helpers;
 
 namespace TomeOfTheFirebird.Modified_Content.Bloodlines
@@ -75,7 +74,7 @@ namespace TomeOfTheFirebird.Modified_Content.Bloodlines
             }
             else
             {
-                Main.Log("No Fishing For Claw COnditional Via Commanets");
+                Main.TotFContext.Logger.Log("No Fishing For Claw COnditional Via Commanets");
             }
         }
 
@@ -208,7 +207,7 @@ namespace TomeOfTheFirebird.Modified_Content.Bloodlines
             toggle2.SetActivationType(Kingmaker.UnitLogic.ActivatableAbilities.AbilityActivationType.WithUnitCommand).SetDeactivateImmediately(true);
             toggle3.SetActivationType(Kingmaker.UnitLogic.ActivatableAbilities.AbilityActivationType.WithUnitCommand).SetDeactivateImmediately(true);
             toggle4.SetActivationType(Kingmaker.UnitLogic.ActivatableAbilities.AbilityActivationType.WithUnitCommand).SetDeactivateImmediately(true);
-            if (ModSettings.Tweaks.Bloodlines.IsDisabled("UnlimitedSorcererBloodlineClaws"))
+            if (Main.TotFContext.Tweaks.Bloodlines.IsDisabled("UnlimitedSorcererBloodlineClaws"))
             {
                 toggle1.AddActivatableAbilityResourceLogic(Kingmaker.UnitLogic.ActivatableAbilities.ActivatableAbilityResourceLogic.ResourceSpendType.NewRound, "5be91334e3de5aa458ade509cc16daff");
                 toggle2.AddActivatableAbilityResourceLogic(Kingmaker.UnitLogic.ActivatableAbilities.ActivatableAbilityResourceLogic.ResourceSpendType.NewRound, "5be91334e3de5aa458ade509cc16daff");
@@ -251,7 +250,7 @@ namespace TomeOfTheFirebird.Modified_Content.Bloodlines
             realt3Feature.Configure();
             var t4build = t4Feature.Configure();
            
-            if (ModSettings.Tweaks.Bloodlines.IsDisabled("CombineSorcererDragonClaws"))
+            if (Main.TotFContext.Tweaks.Bloodlines.IsDisabled("CombineSorcererDragonClaws"))
                 return;
             
 

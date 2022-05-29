@@ -7,7 +7,6 @@ using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Mechanics;
 using TabletopTweaks.Core.Utilities;
-using TomeOfTheFirebird.Config;
 using TomeOfTheFirebird.Helpers;
 using TomeOfTheFirebird.Reference;
 using UnityEngine;
@@ -19,10 +18,10 @@ namespace TomeOfTheFirebird.New_Spells
     {
         public static void BuildSpell()
         {
-            var ChainLightning = Resources.GetBlueprint<BlueprintAbility>("645558d63604747428d55f0dd3a4cb58");
-            var FireSnake = Resources.GetBlueprint<BlueprintAbility>("ebade19998e1f8542a1b55bd4da766b3");
+            var ChainLightning = BlueprintTools.GetBlueprint<BlueprintAbility>("645558d63604747428d55f0dd3a4cb58");
+            var FireSnake = BlueprintTools.GetBlueprint<BlueprintAbility>("ebade19998e1f8542a1b55bd4da766b3");
             Sprite ChainsOfFireSprite = FireSnake.Icon;
-            BlueprintProjectile ScorchingRayBeam = Resources.GetBlueprint<BlueprintProjectile>("8cc159ce94d29fe46a94b80ce549161f");
+            BlueprintProjectile ScorchingRayBeam = BlueprintTools.GetBlueprint<BlueprintProjectile>("8cc159ce94d29fe46a94b80ce549161f");
             
             var ChainsMaker = MakerTools.MakeSpell("ChainsOfFire", "Chains Of Fire", $"This spell functions like chain lightning, except as noted above, and the spell deals fire damage instead of electricity damage. \n \nChain Lightning: {ChainLightning.Description}", ChainsOfFireSprite, SpellSchool.Evocation, LocalizedStrings.RefHalf, new Kingmaker.Localization.LocalizedString());
             ChainsMaker.SetRange(AbilityRange.Medium);
@@ -48,7 +47,7 @@ namespace TomeOfTheFirebird.New_Spells
 
 
 
-            if (ModSettings.NewContent.Spells.IsEnabled("ChainsOfFire"))
+            if (Main.TotFContext.NewContent.Spells.IsEnabled("ChainsOfFire"))
             {
                 made.AddToSpellList(SpellTools.SpellList.WizardSpellList, 6);
                 made.AddToSpellList(SpellTools.SpellList.MagusSpellList, 6);

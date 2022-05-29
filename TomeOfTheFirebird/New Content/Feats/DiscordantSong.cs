@@ -7,7 +7,7 @@ using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.RuleSystem.Rules.Damage;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using System.Linq;
-using TomeOfTheFirebird.Config;
+using TabletopTweaks.Core.Utilities;
 using TomeOfTheFirebird.Helpers;
 
 namespace TomeOfTheFirebird.New_Content.Feats
@@ -18,12 +18,12 @@ namespace TomeOfTheFirebird.New_Content.Feats
         {
             var friendCondition = ConditionsBuilder.New().ContextConditionIsAlly();
             var enemyCondition = ConditionsBuilder.New().ContextConditionIsEnemy();
-            var sound_burst = Resources.GetBlueprint<BlueprintAbility>("c3893092a333b93499fd0a21845aa265");
+            var sound_burst = BlueprintTools.GetBlueprint<BlueprintAbility>("c3893092a333b93499fd0a21845aa265");
             string aoeFriendlyName = "DiscordantSongAreaOfEffectFriendly";
             string aoeEnemyName = "DiscordantSongAreaOfEffectHostile";
          
-            var aoeFriendlyGUID = ModSettings.Blueprints.GetGUID(aoeFriendlyName);
-            var aoeHostileGUID = ModSettings.Blueprints.GetGUID(aoeEnemyName);
+            var aoeFriendlyGUID = Main.TotFContext.Blueprints.GetGUID(aoeFriendlyName);
+            var aoeHostileGUID = Main.TotFContext.Blueprints.GetGUID(aoeEnemyName);
             var DiscordantSongAllyBuff = MakerTools.MakeBuff("DiscordantSongAllyBuff", "Discordant Song (Friendly)", "Bardic performance is granting an extra 1d6 sonic damage to melee attacks and ranged attacks to targets in the performance area.", sound_burst.Icon);
             
             var DiscordantSongEnemyBuff = MakerTools.MakeBuff("DiscordantSongEnemyBuff", "Discordant Song (Hostile)", "Discordant Song is causing extra sonic damage on ranged hits.", sound_burst.Icon);
@@ -64,17 +64,17 @@ namespace TomeOfTheFirebird.New_Content.Feats
             var DiscordantAoEHostileBuilt = DiscordantAoEHostile.Configure();
             var DiscordantSongBuff = MakerTools.MakeBuff("DiscordantSongBuff", "Performing Discordant Song", "Allies within 30 feet of you deal an extra 1d6 points of sonic damage with successful weapon attacks. This damage stacks with other energy damage a weapon might deal. Projectile weapons bestow this extra damage on their ammunition, but the extra damage is dealt only if the projectile hits a target within 30 feet of you.", sound_burst.Icon);
             var DiscordantSongBuff2 = MakerTools.MakeBuff("DiscordantSongBuff2", "Performing Discordant Song", "You Shouldn't See This!");
-            Main.Log($"Friendly AOE Type is {DiscordantAoEFriendlyBuilt.GetType().ToString()}, guid is :{DiscordantAoEFriendlyBuilt.AssetGuidThreadSafe}");
+            Main.TotFContext.Logger.Log($"Friendly AOE Type is {DiscordantAoEFriendlyBuilt.GetType().ToString()}, guid is :{DiscordantAoEFriendlyBuilt.AssetGuidThreadSafe}");
             //DiscordantSongBuff.AddAreaEffect("79779e46999bca8469f9978a27fa58f7");
             //DiscordantSongBuff.AddAreaEffect("79779e46999bca8469f9978a27fa58f7");
             //DiscordantSongBuff.AddComponent(new AddAreaEffect() { m_AreaEffect = DiscordantAoEFriendlyBuilt.ToReference<BlueprintAbilityAreaEffectReference>() });
             DiscordantSongBuff.AddAreaEffect(DiscordantAoEFriendlyBuilt.AssetGuidThreadSafe);
             DiscordantSongBuff.AddAreaEffect(DiscordantAoEHostileBuilt.AssetGuidThreadSafe);
             
-            Main.Log("added friendly aoe");
+            Main.TotFContext.Logger.Log("added friendly aoe");
            
             //DiscordantSongBuff.AddAreaEffect(DiscordantAoEHostileBuilt.AssetGuidThreadSafe);
-            Main.Log("added enemy aoe");
+            Main.TotFContext.Logger.Log("added enemy aoe");
 
 
 
@@ -86,7 +86,7 @@ namespace TomeOfTheFirebird.New_Content.Feats
            //DiscordantSongBuffMade.Components = DiscordantSongBuffMade.Components.Append(new AddAreaEffect() { m_AreaEffect = DiscordantAoEFriendlyBuilt.ToReference<BlueprintAbilityAreaEffectReference>() }).ToArray();
 
 
-            var HatOfHearteningSong = Resources.GetBlueprint<BlueprintFeature>("c25df29d2599a81428a7badf51ebd4d1");
+            var HatOfHearteningSong = BlueprintTools.GetBlueprint<BlueprintFeature>("c25df29d2599a81428a7badf51ebd4d1");
             var DiscordantFeatMaker = MakerTools.MakeFeature("DiscordantSong", "Discordant Song", "Whenever you are using bardic performance to create a spell-like or supernatural effect, allies within 30 feet of you deal an extra 1d6 points of sonic damage with successful weapon attacks. This damage stacks with other energy damage a weapon might deal. Projectile weapons bestow this extra damage on their ammunition, but the extra damage is dealt only if the projectile hits a target within 30 feet of you.");
             DiscordantFeatMaker.SetRanks(1);
             DiscordantFeatMaker.SetFeatureGroups(FeatureGroup.Feat);
@@ -103,7 +103,7 @@ namespace TomeOfTheFirebird.New_Content.Feats
 
             var DiscordantSong = DiscordantFeatMaker.Configure();
 
-            if (ModSettings.NewContent.Feats.IsEnabled("DiscordantSong"))
+            if (Main.TotFContext.NewContent.Feats.IsEnabled("DiscordantSong"))
             {
                 TabletopTweaks.Core.Utilities.FeatTools.AddAsFeat(DiscordantSong);
                 

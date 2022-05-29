@@ -8,7 +8,6 @@ using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Components;
 using System.Linq;
 using TabletopTweaks.Core.Utilities;
-using TomeOfTheFirebird.Config;
 using TomeOfTheFirebird.Helpers;
 
 namespace TomeOfTheFirebird.New_Content.Spells
@@ -17,7 +16,7 @@ namespace TomeOfTheFirebird.New_Content.Spells
     {
         public static void Build()
         {
-            var HealActual = Resources.GetBlueprint<BlueprintAbility>("ff8f1534f66559c478448723e16b6624");
+            var HealActual = BlueprintTools.GetBlueprint<BlueprintAbility>("ff8f1534f66559c478448723e16b6624");
             string desc = "This spell functions like heal, but it affects only the paladin’s special mount (typically a horse). \n Heal:Heal enables you to channel positive energy into a creature to wipe away injury and afflictions. It immediately ends any and all of the following adverse conditions affecting the target: ability damage, blinded, confused, dazed, dazzled, deafened, diseased, exhausted, fatigued, feebleminded, insanity, nauseated, poisoned, sickened, and stunned. It also cures 10 hit points of damage per level of the caster, to a maximum of 150 points at 15th level. \n Heal does not remove negative levels or restore permanently drained ability score points.";
             var healmountcastmaker = MakerTools.MakeSpell("HealMountCast", "Heal Mount", desc, HealActual.Icon, Kingmaker.Blueprints.Classes.Spells.SpellSchool.Conjuration, new Kingmaker.Localization.LocalizedString(), new Kingmaker.Localization.LocalizedString());
             healmountcastmaker.AddSpellDescriptors(SpellDescriptor.Cure, SpellDescriptor.RestoreHP);
@@ -75,7 +74,7 @@ namespace TomeOfTheFirebird.New_Content.Spells
 
             var castMade = healmountcastmaker.Configure();
 
-            if (ModSettings.NewContent.Spells.IsEnabled("HealMount"))
+            if (Main.TotFContext.NewContent.Spells.IsEnabled("HealMount"))
             {
                 SpellTools.AddToSpellList(castMade, SpellTools.SpellList.PaladinSpellList, 3);
             }

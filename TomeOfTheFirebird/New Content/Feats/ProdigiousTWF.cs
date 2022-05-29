@@ -2,7 +2,7 @@
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Selection;
 using Kingmaker.EntitySystem.Stats;
-using TomeOfTheFirebird.Config;
+using TabletopTweaks.Core.Utilities;
 using TomeOfTheFirebird.Helpers;
 using TomeOfTheFirebird.NewComponents;
 
@@ -23,17 +23,17 @@ namespace TomeOfTheFirebird.New_Content.Feats
             maker.AddComponent(new TWFNoPenaltyFromNotLight());
 
             var result = maker.Configure();
-            if (ModSettings.NewContent.Feats.IsDisabled("ProdigiousTWF")) { return; }
+            if (Main.TotFContext.NewContent.Feats.IsDisabled("ProdigiousTWF")) { return; }
 
             TabletopTweaks.Core.Utilities.FeatTools.AddAsFeat(result);
             AlterTWFFeatCascade();
 
-            FeatureSelectionConfigurator.For(FeatTools.Selections.RangerStyleTwoWeaponSelection2.AssetGuidThreadSafe).AddToFeatures(result.AssetGuidThreadSafe);
-            FeatureSelectionConfigurator.For(FeatTools.Selections.RangerStyleTwoWeaponSelection6.AssetGuidThreadSafe).AddToFeatures(result.AssetGuidThreadSafe);
-            FeatureSelectionConfigurator.For(FeatTools.Selections.RangerStyleTwoWeaponSelection10.AssetGuidThreadSafe).AddToFeatures(result.AssetGuidThreadSafe);
-            FeatureSelectionConfigurator.For(FeatTools.Selections.RangerStyleShieldSelection2.AssetGuidThreadSafe).AddToFeatures(result.AssetGuidThreadSafe);
-            FeatureSelectionConfigurator.For(FeatTools.Selections.RangerStyleShieldSelection6.AssetGuidThreadSafe).AddToFeatures(result.AssetGuidThreadSafe);
-            FeatureSelectionConfigurator.For(FeatTools.Selections.RangerStyleShieldSelection10.AssetGuidThreadSafe).AddToFeatures(result.AssetGuidThreadSafe);
+            FeatureSelectionConfigurator.For(TabletopTweaks.Core.Utilities.FeatTools.Selections.RangerStyleTwoWeaponSelection2.AssetGuidThreadSafe).AddToFeatures(result.AssetGuidThreadSafe);
+            FeatureSelectionConfigurator.For(TabletopTweaks.Core.Utilities.FeatTools.Selections.RangerStyleTwoWeaponSelection6.AssetGuidThreadSafe).AddToFeatures(result.AssetGuidThreadSafe);
+            FeatureSelectionConfigurator.For(TabletopTweaks.Core.Utilities.FeatTools.Selections.RangerStyleTwoWeaponSelection10.AssetGuidThreadSafe).AddToFeatures(result.AssetGuidThreadSafe);
+            FeatureSelectionConfigurator.For(TabletopTweaks.Core.Utilities.FeatTools.Selections.RangerStyleShieldSelection2.AssetGuidThreadSafe).AddToFeatures(result.AssetGuidThreadSafe);
+            FeatureSelectionConfigurator.For(TabletopTweaks.Core.Utilities.FeatTools.Selections.RangerStyleShieldSelection6.AssetGuidThreadSafe).AddToFeatures(result.AssetGuidThreadSafe);
+            FeatureSelectionConfigurator.For(TabletopTweaks.Core.Utilities.FeatTools.Selections.RangerStyleShieldSelection10.AssetGuidThreadSafe).AddToFeatures(result.AssetGuidThreadSafe);
 
             
 
@@ -42,25 +42,25 @@ namespace TomeOfTheFirebird.New_Content.Feats
 
         private static void AlterTWFFeatCascade()
         {
-            var Prodigious = Resources.GetTabletopTweaksBlueprint<BlueprintFeature>("ProdigiousTWF");
+            var Prodigious = BlueprintTools.GetModBlueprint<BlueprintFeature>(Main.TotFContext, "ProdigiousTWF");
 
-            var TWF = Resources.GetBlueprint<BlueprintFeature>("ac8aaf29054f5b74eb18f2af950e752d");
+            var TWF = BlueprintTools.GetBlueprint<BlueprintFeature>("ac8aaf29054f5b74eb18f2af950e752d");
 
-            var BashingFinish = Resources.GetBlueprint<BlueprintFeature>("0b442a7b4aa598d4e912a4ecee0500ff");
-            var DoubleSlice = Resources.GetBlueprint<BlueprintFeature>("8a6a1920019c45d40b4561f05dcb3240");
-            var ShieldMaster = Resources.GetBlueprint<BlueprintFeature>("dbec636d84482944f87435bd31522fcc");
-            var ITWF = Resources.GetBlueprint<BlueprintFeature>("9af88f3ed8a017b45a6837eab7437629");
-            var GTWF = Resources.GetBlueprint<BlueprintFeature>("c126adbdf6ddd8245bda33694cd774e8");
-            var MTWF = Resources.GetBlueprint<BlueprintFeature>("c6afbb8c1a36a704a8041f35498f41a4");
+            var BashingFinish = BlueprintTools.GetBlueprint<BlueprintFeature>("0b442a7b4aa598d4e912a4ecee0500ff");
+            var DoubleSlice = BlueprintTools.GetBlueprint<BlueprintFeature>("8a6a1920019c45d40b4561f05dcb3240");
+            var ShieldMaster = BlueprintTools.GetBlueprint<BlueprintFeature>("dbec636d84482944f87435bd31522fcc");
+            var ITWF = BlueprintTools.GetBlueprint<BlueprintFeature>("9af88f3ed8a017b45a6837eab7437629");
+            var GTWF = BlueprintTools.GetBlueprint<BlueprintFeature>("c126adbdf6ddd8245bda33694cd774e8");
+            var MTWF = BlueprintTools.GetBlueprint<BlueprintFeature>("c6afbb8c1a36a704a8041f35498f41a4");
 
-            FeatTools.PatchFeatWithFeatLockedAlternateAbilityPrereqSimple(TWF, StatType.Dexterity, Prodigious, StatType.Strength);
+            Helpers.FeatTools.PatchFeatWithFeatLockedAlternateAbilityPrereqSimple(TWF, StatType.Dexterity, Prodigious, StatType.Strength);
 
-            FeatTools.PatchFeatWithFeatLockedAlternateAbilityPrereqSimple(BashingFinish, StatType.Dexterity, Prodigious, StatType.Strength);
-            FeatTools.PatchFeatWithFeatLockedAlternateAbilityPrereqSimple(DoubleSlice, StatType.Dexterity, Prodigious, StatType.Strength);
-            FeatTools.PatchFeatWithFeatLockedAlternateAbilityPrereqSimple(ShieldMaster, StatType.Dexterity, Prodigious, StatType.Strength);
-            FeatTools.PatchFeatWithFeatLockedAlternateAbilityPrereqSimple(ITWF, StatType.Dexterity, Prodigious, StatType.Strength);
-            FeatTools.PatchFeatWithFeatLockedAlternateAbilityPrereqSimple(GTWF, StatType.Dexterity, Prodigious, StatType.Strength);
-            FeatTools.PatchFeatWithFeatLockedAlternateAbilityPrereqSimple(MTWF, StatType.Dexterity, Prodigious, StatType.Strength);
+            Helpers.FeatTools.PatchFeatWithFeatLockedAlternateAbilityPrereqSimple(BashingFinish, StatType.Dexterity, Prodigious, StatType.Strength);
+            Helpers.FeatTools.PatchFeatWithFeatLockedAlternateAbilityPrereqSimple(DoubleSlice, StatType.Dexterity, Prodigious, StatType.Strength);
+            Helpers.FeatTools.PatchFeatWithFeatLockedAlternateAbilityPrereqSimple(ShieldMaster, StatType.Dexterity, Prodigious, StatType.Strength);
+            Helpers.FeatTools.PatchFeatWithFeatLockedAlternateAbilityPrereqSimple(ITWF, StatType.Dexterity, Prodigious, StatType.Strength);
+            Helpers.FeatTools.PatchFeatWithFeatLockedAlternateAbilityPrereqSimple(GTWF, StatType.Dexterity, Prodigious, StatType.Strength);
+            Helpers.FeatTools.PatchFeatWithFeatLockedAlternateAbilityPrereqSimple(MTWF, StatType.Dexterity, Prodigious, StatType.Strength);
 
 
 

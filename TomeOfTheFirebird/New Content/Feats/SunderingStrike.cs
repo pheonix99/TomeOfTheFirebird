@@ -2,7 +2,7 @@
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Selection;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
-using TomeOfTheFirebird.Config;
+using TabletopTweaks.Core.Utilities;
 using TomeOfTheFirebird.Helpers;
 
 namespace TomeOfTheFirebird.New_Content.Feats
@@ -11,7 +11,7 @@ namespace TomeOfTheFirebird.New_Content.Feats
     {
         public static void Build()
         {
-            var disarmingstrikebuff = Resources.GetBlueprint<BlueprintBuff>("a2a60c12e69603e47bb20218602a1119");
+            var disarmingstrikebuff = BlueprintTools.GetBlueprint<BlueprintBuff>("a2a60c12e69603e47bb20218602a1119");
 
             var SunderingBuff = MakerTools.MakeBuff("SunderingStrikeBuff", "Sundering Strike (Hidden Buff)", "", disarmingstrikebuff.Icon);
             SunderingBuff.SetFlags(BlueprintBuff.Flags.HiddenInUi, BlueprintBuff.Flags.StayOnDeath);
@@ -22,7 +22,7 @@ namespace TomeOfTheFirebird.New_Content.Feats
             var buffbuild = SunderingBuff.Configure();
           
             
-            //var stguid = ModSettings.Blueprints.GetGUID("SunderingStrikeToggleAbility");
+            //var stguid = Main.TotFContext.Blueprints.GetGUID("SunderingStrikeToggleAbility");
             var SunderingToggle = MakerTools.MakeToggle("SunderingStrikeToggleAbility", "Sundering Strike", "Whenever you score a critical hit with a melee attack, you can sunder your opponent’s weapon, in addition to the normal damage dealt by the attack. If your confirmation roll exceeds your opponent’s CMD, you may deal damage to your opponent’s weapon as if from the sunder combat maneuver (roll normal damage to the weapon separately). This does not provoke an attack of opportunity.", disarmingstrikebuff.Icon);
             //var SunderingToggle = ActivatableAbilityConfigurator.New("SunderingStrikeToggleAbility", stguid.ToString());
             
@@ -53,7 +53,7 @@ namespace TomeOfTheFirebird.New_Content.Feats
             SunderingFeat.SetFeatureTags(FeatureTag.Attack, FeatureTag.CombatManeuver);
 
             var sunderprocbuild = SunderingFeat.Configure();
-            if (ModSettings.NewContent.Feats.IsEnabled("SunderingStrike"))
+            if (Main.TotFContext.NewContent.Feats.IsEnabled("SunderingStrike"))
             {
                 FeatureConfigurator.For("9719015edcbf142409592e2cbaab7fe1").AddToIsPrerequisiteFor(sunderprocbuild.AssetGuidThreadSafe);
 
