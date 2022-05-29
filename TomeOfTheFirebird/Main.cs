@@ -19,14 +19,18 @@ namespace TomeOfTheFirebird
         {
             try
             {
-
+                
 
                 var harmony = new Harmony(modEntry.Info.Id);
                 TotFContext = new ModContextTomeOfTheFirebird(modEntry);
                 TotFContext.ModEntry.OnSaveGUI = OnSaveGUI;
                 TotFContext.ModEntry.OnGUI = UMMSettingsUI.OnGUI;
 
-                
+#if DEBUG
+                   TotFContext.Debug = true;
+                   TotFContext.Blueprints.Debug = true;
+#endif
+
                 harmony.PatchAll();
                 
                 PostPatchInitializer.Initialize(TotFContext);

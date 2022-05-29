@@ -22,27 +22,13 @@ namespace TomeOfTheFirebird.New_Content.Feats
             maker.AddToFeatureTags(FeatureTag.Attack, FeatureTag.Melee);
             maker.AddComponent(new TWFNoPenaltyFromNotLight());
 
-            var result = maker.Configure();
+            var Prodigious = maker.Configure();
             if (Main.TotFContext.NewContent.Feats.IsDisabled("ProdigiousTWF")) { return; }
 
-            TabletopTweaks.Core.Utilities.FeatTools.AddAsFeat(result);
-            AlterTWFFeatCascade();
+            TabletopTweaks.Core.Utilities.FeatTools.AddAsFeat(Prodigious);
 
-            FeatureSelectionConfigurator.For(TabletopTweaks.Core.Utilities.FeatTools.Selections.RangerStyleTwoWeaponSelection2.AssetGuidThreadSafe).AddToFeatures(result.AssetGuidThreadSafe);
-            FeatureSelectionConfigurator.For(TabletopTweaks.Core.Utilities.FeatTools.Selections.RangerStyleTwoWeaponSelection6.AssetGuidThreadSafe).AddToFeatures(result.AssetGuidThreadSafe);
-            FeatureSelectionConfigurator.For(TabletopTweaks.Core.Utilities.FeatTools.Selections.RangerStyleTwoWeaponSelection10.AssetGuidThreadSafe).AddToFeatures(result.AssetGuidThreadSafe);
-            FeatureSelectionConfigurator.For(TabletopTweaks.Core.Utilities.FeatTools.Selections.RangerStyleShieldSelection2.AssetGuidThreadSafe).AddToFeatures(result.AssetGuidThreadSafe);
-            FeatureSelectionConfigurator.For(TabletopTweaks.Core.Utilities.FeatTools.Selections.RangerStyleShieldSelection6.AssetGuidThreadSafe).AddToFeatures(result.AssetGuidThreadSafe);
-            FeatureSelectionConfigurator.For(TabletopTweaks.Core.Utilities.FeatTools.Selections.RangerStyleShieldSelection10.AssetGuidThreadSafe).AddToFeatures(result.AssetGuidThreadSafe);
 
             
-
-
-        }
-
-        private static void AlterTWFFeatCascade()
-        {
-            var Prodigious = BlueprintTools.GetModBlueprint<BlueprintFeature>(Main.TotFContext, "ProdigiousTWF");
 
             var TWF = BlueprintTools.GetBlueprint<BlueprintFeature>("ac8aaf29054f5b74eb18f2af950e752d");
 
@@ -62,7 +48,14 @@ namespace TomeOfTheFirebird.New_Content.Feats
             Helpers.FeatTools.PatchFeatWithFeatLockedAlternateAbilityPrereqSimple(GTWF, StatType.Dexterity, Prodigious, StatType.Strength);
             Helpers.FeatTools.PatchFeatWithFeatLockedAlternateAbilityPrereqSimple(MTWF, StatType.Dexterity, Prodigious, StatType.Strength);
 
+            FeatureSelectionConfigurator.For(TabletopTweaks.Core.Utilities.FeatTools.Selections.RangerStyleTwoWeaponSelection2.AssetGuidThreadSafe).AddToFeatures(Prodigious.AssetGuidThreadSafe);
+            FeatureSelectionConfigurator.For(TabletopTweaks.Core.Utilities.FeatTools.Selections.RangerStyleTwoWeaponSelection6.AssetGuidThreadSafe).AddToFeatures(Prodigious.AssetGuidThreadSafe);
+            FeatureSelectionConfigurator.For(TabletopTweaks.Core.Utilities.FeatTools.Selections.RangerStyleTwoWeaponSelection10.AssetGuidThreadSafe).AddToFeatures(Prodigious.AssetGuidThreadSafe);
+            FeatureSelectionConfigurator.For(TabletopTweaks.Core.Utilities.FeatTools.Selections.RangerStyleShieldSelection2.AssetGuidThreadSafe).AddToFeatures(Prodigious.AssetGuidThreadSafe);
+            FeatureSelectionConfigurator.For(TabletopTweaks.Core.Utilities.FeatTools.Selections.RangerStyleShieldSelection6.AssetGuidThreadSafe).AddToFeatures(Prodigious.AssetGuidThreadSafe);
+            FeatureSelectionConfigurator.For(TabletopTweaks.Core.Utilities.FeatTools.Selections.RangerStyleShieldSelection10.AssetGuidThreadSafe).AddToFeatures(Prodigious.AssetGuidThreadSafe);
 
+            
 
 
         }

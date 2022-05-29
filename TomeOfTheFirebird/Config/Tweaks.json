@@ -55,7 +55,12 @@
       "RestoreEarlyCures": {
         "Enabled": true,
         "Description": "Purifier loses its cure spells but gains absolutely nothing relative to stock oracle before level 5. This restores CLW/CMW access."
+      },
+      "CelestialArmorTraining": {
+        "Enabled": true,
+        "Description": "Purifier's Celestial Armor unique revelation now grants advanced armor training access. Note: Absolutely Requires Tabletop Tweaks Base."
       }
+
     }
   }
 }

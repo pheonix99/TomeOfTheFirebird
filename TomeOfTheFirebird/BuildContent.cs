@@ -22,6 +22,7 @@ using TomeOfTheFirebird.QuestTweaks;
 using TomeOfTheFirebird.Reference;
 using TomeOfTheFirebird.Bugfixes.Classes;
 using TomeOfTheFirebird.Modified_Content.Archetypes;
+using TomeOfTheFirebird.New_Content.Features;
 
 namespace TomeOfTheFirebird
 {
@@ -53,6 +54,12 @@ namespace TomeOfTheFirebird
                 ArcanistFixes.DoFixes();
                 ChainsOfFire.BuildSpell();
                 PurifierLimitedCures.AddPurifierLimitedCures();
+
+                FighterArmorTrainingFakeLevel.AddFighterArmorTrainingRank();
+
+                CelestialArmorRevelation.Make();
+
+
                 ElementalShieldSpells.Build();
                 ProdigiousTWF.AddProdigiousTWF();
                 HealMount.Build();
@@ -96,7 +103,7 @@ namespace TomeOfTheFirebird
         {
             static bool Initialized;
 
-            [HarmonyPriority(Priority.VeryLow)]
+            [HarmonyPriority(Priority.Last)]
             static void Postfix()
             {
                 if (Initialized) return;
@@ -133,6 +140,9 @@ namespace TomeOfTheFirebird
                 CavalierFixes.FixOrderAbilityDisplays();
                 CavalierFixes.FixOrderOfTheStarChannelAssistance();
                 ExtraMercies.AddToThings();
+
+                FighterArmorTrainingFakeLevel.Connect();
+               
             }
         }
 

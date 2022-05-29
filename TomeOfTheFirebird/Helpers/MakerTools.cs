@@ -25,7 +25,7 @@ namespace TomeOfTheFirebird.Helpers
             var guid = Main.TotFContext.Blueprints.GetGUID(systemName);
             LocalizedString name = LocalizationTool.CreateString(systemName + ".Name", displayName);
             LocalizedString desc = LocalizationTool.CreateString(systemName + ".Desc", description);
-            
+            Main.TotFContext.Logger.Log($"Guid for {systemName} is {guid.ToString()}");
             var res = FeatureConfigurator.New(systemName, guid.ToString()).SetDisplayName(name).SetDescription(desc);
             if (icon != null)
             {

@@ -156,6 +156,8 @@
     <Compile Include="New Content\Feats\BreathWeaponFeats.cs" />
     <Compile Include="New Content\Feats\DiscordantSong.cs" />
     <Compile Include="New Content\Feats\SunderingStrike.cs" />
+    <Compile Include="New Content\Features\CelestialArmorRevelation.cs" />
+    <Compile Include="New Content\Features\FighterArmorTrainingFakeLevel.cs" />
     <Compile Include="New Content\Features\PurifierEarlyCures.cs" />
     <Compile Include="New Components\AbilityTargetHasSlashingPiercingWeaponInRelevantHand.cs" />
     <Compile Include="New Components\ContextWeaponCategoryExtraDamageDice.cs" />
