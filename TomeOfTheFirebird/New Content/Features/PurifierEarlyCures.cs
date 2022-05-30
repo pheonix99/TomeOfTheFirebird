@@ -1,4 +1,5 @@
 ﻿using BlueprintCore.Utils;
+using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using System;
 using TabletopTweaks.Core.Utilities;
@@ -14,11 +15,15 @@ namespace TomeOfTheFirebird.NewContent.Features
             var Oracle = PuriferArchetype.GetParentClass();
 
 
-            //BlueprintFeature oracleCures = Resources.GetBlueprint<BlueprintFeature>("0f7fb23d8f97b024388a433c5a8d493f").ToReference<BlueprintFeatureReference>();
+            BlueprintFeature oracleCures = BlueprintTools.GetBlueprint<BlueprintFeature>("0f7fb23d8f97b024388a433c5a8d493f").ToReference<BlueprintFeatureReference>();
             //var cure1 = oracleCures.Components.FirstOrDefault(x => (x as AddKnownSpell).SpellLevel == 1);
             //var cure2 = oracleCures.Components.FirstOrDefault(x => (x as AddKnownSpell).SpellLevel == 2);
-            var make = MakerTools.MakeFeature("PurifierLimitedCures", "Basic Cure Spells", "Purifers still can cast the most basic cure spells");
+            var make = MakerTools.MakeFeature("PurifierLimitedCures", "Basic Cure Spells", "Purifers still can cast the most basic cure spells", icon:oracleCures.Icon);
             make.SetIsClassFeature(true);
+            make.SetHideInUi(false);
+            
+            make.SetHideInCharacterSheetAndLevelUp(false);
+           
             make.SetRanks(1);
             make.SetReapplyOnLevelUp(true);
             make.AddKnownSpell(Oracle.AssetGuidThreadSafe, 1, "5590652e1c2225c4ca30c4a699ab3649", PuriferArchetype.AssetGuidThreadSafe);

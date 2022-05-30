@@ -100,6 +100,8 @@ namespace TomeOfTheFirebird.New_Content.Feats
             //Bard or Skald
             DiscordantFeatMaker.PrerequisiteClassLevel("772c83a25e2268e448e841dcd548235f", 10, group: Kingmaker.Blueprints.Classes.Prerequisites.Prerequisite.GroupType.Any);
             DiscordantFeatMaker.PrerequisiteClassLevel("6afa347d804838b48bda16acb0573dc0", 10, group: Kingmaker.Blueprints.Classes.Prerequisites.Prerequisite.GroupType.Any);
+            DiscordantFeatMaker.PrerequisiteArchetype("bfa11238e7ae3544bbeb4d0b92e897ec", "4d9a864eae278744aafa7ff23f2a6466", 10, group: Kingmaker.Blueprints.Classes.Prerequisites.Prerequisite.GroupType.Any);
+            DiscordantFeatMaker.PrerequisiteArchetype("e8f21e5b58e0569468e420ebea456124", "f8767821ec805bf479706392fcc3394c", 10, group: Kingmaker.Blueprints.Classes.Prerequisites.Prerequisite.GroupType.Any);
 
             var DiscordantSong = DiscordantFeatMaker.Configure();
 

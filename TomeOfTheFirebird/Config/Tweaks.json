@@ -62,5 +62,23 @@
       }
 
     }
+  },
+  "Witch": {
+    "DisableAll": false,
+    "Settings": {
+      "ReturnStigmatizedWitchPatron": {
+        "Enabled": true,
+        "Description": "Moves stigmatized out of the suck by cancelling the patron removal. By default, this will give Ember the Endurance Patron when first met"
+      },
+      "EmberHasHealingPatron": {
+        "Enabled": false,
+        "Description": "Gives Ember the Healing patron instead. Requires Return Stigmatized Witch Patron to be active"
+      },
+      "EmberHasElementsPatron": {
+        "Enabled": false,
+        "Description": "Gives Ember the Elements patron instead. Requires Return Stigmatized Witch Patron to be active"
+      }
+
+    }
   }
 }

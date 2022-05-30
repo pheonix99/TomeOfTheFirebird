@@ -18,24 +18,29 @@ namespace TomeOfTheFirebird.New_Content.Features
         {
             var CelestialArmor = BlueprintTools.GetBlueprint<BlueprintFeature>("7dc8d7dede2704640956f7bc4102760a");
             var ArmorTrainingScaling = BlueprintTool.Get<BlueprintFeature>("ArmorTrainingRank");
+            var PuriferArchetype = BlueprintTools.GetBlueprint<BlueprintArchetype>("c9df67160a77ecd4a97928f2455545d7");
             var OracleClass = BlueprintTools.GetBlueprint<BlueprintCharacterClass>("20ce9bf8af32bee4c8557a045ab499b1");
             var ArmorTraining = BlueprintTools.GetBlueprint<BlueprintFeature>("3c380607706f209499d951b29d3c44f3");
             var ArmorTrainingSelection = BlueprintTools.GetModBlueprint<BlueprintFeatureSelection>(Main.TotFContext, "ArmorTrainingSelection");
             var ArmorTrainingSpeedFeature = BlueprintTools.GetModBlueprint<BlueprintFeature>(Main.TotFContext, "ArmorTrainingSpeedFeature");
             var HeavyArmor = BlueprintTools.GetBlueprint<BlueprintFeature>("1b0f68188dcc435429fb87a022239681").ToReference<BlueprintFeatureBaseReference>();
-            var CelestialArmorProgressionMaker = MakerTools.MakeProg("CelestialArmorProgression", "Celestial Armor", "At 7th level, a purifier’s armor takes on a golden or silvery sheen and becomes light as a feather. She gains armor training as a fighter 4 levels lower than her oracle level. At 11th level, a purifier gains heavy armor proficiency.", ArmorTraining.Icon);
+            var CelestialArmorProgressionMaker = MakerTools.MakeProg("CelestialArmorProgression", "Celestial Armor", "At 7th level, a purifier’s armor takes on a golden or silvery sheen and becomes light as a feather. She gains armor training as a fighter 4 levels lower than her oracle level. This includes advanced armor training. At 11th level, a purifier gains heavy armor proficiency.", ArmorTraining.Icon);
             CelestialArmorProgressionMaker.SetRanks(1);
             CelestialArmorProgressionMaker.SetIsClassFeature(true);
             CelestialArmorProgressionMaker.SetGiveFeaturesForPreviousLevels(true);
             CelestialArmorProgressionMaker.SetReapplyOnLevelUp(true);
-            var entries = Enumerable.Range(4, 20).Select(i => new LevelEntry
+            
+            CelestialArmorProgressionMaker.SetHideInUi(false);
+            CelestialArmorProgressionMaker.SetHideInCharacterSheetAndLevelUp(false);
+            
+            List<LevelEntry> entries = Enumerable.Range(4, 20).Select(i => new LevelEntry
             {
                 Level = i,
                 m_Features = new List<BlueprintFeatureBaseReference> {
                             ArmorTrainingScaling.ToReference<BlueprintFeatureBaseReference>()
                         },
 
-            });
+            }).ToList();
             entries.First(x => x.Level == 7).m_Features.Add(ArmorTraining.ToReference<BlueprintFeatureBaseReference>());
             if (ArmorTrainingSpeedFeature != null)
             {
@@ -61,9 +66,14 @@ namespace TomeOfTheFirebird.New_Content.Features
 
             CelestialArmorProgressionMaker.AddToLevelEntries(entries.ToArray());
             CelestialArmorProgressionMaker.AddToClasses(new BlueprintProgression.ClassWithLevel() { m_Class = OracleClass.ToReference<BlueprintCharacterClassReference>() });
+            CelestialArmorProgressionMaker.AddToArchetypes(new BlueprintProgression.ArchetypeWithLevel { m_Archetype = PuriferArchetype.ToReference<BlueprintArchetypeReference>() });
 
-            
-            Main.TotFContext.Logger.LogPatch("Made", CelestialArmorProgressionMaker.Configure());
+            var made = CelestialArmorProgressionMaker.Configure();
+            foreach(LevelEntry l in made.LevelEntries)
+            {
+                Main.TotFContext.Logger.Log($"Level Entry {l.Level} in celestial armor has {l.Features.Count} elements");
+            }
+            Main.TotFContext.Logger.LogPatch("Made", made);
         }
 
         

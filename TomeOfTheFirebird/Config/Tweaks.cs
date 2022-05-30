@@ -10,6 +10,7 @@ namespace TomeOfTheFirebird.Config
         public SettingGroup RewardFeatureConversion;
         public SettingGroup Crusade;
         public SettingGroup Purifier;
+        public SettingGroup Witch;
         public SettingGroup Bloodlines;
         public void Init()
         {
@@ -28,6 +29,7 @@ namespace TomeOfTheFirebird.Config
             RewardFeatureConversion.LoadSettingGroup(loadedSettings.RewardFeatureConversion, NewSettingsOffByDefault);
             Crusade.LoadSettingGroup(loadedSettings.Crusade, NewSettingsOffByDefault);
             Purifier.LoadSettingGroup(loadedSettings.Purifier, NewSettingsOffByDefault);
+            Witch.LoadSettingGroup(loadedSettings.Witch, NewSettingsOffByDefault);
             Bloodlines.LoadSettingGroup(loadedSettings.Bloodlines, NewSettingsOffByDefault);
 
             

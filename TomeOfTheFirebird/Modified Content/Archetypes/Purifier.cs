@@ -45,23 +45,27 @@ namespace TomeOfTheFirebird.Modified_Content.Archetypes
                
                 var earlycure = BlueprintTool.Get<BlueprintFeature>("PurifierLimitedCures");
 
-                LevelEntry l = PuriferArchetype.AddFeatures.FirstOrDefault(x => x.Level == 1);
-                if (l == null)
-                {
-                    l = new LevelEntry
+              
+                    LevelEntry level1 = new LevelEntry
                     {
                         Level = 1,
-                        Features = { earlycure }
+                        m_Features = { earlycure.ToReference<BlueprintFeatureBaseReference>() }
                     };
 
-
-                    PuriferArchetype.AddFeatures = PuriferArchetype.AddFeatures.AddToArray(l);
+                    
+                    PuriferArchetype.AddFeatures = PuriferArchetype.AddFeatures.AppendToArray(level1);
+                    
+                
+                
+                if (PuriferArchetype.AddFeatures.FirstOrDefault(x=>x.Level == 1)?.Features.Any(x=>x.AssetGuidThreadSafe == earlycure.AssetGuidThreadSafe) == true)
+                {
+                    Main.TotFContext.Logger.Log("Found earlycures on purifier");
                 }
                 else
                 {
-
-                    l.Features.Add(earlycure);//Doubling up here won't hurt
+                    Main.TotFContext.Logger.Log("Didn't find earlycures on purifier");
                 }
+
                 Main.TotFContext.Logger.LogPatch("Patched", earlycure);
             }
 
@@ -89,7 +93,7 @@ namespace TomeOfTheFirebird.Modified_Content.Archetypes
                 var NeoCelestialArmor = BlueprintTool.Get<BlueprintProgression>("CelestialArmorProgression");
                 foreach(var v in PuriferArchetype.AddFeatures)
                 {
-                    v.m_Features.RemoveAll(x => x.guid == CelestialArmor.guid);
+                    v.m_Features.RemoveAll(x => x.deserializedGuid == CelestialArmor.deserializedGuid);
                 }
                 PuriferArchetype.AddFeatures.FirstOrDefault(x => x.Level == 7)?.m_Features.Add(NeoCelestialArmor.ToReference<BlueprintFeatureBaseReference>());
                 Main.TotFContext.Logger.LogPatch("Deployed new version:", NeoCelestialArmor);

@@ -13,6 +13,8 @@ Requires Tabletop Tweaks Core Module
 Added Infinite-use sorc bloodline claw powers
 Added merged sorc draconic bloodline claw powers
 Added Ability Focus: Breath Weapon
+Added option to give Stigmatized Witch patron back, and options for Ember's default patron
+Purifier unique revelation Celestial Armor now behaves exactly as Armor Training including Advanced Armor Training access (Requires Tabletop Tweaks Base Module and Advanced Armor Training to be enabled)
 
 1.1.1
 Fixed Mercy: Injured always applying

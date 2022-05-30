@@ -117,7 +117,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="TabletopTweaks-Core">
+    <Reference Include="TabletopTweaks-Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\TabletopTweaks-Core\TabletopTweaks-Core\bin\Debug\TabletopTweaks-Core.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule_public">
@@ -145,6 +146,7 @@
     <Compile Include="Helpers\Extensions.cs" />
     <Compile Include="Helpers\FeatTools.cs" />
     <Compile Include="Modified Content\Archetypes\Purifier.cs" />
+    <Compile Include="Modified Content\Archetypes\Witch.cs" />
     <Compile Include="Modified Content\Bloodlines\AbyssalBloodlineModifications.cs" />
     <Compile Include="Modified Content\Bloodlines\DraconicBloodlineModifications.cs" />
     <Compile Include="Modified Content\Crusade\BetterDisplay.cs" />
@@ -153,6 +155,7 @@
     <Compile Include="New Components\ContextDamageValueEnergyDamageDice.cs" />
     <Compile Include="New Components\IncreaseSpecificSpellsCasterLevel.cs" />
     <Compile Include="New Components\Prerequisites\PrerequisiteBreathWeaponAccess.cs" />
+    <Compile Include="New Components\Prerequisites\PrerequisiteProperty.cs" />
     <Compile Include="New Content\Feats\BreathWeaponFeats.cs" />
     <Compile Include="New Content\Feats\DiscordantSong.cs" />
     <Compile Include="New Content\Feats\SunderingStrike.cs" />
@@ -212,6 +215,7 @@
     <None Include="Info.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <EmbeddedResource Include="Localization\LocalizationPack.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

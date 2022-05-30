@@ -81,7 +81,7 @@ namespace TomeOfTheFirebird
                 DraconicBloodlineModifications.SorcererClawsOverhaul();
                 AbyssalBloodlineModifications.GiveInfiniteUses();
                 BreathWeaponFeats.BuildAbilityFocusBreathWeapons();
-
+                Witch.ReturnAccursedPatrons();
                
 
                 BlueprintFeature ActsBook = BlueprintTools.GetBlueprint<BlueprintFeature>("f16ea400ed67470b83cfd6c0dedbce6f");

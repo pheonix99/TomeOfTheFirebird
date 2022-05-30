@@ -17,7 +17,7 @@ namespace TomeOfTheFirebird.ModLogic
             LoadSettings("NewContent.json", "TomeOfTheFirebird.Config", ref NewContent);
             LoadSettings("Tweaks.json", "TomeOfTheFirebird.Config", ref Tweaks);
             LoadBlueprints("TomeOfTheFirebird.Config", this);
-            //LoadLocalization("TomeOfTheFirebird.Localization");
+            LoadLocalization("TomeOfTheFirebird.Localization");
 
         }
 
