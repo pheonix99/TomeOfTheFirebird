@@ -15,6 +15,7 @@ Added merged sorc draconic bloodline claw powers
 Added Ability Focus: Breath Weapon
 Added option to give Stigmatized Witch patron back, and options for Ember's default patron
 Purifier unique revelation Celestial Armor now behaves exactly as Armor Training including Advanced Armor Training access (Requires Tabletop Tweaks Base Module and Advanced Armor Training to be enabled)
+Discordant Song should now work with Martyr and Sensei
 
 1.1.1
 Fixed Mercy: Injured always applying
@@ -125,6 +126,9 @@ Movanic Devas now use greatswords properly
 ### Archetypes
 ---
 Purifers now get Cure Light / Cure Moderate automatically - the archetype takes till level five to not be Oracle But Worse In Literally Every Way otherwise.
+Purifier Celestial Armor now works exactly like Armor Training of a fighter with 4 less fighter levels - including Advanced Armor Training. This hard-requires Tabletop Tweaks Base and will not activate if it can't detect that.
+
+Stigmatized Witch gets Patron selection back - I consider switching from prepared to spontaneous a side-grade at best, with Witch's weak spell list downgrading patron to curse at the same time was just a nerfing. Comes with options to select Ember's patron. Disabled by default.
 
 ### Bloodline Powers
 Unlimited Sorcerer Bloodline Claws: Removes use limit on abyssal/draconic bloodline claws. 
@@ -147,5 +151,10 @@ If you enable the Custom Reward, instead of giving you a perma holy aura buff th
 ---
 Made rewards from Monster Slayers and Local Production crusade events permanent if options are selected because it makes more sense.
 
+
+##Coming Soon:
+Shield Other + Unwilling Shield
+Draconic Bloodline Claw Merges for Bloodrager
+More Breath Weapon Fun
 
 

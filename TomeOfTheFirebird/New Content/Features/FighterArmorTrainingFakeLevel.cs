@@ -49,6 +49,7 @@ namespace TomeOfTheFirebird.New_Content.Features
             else
             {
                 Main.TotFContext.Logger.Log($"Couldn't get FighterArmorTrainingProperty, cannot implement Armor Training connection");
+                return;
             }
             for (int i = 1; i <= 6; i++)
             {
