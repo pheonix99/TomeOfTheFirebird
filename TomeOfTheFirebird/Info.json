@@ -2,7 +2,7 @@
   "Id": "TomeOfTheFirebird",
   "DisplayName": "Tome Of The Firebird",
   "Author": "pheonix99",
-  "Version": "1.2.0",
+  "Version": "1.2.1",
   "ManagerVersion": "0.21.3",
   "AssemblyName": "TomeOfTheFirebird.dll",
   "EntryMethod": "TomeOfTheFirebird.Main.Load",

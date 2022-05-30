@@ -17,7 +17,7 @@ namespace TomeOfTheFirebird.New_Spells
     {
         static string desc = "This spell makes a weapon magically keen, improving its ability to deal telling blows.This transmutation doubles the threat range of the weapon.A threat range of 20 becomes 19-20, a threat range of 19-20 becomes 17-20, and a threat range of 18-20 becomes 15-20. The spell can be cast only on piercing or slashing weapons.If cast on arrows or crossbow bolts, the keen edge on a particular projectile ends after one use, whether or not the missile strikes its intended target.Treat shuriken as arrows, rather than as thrown weapons, for the purpose of this spell. \n\n Multiple effects that increase a weapon’s threat range (such as the keen special weapon property and the Improved Critical feat) don’t stack.You can’t cast this spell on a natural weapon, such as a claw.";
         static Sprite keenSprite;
-        public static BlueprintAbility BuildSPell()
+        public static void BuildSPell()
         {
             keenSprite = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("27d76f1afda08a64d897cc81201b5218").Icon;//Keen weapon bond
             var maker = MakerTools.MakeSpell("KeenEdge", "Keen Edge",desc , keenSprite, Kingmaker.Blueprints.Classes.Spells.SpellSchool.Transmutation, new Kingmaker.Localization.LocalizedString(), LocalizedStrings.TenMinutePerLevelDuration);
@@ -40,7 +40,14 @@ namespace TomeOfTheFirebird.New_Spells
 
 
 
-            return maker.Configure();
+            var made = maker.Configure();
+            if (Main.TotFContext.NewContent.Spells.IsEnabled("KeenEdge"))
+            {
+                made.AddToSpellList(SpellTools.SpellList.BloodragerSpellList, 3);
+                made.AddToSpellList(SpellTools.SpellList.InquisitorSpellList, 3);
+                made.AddToSpellList(SpellTools.SpellList.MagusSpellList, 3);
+                made.AddToSpellList(SpellTools.SpellList.WizardSpellList, 3);
+            }
         }
 
         private static AbilityConfigurator MakeHandedVersion(bool main)

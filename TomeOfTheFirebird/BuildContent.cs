@@ -45,14 +45,19 @@ namespace TomeOfTheFirebird
                 Initialized = true;
                 Main.TotFContext.Logger.Log("Building new spells");
                 
-                 gloomblind = GloomblindBolts.BuildSpell();
+             
                
+               
+                ArcanistFixes.DoFixes();
+                ChainsOfFire.BuildSpell();
+
                 BoneFists.BuildSpell();
                 TelekineticStrikes.BuildSpell();
                 SpearOfPurity.BuildSpearOfPurity();
-
-                ArcanistFixes.DoFixes();
-                ChainsOfFire.BuildSpell();
+                HealMount.Build();
+                KeenEdge.BuildSPell();
+                FreezingSphere.Build();
+                GloomblindBolts.BuildSpell();
                 PurifierLimitedCures.AddPurifierLimitedCures();
 
                 FighterArmorTrainingFakeLevel.AddFighterArmorTrainingRank();
@@ -62,9 +67,7 @@ namespace TomeOfTheFirebird
 
                 ElementalShieldSpells.Build();
                 ProdigiousTWF.AddProdigiousTWF();
-                HealMount.Build();
-                keenEdge = KeenEdge.BuildSPell();
-                FreezingSphere.Build();
+                
                 MonavicsUseTwoHanders.Do();
                 CrusadeBuffTweaks.PermaMonsterSlayers();
                 CrusadeBuffTweaks.PermaLocalProduction();
@@ -94,7 +97,7 @@ namespace TomeOfTheFirebird
                 {
                     Main.TotFContext.Logger.Log($"Acts Of Iomedae Reports No Icon");
                 }
-
+                BoneFists.AddToLists();
             }
         }
 
@@ -111,32 +114,19 @@ namespace TomeOfTheFirebird
           
                 Main.TotFContext.Logger.Log("Adding to spell lists");
 
-                if (Main.TotFContext.NewContent.Spells.IsEnabled("GloomblindBolts"))
-                {
-                    //TODO check bloodrager access
-                    gloomblind.AddToSpellList(SpellTools.SpellList.BloodragerSpellList, 3);
-                    gloomblind.AddToSpellList(SpellTools.SpellList.MagusSpellList, 3);
-                    gloomblind.AddToSpellList(SpellTools.SpellList.WizardSpellList, 3);
-                    gloomblind.AddToSpellList(SpellTools.SpellList.WitchSpellList, 3);
-                }
+                
                 
                
                 
 
-                if (Main.TotFContext.NewContent.Spells.IsEnabled("KeenEdge"))
-                {
-                    keenEdge.AddToSpellList(SpellTools.SpellList.BloodragerSpellList, 3);
-                    keenEdge.AddToSpellList(SpellTools.SpellList.InquisitorSpellList, 3);
-                    keenEdge.AddToSpellList(SpellTools.SpellList.MagusSpellList, 3);
-                    keenEdge.AddToSpellList(SpellTools.SpellList.WizardSpellList, 3);
-                }
+                
                 AddItemsToShop.Add();
                 Purifier.PatchPurifier();
                 FixExtraHitsOnProcs.FixFirebrand();
                 FixExtraHitsOnProcs.FixRandomWeaponsRiders();
                 FixExtraHitsOnProcs.FixClawsOfSacredBeast();
 
-                BoneFists.AddToLists();
+                
                 CavalierFixes.FixOrderAbilityDisplays();
                 CavalierFixes.FixOrderOfTheStarChannelAssistance();
                 ExtraMercies.AddToThings();

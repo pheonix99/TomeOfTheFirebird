@@ -8,6 +8,9 @@ All homebrew content or divergences from TT will be called out.
 
 NOW REQUIRES TabletopTweaks Core Module!
 ##Changelog
+1.2.1
+Fixed bug with Oracle not being able to learn Bone Fists
+
 1.2.0
 Requires Tabletop Tweaks Core Module
 Added Infinite-use sorc bloodline claw powers

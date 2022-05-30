@@ -24,7 +24,7 @@ namespace TomeOfTheFirebird.New_Spells
 {
     public static class GloomblindBolts
     {
-        public static BlueprintAbility BuildSpell()
+        public static void BuildSpell()
         {
             
            
@@ -76,7 +76,16 @@ namespace TomeOfTheFirebird.New_Spells
             Main.TotFContext.Logger.Log("Building Gloomblind");
             gloomblind.AddCraftInfoComponent(Kingmaker.Craft.CraftSpellType.Damage, Kingmaker.Craft.CraftSavingThrow.Reflex, Kingmaker.Craft.CraftAOE.None);
                 Main.TotFContext.Logger.Log("Built Gloomblind");
-                return gloomblind.Configure();
+            var made = gloomblind.Configure();
+            if (Main.TotFContext.NewContent.Spells.IsEnabled("GloomblindBolts"))
+            {
+                //TODO check bloodrager access
+                made.AddToSpellList(SpellTools.SpellList.BloodragerSpellList, 3);
+                made.AddToSpellList(SpellTools.SpellList.MagusSpellList, 3);
+                made.AddToSpellList(SpellTools.SpellList.WizardSpellList, 3);
+                made.AddToSpellList(SpellTools.SpellList.WitchSpellList, 3);
+            }
+           
             
         }
 
