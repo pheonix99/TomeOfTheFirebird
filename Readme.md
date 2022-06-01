@@ -8,6 +8,10 @@ All homebrew content or divergences from TT will be called out.
 
 NOW REQUIRES TabletopTweaks Core Module!
 ##Changelog
+1.2.2
+Claws should stay active after combat if infinite-uses is active
+Improved Tabletop Tweaks Base detection
+
 1.2.1
 Fixed bug with Oracle not being able to learn Bone Fists
 

@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TabletopTweaks.Core.Utilities;
 using TomeOfTheFirebird.Helpers;
+using UnityModManagerNet;
 
 namespace TomeOfTheFirebird.New_Content.Features
 {
@@ -42,27 +43,34 @@ namespace TomeOfTheFirebird.New_Content.Features
 
             }).ToList();
             entries.First(x => x.Level == 7).m_Features.Add(ArmorTraining.ToReference<BlueprintFeatureBaseReference>());
-            if (ArmorTrainingSpeedFeature != null)
-            {
-                entries.First(x => x.Level == 7).m_Features.Add(ArmorTrainingSpeedFeature.ToReference<BlueprintFeatureBaseReference>());
-                entries.First(x => x.Level == 11).m_Features.Add(ArmorTrainingSpeedFeature.ToReference<BlueprintFeatureBaseReference>());
-            }
-            else
-            {
-                Main.TotFContext.Logger.Log("Couldn't find ArmorTrainingSpeedFeature, Celestial Armor Will Not Have speed improvement");
-            }
+            
             entries.First(x => x.Level == 11).m_Features.Add(HeavyArmor);
 
-            if (ArmorTrainingSelection != null)
+            if (UnityModManager.FindMod("TabletopTweaks-Base") != null)
             {
-                entries.First(x => x.Level == 11).m_Features.Add(ArmorTrainingSelection.ToReference<BlueprintFeatureBaseReference>());
-                entries.First(x => x.Level == 15).m_Features.Add(ArmorTrainingSelection.ToReference<BlueprintFeatureBaseReference>());
-                entries.First(x => x.Level == 19).m_Features.Add(ArmorTrainingSelection.ToReference<BlueprintFeatureBaseReference>());
+                if (ArmorTrainingSpeedFeature != null)
+                {
+                    entries.First(x => x.Level == 7).m_Features.Add(ArmorTrainingSpeedFeature.ToReference<BlueprintFeatureBaseReference>());
+                    entries.First(x => x.Level == 11).m_Features.Add(ArmorTrainingSpeedFeature.ToReference<BlueprintFeatureBaseReference>());
+                }
+                else
+                {
+                    Main.TotFContext.Logger.Log("Couldn't find ArmorTrainingSpeedFeature, Celestial Armor Will Not Have speed improvement");
+                }
+                if (ArmorTrainingSelection != null)
+                {
+                    entries.First(x => x.Level == 11).m_Features.Add(ArmorTrainingSelection.ToReference<BlueprintFeatureBaseReference>());
+                    entries.First(x => x.Level == 15).m_Features.Add(ArmorTrainingSelection.ToReference<BlueprintFeatureBaseReference>());
+                    entries.First(x => x.Level == 19).m_Features.Add(ArmorTrainingSelection.ToReference<BlueprintFeatureBaseReference>());
+                }
+                else
+                {
+                    Main.TotFContext.Logger.Log("Couldn't find ArmorTrainingSpeedFeature, Celestial Armor Will Not Have Selections");
+                }
             }
-            else
-            {
-                Main.TotFContext.Logger.Log("Couldn't find ArmorTrainingSpeedFeature, Celestial Armor Will Not Have Selections");
-            }
+            
+           
+           
 
             CelestialArmorProgressionMaker.AddToLevelEntries(entries.ToArray());
             CelestialArmorProgressionMaker.AddToClasses(new BlueprintProgression.ClassWithLevel() { m_Class = OracleClass.ToReference<BlueprintCharacterClassReference>() });

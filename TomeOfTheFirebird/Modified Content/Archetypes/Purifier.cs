@@ -6,6 +6,7 @@ using Kingmaker.Blueprints.Classes.Selection;
 using Kingmaker.Blueprints.JsonSystem;
 using System.Linq;
 using TabletopTweaks.Core.Utilities;
+using UnityModManagerNet;
 
 namespace TomeOfTheFirebird.Modified_Content.Archetypes
 {
@@ -72,6 +73,8 @@ namespace TomeOfTheFirebird.Modified_Content.Archetypes
             void CelestialArmorTraining()
             {
                 if (Main.TotFContext.Tweaks.Purifier.IsDisabled("CelestialArmorTraining"))
+                    return;
+                if (UnityModManager.FindMod("TabletopTweaks-Base") == null)
                     return;
                 var ArmorTrainingSelection = BlueprintTools.GetModBlueprint<BlueprintFeatureSelection>(Main.TotFContext, "ArmorTrainingSelection");
                 if (ArmorTrainingSelection == null)

@@ -195,7 +195,7 @@ namespace TomeOfTheFirebird.Modified_Content.Bloodlines
             var toggle3 = MakerTools.MakeToggle("DragonClawsT3ActivatableAbility", clawsDisplayName, clawsDesc, t1claws.Icon);
             var toggle4 = MakerTools.MakeToggle("DragonClawsT4ActivatableAbility", clawsDisplayName, clawsDesc, t1claws.Icon);
             
-
+            
             toggle1.SetBuff("BloodlineDraconicUnifiedClawsBuffLevel1");
             toggle2.SetBuff("BloodlineDraconicUnifiedClawsBuffLevel2");
             toggle3.SetBuff("BloodlineDraconicUnifiedClawsBuffLevel3");
@@ -203,24 +203,32 @@ namespace TomeOfTheFirebird.Modified_Content.Bloodlines
             
 
 
-            toggle1.SetActivationType(Kingmaker.UnitLogic.ActivatableAbilities.AbilityActivationType.WithUnitCommand).SetDeactivateImmediately(true);
-            toggle2.SetActivationType(Kingmaker.UnitLogic.ActivatableAbilities.AbilityActivationType.WithUnitCommand).SetDeactivateImmediately(true);
-            toggle3.SetActivationType(Kingmaker.UnitLogic.ActivatableAbilities.AbilityActivationType.WithUnitCommand).SetDeactivateImmediately(true);
-            toggle4.SetActivationType(Kingmaker.UnitLogic.ActivatableAbilities.AbilityActivationType.WithUnitCommand).SetDeactivateImmediately(true);
+            toggle1.SetActivationType(Kingmaker.UnitLogic.ActivatableAbilities.AbilityActivationType.WithUnitCommand);
+            toggle2.SetActivationType(Kingmaker.UnitLogic.ActivatableAbilities.AbilityActivationType.WithUnitCommand);
+            toggle3.SetActivationType(Kingmaker.UnitLogic.ActivatableAbilities.AbilityActivationType.WithUnitCommand);
+            toggle4.SetActivationType(Kingmaker.UnitLogic.ActivatableAbilities.AbilityActivationType.WithUnitCommand);
             if (Main.TotFContext.Tweaks.Bloodlines.IsDisabled("UnlimitedSorcererBloodlineClaws"))
             {
-                toggle1.AddActivatableAbilityResourceLogic(Kingmaker.UnitLogic.ActivatableAbilities.ActivatableAbilityResourceLogic.ResourceSpendType.NewRound, "5be91334e3de5aa458ade509cc16daff");
-                toggle2.AddActivatableAbilityResourceLogic(Kingmaker.UnitLogic.ActivatableAbilities.ActivatableAbilityResourceLogic.ResourceSpendType.NewRound, "5be91334e3de5aa458ade509cc16daff");
-                toggle3.AddActivatableAbilityResourceLogic(Kingmaker.UnitLogic.ActivatableAbilities.ActivatableAbilityResourceLogic.ResourceSpendType.NewRound, "5be91334e3de5aa458ade509cc16daff");
-                toggle4.AddActivatableAbilityResourceLogic(Kingmaker.UnitLogic.ActivatableAbilities.ActivatableAbilityResourceLogic.ResourceSpendType.NewRound, "5be91334e3de5aa458ade509cc16daff");
+                toggle1.AddActivatableAbilityResourceLogic(Kingmaker.UnitLogic.ActivatableAbilities.ActivatableAbilityResourceLogic.ResourceSpendType.NewRound, "5be91334e3de5aa458ade509cc16daff").SetDeactivateImmediately(true).SetDeactivateIfCombatEnded(true);
+                toggle2.AddActivatableAbilityResourceLogic(Kingmaker.UnitLogic.ActivatableAbilities.ActivatableAbilityResourceLogic.ResourceSpendType.NewRound, "5be91334e3de5aa458ade509cc16daff").SetDeactivateImmediately(true).SetDeactivateIfCombatEnded(true);
+                toggle3.AddActivatableAbilityResourceLogic(Kingmaker.UnitLogic.ActivatableAbilities.ActivatableAbilityResourceLogic.ResourceSpendType.NewRound, "5be91334e3de5aa458ade509cc16daff").SetDeactivateImmediately(true).SetDeactivateIfCombatEnded(true);
+                toggle4.AddActivatableAbilityResourceLogic(Kingmaker.UnitLogic.ActivatableAbilities.ActivatableAbilityResourceLogic.ResourceSpendType.NewRound, "5be91334e3de5aa458ade509cc16daff").SetDeactivateImmediately(true).SetDeactivateIfCombatEnded(true);
                 
             }
             else
             {
+                toggle1.SetDeactivateIfCombatEnded(false).SetOnlyInCombat(false);
+                toggle2.SetDeactivateIfCombatEnded(false).SetOnlyInCombat(false);
+                toggle3.SetDeactivateIfCombatEnded(false).SetOnlyInCombat(false);
+                toggle4.SetDeactivateIfCombatEnded(false).SetOnlyInCombat(false);
+
                 foreach (string s in AllBaseGameDragonClawAbilities)
                 {
                     var claw = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>(s);
                     claw.RemoveComponents<ActivatableAbilityResourceLogic>();
+                    claw.DeactivateIfCombatEnded = false;
+                    claw.OnlyInCombat = false;
+                    claw.DeactivateImmediately = false;
                 }
             }
            

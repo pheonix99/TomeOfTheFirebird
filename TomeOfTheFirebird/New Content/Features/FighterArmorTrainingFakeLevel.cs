@@ -13,6 +13,7 @@ using TabletopTweaks.Core.NewComponents.Properties;
 using TabletopTweaks.Core.Utilities;
 using TomeOfTheFirebird.Helpers;
 using TomeOfTheFirebird.New_Components.Prerequisites;
+using UnityModManagerNet;
 
 namespace TomeOfTheFirebird.New_Content.Features
 {
@@ -32,6 +33,10 @@ namespace TomeOfTheFirebird.New_Content.Features
         {
             if (Main.TotFContext.Tweaks.Purifier.IsDisabled("CelestialArmorTraining"))
                 return;
+            if (UnityModManager.FindMod("TabletopTweaks-Base") == null)
+            {
+                return;
+            }
             var FighterClass = BlueprintTools.GetBlueprint<BlueprintCharacterClass>("48ac8db94d5de7645906c7d0ad3bcfbd");
             var prop = BlueprintTools.GetModBlueprint<BlueprintUnitProperty>(Main.TotFContext, "FighterArmorTrainingProperty");
             var feature = BlueprintTool.Get<BlueprintFeature>("ArmorTrainingRank");
