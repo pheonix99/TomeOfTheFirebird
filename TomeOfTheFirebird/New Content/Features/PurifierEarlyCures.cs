@@ -1,7 +1,5 @@
-﻿using BlueprintCore.Utils;
-using Kingmaker.Blueprints;
+﻿using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
-using System;
 using TabletopTweaks.Core.Utilities;
 using TomeOfTheFirebird.Helpers;
 
@@ -20,14 +18,15 @@ namespace TomeOfTheFirebird.NewContent.Features
             //var cure2 = oracleCures.Components.FirstOrDefault(x => (x as AddKnownSpell).SpellLevel == 2);
             var make = MakerTools.MakeFeature("PurifierLimitedCures", "Basic Cure Spells", "Purifers still can cast the most basic cure spells", icon:oracleCures.Icon);
             make.SetIsClassFeature(true);
-            make.SetHideInUi(false);
+            make.SetHideInUI(false);
             
             make.SetHideInCharacterSheetAndLevelUp(false);
            
             make.SetRanks(1);
             make.SetReapplyOnLevelUp(true);
-            make.AddKnownSpell(Oracle.AssetGuidThreadSafe, 1, "5590652e1c2225c4ca30c4a699ab3649", PuriferArchetype.AssetGuidThreadSafe);
-            make.AddKnownSpell(Oracle.AssetGuidThreadSafe, 2, "6b90c773a6543dc49b2505858ce33db5", PuriferArchetype.AssetGuidThreadSafe);
+            make.AddKnownSpell( characterClass: Oracle.AssetGuidThreadSafe, spellLevel: 1, spell: "5590652e1c2225c4ca30c4a699ab3649", archetype: PuriferArchetype.AssetGuidThreadSafe);
+            make.AddKnownSpell( characterClass: Oracle.AssetGuidThreadSafe, spellLevel: 2, spell: "6b90c773a6543dc49b2505858ce33db5", archetype: PuriferArchetype.AssetGuidThreadSafe);
+            
             make.Configure();
 
 

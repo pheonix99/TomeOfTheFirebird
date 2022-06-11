@@ -22,23 +22,23 @@ namespace TomeOfTheFirebird.New_Spells
             var TKStrikeBuilder = MakerTools.MakeSpell("TelekineticStrikes", "Telekinetic Strikes", "The touched creature’s limbs are charged with telekinetic force. \n \n For the duration of the spell, the target’s unarmed attacks or natural weapons deal an additional 1d4 points of force damage on each successful unarmed melee attack.", TKStrikeSprite, SpellSchool.Evocation, new Kingmaker.Localization.LocalizedString(), LocalizedStrings.OneMinutePerLevelDuration);
             var TKStrikeBuilderCast = MakerTools.MakeSpell("TelekineticStrikesCast", "Telekinetic Strikes", "The touched creature’s limbs are charged with telekinetic force. \n \n For the duration of the spell, the target’s unarmed attacks or natural weapons deal an additional 1d4 points of force damage on each successful unarmed melee attack.", TKStrikeSprite, SpellSchool.Evocation, new Kingmaker.Localization.LocalizedString(), LocalizedStrings.OneMinutePerLevelDuration);
 
-            TKStrikeBuilder.AddSpellDescriptors(SpellDescriptor.Force);
-            TKStrikeBuilderCast.AddSpellDescriptors(SpellDescriptor.Force);
+            TKStrikeBuilder.AddSpellDescriptorComponent(SpellDescriptor.Force);
+            TKStrikeBuilderCast.AddSpellDescriptorComponent(SpellDescriptor.Force);
 
             TKStrikeBuilder.AllowTargeting(false, false, true, true);
             TKStrikeBuilderCast.AllowTargeting(false, false, true, true);
-            TKStrikeBuilder.SetEffectOn(AbilityEffectOnUnit.Helpful);
-            TKStrikeBuilderCast.SetEffectOn(AbilityEffectOnUnit.Helpful);
+            TKStrikeBuilder.SetEffectOnAlly (AbilityEffectOnUnit.Helpful);
+            TKStrikeBuilderCast.SetEffectOnAlly(AbilityEffectOnUnit.Helpful);
 
-            TKStrikeBuilder.SetAnimationStyle(Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle.Touch);
-            TKStrikeBuilderCast.SetAnimationStyle(Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle.Touch);
+            TKStrikeBuilder.SetAnimationStyle(Kingmaker.View.Animation.CastAnimationStyle.CastActionTouch);
+            TKStrikeBuilderCast.SetAnimationStyle(Kingmaker.View.Animation.CastAnimationStyle.CastActionTouch);
             TKStrikeBuilder.SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard);
             TKStrikeBuilderCast.SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard);
-            TKStrikeBuilder.SetMetamagics(Metamagic.Quicken, Metamagic.Heighten, Metamagic.Extend, Metamagic.CompletelyNormal, Metamagic.Reach);
-            TKStrikeBuilderCast.SetMetamagics(Metamagic.Quicken, Metamagic.Heighten, Metamagic.Extend, Metamagic.CompletelyNormal, Metamagic.Reach);
+            TKStrikeBuilder.SetAvailableMetamagic(Metamagic.Quicken, Metamagic.Heighten, Metamagic.Extend, Metamagic.CompletelyNormal, Metamagic.Reach);
+            TKStrikeBuilderCast.SetAvailableMetamagic(Metamagic.Quicken, Metamagic.Heighten, Metamagic.Extend, Metamagic.CompletelyNormal, Metamagic.Reach);
 
-            TKStrikeBuilder.SetSavingThrowText(new Kingmaker.Localization.LocalizedString());
-            TKStrikeBuilderCast.SetSavingThrowText(new Kingmaker.Localization.LocalizedString());
+            TKStrikeBuilder.SetLocalizedSavingThrow(new Kingmaker.Localization.LocalizedString());
+            TKStrikeBuilderCast.SetLocalizedSavingThrow(new Kingmaker.Localization.LocalizedString());
 
             var TKStrikeBuff = MakerTools.MakeBuff("TelekineticStrikesBuff", "Telekinetic Strikes", "Your limbs are charged with telekinetic force. \n \n For the duration of the spell,  your unarmed attacks or natural weapons deal an additional 1d4 points of force damage on each successful unarmed melee attack.", TKStrikeSprite);
             var allowed_categories = new WeaponCategory[] { WeaponCategory.Claw, WeaponCategory.Bite, WeaponCategory.Gore, WeaponCategory.OtherNaturalWeapons, WeaponCategory.UnarmedStrike, WeaponCategory.Tail };
@@ -56,12 +56,12 @@ namespace TomeOfTheFirebird.New_Spells
             TKStrikeBuff.AddToFlags(flags: BlueprintBuff.Flags.IsFromSpell);
             var buildbuff = TKStrikeBuff.Configure();
             
-            TKStrikeBuilder.RunActions(ActionsBuilder.New().ApplyBuff(buildbuff.AssetGuidThreadSafe, duration: MakerTools.GetContextDurationValue(Kingmaker.UnitLogic.Mechanics.DurationRate.Minutes, true)));
-            TKStrikeBuilder.AddAbilityDeliverTouch("bb337517547de1a4189518d404ec49d4");
+            TKStrikeBuilder.AddAbilityEffectRunAction(ActionsBuilder.New().ApplyBuff(buildbuff.AssetGuidThreadSafe, durationValue: MakerTools.GetContextDurationValue(Kingmaker.UnitLogic.Mechanics.DurationRate.Minutes, true)));
+            TKStrikeBuilder.AddAbilityDeliverTouch(touchWeapon: "bb337517547de1a4189518d404ec49d4");
             var builtTouch = TKStrikeBuilder.Configure();
             
-            TKStrikeBuilderCast.AddAbilityEffectStickyTouch(builtTouch.AssetGuidThreadSafe);
-            TKStrikeBuilderCast.AddCraftInfoComponent(Kingmaker.Craft.CraftSpellType.Buff, Kingmaker.Craft.CraftSavingThrow.None, Kingmaker.Craft.CraftAOE.None);
+            TKStrikeBuilderCast.AddAbilityEffectStickyTouch(touchDeliveryAbility: builtTouch.AssetGuidThreadSafe);
+            TKStrikeBuilderCast.AddCraftInfoComponent(Kingmaker.Craft.CraftAOE.None, savingThrow: Kingmaker.Craft.CraftSavingThrow.None,spellType: Kingmaker.Craft.CraftSpellType.Buff);
             var builtCast = TKStrikeBuilderCast.Configure();
             
             if (Main.TotFContext.NewContent.Spells.IsEnabled("TelekineticStrikes"))

@@ -1,6 +1,7 @@
-﻿using BlueprintCore.Blueprints.Configurators.Buffs;
-using BlueprintCore.Blueprints.Configurators.Items.Equipment;
+﻿using BlueprintCore.Blueprints.Configurators.Items.Equipment;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Utils;
+using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Items.Armors;
 using Kingmaker.Blueprints.Items.Equipment;
 using Kingmaker.Localization;
@@ -8,6 +9,7 @@ using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Mechanics.Components;
 using Kingmaker.Utility;
 using Owlcat.Runtime.Core;
+using System.Collections.Generic;
 using System.Linq;
 using TabletopTweaks.Core.Utilities;
 using TomeOfTheFirebird.Helpers;
@@ -44,18 +46,16 @@ namespace TomeOfTheFirebird.New_Content.Items
             var enchant = MakerTools.MakeItemEnchantment("BracersOfTheAvengingKnightEnchant", "Bracers Of The Avenging Knight", sharedDesc, 1);
             if (Main.TotFContext.NewContent.Items.IsEnabled("BracersOfTheAvengingKnight"))
             {
-                var SmiteEvil = BlueprintTools.GetBlueprint<BlueprintAbility>("7bb9eb2042e67bf489ccd1374423cdec");
-                var SmiteChaos = BlueprintTools.GetBlueprint<BlueprintAbility>("a4df3ed7ef5aa9148a69e8364ad359c5");
-                var ChampionOfTheFaithSmite = BlueprintTools.GetBlueprint<BlueprintAbility>("a2736145a29c8814b97a54b45588cd29");
-                var MarkOfJusticeSmite = BlueprintTools.GetBlueprint<BlueprintAbility>("7a4f0c48829952e47bb1fd1e4e9da83a");
+                
                 //var DestroSmite = Resources.GetBlueprint<BlueprintAbility>("e69898f762453514780eb5e467694bdb");
                 
                 //avengingFeature.AddComponent(new IncreaseSpecificSPellsCasterLevel() { spells = new BlueprintAbility[] { SmiteEvil, SmiteChaos, ChampionOfTheFaithSmite, MarkOfJusticeSmite }, Descriptor = Kingmaker.Enums.ModifierDescriptor.Sacred, Value = new Kingmaker.UnitLogic.Mechanics.ContextValue() { Value = 4 } });
-                enchant.AddCasterLevelEquipment(SmiteEvil.AssetGuidThreadSafe, 4);
-                enchant.AddCasterLevelEquipment(SmiteChaos.AssetGuidThreadSafe, 4);
-                enchant.AddCasterLevelEquipment(ChampionOfTheFaithSmite.AssetGuidThreadSafe, 4);
-                enchant.AddCasterLevelEquipment(MarkOfJusticeSmite.AssetGuidThreadSafe, 4);
-                var destroSmite = BuffConfigurator.For("0dfe08afb3cf3594987bab12d014e74b").AddStatBonusIfHasFact(Kingmaker.Enums.ModifierDescriptor.UntypedStackable, Kingmaker.EntitySystem.Stats.StatType.AdditionalDamage, new Kingmaker.UnitLogic.Mechanics.ContextValue() { Property = Kingmaker.UnitLogic.Mechanics.Properties.UnitProperty.None, Value = 2, ValueRank = Kingmaker.Enums.AbilityRankType.StatBonus, ValueType = Kingmaker.UnitLogic.Mechanics.ContextValueType.Simple }, checkedFacts: new string[] { "BracersOfTheAvengingKnightFeature" }).Configure();
+                enchant.AddCasterLevelEquipment(bonus: 4, spell: BlueprintTool.GetRef<BlueprintAbilityReference>("7bb9eb2042e67bf489ccd1374423cdec"));
+                enchant.AddCasterLevelEquipment(bonus: 4, spell: BlueprintTool.GetRef<BlueprintAbilityReference>("a4df3ed7ef5aa9148a69e8364ad359c5"));
+                enchant.AddCasterLevelEquipment(bonus: 4, spell: BlueprintTool.GetRef<BlueprintAbilityReference>("a2736145a29c8814b97a54b45588cd29"));
+                enchant.AddCasterLevelEquipment(bonus: 4, spell: BlueprintTool.GetRef<BlueprintAbilityReference>("7a4f0c48829952e47bb1fd1e4e9da83a"));
+                
+                var destroSmite = BuffConfigurator.For("0dfe08afb3cf3594987bab12d014e74b").AddStatBonusIfHasFact(checkedFacts:  new List<Blueprint<BlueprintUnitFactReference>>() { "BracersOfTheAvengingKnightFeature" }, descriptor: Kingmaker.Enums.ModifierDescriptor.UntypedStackable, stat: Kingmaker.EntitySystem.Stats.StatType.AdditionalDamage, value: new Kingmaker.UnitLogic.Mechanics.ContextValue() { Property = Kingmaker.UnitLogic.Mechanics.Properties.UnitProperty.None, Value = 2, ValueRank = Kingmaker.Enums.AbilityRankType.StatBonus, ValueType = Kingmaker.UnitLogic.Mechanics.ContextValueType.Simple } ).Configure();
             }
             var avengingFeatureBuilt = avengingFeature.Configure();
             
@@ -76,7 +76,7 @@ namespace TomeOfTheFirebird.New_Content.Items
             LocalizedString name = LocalizationTool.CreateString(itemSysName + ".Name", itemName);
             LocalizedString desc = LocalizationTool.CreateString(itemSysName + ".Desc", itemDesc);
             var item = ItemEquipmentWristConfigurator.New(itemSysName, guid.ToString()).SetDisplayNameText(name).SetDescriptionText(desc);
-            item.SetEnchantments(new string[] { enchantBuilt.AssetGuidThreadSafe });
+            item.SetEnchantments(  enchantBuilt.AssetGuidThreadSafe );
             item.SetFlavorText(new LocalizedString());
             item.SetInventoryEquipSound("ArmorPlateEquip");
             item.SetInventoryTakeSound("ArmorPlatePut");
@@ -130,10 +130,10 @@ namespace TomeOfTheFirebird.New_Content.Items
                 LayOnHandsSpecial.Components.OfType<ContextRankConfig>().FirstOrDefault().m_UseMax = false;//There's no reason for this and we don't want the item crapping out at 20
 
 
-                MercyFeature.AddIncreaseResourceAmount("9dedf41d995ff4446a181f143c3db98c", 2);
-                enchant.AddCasterLevelEquipment(LayOnHandsSelf.AssetGuidThreadSafe, 4);
-                enchant.AddCasterLevelEquipment(LayOnHandsOther.AssetGuidThreadSafe, 4);
-                enchant.AddCasterLevelEquipment(LayOnHandsSpecial.AssetGuidThreadSafe, 4);
+                MercyFeature.AddIncreaseResourceAmount(resource: "9dedf41d995ff4446a181f143c3db98c", value: 2);
+                enchant.AddCasterLevelEquipment(bonus: 4, spell: LayOnHandsSelf.AssetGuidThreadSafe);
+                enchant.AddCasterLevelEquipment(bonus:4,  spell: LayOnHandsOther.AssetGuidThreadSafe);
+                enchant.AddCasterLevelEquipment(bonus: 4, spell: LayOnHandsSpecial.AssetGuidThreadSafe);
                 
             }
             //TODO - add resoration effect with smartness
@@ -155,7 +155,7 @@ namespace TomeOfTheFirebird.New_Content.Items
             LocalizedString name = LocalizationTool.CreateString(itemSysName + ".Name", itemName);
             LocalizedString desc = LocalizationTool.CreateString(itemSysName + ".Desc", itemDesc);
             var item = ItemEquipmentWristConfigurator.New(itemSysName, guid.ToString()).SetDisplayNameText(name).SetDescriptionText(desc);
-            item.SetEnchantments(new string[] { enchantBuilt.AssetGuidThreadSafe });
+            item.SetEnchantments(enchantBuilt.AssetGuidThreadSafe );
             item.SetFlavorText(new LocalizedString());
             item.SetInventoryEquipSound("ArmorPlateEquip");
             item.SetInventoryTakeSound("ArmorPlatePut");

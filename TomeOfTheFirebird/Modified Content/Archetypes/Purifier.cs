@@ -1,9 +1,7 @@
 ﻿using BlueprintCore.Utils;
-using HarmonyLib;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Selection;
-using Kingmaker.Blueprints.JsonSystem;
 using System.Linq;
 using TabletopTweaks.Core.Utilities;
 using UnityModManagerNet;

@@ -1,8 +1,8 @@
-﻿using BlueprintCore.Blueprints.Configurators.Abilities;
-using BlueprintCore.Blueprints.Configurators.Buffs;
-using BlueprintCore.Blueprints.Configurators.Classes;
+﻿using BlueprintCore.Blueprints.Configurators.Classes;
 using BlueprintCore.Blueprints.Configurators.Items.Ecnchantments;
 using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
+using BlueprintCore.Blueprints.Configurators.Classes.Spells;
 using BlueprintCore.Utils;
 using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.Localization;
@@ -13,6 +13,8 @@ using System.Collections.Generic;
 using System.Linq;
 using TabletopTweaks.Core.Utilities;
 using UnityEngine;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
+using BlueprintCore.Blueprints.Configurators.Classes.Selection;
 
 namespace TomeOfTheFirebird.Helpers
 {
@@ -33,13 +35,34 @@ namespace TomeOfTheFirebird.Helpers
             }
             if (hide)
             {
-                res.SetHideInUi(true);
+                res.SetHideInUI(true);
                 res.SetHideInCharacterSheetAndLevelUp(true);
             }
             return res;
 
         }
-        
+
+        public static FeatureSelectionConfigurator MakeFeatureSelector(string systemName, string displayName, string description, bool hide = false, Sprite icon = null)
+        {
+            Main.TotFContext.Logger.Log($"Building New Feature: {systemName}");
+
+            var guid = Main.TotFContext.Blueprints.GetGUID(systemName);
+            LocalizedString name = LocalizationTool.CreateString(systemName + ".Name", displayName);
+            LocalizedString desc = LocalizationTool.CreateString(systemName + ".Desc", description);
+            Main.TotFContext.Logger.Log($"Guid for {systemName} is {guid.ToString()}");
+            var res = FeatureSelectionConfigurator.New(systemName, guid.ToString()).SetDisplayName(name).SetDescription(desc);
+            if (icon != null)
+            {
+                res.SetIcon(icon);
+            }
+            if (hide)
+            {
+                res.SetHideInUI(true);
+                res.SetHideInCharacterSheetAndLevelUp(true);
+            }
+            return res;
+
+        }
 
 
         public static EquipmentEnchantmentConfigurator MakeItemEnchantment(string systemName, string displayName, string description, int cost)
@@ -97,8 +120,8 @@ namespace TomeOfTheFirebird.Helpers
             }
             
            
-
-            return AbilityConfigurator.New(systemName, guid.ToString()).SetDisplayName(name).SetDescription(desc).SetIcon(icon).SetSpellSchool(school).SetSavingThrowText(savestring).SetDurationText(durationString);
+            
+            return AbilityConfigurator.New(systemName, guid.ToString()).SetDisplayName(name).SetDescription(desc).SetIcon(icon).AddSpellComponent(school).SetLocalizedSavingThrow(savestring).SetLocalizedDuration(durationString);
 
 
         }
@@ -140,7 +163,7 @@ namespace TomeOfTheFirebird.Helpers
 
         public static AbilityConfigurator SetTouchBuff(this AbilityConfigurator abilityConfigurator)
         {
-            return abilityConfigurator.SetRange(Kingmaker.UnitLogic.Abilities.Blueprints.AbilityRange.Touch).AllowTargeting(false, false, true, true).SetAnimationStyle(Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle.Touch);
+            return abilityConfigurator.SetRange(Kingmaker.UnitLogic.Abilities.Blueprints.AbilityRange.Touch).AllowTargeting(false, false, true, true).SetAnimationStyle(Kingmaker.View.Animation.CastAnimationStyle.CastActionTouch);
         }
 
         

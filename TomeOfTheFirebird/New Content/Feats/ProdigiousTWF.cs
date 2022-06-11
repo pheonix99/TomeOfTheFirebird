@@ -15,11 +15,11 @@ namespace TomeOfTheFirebird.New_Content.Feats
         {
             var maker = MakerTools.MakeFeature("ProdigiousTWF", "Prodigious Two-Weapon Fighting", "You may fight with a one-handed weapon in your offhand as if it were a light weapon. In addition, you may use your Strength score instead of your Dexterity score for the purpose of qualifying for Two-Weapon Fighting and any feats with Two-Weapon Fighting as a prerequisite.");
             maker.SetRanks(1);
-            maker.AddToFeatureGroups(FeatureGroup.Feat, FeatureGroup.CombatFeat);
+            maker.SetGroups(FeatureGroup.Feat, FeatureGroup.CombatFeat);
             maker.SetReapplyOnLevelUp(true);
             maker.SetIsClassFeature(true);
-            maker.PrerequisiteStat(Kingmaker.EntitySystem.Stats.StatType.Strength, 13);
-            maker.AddToFeatureTags(FeatureTag.Attack, FeatureTag.Melee);
+            maker.AddPrerequisiteStatValue(Kingmaker.EntitySystem.Stats.StatType.Strength, 13);
+            maker.AddFeatureTagsComponent(FeatureTag.Attack| FeatureTag.Melee);
             maker.AddComponent(new TWFNoPenaltyFromNotLight());
 
             var Prodigious = maker.Configure();
@@ -48,12 +48,12 @@ namespace TomeOfTheFirebird.New_Content.Feats
             Helpers.FeatTools.PatchFeatWithFeatLockedAlternateAbilityPrereqSimple(GTWF, StatType.Dexterity, Prodigious, StatType.Strength);
             Helpers.FeatTools.PatchFeatWithFeatLockedAlternateAbilityPrereqSimple(MTWF, StatType.Dexterity, Prodigious, StatType.Strength);
 
-            FeatureSelectionConfigurator.For(TabletopTweaks.Core.Utilities.FeatTools.Selections.RangerStyleTwoWeaponSelection2.AssetGuidThreadSafe).AddToFeatures(Prodigious.AssetGuidThreadSafe);
-            FeatureSelectionConfigurator.For(TabletopTweaks.Core.Utilities.FeatTools.Selections.RangerStyleTwoWeaponSelection6.AssetGuidThreadSafe).AddToFeatures(Prodigious.AssetGuidThreadSafe);
-            FeatureSelectionConfigurator.For(TabletopTweaks.Core.Utilities.FeatTools.Selections.RangerStyleTwoWeaponSelection10.AssetGuidThreadSafe).AddToFeatures(Prodigious.AssetGuidThreadSafe);
-            FeatureSelectionConfigurator.For(TabletopTweaks.Core.Utilities.FeatTools.Selections.RangerStyleShieldSelection2.AssetGuidThreadSafe).AddToFeatures(Prodigious.AssetGuidThreadSafe);
-            FeatureSelectionConfigurator.For(TabletopTweaks.Core.Utilities.FeatTools.Selections.RangerStyleShieldSelection6.AssetGuidThreadSafe).AddToFeatures(Prodigious.AssetGuidThreadSafe);
-            FeatureSelectionConfigurator.For(TabletopTweaks.Core.Utilities.FeatTools.Selections.RangerStyleShieldSelection10.AssetGuidThreadSafe).AddToFeatures(Prodigious.AssetGuidThreadSafe);
+            FeatureSelectionConfigurator.For(TabletopTweaks.Core.Utilities.FeatTools.Selections.RangerStyleTwoWeaponSelection2.AssetGuidThreadSafe).AddToAllFeatures(Prodigious.AssetGuidThreadSafe);
+            FeatureSelectionConfigurator.For(TabletopTweaks.Core.Utilities.FeatTools.Selections.RangerStyleTwoWeaponSelection6.AssetGuidThreadSafe).AddToAllFeatures(Prodigious.AssetGuidThreadSafe);
+            FeatureSelectionConfigurator.For(TabletopTweaks.Core.Utilities.FeatTools.Selections.RangerStyleTwoWeaponSelection10.AssetGuidThreadSafe).AddToAllFeatures(Prodigious.AssetGuidThreadSafe);
+            FeatureSelectionConfigurator.For(TabletopTweaks.Core.Utilities.FeatTools.Selections.RangerStyleShieldSelection2.AssetGuidThreadSafe).AddToAllFeatures(Prodigious.AssetGuidThreadSafe);
+            FeatureSelectionConfigurator.For(TabletopTweaks.Core.Utilities.FeatTools.Selections.RangerStyleShieldSelection6.AssetGuidThreadSafe).AddToAllFeatures(Prodigious.AssetGuidThreadSafe);
+            FeatureSelectionConfigurator.For(TabletopTweaks.Core.Utilities.FeatTools.Selections.RangerStyleShieldSelection10.AssetGuidThreadSafe).AddToAllFeatures(Prodigious.AssetGuidThreadSafe);
 
             
 

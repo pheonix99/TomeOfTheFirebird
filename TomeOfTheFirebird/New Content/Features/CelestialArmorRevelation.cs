@@ -2,11 +2,8 @@
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Selection;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TabletopTweaks.Core.Utilities;
 using TomeOfTheFirebird.Helpers;
 using UnityModManagerNet;
@@ -31,7 +28,7 @@ namespace TomeOfTheFirebird.New_Content.Features
             CelestialArmorProgressionMaker.SetGiveFeaturesForPreviousLevels(true);
             CelestialArmorProgressionMaker.SetReapplyOnLevelUp(true);
             
-            CelestialArmorProgressionMaker.SetHideInUi(false);
+            CelestialArmorProgressionMaker.SetHideInUI(false);
             CelestialArmorProgressionMaker.SetHideInCharacterSheetAndLevelUp(false);
             
             List<LevelEntry> entries = Enumerable.Range(4, 20).Select(i => new LevelEntry

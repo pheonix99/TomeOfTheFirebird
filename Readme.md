@@ -8,6 +8,10 @@ All homebrew content or divergences from TT will be called out.
 
 NOW REQUIRES TabletopTweaks Core Module!
 ##Changelog
+1.2.3
+Fixed Prodigious TWF penalty-reduction being active when it shouldn't be.
+Fixed Angel Cloak Artifact.
+
 1.2.2
 Claws should stay active after combat if infinite-uses is active
 Improved Tabletop Tweaks Base detection

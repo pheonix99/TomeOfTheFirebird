@@ -43,7 +43,12 @@
       "FixRadianceFinalForm": {
         "Enabled": true,
         "Description": "The good version of Radiance's final form now properly retains its holy effect"
+      },
+      "FixAngelArtifactCloak": {
+        "Enabled": true,
+        "Description": "The Angel version of Bound Of Possibility now buffs Sword Of Heaven rather than giving the Aeon effect."
       }
+
     }
   },
   "Purifier": {

@@ -1,145 +1,119 @@
 ﻿# Changelog
 
-#v1.3.6 Release
+## v2.0.4 Release
 
-Updated for compatibility w/ 1.3.
-
-#v1.3.5 Release
-
-Updated for compatibility w/ 1.2.1h.
-
-#v1.3.4 Release
-
-Updated for Patch 1.2 release version. There were some additional changes from the beta branch.
-
-#v1.3.3 Release (Patch 1.2)
-
-Changes here are minimal to maintain support with Patch 1.2. If you are not working on the Beta branch you'll need to
-use 1.3.2 release. I may push an additional update once the patch goes live just in case there are any changes.
-
-* Migrated from System.Text.Json to Newtonsoft.Json since it is already included with Wrath
+* Fixed an NPE resulting from not specifying optional List or Array parameters
 
 ### Breaking Changes
 
-* New dependency on `Owlcat.Runtime.Validation.dll`
-* The game's validation system was refactored and this update makes it compile and run but there may new warnings, duplicate warnings, or missing warnings
-* References to GameObject have migrated to PrefabLink
-* References to asset types have migrated to Link, e.g. Sprite is now SpriteLink
-* A lot of blueprints, components, actions, and conditions have small changes
+* Fixed a bug incorrectly identifying unique and non-unique components
+    * This removes merge handling parameters from non-unique components; you'll need to remove any you have specified
 
-#v1.3.2 Release
-
-### New Features
-
-* Added `EncyclopediaTool` for adding tooltips to localized text
-    * If you create strings using `LocalizationTool` this is automatically called so no changes needed
-    * Credit to Hypebringer | Aegonek for porting from Vek's TabletopTweaks
-* Updated for compatibility w/ 1.1.7
-
-#v1.3.1 Release
-
-### New Features
-
-* Updated for compatibility w/ 1.1.6
-
-### Fixes 
-
-* Fixed `ConditionsBuilder.Add<C>()`, `ActionsBuilder.Add<A>()`, and `BlueprintConfigurator.AddComponent<C>()` so they actually do not require an init action 
-
-# v1.3.0 Release
-
-* BlueprintCore is a DLL again! This should be the last time this changes.
-    * The DLL is unsigned and **must be merged into your assembly**. Follow the instructions in [Getting Started](intro.md) to configure it.
-* The tutorials, including on the modding wiki, are now setup to use SDK style project syntax
-* New components available that were added in recent game patches
-
-## v1.2.2 Release
-
-* Flatten namespace structure for configurators and remove "Configurator" from file names
-    * Long file paths were causing issues restoring the NuGet package
-
-## v1.2.1 Release
-
-* Fixes warnings in legacy projects
-    * SDK projects support `<Nullable>enabled</Nullable>` project config
-    * Legacy projects require per-file enable: `#nullable enable`
-
-## v1.2.0 Release
-
-The experiment with release as a DLL was a fun but short-lived experiment. The game and Unity DLLs are unsigned which means that referencing them from a signed DLL is unsupported. Although initial testing was fine, it's likely that distributing as a signed DLL would surface hard to debug errors.
-
-* Moving forward BlueprintCore will remain a source package
-    * I will include the DLL in a zip on [GitHub](https://github.com/WittleWolfie/WW-Blueprint-Core/releases)
-        * If you use the DLL you should use a tool such as [ILRepack](https://github.com/ravibpatel/ILRepack.Lib.MSBuild.Task) instead of packaging the DLL with your mod
-
-### Other Changes
-
-* Removed `*Configure.New(string name)` for clarity; just use the two parameter variant
-* Added `BlueprintTool.GetGuidsByName()` method which returns a copy of the internal mapping
-* Fixed warnings
-
-## v1.1.0 Release
-
-* BlueprintCore is now a signed DLL instead of a source package
-    * The BlueprintCore content folder contains the license, readme, and changelog
-    * You must include BlueprintCore.dll with your mod
-    * There is no conflict if different mods refer to different versions of the DLL
-    * If you prefer including source you can download a source zip on [GitHub](https://github.com/WittleWolfie/WW-Blueprint-Core/releases)
-* Fixed logging prefix to include colon and space for readability
-
-## v1.0.1 Release
-
-* Bundled changelog, license, and readme into the package content files
-* Fixed validation for enumerable parameters in configurators
-* Updated documentation for SDK project configurations
-
-## v1.0.0 Release
-
-This release marks completion of the core functionality. There are a lot of breaking changes.
-
-* Core functionality is **complete**:
-    * All blueprint types (BlueprintScriptableObject) has its own configurator
-    * All Blueprint Components have constructor methods in the supported configurators
-    * All Actions have builder methods
-    * All Conditions have builder methods
-* Other new APIs:
-    * Generic Add w/ init for BlueprintComponent, Action, and Condition
-    * Blueprint configurators have an EditComponent method
-    * Enumerable blueprint field methods include Set in addition to AddTo and RemoveFrom.
-* Generated code field types use primitive names when appropriate
-* Fixed ConditionsBuilderStoryEx namespace (previously was MiscEx, now is correctly StoryEx)
-* Added validation check for duplicate AbilityRankType definitions in ContextRankConfig
-* Generated code makes a best effort attempt to define optional parameters and provide safe default values for types which should not be null
-* Added LocalizationTool for creating LocalizedStrings
+## v2.0.3 Release
 
 ### Breaking Changes
 
-A lot of codeode was moved around for consistency and new DLL references are required.
+* The type `Blueprint<T,  TRef>` has been shortened to `Blueprint<TRef>`
+    * You can use a Regex find/replace to fix. In VS:
+        * Find: `Blueprint<\w*, `
+        * Replace With: `Blueprint<`
 
-* BlueprintTool moved from BlueprintCore.Blueprints to BlueprintCore.Utils
-* All BlueprintConfigurators were moved from BlueprintCore.Blueprints to BlueprintCore.Configurators
-* Blueprint components are now only exposed in supported configurators
-    * i.e. If you don't see a component method in a configurator it means that component is not expected to work with that blueprint type. There's no guarantee since this is based on Owlcat's validation with additional checks added manually to correct issues as they are found.
-* New assembly references are required:
-    * Owlcat.Runtime.Visual.dll
-    * Owlcat.Runtime.UI.dll
-* Auto-generated methods provide default values for primitives, nullable types, and specific game types
-* ContextRankConfigs API reworked
-    * CommonExtensions are now optional parameters on the core functions
-    * Adopted the names of the progression types
-    * Added param comments for blueprint types
+## v2.0.2 Release
 
-## v0.6.0 Release
+* Update to 1.3.4e game patch
+* Handles GUIDs with uppercase letters
+* Type specific handling updates
+* New util for creating `UnitConditionExceptions`
+* Blueprint field setters use `params` for enumerable types
+* Fixed bug with Encyclopedia tagging causing exceptions
+* Fixed default merge behavior which was incorrectly set to ComponentMerge.Merge instead of ComponentMerge.Fail
 
-* Completed ConditionsBuilder API using auto-generated methods
-* Moved SwitchDualCompanion from StoryEx to BasicEx to mirror ContextActionSwitchDualCompanion
+### Breaking Changes
 
-## v0.5.0 Release
+* Namespaces are changes to organize type specific util classes
+    * `ContextRankConfigs`
+    * `ContextDuration`
+    * `ContextValues`
+* Blueprint field setters use `params` for enumerable types
+    * This breaks for `List<>` fields
+* Removed support for `AddStatBonusScaled`
+    * This is a legacy type and can be replaced with `AddContextStatBonus`
 
-* Completed ActionsBuilder API using auto-generated methods
+## v2.0.1 Release
 
-## v0.4.1 Release
+* Reverts `Configurator.Build()` to return the blueprint directly
 
-* New CustomProgression method for ContextRankConfig accepts anonymous tuples for progression entries
-    * Current CustomProgression method marked obsolete before removal.
-* New LinearProgression method for ContextRankConfig
+## v2.0.0 Release
+
+* This is a significant release which is all but guaranteed to require changes to your code when updating.*
+
+### Features
+
+* Flexible Blueprint references
+    * BlueprintCore APIs accept blueprints by Guid, Blueprint instance, Blueprint reference, or Name for newly created
+      blueprints
+* Improved Validation
+    * Validator is now up to date with the latest changes in the game validation code
+* Removed unused game types from Builder and Configurator APIs
+* Improved documentation of games types
+    * Examples: Every ActionsBuilder, ConditionsBuilder, and Configurator component method lists up to 3 game blueprints
+      which use the implemented type
+    * Developer Comments: Taken from attributes in the game code which Owlcat uses to create tooltips and help text in
+      their level editor
+    * Comments are integrated with the doc comments shown in your IDE
+        * In VS you can navigate to the definition of BlueprintCore methods to see the full formatted comments for readability
+
+### Breaking Changes
+
+* Configurator namespaces may have changed to align w/ game code structure
+* Method and parameter names changed for ActionsBuilder, ConditionsBuilder, and Configurators
+* Validator is no longer static
+* Builder and Configurator methods no longer exist for unused game types
+
+### More Details
+
+Two concepts drove the creation of BlueprintCore 2.0:
+
+1. Make it easier to improve and contribute to BlueprintCore, especially with regards to handling of game types
+2. Adopt a philosophy of keeping the library as close to the game code as possible
+
+With regards to #1 I will update the contributor docs after release with guidance and examples of how to contribute. In
+short, you can provide remarks and instructions on handling game types by editing JSON configuration files. Alternatively,
+just share your knowledge in issues on GitHub and I'll do my best to update the library.
+
+For #2 there was a major shift in how the library generates ActionsBuilder, ConditionsBuilder, and Configurator classes.
+Previously methods were automatically generated _or_ written by hand entirely. When creating methods by hand I was aggressive
+about renaming things to clarify the actual game function.
+
+However, this makes it very hard to do structural improvements since all hand written code requires manual updates.
+Additionally a lot of the hand written code was nearly identical to generated code and only existed to rename things.
+With this release almost nothing is written by hand. Instead JSON config files allow selective editing of the code
+generation behavior.
+
+The end result is both functional and philosophical: method and parameter names map almost 1:1 with the associated type
+or field. This makes it easier to take existing knowledge of game code and use it to write BlueprintCore code, as well
+as taking BlueprintCore code and find the game code it affects.
+
+### What's Next?
+
+With the major refactoring done I'll resume work on functional library improvements. Please file requests and suggestions
+on GitHub, I do read them and try my best to support them. For 2.1 I'm looking into:
+
+* Expanded Tutorial
+    * Examples of doing more extensive changes
+    * Improved setup instructions and examples of using different BlueprintCore classes and utilities
+* Localization improvements
+    * Improve API with regards to whether a given string is parsed for tokens
+    * Add localization support
+    * Reduce boilerplate needed to create and reference LocalizedStrings
+* Smarter Configurators for common blueprint types, e.g. CharacterClass, Feature, Ability
+    * Create blueprints using existing blueprints as a template, e.g. WizardClass template applies things like 1/2 BAB
+      and Saving Throw progressions
+    * Combination and creation methods that enforce contracts
+    * Automatically add blueprints to appropriate selection groups
+* Static Blueprint References for common types
+    * Expose an auto-complete list for things like Classes, Archetypes, Feats, and Spells
+* Project Setup Tool (Tentative)
+    * An automated tool to create a new mod project with BlueprintCore setup
+* TTT-Core Support (Tentative)
+    * I'd like to provide support for integration w/ TTT-Core without requiring it

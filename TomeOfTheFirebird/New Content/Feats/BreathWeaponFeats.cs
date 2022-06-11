@@ -43,8 +43,9 @@ namespace TomeOfTheFirebird.New_Content.Feats
         public static void BuildAbilityFocusBreathWeapons()
         {
             var abilityFocusconfig = MakerTools.MakeFeature("AbilityFocusBreathWeapon", "Ability Focus - Breath Weapons", "Add +2 to breath weapon DCs");
-            abilityFocusconfig.AddIncreaseSpellDescriptorDC(new Kingmaker.Blueprints.Classes.Spells.SpellDescriptorWrapper(Kingmaker.Blueprints.Classes.Spells.SpellDescriptor.BreathWeapon), bonusDC: 2);
-            abilityFocusconfig.SetFeatureGroups(FeatureGroup.Feat);
+            abilityFocusconfig.AddIncreaseSpellDescriptorDC(descriptor: new Kingmaker.Blueprints.Classes.Spells.SpellDescriptorWrapper(Kingmaker.Blueprints.Classes.Spells.SpellDescriptor.BreathWeapon), bonusDC: 2);
+
+            abilityFocusconfig.AddToGroups(FeatureGroup.Feat);
             abilityFocusconfig.SetRanks(1);
             abilityFocusconfig.AddComponent<PrerequisiteBreathWeaponAccess>();
 

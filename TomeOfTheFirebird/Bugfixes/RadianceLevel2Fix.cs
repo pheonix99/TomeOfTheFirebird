@@ -1,5 +1,6 @@
 ﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
+using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints.Items.Ecnchantments;
 using Kingmaker.ElementsSystem;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
@@ -27,7 +28,7 @@ namespace TomeOfTheFirebird.Bugfixes
 
             var builtBuff= buff.Configure();
 
-            var apply = ActionsBuilder.New().ApplyBuff(builtBuff.AssetGuidThreadSafe, toCaster:true, asChild:true, permanent: true);
+            var apply = ActionsBuilder.New().ApplyBuffPermanent(builtBuff.AssetGuidThreadSafe, toCaster:true, asChild:true);
 
             var remove = ActionsBuilder.New().RemoveBuff(builtBuff.AssetGuidThreadSafe, toCaster: true);
             var HolyAvengerEnchant = BlueprintTools.GetBlueprint<BlueprintWeaponEnchantment>("119b0b2ddae69d4438e6a4bedff32412");

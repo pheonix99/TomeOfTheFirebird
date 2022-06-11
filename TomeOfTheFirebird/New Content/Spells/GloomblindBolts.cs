@@ -1,9 +1,11 @@
 ﻿
 using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
-using BlueprintCore.Blueprints.Components;
 using BlueprintCore.Conditions.Builder;
 using BlueprintCore.Conditions.Builder.ContextEx;
+using BlueprintCore.Utils;
+using BlueprintCore.Utils.Types;
+using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums.Damage;
@@ -13,6 +15,7 @@ using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.Visual.Animation.Kingmaker.Actions;
+using System.Collections.Generic;
 using TabletopTweaks.Core.Utilities;
 using TomeOfTheFirebird.Helpers;
 using TomeOfTheFirebird.Reference;
@@ -51,14 +54,14 @@ namespace TomeOfTheFirebird.New_Spells
             gloomblind.SetRange(AbilityRange.Close);
             gloomblind.AllowTargeting(enemies: true, self: true);
                 
-                gloomblind.ApplySpellResistance(true).SetEffectOn(onEnemy: AbilityEffectOnUnit.Harmful).SetAnimationStyle(UnitAnimationActionCastSpell.CastAnimationStyle.Directional).SetActionType(CommandType.Standard).SetMetamagics(new Metamagic[] { Metamagic.Empower, Metamagic.Maximize, Metamagic.Quicken, Metamagic.Heighten, Metamagic.Reach, Metamagic.CompletelyNormal, Metamagic.Bolstered, Metamagic.Persistent, (Metamagic)CustomMetamagic.Piercing });
+                gloomblind.SetSpellResistance(true).SetEffectOnEnemy(AbilityEffectOnUnit.Harmful).SetAnimationStyle(Kingmaker.View.Animation.CastAnimationStyle.CastActionDirectional).SetActionType(CommandType.Standard).SetAvailableMetamagic(new Metamagic[] { Metamagic.Empower, Metamagic.Maximize, Metamagic.Quicken, Metamagic.Heighten, Metamagic.Reach, Metamagic.CompletelyNormal, Metamagic.Bolstered, Metamagic.Persistent, (Metamagic)CustomMetamagic.Piercing });
 
-            gloomblind.AddSpellDescriptors(new SpellDescriptor[] { SpellDescriptor.None });
+            //gloomblind.SetSpellDescriptor(new SpellDescriptor[] { SpellDescriptor.None });
 
           
 
             Main.TotFContext.Logger.Log("Building Damage/blind living for gloomblind");
-            var damageAndBlindLiving = ActionsBuilder.New().Conditional(TargetIsConstruct, ifFalse: ActionsBuilder.New().DealDamage(new DamageTypeDescription() { Energy = DamageEnergyType.NegativeEnergy, Type = DamageType.Energy }, value: damage).SavingThrow(SavingThrowType.Reflex, onResult: ActionsBuilder.New().AfterSavingThrow(ifFailed: ActionsBuilder.New().ApplyBuff(blind, useDurationSeconds: true, durationSeconds: 6))));
+            var damageAndBlindLiving = ActionsBuilder.New().Conditional(TargetIsConstruct, ifFalse: ActionsBuilder.New().DealDamage(new DamageTypeDescription() { Energy = DamageEnergyType.NegativeEnergy, Type = DamageType.Energy }, value: damage).SavingThrow(SavingThrowType.Reflex, onResult: ActionsBuilder.New().ConditionalSaved(failed: ActionsBuilder.New().ApplyBuff(blind, ContextDuration.Fixed(1, DurationRate.Rounds)))));
 
 
 
@@ -68,13 +71,13 @@ namespace TomeOfTheFirebird.New_Spells
             Main.TotFContext.Logger.Log("Adding effect to gloomblind");
 
 
-              gloomblind.RunActions(ActionsBuilder.New().Conditional(TargetIsNotUndead, ifTrue: damageAndBlindLiving, ifFalse: ActionsBuilder.New().HealTarget(damage) ));
+              gloomblind.AddAbilityEffectRunAction(ActionsBuilder.New().Conditional(TargetIsNotUndead, ifTrue: damageAndBlindLiving, ifFalse: ActionsBuilder.New().HealTarget(damage) ));
             Main.TotFContext.Logger.Log("Adding Projectile To Gloomblind");
-            gloomblind.AddAbilityDeliverProjectile(new Kingmaker.Utility.Feet(), new Kingmaker.Utility.Feet(5.0f), new string[] { beamGUID, beamGUID, beamGUID }, needAttackRoll: true, weapon: "f6ef95b1f7bb52b408a5b345a330ffe8", useMaxProjectilesCount: true, delayBetweenProjectiles: 0.2f);
+            gloomblind.AddAbilityDeliverProjectile(lineWidth: new Kingmaker.Utility.Feet(5.0f), projectiles: new List<Blueprint<BlueprintProjectileReference>> { beamGUID, beamGUID, beamGUID }, needAttackRoll: true, weapon: "f6ef95b1f7bb52b408a5b345a330ffe8", useMaxProjectilesCount: true, delayBetweenProjectiles: 0.2f);
             Main.TotFContext.Logger.Log("Adding CL to gloomblind");
             gloomblind.AddContextRankConfig(ContextRankConfigs.CasterLevel(max: 3, min: 1).WithStartPlusDivStepProgression(4, 3));
             Main.TotFContext.Logger.Log("Building Gloomblind");
-            gloomblind.AddCraftInfoComponent(Kingmaker.Craft.CraftSpellType.Damage, Kingmaker.Craft.CraftSavingThrow.Reflex, Kingmaker.Craft.CraftAOE.None);
+            gloomblind.AddCraftInfoComponent(Kingmaker.Craft.CraftAOE.None,savingThrow: Kingmaker.Craft.CraftSavingThrow.Reflex,spellType: Kingmaker.Craft.CraftSpellType.Damage);
                 Main.TotFContext.Logger.Log("Built Gloomblind");
             var made = gloomblind.Configure();
             if (Main.TotFContext.NewContent.Spells.IsEnabled("GloomblindBolts"))

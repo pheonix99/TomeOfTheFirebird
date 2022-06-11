@@ -3,6 +3,7 @@ using BlueprintCore.Actions.Builder.ContextEx;
 using Kingmaker.Enums;
 using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.Mechanics;
 using TabletopTweaks.Core.Utilities;
@@ -26,17 +27,17 @@ namespace TomeOfTheFirebird.New_Spells
             BoneFists.AllowTargeting(true, false, true, true);
             BoneFists.SetRange(AbilityRange.Personal);
 
-            BoneFists.SetAnimationStyle(Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle.Omni);
+            BoneFists.SetAnimationStyle(Kingmaker.View.Animation.CastAnimationStyle.CastActionOmni);
             BoneFists.SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard);
-            BoneFists.SetMetamagics(Metamagic.Extend, Metamagic.Heighten, Metamagic.CompletelyNormal, Metamagic.Quicken, Metamagic.Reach);
+            BoneFists.SetAvailableMetamagic(Metamagic.Extend, Metamagic.Heighten, Metamagic.CompletelyNormal, Metamagic.Quicken, Metamagic.Reach);
 
 
-            BoneFists.SetSavingThrowText(new Kingmaker.Localization.LocalizedString());
+            BoneFists.SetLocalizedSavingThrow(new Kingmaker.Localization.LocalizedString());
             var BoneFistsBuff = MakerTools.MakeBuff("BoneFistsBuff", "Bone Fists", "The bones of your joints grow thick and sharp, protruding painfully through the skin at the knuckles, elbows, shoulders, spine, and knees. You gain a +1 bonus to natural armor and a +2 bonus on damage rolls with natural weapons.", BoneFistsSprite);
             BoneFistsBuff.SetFlags(BlueprintBuff.Flags.IsFromSpell);
 
 
-            BoneFistsBuff.AddStatBonus(Kingmaker.Enums.ModifierDescriptor.NaturalArmor, Kingmaker.EntitySystem.Stats.StatType.AC, 1);
+            BoneFistsBuff.AddStatBonus(Kingmaker.Enums.ModifierDescriptor.NaturalArmor, stat: Kingmaker.EntitySystem.Stats.StatType.AC,value: 1);
             var allowed_categories = new WeaponCategory[] { WeaponCategory.Claw, WeaponCategory.Bite, WeaponCategory.Gore, WeaponCategory.OtherNaturalWeapons, WeaponCategory.UnarmedStrike, WeaponCategory.Tail };
             Main.TotFContext.Logger.Log("Building Bone Fists Natural Weapon Damage");
             ContextWeaponCategoryFlatDamageBonus bonefistsDMG = new ContextWeaponCategoryFlatDamageBonus()
@@ -50,10 +51,10 @@ namespace TomeOfTheFirebird.New_Spells
 
             Main.TotFContext.Logger.Log("Built Buff");
             var builtBuff = BoneFistsBuff.Configure();
-            var actoion = ActionsBuilder.New().ApplyBuff(builtBuff.AssetGuidThreadSafe, duration: MakerTools.GetContextDurationValue(DurationRate.Minutes, true), isFromSpell: true);
-            BoneFists.RunActions(actoion);
-            BoneFists.AddAbilityTargetsAround(radius: new Kingmaker.Utility.Feet(15f), new Kingmaker.Utility.Feet(11f), targetType: Kingmaker.UnitLogic.Abilities.Components.TargetType.Ally);
-            BoneFists.AddCraftInfoComponent(Kingmaker.Craft.CraftSpellType.Buff, Kingmaker.Craft.CraftSavingThrow.None, Kingmaker.Craft.CraftAOE.AOE);
+            var actoion = ActionsBuilder.New().ApplyBuff(builtBuff.AssetGuidThreadSafe, durationValue: MakerTools.GetContextDurationValue(DurationRate.Minutes, true), isFromSpell: true);
+            BoneFists.AddAbilityEffectRunAction(actoion);
+            BoneFists.AddAbilityTargetsAround(radius: new Kingmaker.Utility.Feet(15f), spreadSpeed: new Kingmaker.Utility.Feet(11f), targetType: Kingmaker.UnitLogic.Abilities.Components.TargetType.Ally);
+            //BoneFists.AddCraftInfoComponent(Kingmaker.Craft.CraftSpellType.Buff, Kingmaker.Craft.CraftSavingThrow.None, Kingmaker.Craft.CraftAOE.AOE);
             bonefists = BoneFists.Configure();
             if (Main.TotFContext.NewContent.Spells.IsEnabled("BoneFists"))
             {

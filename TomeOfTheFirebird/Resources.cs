@@ -1,9 +1,4 @@
-﻿using JetBrains.Annotations;
-using Kingmaker.Blueprints;
-using System;
-using System.Collections.Generic;
-
-namespace TomeOfTheFirebird
+﻿namespace TomeOfTheFirebird
 {
     static class Resources
     {

@@ -1,6 +1,6 @@
 ﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
-using BlueprintCore.Blueprints.Configurators.Abilities;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.ActivatableAbilities;
@@ -24,7 +24,7 @@ namespace TomeOfTheFirebird.New_Spells
 
 
          
-            maker.SetRange(AbilityRange.Close).AllowTargeting(false, false, true, true).SetAnimationStyle(Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle.Directional).SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard).SetMetamagics(Metamagic.Quicken, Metamagic.Extend, Metamagic.Heighten, Metamagic.Reach, Metamagic.CompletelyNormal);
+            maker.SetRange(AbilityRange.Close).AllowTargeting(false, false, true, true).SetAnimationStyle( Kingmaker.View.Animation.CastAnimationStyle.CastActionDirectional).SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard).SetAvailableMetamagic(Metamagic.Quicken, Metamagic.Extend, Metamagic.Heighten, Metamagic.Reach, Metamagic.CompletelyNormal);
             var mainMaker = MakeHandedVersion(true);
             var offhandMaker = MakeHandedVersion(false);
 
@@ -36,7 +36,7 @@ namespace TomeOfTheFirebird.New_Spells
 
 
 
-            maker.AddVariants(mainMaker.Configure().AssetGuidThreadSafe, offhandMaker.Configure().AssetGuidThreadSafe);
+            maker.AddAbilityVariants( new System.Collections.Generic.List<BlueprintCore.Utils.Blueprint<Kingmaker.Blueprints.BlueprintAbilityReference>>() { mainMaker.Configure().AssetGuidThreadSafe, offhandMaker.Configure().AssetGuidThreadSafe });
 
 
 
@@ -53,16 +53,16 @@ namespace TomeOfTheFirebird.New_Spells
         private static AbilityConfigurator MakeHandedVersion(bool main)
         {
             var maker = MakerTools.MakeSpell(main ? "KeenEdgePrimary" : "KeenEdgeSecondary", main ? "Keen Edge (Main Hand)" : "Keen Edge (Off Hand)", desc, keenSprite, Kingmaker.Blueprints.Classes.Spells.SpellSchool.Transmutation, new Kingmaker.Localization.LocalizedString(), LocalizedStrings.TenMinutePerLevelDuration);
-            maker.SetRange(AbilityRange.Close).AllowTargeting(false, false, true, true).SetAnimationStyle(Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle.Directional).SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard).SetMetamagics(Metamagic.Quicken, Metamagic.Extend, Metamagic.Heighten, Metamagic.Reach, Metamagic.CompletelyNormal);
+            maker.SetRange(AbilityRange.Close).AllowTargeting(false, false, true, true).SetAnimationStyle(Kingmaker.View.Animation.CastAnimationStyle.CastActionDirectional).SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard).SetAvailableMetamagic(Metamagic.Quicken, Metamagic.Extend, Metamagic.Heighten, Metamagic.Reach, Metamagic.CompletelyNormal);
            
    
            
             string keen = "102a9c8c9b7a75e4fb5844e79deaf4c0";
             
-            var actions = ActionsBuilder.New().EnchantWornItem(keen, main ? Kingmaker.UI.GenericSlot.EquipSlotBase.SlotType.PrimaryHand : Kingmaker.UI.GenericSlot.EquipSlotBase.SlotType.SecondaryHand, duration: MakerTools.GetContextDurationValue(Kingmaker.UnitLogic.Mechanics.DurationRate.TenMinutes, true));
-            maker.RunActions(actions);
+            var actions = ActionsBuilder.New().EnchantWornItem(enchantment: keen, slot: main ? Kingmaker.UI.GenericSlot.EquipSlotBase.SlotType.PrimaryHand : Kingmaker.UI.GenericSlot.EquipSlotBase.SlotType.SecondaryHand, durationValue: MakerTools.GetContextDurationValue(Kingmaker.UnitLogic.Mechanics.DurationRate.TenMinutes, true));
+            maker.AddAbilityEffectRunAction(actions);
             maker.AddComponent<AbilityTargetHasSlashingPiercingWeaponInRelevantHand>(new Action<AbilityTargetHasSlashingPiercingWeaponInRelevantHand>(x => x.MainHand = main));
-            maker.AddCraftInfoComponent(Kingmaker.Craft.CraftSpellType.Buff, Kingmaker.Craft.CraftSavingThrow.None, Kingmaker.Craft.CraftAOE.None);
+            maker.AddCraftInfoComponent(Kingmaker.Craft.CraftAOE.None,savingThrow:  Kingmaker.Craft.CraftSavingThrow.None,spellType: Kingmaker.Craft.CraftSpellType.Buff);
 
             return maker;
 

@@ -1,5 +1,5 @@
-﻿using BlueprintCore.Blueprints.Configurators.Abilities;
-using BlueprintCore.Blueprints.Configurators.Classes.Selection;
+﻿using BlueprintCore.Blueprints.Configurators.Classes.Selection;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Conditions.Builder;
 using BlueprintCore.Conditions.Builder.ContextEx;
 using Kingmaker.Blueprints.Classes;
@@ -16,8 +16,8 @@ namespace TomeOfTheFirebird.New_Content.Feats
     {
         public static void Make()
         {
-            var friendCondition = ConditionsBuilder.New().ContextConditionIsAlly();
-            var enemyCondition = ConditionsBuilder.New().ContextConditionIsEnemy();
+            var friendCondition = ConditionsBuilder.New().IsAlly();
+            var enemyCondition = ConditionsBuilder.New().IsEnemy();
             var sound_burst = BlueprintTools.GetBlueprint<BlueprintAbility>("c3893092a333b93499fd0a21845aa265");
             string aoeFriendlyName = "DiscordantSongAreaOfEffectFriendly";
             string aoeEnemyName = "DiscordantSongAreaOfEffectHostile";
@@ -29,9 +29,9 @@ namespace TomeOfTheFirebird.New_Content.Feats
             var DiscordantSongEnemyBuff = MakerTools.MakeBuff("DiscordantSongEnemyBuff", "Discordant Song (Hostile)", "Discordant Song is causing extra sonic damage on ranged hits.", sound_burst.Icon);
             var DiscordantSongEnemyBuffMade = DiscordantSongEnemyBuff.Configure();
 
-            DiscordantSongAllyBuff.AdditionalDiceOnAttack(new Kingmaker.Utility.Feet(0f), new DamageTypeDescription() { Type = DamageType.Energy, Energy = Kingmaker.Enums.Damage.DamageEnergyType.Sonic }, checkWeaponRangeType: true, rangeType: Kingmaker.Enums.WeaponRangeType.Melee, initiatorConditions: ConditionsBuilder.New(), targetConditions: ConditionsBuilder.New(), value: new Kingmaker.UnitLogic.Mechanics.ContextDiceValue() { BonusValue = 0, DiceCountValue = 1, DiceType = Kingmaker.RuleSystem.DiceType.D6 });
-          
-            DiscordantSongAllyBuff.AdditionalDiceOnAttack(new Kingmaker.Utility.Feet(0f), new DamageTypeDescription() { Type = DamageType.Energy, Energy = Kingmaker.Enums.Damage.DamageEnergyType.Sonic }, checkWeaponRangeType: true, rangeType: Kingmaker.Enums.WeaponRangeType.Ranged, initiatorConditions: ConditionsBuilder.New(), targetConditions: ConditionsBuilder.New().ContextConditionHasBuff(DiscordantSongEnemyBuffMade.AssetGuidThreadSafe), value: new Kingmaker.UnitLogic.Mechanics.ContextDiceValue() { BonusValue = 0, DiceCountValue = 1, DiceType = Kingmaker.RuleSystem.DiceType.D6 });
+            DiscordantSongAllyBuff.AdditionalDiceOnAttack(distanceLessEqual: new Kingmaker.Utility.Feet(),  attackType: Kingmaker.UnitLogic.Mechanics.Components.AdditionalDiceOnAttack.WeaponOptions.AllAttacks,  damageType: new DamageTypeDescription() { Type = DamageType.Energy, Energy = Kingmaker.Enums.Damage.DamageEnergyType.Sonic }, damageEntries: new(),  checkWeaponRangeType: true, rangeType: Kingmaker.Enums.WeaponRangeType.Melee, initiatorConditions: ConditionsBuilder.New(), targetConditions: ConditionsBuilder.New(), value: new Kingmaker.UnitLogic.Mechanics.ContextDiceValue() { BonusValue = 0, DiceCountValue = 1, DiceType = Kingmaker.RuleSystem.DiceType.D6 });
+            
+            DiscordantSongAllyBuff.AdditionalDiceOnAttack( distanceLessEqual:new Kingmaker.Utility.Feet(), attackType: Kingmaker.UnitLogic.Mechanics.Components.AdditionalDiceOnAttack.WeaponOptions.AllAttacks, damageType: new DamageTypeDescription() { Type = DamageType.Energy, Energy = Kingmaker.Enums.Damage.DamageEnergyType.Sonic }, damageEntries: new(), checkWeaponRangeType: true, rangeType: Kingmaker.Enums.WeaponRangeType.Ranged, initiatorConditions: ConditionsBuilder.New(), targetConditions: ConditionsBuilder.New().HasBuff("DiscordantSongEnemyBuff"), value: new Kingmaker.UnitLogic.Mechanics.ContextDiceValue() { BonusValue = 0, DiceCountValue = 1, DiceType = Kingmaker.RuleSystem.DiceType.D6 });
 
             var DiscordantSongAllyBuffMade = DiscordantSongAllyBuff.Configure();
             
@@ -45,17 +45,17 @@ namespace TomeOfTheFirebird.New_Content.Feats
             DiscordantAoEFriendly.SetTargetType(Kingmaker.UnitLogic.Abilities.Blueprints.BlueprintAbilityAreaEffect.TargetType.Any);
             DiscordantAoEFriendly.SetIgnoreSleepingUnits(false);
             DiscordantAoEFriendly.SetShape(Kingmaker.UnitLogic.Abilities.Blueprints.AreaEffectShape.Cylinder);
-            DiscordantAoEFriendly.SetSize(30);
+            DiscordantAoEFriendly.SetSize(new Kingmaker.Utility.Feet(30f));
             
-            DiscordantAoEFriendly.AddAbilityAreaEffectBuff(friendCondition,  buff: DiscordantSongAllyBuffMade.AssetGuidThreadSafe);
+            DiscordantAoEFriendly.AddAbilityAreaEffectBuff(condition: friendCondition,  buff: DiscordantSongAllyBuffMade.AssetGuidThreadSafe);
      
             
 
                DiscordantAoEHostile.SetTargetType(Kingmaker.UnitLogic.Abilities.Blueprints.BlueprintAbilityAreaEffect.TargetType.Enemy);
                DiscordantAoEHostile.SetIgnoreSleepingUnits(false);
                DiscordantAoEHostile.SetShape(Kingmaker.UnitLogic.Abilities.Blueprints.AreaEffectShape.Cylinder);
-               DiscordantAoEHostile.SetSize(30);
-               DiscordantAoEHostile.AddAbilityAreaEffectBuff(enemyCondition, buff: DiscordantSongEnemyBuffMade.AssetGuidThreadSafe);
+               DiscordantAoEHostile.SetSize(new Kingmaker.Utility.Feet(30f));
+               DiscordantAoEHostile.AddAbilityAreaEffectBuff(condition: enemyCondition, buff: DiscordantSongEnemyBuffMade.AssetGuidThreadSafe);
                DiscordantAoEHostile.SetAggroEnemies(false);
                
 
@@ -69,7 +69,7 @@ namespace TomeOfTheFirebird.New_Content.Feats
             //DiscordantSongBuff.AddAreaEffect("79779e46999bca8469f9978a27fa58f7");
             //DiscordantSongBuff.AddComponent(new AddAreaEffect() { m_AreaEffect = DiscordantAoEFriendlyBuilt.ToReference<BlueprintAbilityAreaEffectReference>() });
             DiscordantSongBuff.AddAreaEffect(DiscordantAoEFriendlyBuilt.AssetGuidThreadSafe);
-            DiscordantSongBuff.AddAreaEffect(DiscordantAoEHostileBuilt.AssetGuidThreadSafe);
+            DiscordantSongBuff2.AddAreaEffect(DiscordantAoEHostileBuilt.AssetGuidThreadSafe);
             
             Main.TotFContext.Logger.Log("added friendly aoe");
            
@@ -89,7 +89,7 @@ namespace TomeOfTheFirebird.New_Content.Feats
             var HatOfHearteningSong = BlueprintTools.GetBlueprint<BlueprintFeature>("c25df29d2599a81428a7badf51ebd4d1");
             var DiscordantFeatMaker = MakerTools.MakeFeature("DiscordantSong", "Discordant Song", "Whenever you are using bardic performance to create a spell-like or supernatural effect, allies within 30 feet of you deal an extra 1d6 points of sonic damage with successful weapon attacks. This damage stacks with other energy damage a weapon might deal. Projectile weapons bestow this extra damage on their ammunition, but the extra damage is dealt only if the projectile hits a target within 30 feet of you.");
             DiscordantFeatMaker.SetRanks(1);
-            DiscordantFeatMaker.SetFeatureGroups(FeatureGroup.Feat);
+            DiscordantFeatMaker.SetGroups(FeatureGroup.Feat);
 
             foreach(var v in HatOfHearteningSong.Components.OfType<BuffExtraEffects>())
             {
@@ -98,10 +98,10 @@ namespace TomeOfTheFirebird.New_Content.Feats
 
             }
             //Bard or Skald
-            DiscordantFeatMaker.PrerequisiteClassLevel("772c83a25e2268e448e841dcd548235f", 10, group: Kingmaker.Blueprints.Classes.Prerequisites.Prerequisite.GroupType.Any);
-            DiscordantFeatMaker.PrerequisiteClassLevel("6afa347d804838b48bda16acb0573dc0", 10, group: Kingmaker.Blueprints.Classes.Prerequisites.Prerequisite.GroupType.Any);
-            DiscordantFeatMaker.PrerequisiteArchetype("bfa11238e7ae3544bbeb4d0b92e897ec", "4d9a864eae278744aafa7ff23f2a6466", 10, group: Kingmaker.Blueprints.Classes.Prerequisites.Prerequisite.GroupType.Any);
-            DiscordantFeatMaker.PrerequisiteArchetype("e8f21e5b58e0569468e420ebea456124", "f8767821ec805bf479706392fcc3394c", 10, group: Kingmaker.Blueprints.Classes.Prerequisites.Prerequisite.GroupType.Any);
+            DiscordantFeatMaker.AddPrerequisiteClassLevel("772c83a25e2268e448e841dcd548235f", 10, group: Kingmaker.Blueprints.Classes.Prerequisites.Prerequisite.GroupType.Any);
+            DiscordantFeatMaker.AddPrerequisiteClassLevel("6afa347d804838b48bda16acb0573dc0", 10, group: Kingmaker.Blueprints.Classes.Prerequisites.Prerequisite.GroupType.Any);
+            DiscordantFeatMaker.AddPrerequisiteArchetypeLevel("bfa11238e7ae3544bbeb4d0b92e897ec", "4d9a864eae278744aafa7ff23f2a6466", level: 10, group: Kingmaker.Blueprints.Classes.Prerequisites.Prerequisite.GroupType.Any);
+            DiscordantFeatMaker.AddPrerequisiteArchetypeLevel("e8f21e5b58e0569468e420ebea456124", "f8767821ec805bf479706392fcc3394c", level: 10, group: Kingmaker.Blueprints.Classes.Prerequisites.Prerequisite.GroupType.Any); ;
 
             var DiscordantSong = DiscordantFeatMaker.Configure();
 
@@ -113,8 +113,8 @@ namespace TomeOfTheFirebird.New_Content.Feats
 
 
 
-                FeatureSelectionConfigurator.For("94e2cd84bf3a8e04f8609fe502892f4f").AddToFeatures(DiscordantSong.AssetGuidThreadSafe);
-                FeatureSelectionConfigurator.For("d2a8fde8985691045b90e1ec57e3cc57").AddToFeatures(DiscordantSong.AssetGuidThreadSafe);
+                FeatureSelectionConfigurator.For("94e2cd84bf3a8e04f8609fe502892f4f").AddToAllFeatures(DiscordantSong.AssetGuidThreadSafe);
+                FeatureSelectionConfigurator.For("d2a8fde8985691045b90e1ec57e3cc57").AddToAllFeatures(DiscordantSong.AssetGuidThreadSafe);
 
 
             }

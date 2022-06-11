@@ -36,13 +36,13 @@ namespace TomeOfTheFirebird.New_Content.Mercies
 
                 var dispel = BlueprintTools.GetBlueprint<BlueprintAbility>("b9be852b03568064b8d2275a6cf9e2de");
                 var maker = MakerTools.MakeFeature("MercyEnsorcelled", "Mercy - Ensorcelled", "The paladin’s lay on hands also acts as dispel magic, using the paladin’s level as her caster level.", false, dispel.Icon);
-                maker.SetFeatureGroups(FeatureGroup.Mercy);
-                maker.PrerequisiteClassLevel("bfa11238e7ae3544bbeb4d0b92e897ec", 12);
+                maker.AddToGroups(FeatureGroup.Mercy);
+                maker.AddPrerequisiteClassLevel("bfa11238e7ae3544bbeb4d0b92e897ec", 12);
                 maker.SetRanks(1);
 
                 ensorcelled = maker.Configure();
                
-                ActionsBuilder dispelActMake = ActionsBuilder.New().Conditional(conditions: ConditionsBuilder.New().HasFact(ensorcelled.AssetGuidThreadSafe), ifTrue: ActionsBuilder.New().Dispel(type: Kingmaker.UnitLogic.Mechanics.Actions.ContextActionDispelMagic.BuffType.FromSpells, checkType: Kingmaker.RuleSystem.Rules.RuleDispelMagic.CheckType.CasterLevel, maxSpellLevel: new Kingmaker.UnitLogic.Mechanics.ContextValue() { Value = 10 }, onlyDispelEnemyBuffs: true, countToRemove: new Kingmaker.UnitLogic.Mechanics.ContextValue() { Value = 1 }));
+                ActionsBuilder dispelActMake = ActionsBuilder.New().Conditional(conditions: ConditionsBuilder.New().HasFact(ensorcelled.AssetGuidThreadSafe), ifTrue: ActionsBuilder.New().DispelMagic(buffType: Kingmaker.UnitLogic.Mechanics.Actions.ContextActionDispelMagic.BuffType.FromSpells, checkType: Kingmaker.RuleSystem.Rules.RuleDispelMagic.CheckType.CasterLevel, maxSpellLevel: new Kingmaker.UnitLogic.Mechanics.ContextValue() { Value = 10 }, onlyTargetEnemyBuffs: true, countToRemove: new Kingmaker.UnitLogic.Mechanics.ContextValue() { Value = 1 }));
 
                 GameAction dispelAct = dispelActMake.Build().Actions[0];
 
@@ -84,8 +84,8 @@ namespace TomeOfTheFirebird.New_Content.Mercies
 
                 Sprite icon = BlueprintTools.GetBlueprint<BlueprintBuff>("9017213d83ccddb4ab720e0a0efe36ff").Icon;
                 var maker = MakerTools.MakeFeature("MercyInjured", "Mercy - Injured", "The target gains fast healing 3 for a number of rounds equal to 1/2 the paladin’s level.", false, icon);
-                maker.SetFeatureGroups(FeatureGroup.Mercy);
-                maker.PrerequisiteClassLevel("bfa11238e7ae3544bbeb4d0b92e897ec", 9);
+                maker.AddToGroups(FeatureGroup.Mercy);
+                maker.AddPrerequisiteClassLevel("bfa11238e7ae3544bbeb4d0b92e897ec", 9);
                 maker.SetRanks(1);
 
 
@@ -99,7 +99,7 @@ namespace TomeOfTheFirebird.New_Content.Mercies
                
                 var buffDone = MercyFastHealingBuff.Configure();
                 
-                var buffAct = ActionsBuilder.New().ApplyBuff(buffDone.AssetGuidThreadSafe, duration: MakerTools.GetContextDurationValue(DurationRate.Minutes, false), isFromSpell: false, dispellable: false, permanent:false);
+                var buffAct = ActionsBuilder.New().ApplyBuff(buffDone.AssetGuidThreadSafe, durationValue: MakerTools.GetContextDurationValue(DurationRate.Minutes, false), isFromSpell: false, isNotDispelable: true);
                 var buffActWrapper = ActionsBuilder.New().Conditional(conditionsBuilder, buffAct);
 
 
@@ -141,10 +141,10 @@ namespace TomeOfTheFirebird.New_Content.Mercies
             string TTTExtraMercies = "6e76496c2748405d9946949977bd3e8d";
             if (Main.TotFContext.NewContent.Mercies.IsEnabled("Injured"))
             {
-                FeatureSelectionConfigurator.For("02b187038a8dce545bb34bbfb346428d").AddToFeatures(injured.AssetGuidThreadSafe).Configure();
+                FeatureSelectionConfigurator.For("02b187038a8dce545bb34bbfb346428d").AddToAllFeatures(injured.AssetGuidThreadSafe).Configure();
                 try
                 {
-                    FeatureSelectionConfigurator.For(TTTExtraMercies).AddToFeatures(injured.AssetGuidThreadSafe).Configure();
+                    FeatureSelectionConfigurator.For(TTTExtraMercies).AddToAllFeatures(injured.AssetGuidThreadSafe).Configure();
 
                    
                 }
@@ -155,10 +155,10 @@ namespace TomeOfTheFirebird.New_Content.Mercies
             }
             if (Main.TotFContext.NewContent.Mercies.IsEnabled("Ensorcelled"))
             {
-                FeatureSelectionConfigurator.For("02b187038a8dce545bb34bbfb346428d").AddToFeatures(ensorcelled.AssetGuidThreadSafe).Configure();
+                FeatureSelectionConfigurator.For("02b187038a8dce545bb34bbfb346428d").AddToAllFeatures(ensorcelled.AssetGuidThreadSafe).Configure();
                 try
                 {
-                    FeatureSelectionConfigurator.For(TTTExtraMercies).AddToFeatures(ensorcelled.AssetGuidThreadSafe).Configure();
+                    FeatureSelectionConfigurator.For(TTTExtraMercies).AddToAllFeatures(ensorcelled.AssetGuidThreadSafe).Configure();
 
 
                 }

@@ -1,7 +1,10 @@
 ﻿using BlueprintCore.Blueprints.Configurators.Classes;
+using BlueprintCore.Utils;
+using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Selection;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
+using System.Collections.Generic;
 using TabletopTweaks.Core.Utilities;
 using TomeOfTheFirebird.Helpers;
 
@@ -42,15 +45,15 @@ namespace TomeOfTheFirebird.New_Content.Feats
             var toggle = SunderingToggle.Configure();
 
             var SunderingFeat = MakerTools.MakeFeature("SunderingStrike", "Sundering Strike", "Whenever you score a critical hit with a melee attack, you can sunder your opponent’s weapon, in addition to the normal damage dealt by the attack. If your confirmation roll exceeds your opponent’s CMD, you may deal damage to your opponent’s weapon as if from the sunder combat maneuver (roll normal damage to the weapon separately). This does not provoke an attack of opportunity.", false);
-            SunderingFeat.SetFeatureGroups(FeatureGroup.Feat, FeatureGroup.CombatFeat);
+            SunderingFeat.SetGroups(FeatureGroup.Feat, FeatureGroup.CombatFeat);
             SunderingFeat.SetRanks(1);
             SunderingFeat.SetIsClassFeature(true);
-            SunderingFeat.AddFacts(new string[] { toggle.AssetGuidThreadSafe });
-            SunderingFeat.PrerequisiteFeature("9719015edcbf142409592e2cbaab7fe1");//Improved Sunder
-            SunderingFeat.PrerequisiteFeature("9972f33f977fc724c838e59641b2fca5");//Power Attack
-            SunderingFeat.PrerequisiteStat(Kingmaker.EntitySystem.Stats.StatType.Strength, 13);
-            SunderingFeat.PrerequisiteStat(Kingmaker.EntitySystem.Stats.StatType.BaseAttackBonus, 9);
-            SunderingFeat.SetFeatureTags(FeatureTag.Attack, FeatureTag.CombatManeuver);
+            SunderingFeat.AddFacts(new List<Blueprint<BlueprintUnitFactReference>> { toggle.AssetGuidThreadSafe });
+            SunderingFeat.AddPrerequisiteFeature("9719015edcbf142409592e2cbaab7fe1");//Improved Sunder
+            SunderingFeat.AddPrerequisiteFeature("9972f33f977fc724c838e59641b2fca5");//Power Attack
+            SunderingFeat.AddPrerequisiteStatValue(Kingmaker.EntitySystem.Stats.StatType.Strength, 13);
+            SunderingFeat.AddPrerequisiteStatValue(Kingmaker.EntitySystem.Stats.StatType.BaseAttackBonus, 9);
+            SunderingFeat.AddFeatureTagsComponent(FeatureTag.Attack| FeatureTag.CombatManeuver);
 
             var sunderprocbuild = SunderingFeat.Configure();
             if (Main.TotFContext.NewContent.Feats.IsEnabled("SunderingStrike"))

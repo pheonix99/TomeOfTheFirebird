@@ -19,7 +19,7 @@ namespace TomeOfTheFirebird
         {
             try
             {
-                
+                Enabled = true;
 
                 var harmony = new Harmony(modEntry.Info.Id);
                 TotFContext = new ModContextTomeOfTheFirebird(modEntry);
