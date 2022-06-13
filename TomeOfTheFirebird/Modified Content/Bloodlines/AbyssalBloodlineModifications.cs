@@ -24,6 +24,7 @@ namespace TomeOfTheFirebird.Modified_Content.Bloodlines
                 claw.DeactivateIfCombatEnded = false;
                 claw.OnlyInCombat = false;
                 claw.DeactivateImmediately = false;
+                claw.DoNotTurnOffOnRest = true;
                 
                 
                 

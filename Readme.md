@@ -8,6 +8,10 @@ All homebrew content or divergences from TT will be called out.
 
 NOW REQUIRES TabletopTweaks Core Module!
 ##Changelog
+1.2.4
+Actually fixed the Prodigious TWF penalty-reduction.
+In unlimited-use mode Dragon and Abyssal bloodlines claws stay on after rest.
+
 1.2.3
 Fixed Prodigious TWF penalty-reduction being active when it shouldn't be.
 Fixed Angel Cloak Artifact.

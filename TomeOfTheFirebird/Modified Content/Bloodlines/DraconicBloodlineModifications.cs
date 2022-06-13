@@ -218,10 +218,10 @@ namespace TomeOfTheFirebird.Modified_Content.Bloodlines
             }
             else
             {
-                toggle1.SetDeactivateIfCombatEnded(false).SetOnlyInCombat(false);
-                toggle2.SetDeactivateIfCombatEnded(false).SetOnlyInCombat(false);
-                toggle3.SetDeactivateIfCombatEnded(false).SetOnlyInCombat(false);
-                toggle4.SetDeactivateIfCombatEnded(false).SetOnlyInCombat(false);
+                toggle1.SetDeactivateIfCombatEnded(false).SetOnlyInCombat(false).SetDoNotTurnOffOnRest(true);
+                toggle2.SetDeactivateIfCombatEnded(false).SetOnlyInCombat(false).SetDoNotTurnOffOnRest(true);
+                toggle3.SetDeactivateIfCombatEnded(false).SetOnlyInCombat(false).SetDoNotTurnOffOnRest(true);
+                toggle4.SetDeactivateIfCombatEnded(false).SetOnlyInCombat(false).SetDoNotTurnOffOnRest(true);
 
                 foreach (string s in AllBaseGameDragonClawAbilities)
                 {
