@@ -8,6 +8,9 @@ All homebrew content or divergences from TT will be called out.
 
 NOW REQUIRES TabletopTweaks Core Module!
 ##Changelog
+1.2.6
+Fix freezing sphere not doing damage
+
 1.2.5
 Fix for discordant song UI errors
 

@@ -101,6 +101,32 @@ namespace TomeOfTheFirebird.Helpers
             return enchant;
         }
 
+        public static AbilityConfigurator MakeAbility(string systemName, string displayName, string description, Sprite icon, LocalizedString savestring, LocalizedString durationString)
+        {
+            Main.TotFContext.Logger.Log($"Building New Spell: {systemName}");
+            var guid = Main.TotFContext.Blueprints.GetGUID(systemName);
+            LocalizedString name = null;
+            LocalizedString desc = null;
+            Main.TotFContext.Logger.Log("About to try localization");
+            try
+            {
+                name = LocalizationTool.CreateString(systemName + ".Name", displayName);
+                desc = LocalizationTool.CreateString(systemName + ".Desc", description);
+                Main.TotFContext.Logger.Log("Localization done");
+            }
+            catch (Exception e)
+            {
+                Main.TotFContext.Logger.LogError(e.Message);
+            }
+
+
+
+            return AbilityConfigurator.New(systemName, guid.ToString()).SetDisplayName(name).SetDescription(desc).SetIcon(icon).SetLocalizedSavingThrow(savestring).SetLocalizedDuration(durationString);
+
+
+        }
+
+
         public static AbilityConfigurator MakeSpell(string systemName, string displayName, string description, Sprite icon, SpellSchool school, LocalizedString savestring, LocalizedString durationString)
         {
             Main.TotFContext.Logger.Log($"Building New Spell: {systemName}");

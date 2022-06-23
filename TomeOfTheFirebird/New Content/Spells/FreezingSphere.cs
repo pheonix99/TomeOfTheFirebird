@@ -6,9 +6,11 @@ using BlueprintCore.Utils;
 using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes.Spells;
+using Kingmaker.RuleSystem;
 using Kingmaker.RuleSystem.Rules.Damage;
 using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
+using Kingmaker.UnitLogic.Mechanics;
 using System.Collections.Generic;
 using TabletopTweaks.Core.Utilities;
 using TomeOfTheFirebird.Helpers;
@@ -23,34 +25,46 @@ namespace TomeOfTheFirebird.New_Spells
         public static void Build()
         {
             Sprite freezingSphere = AssetLoader.LoadInternal(Main.TotFContext, "Spells", "FreezingSphere.png");
-            var BigFreezeBuild = MakerTools.MakeSpell("FreezingSphereBig", "Freezing Sphere: Large Blast", "Freezing sphere creates a frigid globe of cold energy that streaks from your fingertips to the location you select, where it explodes in a 40-foot-radius burst, dealing 1d6 points of cold damage per caster level(maximum 20d6) to each creature in the area.A creature of the water subtype instead takes 1d8 points of cold damage per caster level (maximum 20d8) and is staggered for 1d4 rounds.", freezingSphere, Kingmaker.Blueprints.Classes.Spells.SpellSchool.Evocation, LocalizedStrings.RefHalf, new Kingmaker.Localization.LocalizedString());
-            var SmallFreezeBuild = MakerTools.MakeSpell("FreezingSphereSmall", "Freezing Sphere: Small Blast", "Freezing sphere creates a frigid globe of cold energy that streaks from your fingertips to the location you select, where it explodes in a 20-foot-radius burst, dealing 1d6 points of cold damage per caster level(maximum 20d6) to each creature in the area.A creature of the water subtype instead takes 1d8 points of cold damage per caster level (maximum 20d8) and is staggered for 1d4 rounds.", freezingSphere, Kingmaker.Blueprints.Classes.Spells.SpellSchool.Evocation, LocalizedStrings.RefHalf, new Kingmaker.Localization.LocalizedString());
-            var SelectFreezeBuild = MakerTools.MakeSpell("FreezingSphere", "Freezing Sphere", "Freezing sphere creates a frigid globe of cold energy that streaks from your fingertips to the location you select, where it explodes in a 20 or 40-foot-radius burst, dealing 1d6 points of cold damage per caster level(maximum 20d6) to each creature in the area.A creature of the water subtype instead takes 1d8 points of cold damage per caster level (maximum 20d8) and is staggered for 1d4 rounds.", freezingSphere, Kingmaker.Blueprints.Classes.Spells.SpellSchool.Evocation, LocalizedStrings.RefHalf, new Kingmaker.Localization.LocalizedString());
+            var BigFreezeBuild = MakerTools.MakeSpell("FreezingSphereBig", "Freezing Sphere: Large Blast", "Freezing sphere creates a frigid globe of cold energy that streaks from your fingertips to the location you select, where it explodes in a 40-foot-radius burst, dealing 1d6 points of cold damage per caster level(maximum 20d6) to each creature in the area.A creature of the water subtype instead takes 1d8 points of cold damage per caster level (maximum 20d8) and is staggered for 1d4 rounds.", freezingSphere, SpellSchool.Evocation, LocalizedStrings.RefHalf, new Kingmaker.Localization.LocalizedString());
+            var SmallFreezeBuild = MakerTools.MakeSpell("FreezingSphereSmall", "Freezing Sphere: Small Blast", "Freezing sphere creates a frigid globe of cold energy that streaks from your fingertips to the location you select, where it explodes in a 20-foot-radius burst, dealing 1d6 points of cold damage per caster level(maximum 20d6) to each creature in the area.A creature of the water subtype instead takes 1d8 points of cold damage per caster level (maximum 20d8) and is staggered for 1d4 rounds.", freezingSphere, SpellSchool.Evocation, LocalizedStrings.RefHalf, new Kingmaker.Localization.LocalizedString());
+            var SelectFreezeBuild = MakerTools.MakeSpell("FreezingSphere", "Freezing Sphere", "Freezing sphere creates a frigid globe of cold energy that streaks from your fingertips to the location you select, where it explodes in a 20 or 40-foot-radius burst, dealing 1d6 points of cold damage per caster level(maximum 20d6) to each creature in the area.A creature of the water subtype instead takes 1d8 points of cold damage per caster level (maximum 20d8) and is staggered for 1d4 rounds.", freezingSphere, SpellSchool.Evocation, LocalizedStrings.RefHalf, new Kingmaker.Localization.LocalizedString());
 
             BigFreezeBuild.SetSpellDescriptor(SpellDescriptor.Cold);
             SmallFreezeBuild.SetSpellDescriptor(SpellDescriptor.Cold);
             SelectFreezeBuild.SetSpellDescriptor(SpellDescriptor.Cold);
-            BigFreezeBuild.SetRange(Kingmaker.UnitLogic.Abilities.Blueprints.AbilityRange.Long);
-            SmallFreezeBuild.SetRange(Kingmaker.UnitLogic.Abilities.Blueprints.AbilityRange.Long);
-            SelectFreezeBuild.SetRange(Kingmaker.UnitLogic.Abilities.Blueprints.AbilityRange.Long);
-          
+            BigFreezeBuild.SetRange(AbilityRange.Long);
+            SmallFreezeBuild.SetRange(AbilityRange.Long);
+            SelectFreezeBuild.SetRange(AbilityRange.Long);
+
             BigFreezeBuild.SetSpellResistance(true);
             SmallFreezeBuild.SetSpellResistance(true);
             SelectFreezeBuild.SetSpellResistance(true);
-            BigFreezeBuild.SetEffectOnAlly(AbilityEffectOnUnit.Harmful).SetEffectOnEnemy(AbilityEffectOnUnit.Harmful).AllowTargeting(true, true, true, true).SetAnimationStyle(Kingmaker.View.Animation.CastAnimationStyle.CastActionDirectional).SetAvailableMetamagic(Metamagic.Empower, Metamagic.Maximize, Metamagic.Quicken, Metamagic.Bolstered, Metamagic.CompletelyNormal, Metamagic.Persistent, Metamagic.Selective,(Metamagic)CustomMetamagic.Intensified, (Metamagic)CustomMetamagic.Rime, (Metamagic)CustomMetamagic.Piercing).SetLocalizedDuration(new Kingmaker.Localization.LocalizedString());
-            SelectFreezeBuild.SetEffectOnAlly(AbilityEffectOnUnit.Harmful).SetEffectOnEnemy(AbilityEffectOnUnit.Harmful).AllowTargeting(true, true, true, true).SetAnimationStyle(Kingmaker.View.Animation.CastAnimationStyle.CastActionDirectional).SetAvailableMetamagic(Metamagic.Empower, Metamagic.Maximize, Metamagic.Quicken, Metamagic.Bolstered, Metamagic.CompletelyNormal, Metamagic.Persistent, Metamagic.Selective,(Metamagic)CustomMetamagic.Intensified, (Metamagic)CustomMetamagic.Rime, (Metamagic)CustomMetamagic.Piercing).SetLocalizedDuration(new Kingmaker.Localization.LocalizedString());
-            SmallFreezeBuild.SetEffectOnAlly(AbilityEffectOnUnit.Harmful).SetEffectOnEnemy(AbilityEffectOnUnit.Harmful).AllowTargeting(true, true, true, true).SetAnimationStyle(Kingmaker.View.Animation.CastAnimationStyle.CastActionDirectional).SetAvailableMetamagic(Metamagic.Empower, Metamagic.Maximize, Metamagic.Quicken, Metamagic.Bolstered, Metamagic.CompletelyNormal, Metamagic.Persistent, Metamagic.Selective,(Metamagic)CustomMetamagic.Intensified, (Metamagic)CustomMetamagic.Rime, (Metamagic)CustomMetamagic.Piercing).SetLocalizedDuration(new Kingmaker.Localization.LocalizedString());
+            BigFreezeBuild.SetEffectOnAlly(AbilityEffectOnUnit.Harmful).SetEffectOnEnemy(AbilityEffectOnUnit.Harmful).AllowTargeting(true, true, true, true).SetAnimationStyle(Kingmaker.View.Animation.CastAnimationStyle.CastActionDirectional).SetAvailableMetamagic(Metamagic.Empower, Metamagic.Maximize, Metamagic.Quicken, Metamagic.Bolstered, Metamagic.CompletelyNormal, Metamagic.Persistent, Metamagic.Selective, (Metamagic)CustomMetamagic.Intensified, (Metamagic)CustomMetamagic.Rime, (Metamagic)CustomMetamagic.Piercing).SetLocalizedDuration(new Kingmaker.Localization.LocalizedString());
+            SelectFreezeBuild.SetEffectOnAlly(AbilityEffectOnUnit.Harmful).SetEffectOnEnemy(AbilityEffectOnUnit.Harmful).AllowTargeting(true, true, true, true).SetAnimationStyle(Kingmaker.View.Animation.CastAnimationStyle.CastActionDirectional).SetAvailableMetamagic(Metamagic.Empower, Metamagic.Maximize, Metamagic.Quicken, Metamagic.Bolstered, Metamagic.CompletelyNormal, Metamagic.Persistent, Metamagic.Selective, (Metamagic)CustomMetamagic.Intensified, (Metamagic)CustomMetamagic.Rime, (Metamagic)CustomMetamagic.Piercing).SetLocalizedDuration(new Kingmaker.Localization.LocalizedString());
+            SmallFreezeBuild.SetEffectOnAlly(AbilityEffectOnUnit.Harmful).SetEffectOnEnemy(AbilityEffectOnUnit.Harmful).AllowTargeting(true, true, true, true).SetAnimationStyle(Kingmaker.View.Animation.CastAnimationStyle.CastActionDirectional).SetAvailableMetamagic(Metamagic.Empower, Metamagic.Maximize, Metamagic.Quicken, Metamagic.Bolstered, Metamagic.CompletelyNormal, Metamagic.Persistent, Metamagic.Selective, (Metamagic)CustomMetamagic.Intensified, (Metamagic)CustomMetamagic.Rime, (Metamagic)CustomMetamagic.Piercing).SetLocalizedDuration(new Kingmaker.Localization.LocalizedString());
+
+            ActionsBuilder getPayload()
+            {
+                var standardDamageAction = ActionsBuilder.New().DealDamage(damageType: new DamageTypeDescription() { Type = DamageType.Energy, Energy = Kingmaker.Enums.Damage.DamageEnergyType.Cold }, value: new ContextDiceValue() { DiceType = DiceType.D6, DiceCountValue = new ContextValue() { ValueType = ContextValueType.Rank }, BonusValue = new() }, halfIfSaved: true, isAoE: true) ;
+
+                var waterDamageAction = ActionsBuilder.New().DealDamage(damageType: new DamageTypeDescription() { Type = DamageType.Energy, Energy = Kingmaker.Enums.Damage.DamageEnergyType.Cold }, value: new ContextDiceValue() { DiceType = DiceType.D8, DiceCountValue = new ContextValue() { ValueType = ContextValueType.Rank }, BonusValue = new() }, halfIfSaved:true, isAoE: true);
+
+
+                waterDamageAction.ConditionalSaved(failed: ActionsBuilder.New().ApplyBuff("df3950af5a783bd4d91ab73eb8fa0fd3", durationValue: new ContextDurationValue() { DiceCountValue = 1, DiceType = DiceType.D4, m_IsExtendable = false }, isFromSpell: true, isNotDispelable: true));
+
+                var isWater = ConditionsBuilder.New().HasFact("bf7ee56ec9e43c14fa17727997e91993");
+
+                return ActionsBuilder.New().Conditional(isWater, waterDamageAction, standardDamageAction);
+            }
+            BigFreezeBuild.AddAbilityDeliverProjectile(lineWidth: new Kingmaker.Utility.Feet(5f), projectiles: new List<Blueprint<BlueprintProjectileReference>>() { "99be5f02870297b48b0342ba44156dc2" });
+            BigFreezeBuild.AddAbilityEffectRunAction(getPayload(), savingThrowType: Kingmaker.EntitySystem.Stats.SavingThrowType.Reflex).AddContextRankConfig(ContextRankConfigs.CasterLevel(true, max: 20)).AddAbilityTargetsAround(radius: new Kingmaker.Utility.Feet(40f), spreadSpeed: new Kingmaker.Utility.Feet(50f));
+
+
+
+            SmallFreezeBuild.AddAbilityDeliverProjectile(lineWidth: new Kingmaker.Utility.Feet(5f), projectiles: new List<Blueprint<BlueprintProjectileReference>>() { "99be5f02870297b48b0342ba44156dc2" });
+
+            SmallFreezeBuild.AddAbilityEffectRunAction(getPayload(), savingThrowType: Kingmaker.EntitySystem.Stats.SavingThrowType.Reflex).AddContextRankConfig(ContextRankConfigs.CasterLevel(true,  max: 20)).AddAbilityTargetsAround(radius: new Kingmaker.Utility.Feet(20f), spreadSpeed: new Kingmaker.Utility.Feet(25f));
           
-            var standardDamageAction = ActionsBuilder.New().DealDamage(new DamageTypeDescription() { Type = DamageType.Energy, Energy = Kingmaker.Enums.Damage.DamageEnergyType.Cold }, new Kingmaker.UnitLogic.Mechanics.ContextDiceValue() { DiceType = Kingmaker.RuleSystem.DiceType.D6, DiceCountValue = new Kingmaker.UnitLogic.Mechanics.ContextValue() { ValueType = Kingmaker.UnitLogic.Mechanics.ContextValueType.Rank } }, isAoE: true);
-
-            var waterDamageAction = ActionsBuilder.New().DealDamage(new DamageTypeDescription() { Type = DamageType.Energy, Energy = Kingmaker.Enums.Damage.DamageEnergyType.Cold }, new Kingmaker.UnitLogic.Mechanics.ContextDiceValue() { DiceType = Kingmaker.RuleSystem.DiceType.D8, DiceCountValue = new Kingmaker.UnitLogic.Mechanics.ContextValue() { ValueType = Kingmaker.UnitLogic.Mechanics.ContextValueType.Rank } }, isAoE: true).ConditionalSaved(failed: ActionsBuilder.New().ApplyBuff("df3950af5a783bd4d91ab73eb8fa0fd3", durationValue: new Kingmaker.UnitLogic.Mechanics.ContextDurationValue() { DiceCountValue = 1, DiceType = Kingmaker.RuleSystem.DiceType.D4, m_IsExtendable = false }, isFromSpell: true, isNotDispelable: true));
-
-            var isWater = ConditionsBuilder.New().HasFact("bf7ee56ec9e43c14fa17727997e91993");
-
-            var effectAction = ActionsBuilder.New().Conditional(isWater, waterDamageAction, standardDamageAction);
-
-            BigFreezeBuild.AddAbilityDeliverProjectile(lineWidth: new Kingmaker.Utility.Feet(5f), projectiles:  new List<Blueprint<BlueprintProjectileReference>>() {"99be5f02870297b48b0342ba44156dc2" } ).AddAbilityEffectRunAction(effectAction,savingThrowType: Kingmaker.EntitySystem.Stats.SavingThrowType.Reflex).AddContextRankConfig(ContextRankConfigs.CasterLevel(true, max: 20)).AddAbilityTargetsAround(radius: new Kingmaker.Utility.Feet(40f), spreadSpeed: new Kingmaker.Utility.Feet(50f));
-            SmallFreezeBuild.AddAbilityDeliverProjectile(lineWidth: new Kingmaker.Utility.Feet(5f), projectiles: new List<Blueprint<BlueprintProjectileReference>>() { "99be5f02870297b48b0342ba44156dc2" }).AddAbilityEffectRunAction(effectAction,savingThrowType: Kingmaker.EntitySystem.Stats.SavingThrowType.Reflex).AddContextRankConfig(ContextRankConfigs.CasterLevel(true, max: 20)).AddAbilityTargetsAround(radius: new Kingmaker.Utility.Feet(20f), spreadSpeed: new Kingmaker.Utility.Feet(25f));
             BigFreezeBuild.AddCraftInfoComponent(Kingmaker.Craft.CraftAOE.AOE,savingThrow: Kingmaker.Craft.CraftSavingThrow.Reflex,spellType: Kingmaker.Craft.CraftSpellType.Damage);
             SmallFreezeBuild.AddCraftInfoComponent(Kingmaker.Craft.CraftAOE.AOE, savingThrow: Kingmaker.Craft.CraftSavingThrow.Reflex, spellType: Kingmaker.Craft.CraftSpellType.Damage);
             var bigbuilt = BigFreezeBuild.Configure();
