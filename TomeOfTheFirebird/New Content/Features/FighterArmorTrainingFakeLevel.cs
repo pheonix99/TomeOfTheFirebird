@@ -22,7 +22,7 @@ namespace TomeOfTheFirebird.New_Content.Features
             maker.SetRanks(40);
             maker.Configure();
 
-         
+
         }
 
         public static void Connect()
@@ -34,7 +34,7 @@ namespace TomeOfTheFirebird.New_Content.Features
                 return;
             }
             var FighterClass = BlueprintTools.GetBlueprint<BlueprintCharacterClass>("48ac8db94d5de7645906c7d0ad3bcfbd");
-            var prop = BlueprintTools.GetModBlueprint<BlueprintUnitProperty>(Main.TotFContext, "FighterArmorTrainingProperty");
+            var prop = BlueprintTools.GetBlueprint<BlueprintUnitProperty>("8889a638d9be4379ab9a5c2e08fd5015");
             var feature = BlueprintTool.Get<BlueprintFeature>("ArmorTrainingRank");
             var ArmorTrainingSelection = BlueprintTools.GetModBlueprint<BlueprintFeatureSelection>(Main.TotFContext, "ArmorTrainingSelection");
             if (prop != null)
@@ -52,13 +52,23 @@ namespace TomeOfTheFirebird.New_Content.Features
                 Main.TotFContext.Logger.Log($"Couldn't get FighterArmorTrainingProperty, cannot implement Armor Training connection");
                 return;
             }
-            for (int i = 1; i <= 6; i++)
+            string[] armorguids = new string[]
             {
-                var armorSelect = BlueprintTools.GetModBlueprint<BlueprintFeatureSelection>(Main.TotFContext, "AdvancedArmorTraining" + i.ToString());
+                 "c1e7a208b5a544f58071af88a61ab842",
+    "7743a11f841449b4935224ac1de82edd",
+    "59cb9654de7147399b4d6a384d32dd3a",
+    "67eb66ec98754e228a6b4633a10327fa",
+    "bae7b370c4e8427c939a30e7133501c7",
+   "80246fa3dfe14dea94ec6e6640900083"
+            };
+            foreach (string s in armorguids)
+            {
+                var armorSelect = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>(s);
                 armorSelect.HideNotAvailibleInUI = false;
                 ConnectFeature(armorSelect);
             }
-            var armorSelect2 = BlueprintTools.GetModBlueprint<BlueprintFeatureSelection>(Main.TotFContext, "AdvancedArmorTrainingSelection");
+
+            var armorSelect2 = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("5bf17c2ae9ee4615b27c993629ed9bc3");
             armorSelect2.HideNotAvailibleInUI = false;
             ConnectFeature(armorSelect2);
             ConnectFeature(ArmorTrainingSelection);

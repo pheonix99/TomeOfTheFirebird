@@ -19,8 +19,8 @@ namespace TomeOfTheFirebird.New_Content.Features
             var PuriferArchetype = BlueprintTools.GetBlueprint<BlueprintArchetype>("c9df67160a77ecd4a97928f2455545d7");
             var OracleClass = BlueprintTools.GetBlueprint<BlueprintCharacterClass>("20ce9bf8af32bee4c8557a045ab499b1");
             var ArmorTraining = BlueprintTools.GetBlueprint<BlueprintFeature>("3c380607706f209499d951b29d3c44f3");
-            var ArmorTrainingSelection = BlueprintTools.GetModBlueprint<BlueprintFeatureSelection>(Main.TotFContext, "ArmorTrainingSelection");
-            var ArmorTrainingSpeedFeature = BlueprintTools.GetModBlueprint<BlueprintFeature>(Main.TotFContext, "ArmorTrainingSpeedFeature");
+            var ArmorTrainingSelection = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("354f1a4426d24ea38718905108f48e72");
+            var ArmorTrainingSpeedFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("1238eb1fb3a946b5868f500f07b974d5");
             var HeavyArmor = BlueprintTools.GetBlueprint<BlueprintFeature>("1b0f68188dcc435429fb87a022239681").ToReference<BlueprintFeatureBaseReference>();
             var CelestialArmorProgressionMaker = MakerTools.MakeProg("CelestialArmorProgression", "Celestial Armor", "At 7th level, a purifier’s armor takes on a golden or silvery sheen and becomes light as a feather. She gains armor training as a fighter 4 levels lower than her oracle level. This includes advanced armor training. At 11th level, a purifier gains heavy armor proficiency.", ArmorTraining.Icon);
             CelestialArmorProgressionMaker.SetRanks(1);

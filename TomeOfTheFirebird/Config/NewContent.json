@@ -120,6 +120,27 @@
 
       }
     }
+  },
+  "WitchPatrons": {
+    "DisableAll": false,
+    "Settings": {
+      "DeathPatron": {
+        "Enabled": true,
+        "Description": "Adds the Death witch patron, focusing on necromantic attack spells. Some deviation from tabletop to account for unimplmentable (speak with dead, rest eternal), unimplemented (suffocate, symbol of death) and just plain bad (power word kill) TT spells. Requires Gloomblind Bolts to be enabled."
+
+      },
+      "DeathPatronReplaceBlessingOfCourageAndLife": {
+        "Enabled": true,
+        "Description": "Replaces TT Death level 2 : Blessing Of Courage and Life with Boneshaker to go all in on necromantic attack"
+      }
+    }
+  },
+  "WildTalents": {
+    "DisableAll": false,
+    "Settings": {
+      
+    }
   }
+
 
 }

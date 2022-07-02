@@ -6,6 +6,7 @@ using Kingmaker.Blueprints.Classes;
 using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.RuleSystem.Rules.Damage;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
+using Kingmaker.UnitLogic.Buffs.Blueprints;
 using System.Linq;
 using TabletopTweaks.Core.Utilities;
 using TomeOfTheFirebird.Helpers;
@@ -64,6 +65,7 @@ namespace TomeOfTheFirebird.New_Content.Feats
             var DiscordantAoEHostileBuilt = DiscordantAoEHostile.Configure();
             var DiscordantSongBuff = MakerTools.MakeBuff("DiscordantSongBuff", "Performing Discordant Song", "Allies within 30 feet of you deal an extra 1d6 points of sonic damage with successful weapon attacks. This damage stacks with other energy damage a weapon might deal. Projectile weapons bestow this extra damage on their ammunition, but the extra damage is dealt only if the projectile hits a target within 30 feet of you.", sound_burst.Icon);
             var DiscordantSongBuff2 = MakerTools.MakeBuff("DiscordantSongBuff2", "Performing Discordant Song", "You Shouldn't See This!");
+         
             Main.TotFContext.Logger.Log($"Friendly AOE Type is {DiscordantAoEFriendlyBuilt.GetType().ToString()}, guid is :{DiscordantAoEFriendlyBuilt.AssetGuidThreadSafe}");
             //DiscordantSongBuff.AddAreaEffect("79779e46999bca8469f9978a27fa58f7");
             //DiscordantSongBuff.AddAreaEffect("79779e46999bca8469f9978a27fa58f7");

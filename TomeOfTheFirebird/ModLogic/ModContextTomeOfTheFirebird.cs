@@ -12,19 +12,23 @@ namespace TomeOfTheFirebird.ModLogic
         public Config.Tweaks Tweaks;
         public ModContextTomeOfTheFirebird(UnityModManager.ModEntry modEntry) : base(modEntry)
         {
-            LoadSettings("Bugfixes.json", "TomeOfTheFirebird.Config", ref Bugfixes);
-            LoadSettings("ContentModifications.json", "TomeOfTheFirebird.Config", ref ContentModifications);
-            LoadSettings("NewContent.json", "TomeOfTheFirebird.Config", ref NewContent);
-            LoadSettings("Tweaks.json", "TomeOfTheFirebird.Config", ref Tweaks);
-            LoadBlueprints("TomeOfTheFirebird.Config", this);
-            LoadLocalization("TomeOfTheFirebird.Localization");
+#if DEBUG   
+            Debug = true;
+#endif
+            LoadAllSettings();
 
         }
 
         public override void LoadAllSettings()
         {
-            base.AfterBlueprintCachePatches();
-       
+            LoadBlueprints("TomeOfTheFirebird.Config", this);
+            LoadSettings("Bugfixes.json", "TomeOfTheFirebird.Config", ref Bugfixes);
+            LoadSettings("ContentModifications.json", "TomeOfTheFirebird.Config", ref ContentModifications);
+            LoadSettings("NewContent.json", "TomeOfTheFirebird.Config", ref NewContent);
+            LoadSettings("Tweaks.json", "TomeOfTheFirebird.Config", ref Tweaks);
+
+            LoadLocalization("TomeOfTheFirebird.Localization");
+
         }
 
         public override void AfterBlueprintCachePatches()

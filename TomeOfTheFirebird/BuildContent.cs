@@ -20,6 +20,7 @@ using TomeOfTheFirebird.New_Content.Features;
 using TomeOfTheFirebird.Bugfixes.Items;
 using System;
 using UnityModManagerNet;
+using TomeOfTheFirebird.New_Content;
 
 namespace TomeOfTheFirebird
 {
@@ -85,8 +86,8 @@ namespace TomeOfTheFirebird
                     AbyssalBloodlineModifications.GiveInfiniteUses();
                     BreathWeaponFeats.BuildAbilityFocusBreathWeapons();
                     Witch.ReturnAccursedPatrons();
-
-
+                    WitchPatrons.Make();
+                    //New_Content.WildTalents.ShimmeringMirage.Make();
                     BlueprintFeature ActsBook = BlueprintTools.GetBlueprint<BlueprintFeature>("f16ea400ed67470b83cfd6c0dedbce6f");
                     if (ActsBook.Icon != null)
                     {
@@ -140,6 +141,8 @@ namespace TomeOfTheFirebird
                     ExtraMercies.AddToThings();
 
                     FighterArmorTrainingFakeLevel.Connect();
+                    WitchPatrons.Finish();
+                    
                 }
                 catch (Exception e)
                 {

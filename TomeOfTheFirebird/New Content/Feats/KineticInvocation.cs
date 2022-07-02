@@ -1,5 +1,6 @@
 ﻿using BlueprintCore.Utils;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
+using Kingmaker.UnitLogic.Buffs.Blueprints;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,13 @@ namespace TomeOfTheFirebird.New_Content.Feats
         public static void MakeCommandDeadINvocation()
         {
             var CommandSPell = BlueprintTool.Get<BlueprintAbility>("0b101dd5618591e478f825f0eef155b4");
+        }
+
+        public static void MakeDeathWardInvocation()
+        {
+            var dwbuff = BlueprintTool.Get<BlueprintBuff>("b0253e57a75b621428c1b89de5a937d1");
+            var dwClast = BlueprintTool.Get<BlueprintAbility>("e9cc9378fd6841f48ad59384e79e9953");
+            var dwrouch = BlueprintTool.Get<BlueprintAbility>("0413915f355a38146bc6ad40cdf27b3f");
         }
 
         public static void MakeMindBlankINvocation()

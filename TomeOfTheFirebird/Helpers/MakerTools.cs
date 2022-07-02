@@ -131,6 +131,7 @@ namespace TomeOfTheFirebird.Helpers
         {
             Main.TotFContext.Logger.Log($"Building New Spell: {systemName}");
             var guid = Main.TotFContext.Blueprints.GetGUID(systemName);
+            
             LocalizedString name = null;
             LocalizedString desc = null;
             Main.TotFContext.Logger.Log("About to try localization");

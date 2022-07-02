@@ -9,6 +9,8 @@ namespace TomeOfTheFirebird.Config
         public SettingGroup Feats;
         public SettingGroup Mercies;
         public SettingGroup Items;
+        public SettingGroup WitchPatrons;
+        public SettingGroup WildTalents;
         public void Init()
         {
             
@@ -23,6 +25,8 @@ namespace TomeOfTheFirebird.Config
             Feats.LoadSettingGroup(loadedSettings.Feats, NewSettingsOffByDefault);
             Mercies.LoadSettingGroup(loadedSettings.Mercies, NewSettingsOffByDefault);
             Items.LoadSettingGroup(loadedSettings.Items, NewSettingsOffByDefault);
+            WitchPatrons.LoadSettingGroup(loadedSettings.WitchPatrons, NewSettingsOffByDefault);
+            WildTalents.LoadSettingGroup(loadedSettings.WildTalents, NewSettingsOffByDefault);
 
 
         }

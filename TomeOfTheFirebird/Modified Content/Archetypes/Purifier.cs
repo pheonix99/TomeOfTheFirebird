@@ -74,14 +74,14 @@ namespace TomeOfTheFirebird.Modified_Content.Archetypes
                     return;
                 if (UnityModManager.FindMod("TabletopTweaks-Base") == null)
                     return;
-                var ArmorTrainingSelection = BlueprintTools.GetModBlueprint<BlueprintFeatureSelection>(Main.TotFContext, "ArmorTrainingSelection");
+                var ArmorTrainingSelection = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("354f1a4426d24ea38718905108f48e72");
                 if (ArmorTrainingSelection == null)
                 {
                     Main.TotFContext.Logger.Log($"Couldn't find ArmorTrainingSelection, aborting Celestial Armor Training");
                     return;
                 }
                 var FighterFeatSelection = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("41c8486641f7d6d4283ca9dae4147a9f");
-                var ArmorTraining = BlueprintTools.GetModBlueprint<BlueprintFeatureSelection>(Main.TotFContext, "AdvancedArmorTraining1");
+                var ArmorTraining = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("c1e7a208b5a544f58071af88a61ab842");
                 if (!FighterFeatSelection.AllFeatures.Any(x=>x.AssetGuidThreadSafe == ArmorTraining.AssetGuidThreadSafe))
                 {
                     Main.TotFContext.Logger.Log($"Couldn't find AdvancedArmorTraining1 in Fighter Feat selection, aborting Celestial Armor Training");

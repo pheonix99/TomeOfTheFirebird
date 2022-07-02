@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Aze.Publicise.MSBuild.Task.1.1.0\build\Aze.Publicise.MSBuild.Task.props" Condition="Exists('..\packages\Aze.Publicise.MSBuild.Task.1.1.0\build\Aze.Publicise.MSBuild.Task.props')" />
+  <Import Project="..\packages\ILRepack.2.0.18\build\ILRepack.props" Condition="Exists('..\packages\ILRepack.2.0.18\build\ILRepack.props')" />
+  <Import Project="..\packages\AssemblyPublicizer.1.0.1\build\AssemblyPublicizer.props" Condition="Exists('..\packages\AssemblyPublicizer.1.0.1\build\AssemblyPublicizer.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -30,7 +31,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>bin\Release\TomeOfTheFirebird\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -39,49 +40,65 @@
   <PropertyGroup>
     <WrathPath Condition=" '$(WrathPath)' == '' ">C:\Program Files (x86)\Steam\steamapps\common\Pathfinder Second Adventure</WrathPath>
   </PropertyGroup>
-  <Target Name="Publicise" AfterTargets="Clean">
+   <ItemGroup>
+    <PackageReference Include="AssemblyPublicizer">
+      <Version>1.0.1</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="ILRepack.MSBuild.Task" Version="2.0.13" />
+    <PackageReference Include="WW-Blueprint-Core" Version="2.0.4" />
+  </ItemGroup>
+  <!-- DLL Merging -->
+  <Target Name="ILRepack" AfterTargets="Build">
     <ItemGroup>
-      <PubliciseInputAssemblies Include="$(WrathPath)\Wrath_Data\Managed\Assembly-CSharp.dll" />
-      <PubliciseInputAssemblies Include="$(WrathPath)\Wrath_Data\Managed\Owlcat.Runtime.Core.dll" />
-      <PubliciseInputAssemblies Include="$(WrathPath)\Wrath_Data\Managed\Owlcat.Runtime.Visual.dll" />
-      <PubliciseInputAssemblies Include="$(WrathPath)\Wrath_Data\Managed\Owlcat.Runtime.UI.dll" />
-      <PubliciseInputAssemblies Include="$(WrathPath)\Wrath_Data\Managed\UnityEngine.dll" />
-      <PubliciseInputAssemblies Include="$(WrathPath)\Wrath_Data\Managed\UnityEngine.CoreModule.dll" />
+      <InputAssemblies Include="BlueprintCore.dll" />
+      <InputAssemblies Include="TomeOfTheFirebird.dll" />
+      <OutputAssembly Include="TomeOfTheFirebird.dll" />
     </ItemGroup>
-    <Publicise InputAssemblies="@(PubliciseInputAssemblies)" OutputPath="$(SolutionDir)lib/" PubliciseCompilerGenerated="true" />
+    <Message Text="Merging: @(InputAssemblies) into @(OutputAssembly)" Importance="High" />
+    <ILRepack OutputType="Dll" MainAssembly="TomeOfTheFirebird.dll" OutputAssembly="@(OutputAssembly)" InputAssemblies="@(InputAssemblies)" WorkingDirectory="$(OutputPath)" />
   </Target>
+  <!-- Publicize Target -->
+  <Target Name="Publicize" AfterTargets="Clean">
+    <ItemGroup>
+      <Assemblies Include="$(WrathPath)\Wrath_Data\Managed\Assembly-CSharp.dll" />
+      <PublicAssembly Include="$(SolutionDir)\lib\Assembly-CSharp_public.dll" />
+      <RenamedAssembly Include="$(SolutionDir)\lib\Assembly-CSharp.dll" />
+    </ItemGroup>
+    <Message Text="Publicizing: @(PublicAssembly) into @(RenamedAssembly)" Importance="High" />
+    <PublicizeTask InputAssemblies="@(Assemblies)" OutputDir="$(SolutionDir)lib/" />
+    <Move SourceFiles="@(PublicAssembly)" DestinationFiles="@(RenamedAssembly)" />
+  </Target>
+ 
   <ItemGroup>
     <Reference Include="0Harmony, Version=2.2.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Lib.Harmony.2.2.1\lib\net472\0Harmony.dll</HintPath>
     </Reference>
-    <Reference Include="Assembly-CSharp_public">
-      <HintPath>..\lib\Assembly-CSharp_public.dll</HintPath>
+    <Reference Include="Assembly-CSharp-public">
+      <HintPath>..\lib\Assembly-CSharp.dll</HintPath>
     </Reference>
-    <Reference Include="BlueprintCore, Version=2.0.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WW-Blueprint-Core.2.0.4\lib\net472\BlueprintCore.dll</HintPath>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Pathfinder Second Adventure\Wrath_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="Microsoft.Build.Utilities.v4.0" />
-    <Reference Include="ModKit, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ModKit.1.0.8\lib\net472\ModKit.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Owlcat.Runtime.Core_public">
-      <HintPath>..\lib\Owlcat.Runtime.Core_public.dll</HintPath>
+    <Reference Include="Owlcat.Runtime.Core">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Pathfinder Second Adventure\Wrath_Data\Managed\Owlcat.Runtime.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Owlcat.Runtime.UI_public">
-      <HintPath>..\lib\Owlcat.Runtime.UI_public.dll</HintPath>
+    <Reference Include="Owlcat.Runtime.UI">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Pathfinder Second Adventure\Wrath_Data\Managed\Owlcat.Runtime.UI.dll</HintPath>
     </Reference>
     <Reference Include="Owlcat.Runtime.Validation">
       <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Pathfinder Second Adventure\Wrath_Data\Managed\Owlcat.Runtime.Validation.dll</HintPath>
     </Reference>
-    <Reference Include="Owlcat.Runtime.Visual_public">
-      <HintPath>..\lib\Owlcat.Runtime.Visual_public.dll</HintPath>
+    <Reference Include="Owlcat.Runtime.Visual">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Pathfinder Second Adventure\Wrath_Data\Managed\Owlcat.Runtime.Visual.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -121,17 +138,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\TabletopTweaks-Core\TabletopTweaks-Core\bin\Debug\TabletopTweaks-Core.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.CoreModule_public">
-      <HintPath>..\lib\UnityEngine.CoreModule_public.dll</HintPath>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Pathfinder Second Adventure\Wrath_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ImageConversionModule">
       <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Pathfinder Second Adventure\Wrath_Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.IMGUIModule">
       <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Pathfinder Second Adventure\Wrath_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine_public">
-      <HintPath>..\lib\UnityEngine_public.dll</HintPath>
     </Reference>
     <Reference Include="UnityModManager">
       <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Pathfinder Second Adventure\Wrath_Data\Managed\UnityModManager\UnityModManager.dll</HintPath>
@@ -235,6 +249,7 @@
     <Compile Include="New Content\WildTalents\KineticMoveOptions.cs" />
     <Compile Include="New Content\WildTalents\NineTailedKineticist1.cs" />
     <Compile Include="New Content\WildTalents\ShimmeringMirage.cs" />
+    <Compile Include="New Content\WitchPatrons.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Modified Content\Quests\DawnOfDragons.cs" />
     <Compile Include="Reference\Guids.cs" />
@@ -281,15 +296,28 @@
     <Folder Include="New Spells\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>(robocopy "$(TargetDir) " "%25WrathPath%25\Mods\TomeOfTheFirebird\ " /s /e )^&amp; IF %25ERRORLEVEL%25 LEQ 1 exit 0</PostBuildEvent>
-  </PropertyGroup>
+  <Target Name="Deploy" AfterTargets="Build">
+    <ItemGroup>
+      <Assembly Include="$(OutputPath)\TomeOfTheFirebird.dll" />
+      <ModConfig Include="$(OutputPath)\Info.json" />
+      <Localization Include="$(OutputPath)\Localization\LocalizationPack.json" />
+      <SpellAssets Include="$(OutputPath)\Assets\Spells\BoneFists.png" />
+      <SpellAssets Include="$(OutputPath)\Assets\Spells\FreezingSphere.png" />
+      <SpellAssets Include="$(OutputPath)\Assets\Spells\GloomblindBolts.png" />
+      <SpellAssets Include="$(OutputPath)\Assets\Spells\SpearOfPurity.png" />
+    </ItemGroup>
+    <Copy SourceFiles="@(Assembly)" DestinationFolder="$(WrathPath)\Mods\$(MSBuildProjectName)" />
+    <Copy SourceFiles="@(ModConfig)" DestinationFolder="$(WrathPath)\Mods\$(MSBuildProjectName)" />
+    <Copy SourceFiles="@(Localization)" DestinationFolder="$(WrathPath)\Mods\$(MSBuildProjectName)\Localization" />
+    <Copy SourceFiles="@(SpellAssets)" DestinationFolder="$(WrathPath)\Mods\$(MSBuildProjectName)\Assets\Spells" />
+  </Target>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Aze.Publicise.MSBuild.Task.1.1.0\build\Aze.Publicise.MSBuild.Task.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Aze.Publicise.MSBuild.Task.1.1.0\build\Aze.Publicise.MSBuild.Task.props'))" />
     <Error Condition="!Exists('..\packages\System.Text.Json.6.0.4\build\System.Text.Json.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Text.Json.6.0.4\build\System.Text.Json.targets'))" />
+    <Error Condition="!Exists('..\packages\AssemblyPublicizer.1.0.1\build\AssemblyPublicizer.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\AssemblyPublicizer.1.0.1\build\AssemblyPublicizer.props'))" />
+    <Error Condition="!Exists('..\packages\ILRepack.2.0.18\build\ILRepack.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ILRepack.2.0.18\build\ILRepack.props'))" />
   </Target>
   <Import Project="..\packages\System.Text.Json.6.0.4\build\System.Text.Json.targets" Condition="Exists('..\packages\System.Text.Json.6.0.4\build\System.Text.Json.targets')" />
 </Project>

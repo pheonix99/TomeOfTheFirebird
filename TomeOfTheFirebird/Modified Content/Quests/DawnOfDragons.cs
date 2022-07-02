@@ -32,7 +32,7 @@ namespace TomeOfTheFirebird.QuestTweaks
         public static void Fix()
         {
 
-            FeatureConfigurator auraFeature = FeatureConfigurator.New("DragonHolyAuraFeature", Main.TotFContext.Blueprints.GetGUID("DragonHolyAuraFeature").ToString()).SetDisplayName(LocalizationTool.CreateString("HukugolHolyAuraFeature.Name", "Hokugol's Blessing (Aura)")).SetDescription(LocalizationTool.CreateString("HukugolHolyAuraFeature.Desc", "The silver dragon Hokugol blessed you with a permanent Holy Aura effect for aiding him")).AddFacts(new List<Blueprint<BlueprintUnitFactReference>>() { "a33bf327207a5904d9e38d6a80eb09e2" }, casterLevel: 23);
+            FeatureConfigurator auraFeature = FeatureConfigurator.New("DragonHolyAuraFeature", Main.TotFContext.Blueprints.GetGUID("DragonHolyAuraFeature").ToString()).SetDisplayName(LocalizationTool.CreateString("HukugolHolyAuraFeature.Name", "Hokugol's Blessing (Aura)")).SetDescription(LocalizationTool.CreateString("HukugolHolyAuraFeature.Desc", "The silver dragon Hokugol blessed you with a permanent Holy Aura effect for aiding him")).AddFacts(new List<Blueprint<BlueprintUnitFactReference>>() { "a33bf327207a5904d9e38d6a80eb09e2" }, casterLevel: 23, doNotRestoreMissingFacts: false);
             string isAngelEtude = "3a82aba4de71b89458ac82949ed957c4";
             //auraFeature.AddFeatureSurvivesRespec();
             auraFeature.SetRanks(1);
@@ -71,17 +71,8 @@ namespace TomeOfTheFirebird.QuestTweaks
             {
                 adder = DragonPowerAdd.Build().Actions[0];
             }
-            else if (Main.TotFContext.ContentModifications.DawnOfDragons.IsEnabled("CustomRewardForAngelOnly"))
+            else if (Main.TotFContext.ContentModifications.DawnOfDragons.IsEnabled("CustomRewardForAngel"))
             {
-                
-                
-
-                
-
-
-
-
-
                 
 
                 var isAngel = ConditionsBuilder.New().EtudeStatus(etude: isAngelEtude, started: true);

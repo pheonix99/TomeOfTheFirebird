@@ -8,6 +8,11 @@ All homebrew content or divergences from TT will be called out.
 
 NOW REQUIRES TabletopTweaks Core Module!
 ##Changelog
+1.2.7
+Added Death Witch Patron
+Fixed Feature-version of the vanilla Good reward from Dawn Of Dragons not working
+Reworked to bundle all files into one .dll
+
 1.2.6
 Fix freezing sphere not doing damage
 
