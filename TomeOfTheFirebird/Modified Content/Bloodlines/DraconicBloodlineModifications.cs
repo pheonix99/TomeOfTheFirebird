@@ -66,7 +66,7 @@ namespace TomeOfTheFirebird.Modified_Content.Bloodlines
             Conditional clawConditional = dragonRageBuff.Components.OfType<AddFactContextActions>().FirstOrDefault().Activated.Actions.OfType<Conditional>().FirstOrDefault(x => x.Comment == "Claws");
             if (clawConditional != null)
             {
-                var newConditions = ConditionsBuilder.New().UseOr().HasFact("fdc6fd17009e61841a37f19deab50276").HasFact("3c7ad8aeb928f4143b7acc6f312a5671").HasFact("883412103cd588048b8bef5d76166e18").HasFact("dea42f81cb4a6c54fb2ba6395df7694f");
+                ConditionsBuilder newConditions = ConditionsBuilder.New().UseOr().HasFact("fdc6fd17009e61841a37f19deab50276").HasFact("3c7ad8aeb928f4143b7acc6f312a5671").HasFact("883412103cd588048b8bef5d76166e18").HasFact("dea42f81cb4a6c54fb2ba6395df7694f");
                 clawConditional.ConditionsChecker = newConditions.Build();
                 ActionsBuilder buildMaxLevelCascade = ActionsBuilder.New();
 
@@ -102,16 +102,16 @@ namespace TomeOfTheFirebird.Modified_Content.Bloodlines
 
             bool hideclawFeatures = false;
 
-            var t1Feature = MakerTools.MakeFeature("DragonClaws1d4DamageFeature", clawsDisplayName, clawsDesc, false, t1claws.Icon);
+            BlueprintCore.Blueprints.CustomConfigurators.Classes.FeatureConfigurator t1Feature = MakerTools.MakeFeature("DragonClaws1d4DamageFeature", clawsDisplayName, clawsDesc, false, t1claws.Icon);
             t1Feature.AddAbilityResources(restoreAmount: true, resource: "5be91334e3de5aa458ade509cc16daff");
 
-            var realt1Feature = MakerTools.MakeFeature("DragonClaws1d4DamageRealFeature", "DragonClawsT1", "", true);
+            BlueprintCore.Blueprints.CustomConfigurators.Classes.FeatureConfigurator realt1Feature = MakerTools.MakeFeature("DragonClaws1d4DamageRealFeature", "DragonClawsT1", "", true);
             t1Feature.SetIsClassFeature(true).SetRanks(1);
             realt1Feature.SetIsClassFeature(true).SetRanks(1);
 
 
-            var t2Feature = MakerTools.MakeFeature("DragonClaws1d4MagicDamageFeature", "DragonClawsT2", "", true);
-            var realt2Feature = MakerTools.MakeFeature("DragonClaws1d4MagicDamageRealFeature", "DragonClawsT2", "", true);
+            BlueprintCore.Blueprints.CustomConfigurators.Classes.FeatureConfigurator t2Feature = MakerTools.MakeFeature("DragonClaws1d4MagicDamageFeature", "DragonClawsT2", "", true);
+            BlueprintCore.Blueprints.CustomConfigurators.Classes.FeatureConfigurator realt2Feature = MakerTools.MakeFeature("DragonClaws1d4MagicDamageRealFeature", "DragonClawsT2", "", true);
             t2Feature.SetIsClassFeature(true).SetRanks(1);
             t2Feature.AddRemoveFeatureOnApply("DragonClaws1d4DamageRealFeature");
             realt2Feature.SetIsClassFeature(true).SetRanks(1);
@@ -120,14 +120,14 @@ namespace TomeOfTheFirebird.Modified_Content.Bloodlines
 
             t1Feature.AddFeatureIfHasFact("DragonClaws1d4MagicDamageFeature", "DragonClaws1d4DamageRealFeature", not: true);
 
-            var t3Feature = MakerTools.MakeFeature("DragonClaws1d6MagicDamageFeature", "DragonClawsT3", "", true);
-            var realt3Feature = MakerTools.MakeFeature("DragonClaws1d6MagicDamageRealFeature", "DragonClawsT3", "", true);
+            BlueprintCore.Blueprints.CustomConfigurators.Classes.FeatureConfigurator t3Feature = MakerTools.MakeFeature("DragonClaws1d6MagicDamageFeature", "DragonClawsT3", "", true);
+            BlueprintCore.Blueprints.CustomConfigurators.Classes.FeatureConfigurator realt3Feature = MakerTools.MakeFeature("DragonClaws1d6MagicDamageRealFeature", "DragonClawsT3", "", true);
             t3Feature.SetIsClassFeature(true).SetRanks(1);
             realt3Feature.SetIsClassFeature(true).SetRanks(1);
             t3Feature.AddRemoveFeatureOnApply("DragonClaws1d4MagicDamageRealFeature");
             t2Feature.AddFeatureIfHasFact("DragonClaws1d6MagicDamageFeature", "DragonClaws1d4MagicDamageRealFeature", not: true);
 
-            var t4Feature = MakerTools.MakeFeature("DragonClaws1d6EnergyDamageFeature", "DragonClawsT4", "", true);
+            BlueprintCore.Blueprints.CustomConfigurators.Classes.FeatureConfigurator t4Feature = MakerTools.MakeFeature("DragonClaws1d6EnergyDamageFeature", "DragonClawsT4", "", true);
            
             t4Feature.SetIsClassFeature(true).SetRanks(1);
             t3Feature.AddRemoveFeatureOnApply("DragonClaws1d4MagicDamageRealFeature");
@@ -136,27 +136,27 @@ namespace TomeOfTheFirebird.Modified_Content.Bloodlines
 
 
 
-            var toggleBuff = MakerTools.MakeBuff("BloodlineDraconicUnifiedClawsBuffLevel1", clawsDisplayName, clawsDesc, t1claws.Icon);
+            BuffConfigurator toggleBuff = MakerTools.MakeBuff("BloodlineDraconicUnifiedClawsBuffLevel1", clawsDisplayName, clawsDesc, t1claws.Icon);
             toggleBuff.AddEmptyHandWeaponOverride(weapon: "8700c7fd098671b438f51d11568c2c94");
             toggleBuff.SetIsClassFeature(true);
             toggleBuff.SetFlags(BlueprintBuff.Flags.StayOnDeath);
             toggleBuff.SetRanks(1);
 
-            var toggleBuff2 = MakerTools.MakeBuff("BloodlineDraconicUnifiedClawsBuffLevel2", clawsDisplayName, clawsDesc, t1claws.Icon);
+            BuffConfigurator toggleBuff2 = MakerTools.MakeBuff("BloodlineDraconicUnifiedClawsBuffLevel2", clawsDisplayName, clawsDesc, t1claws.Icon);
             toggleBuff2.AddEmptyHandWeaponOverride(weapon: "8700c7fd098671b438f51d11568c2c94");
             toggleBuff2.AddOutgoingPhysicalDamageProperty(checkWeaponType: true, weaponType: "d4f7aee36efe0b54e810c9d3407b6ab3", addMagic: true);
             toggleBuff2.SetIsClassFeature(true);
             toggleBuff.SetRanks(1);
             toggleBuff2.SetFlags(BlueprintBuff.Flags.StayOnDeath);
 
-            var toggleBuff3 = MakerTools.MakeBuff("BloodlineDraconicUnifiedClawsBuffLevel3", clawsDisplayName, clawsDesc, t1claws.Icon);
+            BuffConfigurator toggleBuff3 = MakerTools.MakeBuff("BloodlineDraconicUnifiedClawsBuffLevel3", clawsDisplayName, clawsDesc, t1claws.Icon);
             toggleBuff3.AddEmptyHandWeaponOverride(weapon: "18dc77b96c009804399c834e028d0552");
             toggleBuff3.AddOutgoingPhysicalDamageProperty(checkWeaponType: true, weaponType: "d4f7aee36efe0b54e810c9d3407b6ab3", addMagic: true);
             toggleBuff3.SetIsClassFeature(true);
             toggleBuff3.SetFlags(BlueprintBuff.Flags.StayOnDeath);
             toggleBuff3.SetRanks(1);
 
-            var toggleBuff4 = MakerTools.MakeBuff("BloodlineDraconicUnifiedClawsBuffLevel4", clawsDisplayName, clawsDesc, t1claws.Icon);
+            BuffConfigurator toggleBuff4 = MakerTools.MakeBuff("BloodlineDraconicUnifiedClawsBuffLevel4", clawsDisplayName, clawsDesc, t1claws.Icon);
             toggleBuff4.AddEmptyHandWeaponOverride(weapon: "18dc77b96c009804399c834e028d0552");
             toggleBuff4.AddOutgoingPhysicalDamageProperty(checkWeaponType: true, weaponType: "d4f7aee36efe0b54e810c9d3407b6ab3", addMagic: true);
             toggleBuff4.SetIsClassFeature(true);
@@ -183,17 +183,17 @@ namespace TomeOfTheFirebird.Modified_Content.Bloodlines
             toggleBuff2.Configure();
             toggleBuff3.Configure();
             toggleBuff4.Configure();
-            
 
 
 
 
 
 
-            var toggle1 = MakerTools.MakeToggle("DragonClawsT1ActivatableAbility", clawsDisplayName, clawsDesc, t1claws.Icon);
-            var toggle2 = MakerTools.MakeToggle("DragonClawsT2ActivatableAbility", clawsDisplayName, clawsDesc, t1claws.Icon);
-            var toggle3 = MakerTools.MakeToggle("DragonClawsT3ActivatableAbility", clawsDisplayName, clawsDesc, t1claws.Icon);
-            var toggle4 = MakerTools.MakeToggle("DragonClawsT4ActivatableAbility", clawsDisplayName, clawsDesc, t1claws.Icon);
+
+            BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities.ActivatableAbilityConfigurator toggle1 = MakerTools.MakeToggle("DragonClawsT1ActivatableAbility", clawsDisplayName, clawsDesc, t1claws.Icon);
+            BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities.ActivatableAbilityConfigurator toggle2 = MakerTools.MakeToggle("DragonClawsT2ActivatableAbility", clawsDisplayName, clawsDesc, t1claws.Icon);
+            BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities.ActivatableAbilityConfigurator toggle3 = MakerTools.MakeToggle("DragonClawsT3ActivatableAbility", clawsDisplayName, clawsDesc, t1claws.Icon);
+            BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities.ActivatableAbilityConfigurator toggle4 = MakerTools.MakeToggle("DragonClawsT4ActivatableAbility", clawsDisplayName, clawsDesc, t1claws.Icon);
             
             
             toggle1.SetBuff("BloodlineDraconicUnifiedClawsBuffLevel1");
@@ -225,21 +225,21 @@ namespace TomeOfTheFirebird.Modified_Content.Bloodlines
 
                 foreach (string s in AllBaseGameDragonClawAbilities)
                 {
-                    var claw = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>(s);
+                    BlueprintActivatableAbility claw = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>(s);
                     claw.RemoveComponents<ActivatableAbilityResourceLogic>();
                     claw.DeactivateIfCombatEnded = false;
                     claw.OnlyInCombat = false;
                     claw.DeactivateImmediately = false;
                 }
             }
-           
 
-            var toggle1Build = toggle1.Configure();
-           
 
-            var toggle2Build = toggle2.Configure();
-            var toggle3Build = toggle3.Configure();
-            var toggle4Build = toggle4.Configure();
+            BlueprintActivatableAbility toggle1Build = toggle1.Configure();
+
+
+            BlueprintActivatableAbility toggle2Build = toggle2.Configure();
+            BlueprintActivatableAbility toggle3Build = toggle3.Configure();
+            BlueprintActivatableAbility toggle4Build = toggle4.Configure();
 
             realt1Feature.AddFacts(new System.Collections.Generic.List<BlueprintCore.Utils.Blueprint<BlueprintUnitFactReference>>() { "DragonClawsT1ActivatableAbility" });
             realt2Feature.AddFacts(new System.Collections.Generic.List<BlueprintCore.Utils.Blueprint<BlueprintUnitFactReference>>() { "DragonClawsT2ActivatableAbility" });
@@ -251,13 +251,13 @@ namespace TomeOfTheFirebird.Modified_Content.Bloodlines
 
 
 
-            var t1build = t1Feature.Configure();
+            BlueprintFeature t1build = t1Feature.Configure();
             realt1Feature.Configure();
-            var t2build = t2Feature.Configure();
+            BlueprintFeature t2build = t2Feature.Configure();
             realt2Feature.Configure();
-            var t3build = t3Feature.Configure();
+            BlueprintFeature t3build = t3Feature.Configure();
             realt3Feature.Configure();
-            var t4build = t4Feature.Configure();
+            BlueprintFeature t4build = t4Feature.Configure();
            
             if (Main.TotFContext.Tweaks.Bloodlines.IsDisabled("CombineSorcererDragonClaws"))
                 return;
@@ -266,7 +266,7 @@ namespace TomeOfTheFirebird.Modified_Content.Bloodlines
 
             foreach (string s in allbloodlines.SelectMany(x => x))
             {
-                var v = BlueprintTools.GetBlueprint<BlueprintProgression>(s);
+                BlueprintProgression v = BlueprintTools.GetBlueprint<BlueprintProgression>(s);
                 foreach (LevelEntry l in v.LevelEntries)
                 {
                     l.m_Features.RemoveAll(x => x.NameSafe().Contains("ClawsFeatureAddLevel"));

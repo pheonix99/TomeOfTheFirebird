@@ -1,6 +1,7 @@
 ﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.BasicEx;
 using BlueprintCore.Blueprints.Configurators.Classes;
+using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Conditions.Builder;
 using BlueprintCore.Conditions.Builder.StoryEx;
 using BlueprintCore.Utils;
@@ -36,9 +37,9 @@ namespace TomeOfTheFirebird.QuestTweaks
             string isAngelEtude = "3a82aba4de71b89458ac82949ed957c4";
             //auraFeature.AddFeatureSurvivesRespec();
             auraFeature.SetRanks(1);
-            var AuraFeatureBuilt = auraFeature.Configure();
-            
-            var AngelIce = new ContextWeaponCategoryExtraDamageDice()
+            Kingmaker.Blueprints.Classes.BlueprintFeature AuraFeatureBuilt = auraFeature.Configure();
+
+            ContextWeaponCategoryExtraDamageDice AngelIce = new ContextWeaponCategoryExtraDamageDice()
             {
                 Ascendant = true,
                 ToAllAttacks = true,
@@ -47,10 +48,10 @@ namespace TomeOfTheFirebird.QuestTweaks
 
             };
 
-            
 
-            var AngelIceResist = new AddDamageResistanceEnergy() { Type = Kingmaker.Enums.Damage.DamageEnergyType.Cold, Value = 20 };
-            var angelBlessingFeature = MakerTools.MakeFeature("DragonAngelBlessingFeature", "Hokugol's Blessing (Frost)", "The silver dragon Hokugol blessed you with a portion of his frost for aiding him");
+
+            AddDamageResistanceEnergy AngelIceResist = new AddDamageResistanceEnergy() { Type = Kingmaker.Enums.Damage.DamageEnergyType.Cold, Value = 20 };
+            FeatureConfigurator angelBlessingFeature = MakerTools.MakeFeature("DragonAngelBlessingFeature", "Hokugol's Blessing (Frost)", "The silver dragon Hokugol blessed you with a portion of his frost for aiding him");
 
             angelBlessingFeature.AddComponent(AngelIce);
             angelBlessingFeature.SetRanks(1);
@@ -58,13 +59,13 @@ namespace TomeOfTheFirebird.QuestTweaks
             //angelBlessingFeature.AdditionalDiceOnAttack(new Feet(0f), new DamageTypeDescription() { Type = DamageType.Energy, Energy = Kingmaker.Enums.Damage.DamageEnergyType.Cold }, onHit: true, value: new ContextDiceValue() { DiceType = Kingmaker.RuleSystem.DiceType.D6, DiceCountValue = 1, BonusValue = 0 }, initiatorConditions: ConditionsBuilder.New(), targetConditions: ConditionsBuilder.New());
             angelBlessingFeature.AddResistEnergy(type: Kingmaker.Enums.Damage.DamageEnergyType.Cold, value: new ContextValue() { Value = 10 }).AddStatBonus(Kingmaker.Enums.ModifierDescriptor.NaturalArmorEnhancement, stat: Kingmaker.EntitySystem.Stats.StatType.AC, value: 5);
             //angelBlessingFeature.AddFeatureSurvivesRespec();
-            var angelBuilt = angelBlessingFeature.Configure();
+            Kingmaker.Blueprints.Classes.BlueprintFeature angelBuilt = angelBlessingFeature.Configure();
             if (Main.TotFContext.Tweaks.RewardFeatureConversion.IsDisabled("DawnOfDragons"))
                 return;
             BlueprintEtude BuffGiver = BlueprintTools.GetBlueprint<BlueprintEtude>("ed86bf33a6a58cd40bf17ed141b6b94a");
             ActionList BuffGiverList = BuffGiver.Components.OfType<EtudePlayTrigger>().First().Actions;
-            var AuraFeatureAdder = ActionsBuilder.New().AddFact(AuraFeatureBuilt.AssetGuidThreadSafe, new PlayerCharacter());
-            var DragonPowerAdd = ActionsBuilder.New().AddFact(angelBuilt.AssetGuidThreadSafe, new PlayerCharacter());
+            ActionsBuilder AuraFeatureAdder = ActionsBuilder.New().AddFact(AuraFeatureBuilt.AssetGuidThreadSafe, new PlayerCharacter());
+            ActionsBuilder DragonPowerAdd = ActionsBuilder.New().AddFact(angelBuilt.AssetGuidThreadSafe, new PlayerCharacter());
 
             GameAction adder;
             if (Main.TotFContext.ContentModifications.DawnOfDragons.IsEnabled("CustomRewardForEveryone"))
@@ -73,10 +74,10 @@ namespace TomeOfTheFirebird.QuestTweaks
             }
             else if (Main.TotFContext.ContentModifications.DawnOfDragons.IsEnabled("CustomRewardForAngel"))
             {
-                
 
-                var isAngel = ConditionsBuilder.New().EtudeStatus(etude: isAngelEtude, started: true);
-                var angelOnlyAct = ActionsBuilder.New().Conditional(isAngel, ifTrue: DragonPowerAdd, ifFalse: AuraFeatureAdder).Build();
+
+                ConditionsBuilder isAngel = ConditionsBuilder.New().EtudeStatus(etude: isAngelEtude, started: true);
+                ActionList angelOnlyAct = ActionsBuilder.New().Conditional(isAngel, ifTrue: DragonPowerAdd, ifFalse: AuraFeatureAdder).Build();
                 //var act = ActionsBuilder.New().AddFact(AuraFeatureBuilt.AssetGuidThreadSafe, new PlayerCharacter()).Build();
                 adder = angelOnlyAct.Actions[0];
 

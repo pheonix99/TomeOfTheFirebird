@@ -19,7 +19,7 @@ namespace TomeOfTheFirebird.Config
 
         public void OverrideSettings(IUpdatableSettings userSettings)
         {
-            var loadedSettings = userSettings as NewContent;
+            NewContent loadedSettings = userSettings as NewContent;
             NewSettingsOffByDefault = loadedSettings.NewSettingsOffByDefault;
             Spells.LoadSettingGroup(loadedSettings.Spells, NewSettingsOffByDefault);
             Feats.LoadSettingGroup(loadedSettings.Feats, NewSettingsOffByDefault);

@@ -1,4 +1,5 @@
 ﻿using BlueprintCore.Blueprints.Configurators.Classes;
+using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Utils;
 using Kingmaker.Blueprints.Classes.Spells;
 
@@ -36,8 +37,8 @@ namespace TomeOfTheFirebird.Bugfixes.Classes
         {
             if (Main.TotFContext.Bugfixes.Cavalier.IsDisabled("FixOrderOfTheStarCallingChannelingSupport"))
                 return;
-
-            var starChannelAssist = FeatureConfigurator.For("eff49ecc28a0ce54caf416bdacedf4f3");
+            //Still needed in EE
+            FeatureConfigurator starChannelAssist = FeatureConfigurator.For("eff49ecc28a0ce54caf416bdacedf4f3");
 
             starChannelAssist.AddIncreaseSpellDescriptorCasterLevel(descriptor: new SpellDescriptorWrapper(SpellDescriptor.ChannelPositiveHeal | SpellDescriptor.ChannelPositiveHarm | SpellDescriptor.ChannelNegativeHeal | SpellDescriptor.ChannelNegativeHarm), bonusCasterLevel: 1, modifierDescriptor: Kingmaker.Enums.ModifierDescriptor.UntypedStackable);
             

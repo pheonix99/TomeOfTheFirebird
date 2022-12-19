@@ -1,4 +1,5 @@
 ﻿using BlueprintCore.Blueprints.Configurators.Classes;
+using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Prerequisites;
@@ -30,7 +31,7 @@ namespace TomeOfTheFirebird.Helpers
             if (ogReq != null)
             {
                 ogReq.Group = Prerequisite.GroupType.Any;
-
+                
                 PrerequisiteLogicalAND logicalAND = new PrerequisiteLogicalAND();
                 logicalAND.Group = Prerequisite.GroupType.Any;
                 PrerequisiteFeature featReq = new PrerequisiteFeature();

@@ -11,6 +11,7 @@ using Kingmaker.RuleSystem.Rules.Damage;
 using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Mechanics;
+using Kingmaker.Visual.Animation.Kingmaker.Actions;
 using System.Collections.Generic;
 using TabletopTweaks.Core.Utilities;
 using TomeOfTheFirebird.Helpers;
@@ -25,9 +26,9 @@ namespace TomeOfTheFirebird.New_Spells
         public static void Build()
         {
             Sprite freezingSphere = AssetLoader.LoadInternal(Main.TotFContext, "Spells", "FreezingSphere.png");
-            var BigFreezeBuild = MakerTools.MakeSpell("FreezingSphereBig", "Freezing Sphere: Large Blast", "Freezing sphere creates a frigid globe of cold energy that streaks from your fingertips to the location you select, where it explodes in a 40-foot-radius burst, dealing 1d6 points of cold damage per caster level(maximum 20d6) to each creature in the area.A creature of the water subtype instead takes 1d8 points of cold damage per caster level (maximum 20d8) and is staggered for 1d4 rounds.", freezingSphere, SpellSchool.Evocation, LocalizedStrings.RefHalf, new Kingmaker.Localization.LocalizedString());
-            var SmallFreezeBuild = MakerTools.MakeSpell("FreezingSphereSmall", "Freezing Sphere: Small Blast", "Freezing sphere creates a frigid globe of cold energy that streaks from your fingertips to the location you select, where it explodes in a 20-foot-radius burst, dealing 1d6 points of cold damage per caster level(maximum 20d6) to each creature in the area.A creature of the water subtype instead takes 1d8 points of cold damage per caster level (maximum 20d8) and is staggered for 1d4 rounds.", freezingSphere, SpellSchool.Evocation, LocalizedStrings.RefHalf, new Kingmaker.Localization.LocalizedString());
-            var SelectFreezeBuild = MakerTools.MakeSpell("FreezingSphere", "Freezing Sphere", "Freezing sphere creates a frigid globe of cold energy that streaks from your fingertips to the location you select, where it explodes in a 20 or 40-foot-radius burst, dealing 1d6 points of cold damage per caster level(maximum 20d6) to each creature in the area.A creature of the water subtype instead takes 1d8 points of cold damage per caster level (maximum 20d8) and is staggered for 1d4 rounds.", freezingSphere, SpellSchool.Evocation, LocalizedStrings.RefHalf, new Kingmaker.Localization.LocalizedString());
+            BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities.AbilityConfigurator BigFreezeBuild = MakerTools.MakeSpell("FreezingSphereBig", "Freezing Sphere: Large Blast", "Freezing sphere creates a frigid globe of cold energy that streaks from your fingertips to the location you select, where it explodes in a 40-foot-radius burst, dealing 1d6 points of cold damage per caster level(maximum 20d6) to each creature in the area.A creature of the water subtype instead takes 1d8 points of cold damage per caster level (maximum 20d8) and is staggered for 1d4 rounds.", freezingSphere, SpellSchool.Evocation, LocalizedStrings.RefHalf, new Kingmaker.Localization.LocalizedString());
+            BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities.AbilityConfigurator SmallFreezeBuild = MakerTools.MakeSpell("FreezingSphereSmall", "Freezing Sphere: Small Blast", "Freezing sphere creates a frigid globe of cold energy that streaks from your fingertips to the location you select, where it explodes in a 20-foot-radius burst, dealing 1d6 points of cold damage per caster level(maximum 20d6) to each creature in the area.A creature of the water subtype instead takes 1d8 points of cold damage per caster level (maximum 20d8) and is staggered for 1d4 rounds.", freezingSphere, SpellSchool.Evocation, LocalizedStrings.RefHalf, new Kingmaker.Localization.LocalizedString());
+            BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities.AbilityConfigurator SelectFreezeBuild = MakerTools.MakeSpell("FreezingSphere", "Freezing Sphere", "Freezing sphere creates a frigid globe of cold energy that streaks from your fingertips to the location you select, where it explodes in a 20 or 40-foot-radius burst, dealing 1d6 points of cold damage per caster level(maximum 20d6) to each creature in the area.A creature of the water subtype instead takes 1d8 points of cold damage per caster level (maximum 20d8) and is staggered for 1d4 rounds.", freezingSphere, SpellSchool.Evocation, LocalizedStrings.RefHalf, new Kingmaker.Localization.LocalizedString());
 
             BigFreezeBuild.SetSpellDescriptor(SpellDescriptor.Cold);
             SmallFreezeBuild.SetSpellDescriptor(SpellDescriptor.Cold);
@@ -39,20 +40,20 @@ namespace TomeOfTheFirebird.New_Spells
             BigFreezeBuild.SetSpellResistance(true);
             SmallFreezeBuild.SetSpellResistance(true);
             SelectFreezeBuild.SetSpellResistance(true);
-            BigFreezeBuild.SetEffectOnAlly(AbilityEffectOnUnit.Harmful).SetEffectOnEnemy(AbilityEffectOnUnit.Harmful).AllowTargeting(true, true, true, true).SetAnimationStyle(Kingmaker.View.Animation.CastAnimationStyle.CastActionDirectional).SetAvailableMetamagic(Metamagic.Empower, Metamagic.Maximize, Metamagic.Quicken, Metamagic.Bolstered, Metamagic.CompletelyNormal, Metamagic.Persistent, Metamagic.Selective, (Metamagic)CustomMetamagic.Intensified, (Metamagic)CustomMetamagic.Rime, (Metamagic)CustomMetamagic.Piercing).SetLocalizedDuration(new Kingmaker.Localization.LocalizedString());
-            SelectFreezeBuild.SetEffectOnAlly(AbilityEffectOnUnit.Harmful).SetEffectOnEnemy(AbilityEffectOnUnit.Harmful).AllowTargeting(true, true, true, true).SetAnimationStyle(Kingmaker.View.Animation.CastAnimationStyle.CastActionDirectional).SetAvailableMetamagic(Metamagic.Empower, Metamagic.Maximize, Metamagic.Quicken, Metamagic.Bolstered, Metamagic.CompletelyNormal, Metamagic.Persistent, Metamagic.Selective, (Metamagic)CustomMetamagic.Intensified, (Metamagic)CustomMetamagic.Rime, (Metamagic)CustomMetamagic.Piercing).SetLocalizedDuration(new Kingmaker.Localization.LocalizedString());
-            SmallFreezeBuild.SetEffectOnAlly(AbilityEffectOnUnit.Harmful).SetEffectOnEnemy(AbilityEffectOnUnit.Harmful).AllowTargeting(true, true, true, true).SetAnimationStyle(Kingmaker.View.Animation.CastAnimationStyle.CastActionDirectional).SetAvailableMetamagic(Metamagic.Empower, Metamagic.Maximize, Metamagic.Quicken, Metamagic.Bolstered, Metamagic.CompletelyNormal, Metamagic.Persistent, Metamagic.Selective, (Metamagic)CustomMetamagic.Intensified, (Metamagic)CustomMetamagic.Rime, (Metamagic)CustomMetamagic.Piercing).SetLocalizedDuration(new Kingmaker.Localization.LocalizedString());
+            BigFreezeBuild.SetEffectOnAlly(AbilityEffectOnUnit.Harmful).SetEffectOnEnemy(AbilityEffectOnUnit.Harmful).AllowTargeting(true, true, true, true).SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Directional).SetAvailableMetamagic(Metamagic.Empower, Metamagic.Maximize, Metamagic.Quicken, Metamagic.Bolstered, Metamagic.CompletelyNormal, Metamagic.Persistent, Metamagic.Selective, (Metamagic)CustomMetamagic.Intensified, (Metamagic)CustomMetamagic.Rime, (Metamagic)CustomMetamagic.Piercing).SetLocalizedDuration(new Kingmaker.Localization.LocalizedString());
+            SelectFreezeBuild.SetEffectOnAlly(AbilityEffectOnUnit.Harmful).SetEffectOnEnemy(AbilityEffectOnUnit.Harmful).AllowTargeting(true, true, true, true).SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Directional).SetAvailableMetamagic(Metamagic.Empower, Metamagic.Maximize, Metamagic.Quicken, Metamagic.Bolstered, Metamagic.CompletelyNormal, Metamagic.Persistent, Metamagic.Selective, (Metamagic)CustomMetamagic.Intensified, (Metamagic)CustomMetamagic.Rime, (Metamagic)CustomMetamagic.Piercing).SetLocalizedDuration(new Kingmaker.Localization.LocalizedString());
+            SmallFreezeBuild.SetEffectOnAlly(AbilityEffectOnUnit.Harmful).SetEffectOnEnemy(AbilityEffectOnUnit.Harmful).AllowTargeting(true, true, true, true).SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Directional).SetAvailableMetamagic(Metamagic.Empower, Metamagic.Maximize, Metamagic.Quicken, Metamagic.Bolstered, Metamagic.CompletelyNormal, Metamagic.Persistent, Metamagic.Selective, (Metamagic)CustomMetamagic.Intensified, (Metamagic)CustomMetamagic.Rime, (Metamagic)CustomMetamagic.Piercing).SetLocalizedDuration(new Kingmaker.Localization.LocalizedString());
 
             ActionsBuilder getPayload()
             {
-                var standardDamageAction = ActionsBuilder.New().DealDamage(damageType: new DamageTypeDescription() { Type = DamageType.Energy, Energy = Kingmaker.Enums.Damage.DamageEnergyType.Cold }, value: new ContextDiceValue() { DiceType = DiceType.D6, DiceCountValue = new ContextValue() { ValueType = ContextValueType.Rank }, BonusValue = new() }, halfIfSaved: true, isAoE: true) ;
+                ActionsBuilder standardDamageAction = ActionsBuilder.New().DealDamage(damageType: new DamageTypeDescription() { Type = DamageType.Energy, Energy = Kingmaker.Enums.Damage.DamageEnergyType.Cold }, value: new ContextDiceValue() { DiceType = DiceType.D6, DiceCountValue = new ContextValue() { ValueType = ContextValueType.Rank }, BonusValue = new() }, halfIfSaved: true, isAoE: true) ;
 
-                var waterDamageAction = ActionsBuilder.New().DealDamage(damageType: new DamageTypeDescription() { Type = DamageType.Energy, Energy = Kingmaker.Enums.Damage.DamageEnergyType.Cold }, value: new ContextDiceValue() { DiceType = DiceType.D8, DiceCountValue = new ContextValue() { ValueType = ContextValueType.Rank }, BonusValue = new() }, halfIfSaved:true, isAoE: true);
+                ActionsBuilder waterDamageAction = ActionsBuilder.New().DealDamage(damageType: new DamageTypeDescription() { Type = DamageType.Energy, Energy = Kingmaker.Enums.Damage.DamageEnergyType.Cold }, value: new ContextDiceValue() { DiceType = DiceType.D8, DiceCountValue = new ContextValue() { ValueType = ContextValueType.Rank }, BonusValue = new() }, halfIfSaved:true, isAoE: true);
 
 
                 waterDamageAction.ConditionalSaved(failed: ActionsBuilder.New().ApplyBuff("df3950af5a783bd4d91ab73eb8fa0fd3", durationValue: new ContextDurationValue() { DiceCountValue = 1, DiceType = DiceType.D4, m_IsExtendable = false }, isFromSpell: true, isNotDispelable: true));
 
-                var isWater = ConditionsBuilder.New().HasFact("bf7ee56ec9e43c14fa17727997e91993");
+                ConditionsBuilder isWater = ConditionsBuilder.New().HasFact("bf7ee56ec9e43c14fa17727997e91993");
 
                 return ActionsBuilder.New().Conditional(isWater, waterDamageAction, standardDamageAction);
             }
@@ -67,16 +68,17 @@ namespace TomeOfTheFirebird.New_Spells
           
             BigFreezeBuild.AddCraftInfoComponent(Kingmaker.Craft.CraftAOE.AOE,savingThrow: Kingmaker.Craft.CraftSavingThrow.Reflex,spellType: Kingmaker.Craft.CraftSpellType.Damage);
             SmallFreezeBuild.AddCraftInfoComponent(Kingmaker.Craft.CraftAOE.AOE, savingThrow: Kingmaker.Craft.CraftSavingThrow.Reflex, spellType: Kingmaker.Craft.CraftSpellType.Damage);
-            var bigbuilt = BigFreezeBuild.Configure();
-            var smallbuilt = SmallFreezeBuild.Configure();
+            BlueprintAbility bigbuilt = BigFreezeBuild.Configure();
+            BlueprintAbility smallbuilt = SmallFreezeBuild.Configure();
 
             SelectFreezeBuild.AddAbilityVariants(new List<Blueprint<BlueprintAbilityReference>>() { bigbuilt.AssetGuidThreadSafe, smallbuilt.AssetGuidThreadSafe });
-            var built = SelectFreezeBuild.Configure();
+            BlueprintAbility built = SelectFreezeBuild.Configure();
             if (Main.TotFContext.NewContent.Spells.IsEnabled("FreezingSphere"))
             {
                 //built.AddToSpellList(SpellTools.SpellList.FrostSpiritSpellList, 6);
                 built.AddToSpellList(SpellTools.SpellList.WizardSpellList, 6);
                 built.AddToSpellList(SpellTools.SpellList.MagusSpellList, 6);
+                built.AddToSpellSpecialization();
             }
 
 

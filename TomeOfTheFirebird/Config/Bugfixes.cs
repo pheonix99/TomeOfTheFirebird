@@ -17,7 +17,7 @@ namespace TomeOfTheFirebird.Config
 
         public void OverrideSettings(IUpdatableSettings userSettings)
         {
-            var loadedSettings = userSettings as Bugfixes;
+            Bugfixes loadedSettings = userSettings as Bugfixes;
             NewSettingsOffByDefault = loadedSettings.NewSettingsOffByDefault;
             FixExtraHits.LoadSettingGroup(loadedSettings.FixExtraHits, NewSettingsOffByDefault);
             Purifier.LoadSettingGroup(loadedSettings.Purifier, NewSettingsOffByDefault);

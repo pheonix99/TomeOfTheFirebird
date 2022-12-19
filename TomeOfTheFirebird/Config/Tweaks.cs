@@ -22,7 +22,7 @@ namespace TomeOfTheFirebird.Config
         
         public void OverrideSettings(IUpdatableSettings userSettings)
         {
-            var loadedSettings = userSettings as Tweaks;
+            Tweaks loadedSettings = userSettings as Tweaks;
             NewSettingsOffByDefault = loadedSettings.NewSettingsOffByDefault;
             Mythic.LoadSettingGroup(loadedSettings.Mythic, NewSettingsOffByDefault);
             Spells.LoadSettingGroup(loadedSettings.Spells, NewSettingsOffByDefault);

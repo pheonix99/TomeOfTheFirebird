@@ -34,8 +34,8 @@ namespace TomeOfTheFirebird.New_Content.Mercies
             void BuildEnsorcelled()
             {
 
-                var dispel = BlueprintTools.GetBlueprint<BlueprintAbility>("b9be852b03568064b8d2275a6cf9e2de");
-                var maker = MakerTools.MakeFeature("MercyEnsorcelled", "Mercy - Ensorcelled", "The paladin’s lay on hands also acts as dispel magic, using the paladin’s level as her caster level.", false, dispel.Icon);
+                BlueprintAbility dispel = BlueprintTools.GetBlueprint<BlueprintAbility>("b9be852b03568064b8d2275a6cf9e2de");
+                BlueprintCore.Blueprints.CustomConfigurators.Classes.FeatureConfigurator maker = MakerTools.MakeFeature("MercyEnsorcelled", "Mercy - Ensorcelled", "The paladin’s lay on hands also acts as dispel magic, using the paladin’s level as her caster level.", false, dispel.Icon);
                 maker.AddToGroups(FeatureGroup.Mercy);
                 maker.AddPrerequisiteClassLevel("bfa11238e7ae3544bbeb4d0b92e897ec", 12);
                 maker.SetRanks(1);
@@ -46,12 +46,12 @@ namespace TomeOfTheFirebird.New_Content.Mercies
 
                 GameAction dispelAct = dispelActMake.Build().Actions[0];
 
-                var LayOnHandsSelf = BlueprintTools.GetBlueprint<BlueprintAbility>("8d6073201e5395d458b8251386d72df1");
+                BlueprintAbility LayOnHandsSelf = BlueprintTools.GetBlueprint<BlueprintAbility>("8d6073201e5395d458b8251386d72df1");
                 Conditional LoHMeCond = LayOnHandsSelf.Components.OfType<AbilityEffectRunAction>().First().Actions.Actions.OfType<Conditional>().First();
                 LoHMeCond.IfTrue.Actions = LoHMeCond.IfTrue.Actions.Append(dispelAct).ToArray();
                 LoHMeCond.IfFalse.Actions = LoHMeCond.IfTrue.Actions.Append(dispelAct).ToArray();
 
-                var LayOnHandsOther = BlueprintTools.GetBlueprint<BlueprintAbility>("caae1dc6fcf7b37408686971ee27db13");
+                BlueprintAbility LayOnHandsOther = BlueprintTools.GetBlueprint<BlueprintAbility>("caae1dc6fcf7b37408686971ee27db13");
 
                 Conditional LoHOCond = LayOnHandsOther.Components.OfType<AbilityEffectRunAction>().First().Actions.Actions.OfType<Conditional>().First();
 
@@ -64,7 +64,7 @@ namespace TomeOfTheFirebird.New_Content.Mercies
 
 
 
-                var LayOnHandsSpecial = BlueprintTools.GetBlueprint<BlueprintAbility>("8337cea04c8afd1428aad69defbfc365");
+                BlueprintAbility LayOnHandsSpecial = BlueprintTools.GetBlueprint<BlueprintAbility>("8337cea04c8afd1428aad69defbfc365");
 
                 Conditional LoHSCond = LayOnHandsSpecial.Components.OfType<AbilityEffectRunAction>().First().Actions.Actions.OfType<Conditional>().First();
 
@@ -83,7 +83,7 @@ namespace TomeOfTheFirebird.New_Content.Mercies
 
 
                 Sprite icon = BlueprintTools.GetBlueprint<BlueprintBuff>("9017213d83ccddb4ab720e0a0efe36ff").Icon;
-                var maker = MakerTools.MakeFeature("MercyInjured", "Mercy - Injured", "The target gains fast healing 3 for a number of rounds equal to 1/2 the paladin’s level.", false, icon);
+                BlueprintCore.Blueprints.CustomConfigurators.Classes.FeatureConfigurator maker = MakerTools.MakeFeature("MercyInjured", "Mercy - Injured", "The target gains fast healing 3 for a number of rounds equal to 1/2 the paladin’s level.", false, icon);
                 maker.AddToGroups(FeatureGroup.Mercy);
                 maker.AddPrerequisiteClassLevel("bfa11238e7ae3544bbeb4d0b92e897ec", 9);
                 maker.SetRanks(1);
@@ -91,25 +91,25 @@ namespace TomeOfTheFirebird.New_Content.Mercies
 
 
                 injured = maker.Configure();
-          
-                var MercyFastHealingBuff = MakerTools.MakeBuff("MercyInjuredBuff", "Mercy: Injured", "Granted Fast Healing 3 by Lay On Hands", icon);
+
+                BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs.BuffConfigurator MercyFastHealingBuff = MakerTools.MakeBuff("MercyInjuredBuff", "Mercy: Injured", "Granted Fast Healing 3 by Lay On Hands", icon);
                 MercyFastHealingBuff.AddEffectContextFastHealing(bonus: new ContextValue() { Value = 3 }).SetIsClassFeature(true);
                 MercyFastHealingBuff.SetRanks(1);
-                var conditionsBuilder = ConditionsBuilder.New().CasterHasFact(injured.AssetGuidThreadSafe);
-               
-                var buffDone = MercyFastHealingBuff.Configure();
-                
-                var buffAct = ActionsBuilder.New().ApplyBuff(buffDone.AssetGuidThreadSafe, durationValue: MakerTools.GetContextDurationValue(DurationRate.Minutes, false), isFromSpell: false, isNotDispelable: true);
-                var buffActWrapper = ActionsBuilder.New().Conditional(conditionsBuilder, buffAct);
+                ConditionsBuilder conditionsBuilder = ConditionsBuilder.New().CasterHasFact(injured.AssetGuidThreadSafe);
+
+                BlueprintBuff buffDone = MercyFastHealingBuff.Configure();
+
+                ActionsBuilder buffAct = ActionsBuilder.New().ApplyBuff(buffDone.AssetGuidThreadSafe, durationValue: MakerTools.GetContextDurationValue(DurationRate.Minutes, false), isFromSpell: false, isNotDispelable: true);
+                ActionsBuilder buffActWrapper = ActionsBuilder.New().Conditional(conditionsBuilder, buffAct);
 
 
-                var actDone = buffActWrapper.Build().Actions[0];
-                var LayOnHandsSelf = BlueprintTools.GetBlueprint<BlueprintAbility>("8d6073201e5395d458b8251386d72df1");
+                GameAction actDone = buffActWrapper.Build().Actions[0];
+                BlueprintAbility LayOnHandsSelf = BlueprintTools.GetBlueprint<BlueprintAbility>("8d6073201e5395d458b8251386d72df1");
                 Conditional LoHMeCond = LayOnHandsSelf.Components.OfType<AbilityEffectRunAction>().First().Actions.Actions.OfType<Conditional>().First();
                 LoHMeCond.IfTrue.Actions = LoHMeCond.IfTrue.Actions.Append(actDone).ToArray();
 
 
-                var LayOnHandsOther = BlueprintTools.GetBlueprint<BlueprintAbility>("caae1dc6fcf7b37408686971ee27db13");
+                BlueprintAbility LayOnHandsOther = BlueprintTools.GetBlueprint<BlueprintAbility>("caae1dc6fcf7b37408686971ee27db13");
 
                 Conditional LoHOCond = LayOnHandsOther.Components.OfType<AbilityEffectRunAction>().First().Actions.Actions.OfType<Conditional>().First();
 
@@ -123,7 +123,7 @@ namespace TomeOfTheFirebird.New_Content.Mercies
 
 
 
-                var LayOnHandsSpecial = BlueprintTools.GetBlueprint<BlueprintAbility>("8337cea04c8afd1428aad69defbfc365");
+                BlueprintAbility LayOnHandsSpecial = BlueprintTools.GetBlueprint<BlueprintAbility>("8337cea04c8afd1428aad69defbfc365");
 
                 Conditional LoHSCond = LayOnHandsSpecial.Components.OfType<AbilityEffectRunAction>().First().Actions.Actions.OfType<Conditional>().First();
 

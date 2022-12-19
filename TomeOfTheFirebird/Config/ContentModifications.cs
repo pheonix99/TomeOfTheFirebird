@@ -14,7 +14,7 @@ namespace TomeOfTheFirebird.Config
 
         public void OverrideSettings(IUpdatableSettings userSettings)
         {
-            var loadedSettings = userSettings as ContentModifications;
+            ContentModifications loadedSettings = userSettings as ContentModifications;
             NewSettingsOffByDefault = loadedSettings.NewSettingsOffByDefault;
             DawnOfDragons.LoadSettingGroup(loadedSettings.DawnOfDragons, NewSettingsOffByDefault);
             Crusade.LoadSettingGroup(loadedSettings.Crusade, NewSettingsOffByDefault);

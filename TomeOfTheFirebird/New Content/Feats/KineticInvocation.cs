@@ -13,33 +13,33 @@ namespace TomeOfTheFirebird.New_Content.Feats
     {
         public static void MakeBlessingOfTheSalamanderInvocation()
         {
-            var BlessingSpell = BlueprintTool.Get<BlueprintAbility>("9256a86aec14ad14e9497f6b60e26f3f");
+            BlueprintAbility BlessingSpell = BlueprintTool.Get<BlueprintAbility>("9256a86aec14ad14e9497f6b60e26f3f");
         }
 
         public static void MakeHypnotismInvocation()
         {
-            var hypnospell = BlueprintTool.Get<BlueprintAbility>("88367310478c10b47903463c5d0152b0");
+            BlueprintAbility hypnospell = BlueprintTool.Get<BlueprintAbility>("88367310478c10b47903463c5d0152b0");
         }
 
         public static void MakeAnimateDeadINvocation()
         {
-            var AnimateSPell = BlueprintTool.Get<BlueprintAbility>("4b76d32feb089ad4499c3a1ce8e1ac27");
+            BlueprintAbility AnimateSPell = BlueprintTool.Get<BlueprintAbility>("4b76d32feb089ad4499c3a1ce8e1ac27");
         }
         public static void MakeCommandDeadINvocation()
         {
-            var CommandSPell = BlueprintTool.Get<BlueprintAbility>("0b101dd5618591e478f825f0eef155b4");
+            BlueprintAbility CommandSPell = BlueprintTool.Get<BlueprintAbility>("0b101dd5618591e478f825f0eef155b4");
         }
 
         public static void MakeDeathWardInvocation()
         {
-            var dwbuff = BlueprintTool.Get<BlueprintBuff>("b0253e57a75b621428c1b89de5a937d1");
-            var dwClast = BlueprintTool.Get<BlueprintAbility>("e9cc9378fd6841f48ad59384e79e9953");
-            var dwrouch = BlueprintTool.Get<BlueprintAbility>("0413915f355a38146bc6ad40cdf27b3f");
+            BlueprintBuff dwbuff = BlueprintTool.Get<BlueprintBuff>("b0253e57a75b621428c1b89de5a937d1");
+            BlueprintAbility dwClast = BlueprintTool.Get<BlueprintAbility>("e9cc9378fd6841f48ad59384e79e9953");
+            BlueprintAbility dwrouch = BlueprintTool.Get<BlueprintAbility>("0413915f355a38146bc6ad40cdf27b3f");
         }
 
         public static void MakeMindBlankINvocation()
         {
-            var MindBLankSpell = BlueprintTool.Get<BlueprintAbility>("df2a0ba6b6dcecf429cbb80a56fee5cf");
+            BlueprintAbility MindBLankSpell = BlueprintTool.Get<BlueprintAbility>("df2a0ba6b6dcecf429cbb80a56fee5cf");
         }
         /*
          *  Kinetic Invocation

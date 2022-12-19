@@ -43,7 +43,7 @@ namespace TomeOfTheFirebird.Components
                 {
                     using (base.Context.GetDataScope(evt.Initiator))
                     {
-                        var result = this.wielderCondition.Check();
+                        bool result = this.wielderCondition.Check();
 
                         if (!result)
                             return;

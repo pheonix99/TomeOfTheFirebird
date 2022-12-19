@@ -1,4 +1,5 @@
 ﻿using BlueprintCore.Blueprints.Configurators.Classes;
+using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
@@ -14,19 +15,19 @@ namespace TomeOfTheFirebird.New_Content.Feats
     {
         public static void Build()
         {
-            var disarmingstrikebuff = BlueprintTools.GetBlueprint<BlueprintBuff>("a2a60c12e69603e47bb20218602a1119");
+            BlueprintBuff disarmingstrikebuff = BlueprintTools.GetBlueprint<BlueprintBuff>("a2a60c12e69603e47bb20218602a1119");
 
-            var SunderingBuff = MakerTools.MakeBuff("SunderingStrikeBuff", "Sundering Strike (Hidden Buff)", "", disarmingstrikebuff.Icon);
+            BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs.BuffConfigurator SunderingBuff = MakerTools.MakeBuff("SunderingStrikeBuff", "Sundering Strike (Hidden Buff)", "", disarmingstrikebuff.Icon);
             SunderingBuff.SetFlags(BlueprintBuff.Flags.HiddenInUi, BlueprintBuff.Flags.StayOnDeath);
             SunderingBuff.SetIsClassFeature(true);
 
             SunderingBuff.AddCombatManeuverOnCriticalHit(Kingmaker.RuleSystem.Rules.CombatManeuver.SunderArmor);
 
-            var buffbuild = SunderingBuff.Configure();
-          
-            
+            BlueprintBuff buffbuild = SunderingBuff.Configure();
+
+
             //var stguid = Main.TotFContext.Blueprints.GetGUID("SunderingStrikeToggleAbility");
-            var SunderingToggle = MakerTools.MakeToggle("SunderingStrikeToggleAbility", "Sundering Strike", "Whenever you score a critical hit with a melee attack, you can sunder your opponent’s weapon, in addition to the normal damage dealt by the attack. If your confirmation roll exceeds your opponent’s CMD, you may deal damage to your opponent’s weapon as if from the sunder combat maneuver (roll normal damage to the weapon separately). This does not provoke an attack of opportunity.", disarmingstrikebuff.Icon);
+            BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities.ActivatableAbilityConfigurator SunderingToggle = MakerTools.MakeToggle("SunderingStrikeToggleAbility", "Sundering Strike", "Whenever you score a critical hit with a melee attack, you can sunder your opponent’s weapon, in addition to the normal damage dealt by the attack. If your confirmation roll exceeds your opponent’s CMD, you may deal damage to your opponent’s weapon as if from the sunder combat maneuver (roll normal damage to the weapon separately). This does not provoke an attack of opportunity.", disarmingstrikebuff.Icon);
             //var SunderingToggle = ActivatableAbilityConfigurator.New("SunderingStrikeToggleAbility", stguid.ToString());
             
             SunderingToggle.SetGroup(Kingmaker.UnitLogic.ActivatableAbilities.ActivatableAbilityGroup.CombatManeuverStrike);
@@ -42,9 +43,9 @@ namespace TomeOfTheFirebird.New_Content.Feats
             SunderingToggle.SetActivationType(Kingmaker.UnitLogic.ActivatableAbilities.AbilityActivationType.OnUnitAction);
             SunderingToggle.SetIcon(disarmingstrikebuff.Icon);
 
-            var toggle = SunderingToggle.Configure();
+            Kingmaker.UnitLogic.ActivatableAbilities.BlueprintActivatableAbility toggle = SunderingToggle.Configure();
 
-            var SunderingFeat = MakerTools.MakeFeature("SunderingStrike", "Sundering Strike", "Whenever you score a critical hit with a melee attack, you can sunder your opponent’s weapon, in addition to the normal damage dealt by the attack. If your confirmation roll exceeds your opponent’s CMD, you may deal damage to your opponent’s weapon as if from the sunder combat maneuver (roll normal damage to the weapon separately). This does not provoke an attack of opportunity.", false);
+            BlueprintCore.Blueprints.CustomConfigurators.Classes.FeatureConfigurator SunderingFeat = MakerTools.MakeFeature("SunderingStrike", "Sundering Strike", "Whenever you score a critical hit with a melee attack, you can sunder your opponent’s weapon, in addition to the normal damage dealt by the attack. If your confirmation roll exceeds your opponent’s CMD, you may deal damage to your opponent’s weapon as if from the sunder combat maneuver (roll normal damage to the weapon separately). This does not provoke an attack of opportunity.", false);
             SunderingFeat.SetGroups(FeatureGroup.Feat, FeatureGroup.CombatFeat);
             SunderingFeat.SetRanks(1);
             SunderingFeat.SetIsClassFeature(true);
@@ -55,7 +56,7 @@ namespace TomeOfTheFirebird.New_Content.Feats
             SunderingFeat.AddPrerequisiteStatValue(Kingmaker.EntitySystem.Stats.StatType.BaseAttackBonus, 9);
             SunderingFeat.AddFeatureTagsComponent(FeatureTag.Attack| FeatureTag.CombatManeuver);
 
-            var sunderprocbuild = SunderingFeat.Configure();
+            BlueprintFeature sunderprocbuild = SunderingFeat.Configure();
             if (Main.TotFContext.NewContent.Feats.IsEnabled("SunderingStrike"))
             {
                 FeatureConfigurator.For("9719015edcbf142409592e2cbaab7fe1").AddToIsPrerequisiteFor(sunderprocbuild.AssetGuidThreadSafe);

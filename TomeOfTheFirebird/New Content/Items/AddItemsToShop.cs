@@ -12,7 +12,7 @@ namespace TomeOfTheFirebird.New_Content.Items
             {
 
                 //var merciful = Resources.GetModBlueprint<BlueprintItemEquipmentWrist>("BracersOfTheMercifulKnight");
-                var merciful = PaladinGear.merciful;
+                Kingmaker.Blueprints.Items.Equipment.BlueprintItemEquipmentWrist merciful = PaladinGear.merciful;
 
 
                 LootItem add = new LootItem()
@@ -24,7 +24,7 @@ namespace TomeOfTheFirebird.New_Content.Items
                 };
 
 
-                var editArsinoe = SharedVendorTableConfigurator.For("d33d4c7396fc1d74c9569bc38e887e86").AddComponent<LootItemsPackFixed>(x => {
+                Kingmaker.Blueprints.Items.BlueprintSharedVendorTable editArsinoe = SharedVendorTableConfigurator.For("d33d4c7396fc1d74c9569bc38e887e86").AddComponent<LootItemsPackFixed>(x => {
                     x.m_Item = add;
                     x.m_Count = 1;
                 }).Configure(); ; 
@@ -33,7 +33,7 @@ namespace TomeOfTheFirebird.New_Content.Items
             {
 
                 //var merciful = Resources.GetModBlueprint<BlueprintItemEquipmentWrist>("BracersOfTheMercifulKnight");
-                var merciful = PaladinGear.avengingItem;
+                Kingmaker.Blueprints.Items.Equipment.BlueprintItemEquipmentWrist merciful = PaladinGear.avengingItem;
 
 
                 LootItem add = new LootItem()
@@ -44,8 +44,8 @@ namespace TomeOfTheFirebird.New_Content.Items
 
                 };
 
-                
-                var editArsinoe = SharedVendorTableConfigurator.For("d33d4c7396fc1d74c9569bc38e887e86").AddComponent<LootItemsPackFixed>(x => {
+
+                Kingmaker.Blueprints.Items.BlueprintSharedVendorTable editArsinoe = SharedVendorTableConfigurator.For("d33d4c7396fc1d74c9569bc38e887e86").AddComponent<LootItemsPackFixed>(x => {
                     x.m_Item = add;
                     x.m_Count = 1;
                 }).Configure();

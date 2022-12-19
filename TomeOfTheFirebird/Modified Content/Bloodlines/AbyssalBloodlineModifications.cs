@@ -19,7 +19,7 @@ namespace TomeOfTheFirebird.Modified_Content.Bloodlines
             }
             foreach(string s in AbyssalClaws)
             {
-                var claw = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>(s);
+                BlueprintActivatableAbility claw = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>(s);
                 claw.Components.OfType<ActivatableAbilityResourceLogic>().FirstOrDefault().m_FreeBlueprint = claw.ToReference<BlueprintUnitFactReference>();
                 claw.DeactivateIfCombatEnded = false;
                 claw.OnlyInCombat = false;

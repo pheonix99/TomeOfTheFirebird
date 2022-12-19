@@ -9,14 +9,14 @@ namespace TomeOfTheFirebird.NewContent.Features
     {
         public static void AddPurifierLimitedCures()
         {
-            var PuriferArchetype = BlueprintTools.GetBlueprint<BlueprintArchetype>("c9df67160a77ecd4a97928f2455545d7");
-            var Oracle = PuriferArchetype.GetParentClass();
+            BlueprintArchetype PuriferArchetype = BlueprintTools.GetBlueprint<BlueprintArchetype>("c9df67160a77ecd4a97928f2455545d7");
+            BlueprintCharacterClass Oracle = PuriferArchetype.GetParentClass();
 
 
             BlueprintFeature oracleCures = BlueprintTools.GetBlueprint<BlueprintFeature>("0f7fb23d8f97b024388a433c5a8d493f").ToReference<BlueprintFeatureReference>();
             //var cure1 = oracleCures.Components.FirstOrDefault(x => (x as AddKnownSpell).SpellLevel == 1);
             //var cure2 = oracleCures.Components.FirstOrDefault(x => (x as AddKnownSpell).SpellLevel == 2);
-            var make = MakerTools.MakeFeature("PurifierLimitedCures", "Basic Cure Spells", "Purifers still can cast the most basic cure spells", icon:oracleCures.Icon);
+            BlueprintCore.Blueprints.CustomConfigurators.Classes.FeatureConfigurator make = MakerTools.MakeFeature("PurifierLimitedCures", "Basic Cure Spells", "Purifers still can cast the most basic cure spells", icon:oracleCures.Icon);
             make.SetIsClassFeature(true);
             make.SetHideInUI(false);
             

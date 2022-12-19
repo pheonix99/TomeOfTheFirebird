@@ -8,6 +8,12 @@ All homebrew content or divergences from TT will be called out.
 
 NOW REQUIRES TabletopTweaks Core Module!
 ##Changelog
+1.3.0
+Upgraded to EE
+Removed redundant fixes to the Angel Path Artifact cloak (they still haven't fixed the weapon damage portion)
+Made Prodigious TWF alter requirements for Two Weapon Defense from Tabletop Tweaks Base
+Added Dispelling Bombs to the Dispel IFF Fix
+
 1.2.7
 Added Death Witch Patron
 Fixed Feature-version of the vanilla Good reward from Dawn Of Dragons not working

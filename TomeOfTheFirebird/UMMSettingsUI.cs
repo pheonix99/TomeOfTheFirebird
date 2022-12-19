@@ -33,8 +33,8 @@ namespace TomeOfTheFirebird
 
         public static void NewContent()
         {
-            var TabLevel = SetttingUI.TabLevel.Zero;
-            var AddedContent = Main.TotFContext.NewContent;
+            SetttingUI.TabLevel TabLevel = SetttingUI.TabLevel.Zero;
+            Config.NewContent AddedContent = Main.TotFContext.NewContent;
             UI.Div(0, 15);
             using (UI.VerticalScope())
             {
@@ -51,8 +51,8 @@ namespace TomeOfTheFirebird
         }
         public static void Bugfixes()
         {
-            var TabLevel = SetttingUI.TabLevel.Zero;
-            var Bugfixes = Main.TotFContext.Bugfixes;
+            SetttingUI.TabLevel TabLevel = SetttingUI.TabLevel.Zero;
+            Config.Bugfixes Bugfixes = Main.TotFContext.Bugfixes;
             UI.Div(0, 15);
             using (UI.VerticalScope())
             {
@@ -69,8 +69,8 @@ namespace TomeOfTheFirebird
         }
         public static void Tweaks()
         {
-            var TabLevel = SetttingUI.TabLevel.Zero;
-            var Tweaks = Main.TotFContext.Tweaks;
+            SetttingUI.TabLevel TabLevel = SetttingUI.TabLevel.Zero;
+            Config.Tweaks Tweaks = Main.TotFContext.Tweaks;
             UI.Div(0, 15);
             using (UI.VerticalScope())
             {
@@ -91,8 +91,8 @@ namespace TomeOfTheFirebird
 
         public static void ContentModifications()
         {
-            var TabLevel = SetttingUI.TabLevel.Zero;
-            var ContentMods = Main.TotFContext.ContentModifications;
+            SetttingUI.TabLevel TabLevel = SetttingUI.TabLevel.Zero;
+            Config.ContentModifications ContentMods = Main.TotFContext.ContentModifications;
             UI.Div(0, 15);
             using (UI.VerticalScope())
             {

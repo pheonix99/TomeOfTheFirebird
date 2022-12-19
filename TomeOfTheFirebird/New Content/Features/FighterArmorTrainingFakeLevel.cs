@@ -17,7 +17,7 @@ namespace TomeOfTheFirebird.New_Content.Features
     {
         public static void AddFighterArmorTrainingRank()
         {
-            var maker = MakerTools.MakeFeature("ArmorTrainingRank", "FighterArmorTrainingRank", "", true);
+            BlueprintCore.Blueprints.CustomConfigurators.Classes.FeatureConfigurator maker = MakerTools.MakeFeature("ArmorTrainingRank", "FighterArmorTrainingRank", "", true);
             maker.SetIsClassFeature(true);
             maker.SetRanks(40);
             maker.Configure();
@@ -33,10 +33,10 @@ namespace TomeOfTheFirebird.New_Content.Features
             {
                 return;
             }
-            var FighterClass = BlueprintTools.GetBlueprint<BlueprintCharacterClass>("48ac8db94d5de7645906c7d0ad3bcfbd");
-            var prop = BlueprintTools.GetBlueprint<BlueprintUnitProperty>("8889a638d9be4379ab9a5c2e08fd5015");
-            var feature = BlueprintTool.Get<BlueprintFeature>("ArmorTrainingRank");
-            var ArmorTrainingSelection = BlueprintTools.GetModBlueprint<BlueprintFeatureSelection>(Main.TotFContext, "ArmorTrainingSelection");
+            BlueprintCharacterClass FighterClass = BlueprintTools.GetBlueprint<BlueprintCharacterClass>("48ac8db94d5de7645906c7d0ad3bcfbd");
+            BlueprintUnitProperty prop = BlueprintTools.GetBlueprint<BlueprintUnitProperty>("8889a638d9be4379ab9a5c2e08fd5015");
+            BlueprintFeature feature = BlueprintTool.Get<BlueprintFeature>("ArmorTrainingRank");
+            BlueprintFeatureSelection ArmorTrainingSelection = BlueprintTools.GetModBlueprint<BlueprintFeatureSelection>(Main.TotFContext, "ArmorTrainingSelection");
             if (prop != null)
             {
                 prop.Components.OfType<CompositeCustomPropertyGetter>().FirstOrDefault().Properties = prop.Components.OfType<CompositeCustomPropertyGetter>().FirstOrDefault().Properties.AppendToArray(new CompositeCustomPropertyGetter.ComplexCustomProperty()
@@ -63,19 +63,19 @@ namespace TomeOfTheFirebird.New_Content.Features
             };
             foreach (string s in armorguids)
             {
-                var armorSelect = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>(s);
+                BlueprintFeatureSelection armorSelect = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>(s);
                 armorSelect.HideNotAvailibleInUI = false;
                 ConnectFeature(armorSelect);
             }
 
-            var armorSelect2 = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("5bf17c2ae9ee4615b27c993629ed9bc3");
+            BlueprintFeatureSelection armorSelect2 = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("5bf17c2ae9ee4615b27c993629ed9bc3");
             armorSelect2.HideNotAvailibleInUI = false;
             ConnectFeature(armorSelect2);
             ConnectFeature(ArmorTrainingSelection);
 
             void ConnectFeature(BlueprintFeature feature)
             {
-                var classReq = feature.Components.OfType<PrerequisiteClassLevel>().FirstOrDefault(x => x.m_CharacterClass.deserializedGuid == FighterClass.AssetGuidThreadSafe);
+                PrerequisiteClassLevel classReq = feature.Components.OfType<PrerequisiteClassLevel>().FirstOrDefault(x => x.m_CharacterClass.deserializedGuid == FighterClass.AssetGuidThreadSafe);
                 if (classReq != null)
                 {
                     int level = classReq.Level;

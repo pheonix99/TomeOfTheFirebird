@@ -40,14 +40,14 @@
   <PropertyGroup>
     <WrathPath Condition=" '$(WrathPath)' == '' ">C:\Program Files (x86)\Steam\steamapps\common\Pathfinder Second Adventure</WrathPath>
   </PropertyGroup>
-   <ItemGroup>
+  <ItemGroup>
     <PackageReference Include="AssemblyPublicizer">
       <Version>1.0.1</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="ILRepack.MSBuild.Task" Version="2.0.13" />
-    <PackageReference Include="WW-Blueprint-Core" Version="2.0.4" />
+    <PackageReference Include="WW-Blueprint-Core" Version="2.7.1" />
   </ItemGroup>
   <!-- DLL Merging -->
   <Target Name="ILRepack" AfterTargets="Build">
@@ -70,7 +70,6 @@
     <PublicizeTask InputAssemblies="@(Assemblies)" OutputDir="$(SolutionDir)lib/" />
     <Move SourceFiles="@(PublicAssembly)" DestinationFiles="@(RenamedAssembly)" />
   </Target>
- 
   <ItemGroup>
     <Reference Include="0Harmony, Version=2.2.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Lib.Harmony.2.2.1\lib\net472\0Harmony.dll</HintPath>
@@ -160,6 +159,7 @@
     <Compile Include="Bugfixes\RadianceLevel2Fix.cs" />
     <Compile Include="Helpers\Extensions.cs" />
     <Compile Include="Helpers\FeatTools.cs" />
+    <Compile Include="Helpers\SpellSpecializationTool.cs" />
     <Compile Include="Modified Content\Archetypes\Purifier.cs" />
     <Compile Include="Modified Content\Archetypes\Witch.cs" />
     <Compile Include="Modified Content\Bloodlines\AbyssalBloodlineModifications.cs" />
@@ -168,7 +168,9 @@
     <Compile Include="Modified Content\Crusade\CrusadeBuffTweaks.cs" />
     <Compile Include="ModLogic\ModContextTomeOfTheFirebird.cs" />
     <Compile Include="New Components\ArtifactEnabledWeaponAngelDamageDice.cs" />
+    <Compile Include="New Components\ConditionalPropertyGetter.cs" />
     <Compile Include="New Components\ContextDamageValueEnergyDamageDice.cs" />
+    <Compile Include="New Components\HasFeaturePropertyGetter.cs" />
     <Compile Include="New Components\IncreaseSpecificSpellsCasterLevel.cs" />
     <Compile Include="New Components\Prerequisites\PrerequisiteBreathWeaponAccess.cs" />
     <Compile Include="New Components\Prerequisites\PrerequisiteProperty.cs" />

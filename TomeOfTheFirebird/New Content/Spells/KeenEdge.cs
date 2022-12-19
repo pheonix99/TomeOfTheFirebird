@@ -4,6 +4,7 @@ using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.ActivatableAbilities;
+using Kingmaker.Visual.Animation.Kingmaker.Actions;
 using System;
 using TabletopTweaks.Core.Utilities;
 using TomeOfTheFirebird.Components;
@@ -20,13 +21,13 @@ namespace TomeOfTheFirebird.New_Spells
         public static void BuildSPell()
         {
             keenSprite = BlueprintTools.GetBlueprint<BlueprintActivatableAbility>("27d76f1afda08a64d897cc81201b5218").Icon;//Keen weapon bond
-            var maker = MakerTools.MakeSpell("KeenEdge", "Keen Edge",desc , keenSprite, Kingmaker.Blueprints.Classes.Spells.SpellSchool.Transmutation, new Kingmaker.Localization.LocalizedString(), LocalizedStrings.TenMinutePerLevelDuration);
+            AbilityConfigurator maker = MakerTools.MakeSpell("KeenEdge", "Keen Edge",desc , keenSprite, Kingmaker.Blueprints.Classes.Spells.SpellSchool.Transmutation, new Kingmaker.Localization.LocalizedString(), LocalizedStrings.TenMinutePerLevelDuration);
 
 
          
-            maker.SetRange(AbilityRange.Close).AllowTargeting(false, false, true, true).SetAnimationStyle( Kingmaker.View.Animation.CastAnimationStyle.CastActionDirectional).SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard).SetAvailableMetamagic(Metamagic.Quicken, Metamagic.Extend, Metamagic.Heighten, Metamagic.Reach, Metamagic.CompletelyNormal);
-            var mainMaker = MakeHandedVersion(true);
-            var offhandMaker = MakeHandedVersion(false);
+            maker.SetRange(AbilityRange.Close).AllowTargeting(false, false, true, true).SetAnimation( UnitAnimationActionCastSpell.CastAnimationStyle.Directional).SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard).SetAvailableMetamagic(Metamagic.Quicken, Metamagic.Extend, Metamagic.Heighten, Metamagic.Reach, Metamagic.CompletelyNormal);
+            AbilityConfigurator mainMaker = MakeHandedVersion(true);
+            AbilityConfigurator offhandMaker = MakeHandedVersion(false);
 
            
 
@@ -40,26 +41,27 @@ namespace TomeOfTheFirebird.New_Spells
 
 
 
-            var made = maker.Configure();
+            BlueprintAbility made = maker.Configure();
             if (Main.TotFContext.NewContent.Spells.IsEnabled("KeenEdge"))
             {
                 made.AddToSpellList(SpellTools.SpellList.BloodragerSpellList, 3);
                 made.AddToSpellList(SpellTools.SpellList.InquisitorSpellList, 3);
                 made.AddToSpellList(SpellTools.SpellList.MagusSpellList, 3);
                 made.AddToSpellList(SpellTools.SpellList.WizardSpellList, 3);
+                made.AddToSpellSpecialization();
             }
         }
 
         private static AbilityConfigurator MakeHandedVersion(bool main)
         {
-            var maker = MakerTools.MakeSpell(main ? "KeenEdgePrimary" : "KeenEdgeSecondary", main ? "Keen Edge (Main Hand)" : "Keen Edge (Off Hand)", desc, keenSprite, Kingmaker.Blueprints.Classes.Spells.SpellSchool.Transmutation, new Kingmaker.Localization.LocalizedString(), LocalizedStrings.TenMinutePerLevelDuration);
-            maker.SetRange(AbilityRange.Close).AllowTargeting(false, false, true, true).SetAnimationStyle(Kingmaker.View.Animation.CastAnimationStyle.CastActionDirectional).SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard).SetAvailableMetamagic(Metamagic.Quicken, Metamagic.Extend, Metamagic.Heighten, Metamagic.Reach, Metamagic.CompletelyNormal);
+            AbilityConfigurator maker = MakerTools.MakeSpell(main ? "KeenEdgePrimary" : "KeenEdgeSecondary", main ? "Keen Edge (Main Hand)" : "Keen Edge (Off Hand)", desc, keenSprite, Kingmaker.Blueprints.Classes.Spells.SpellSchool.Transmutation, new Kingmaker.Localization.LocalizedString(), LocalizedStrings.TenMinutePerLevelDuration);
+            maker.SetRange(AbilityRange.Close).AllowTargeting(false, false, true, true).SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Directional).SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard).SetAvailableMetamagic(Metamagic.Quicken, Metamagic.Extend, Metamagic.Heighten, Metamagic.Reach, Metamagic.CompletelyNormal);
            
    
            
             string keen = "102a9c8c9b7a75e4fb5844e79deaf4c0";
-            
-            var actions = ActionsBuilder.New().EnchantWornItem(enchantment: keen, slot: main ? Kingmaker.UI.GenericSlot.EquipSlotBase.SlotType.PrimaryHand : Kingmaker.UI.GenericSlot.EquipSlotBase.SlotType.SecondaryHand, durationValue: MakerTools.GetContextDurationValue(Kingmaker.UnitLogic.Mechanics.DurationRate.TenMinutes, true));
+
+            ActionsBuilder actions = ActionsBuilder.New().EnchantWornItem(enchantment: keen, slot: main ? Kingmaker.UI.GenericSlot.EquipSlotBase.SlotType.PrimaryHand : Kingmaker.UI.GenericSlot.EquipSlotBase.SlotType.SecondaryHand, durationValue: MakerTools.GetContextDurationValue(Kingmaker.UnitLogic.Mechanics.DurationRate.TenMinutes, true));
             maker.AddAbilityEffectRunAction(actions);
             maker.AddComponent<AbilityTargetHasSlashingPiercingWeaponInRelevantHand>(new Action<AbilityTargetHasSlashingPiercingWeaponInRelevantHand>(x => x.MainHand = main));
             maker.AddCraftInfoComponent(Kingmaker.Craft.CraftAOE.None,savingThrow:  Kingmaker.Craft.CraftSavingThrow.None,spellType: Kingmaker.Craft.CraftSpellType.Buff);

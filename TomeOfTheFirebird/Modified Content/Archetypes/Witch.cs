@@ -13,11 +13,11 @@ namespace TomeOfTheFirebird.Modified_Content.Archetypes
             if (Main.TotFContext.Tweaks.Witch.IsDisabled("ReturnStigmatizedWitchPatron"))
                 return;
 
-            var accursed = BlueprintTools.GetBlueprint<BlueprintArchetype>("c5f6e53e71059fb4d802ce81a277a12d");
-            var patron = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("381cf4c890815d049a4420c6f31d063f");
+            BlueprintArchetype accursed = BlueprintTools.GetBlueprint<BlueprintArchetype>("c5f6e53e71059fb4d802ce81a277a12d");
+            BlueprintFeatureSelection patron = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("381cf4c890815d049a4420c6f31d063f");
             accursed.RemoveFeatures.FirstOrDefault(x => x.Level == 1).m_Features.RemoveAll(x => x.deserializedGuid == patron.AssetGuidThreadSafe);
 
-            var emberFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("b38df30d993476640a17f8c44bd2fffe");
+            BlueprintFeature emberFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("b38df30d993476640a17f8c44bd2fffe");
             if (Main.TotFContext.Tweaks.Witch.IsEnabled("EmberHasElementsPatron"))
             {
                 emberFeature.Components.OfType<AddClassLevels>().FirstOrDefault().Selections = emberFeature.Components.OfType<AddClassLevels>().FirstOrDefault().Selections.AppendToArray(new SelectionEntry

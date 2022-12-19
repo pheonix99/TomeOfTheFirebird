@@ -15,6 +15,8 @@ using TabletopTweaks.Core.Utilities;
 using UnityEngine;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Blueprints.Configurators.Classes.Selection;
+using BlueprintCore.Blueprints.CustomConfigurators.Classes;
+using Kingmaker.Visual.Animation.Kingmaker.Actions;
 
 namespace TomeOfTheFirebird.Helpers
 {
@@ -23,12 +25,12 @@ namespace TomeOfTheFirebird.Helpers
         public static FeatureConfigurator MakeFeature(string systemName, string displayName, string description, bool hide = false, Sprite icon = null)
         {
             Main.TotFContext.Logger.Log($"Building New Feature: {systemName}");
-            
-            var guid = Main.TotFContext.Blueprints.GetGUID(systemName);
+
+            Kingmaker.Blueprints.BlueprintGuid guid = Main.TotFContext.Blueprints.GetGUID(systemName);
             LocalizedString name = LocalizationTool.CreateString(systemName + ".Name", displayName);
             LocalizedString desc = LocalizationTool.CreateString(systemName + ".Desc", description);
             Main.TotFContext.Logger.Log($"Guid for {systemName} is {guid.ToString()}");
-            var res = FeatureConfigurator.New(systemName, guid.ToString()).SetDisplayName(name).SetDescription(desc);
+            FeatureConfigurator res = FeatureConfigurator.New(systemName, guid.ToString()).SetDisplayName(name).SetDescription(desc);
             if (icon != null)
             {
                 res.SetIcon(icon);
@@ -46,11 +48,11 @@ namespace TomeOfTheFirebird.Helpers
         {
             Main.TotFContext.Logger.Log($"Building New Feature: {systemName}");
 
-            var guid = Main.TotFContext.Blueprints.GetGUID(systemName);
+            Kingmaker.Blueprints.BlueprintGuid guid = Main.TotFContext.Blueprints.GetGUID(systemName);
             LocalizedString name = LocalizationTool.CreateString(systemName + ".Name", displayName);
             LocalizedString desc = LocalizationTool.CreateString(systemName + ".Desc", description);
             Main.TotFContext.Logger.Log($"Guid for {systemName} is {guid.ToString()}");
-            var res = FeatureSelectionConfigurator.New(systemName, guid.ToString()).SetDisplayName(name).SetDescription(desc);
+            FeatureSelectionConfigurator res = FeatureSelectionConfigurator.New(systemName, guid.ToString()).SetDisplayName(name).SetDescription(desc);
             if (icon != null)
             {
                 res.SetIcon(icon);
@@ -68,11 +70,11 @@ namespace TomeOfTheFirebird.Helpers
         public static EquipmentEnchantmentConfigurator MakeItemEnchantment(string systemName, string displayName, string description, int cost)
         {
             Main.TotFContext.Logger.Log($"Building New Enchantment: {systemName}");
-            var guid = Main.TotFContext.Blueprints.GetGUID(systemName);
+            Kingmaker.Blueprints.BlueprintGuid guid = Main.TotFContext.Blueprints.GetGUID(systemName);
             LocalizedString name = LocalizationTool.CreateString(systemName + ".Name", displayName);
             LocalizedString desc = LocalizationTool.CreateString(systemName + ".Desc", description);
 
-            var res = EquipmentEnchantmentConfigurator.New(systemName, guid.ToString()).SetEnchantName(name).SetDescription(desc).SetEnchantmentCost(cost);
+            EquipmentEnchantmentConfigurator res = EquipmentEnchantmentConfigurator.New(systemName, guid.ToString()).SetEnchantName(name).SetDescription(desc).SetEnchantmentCost(cost);
             
 
             return res;
@@ -82,12 +84,12 @@ namespace TomeOfTheFirebird.Helpers
         public static WeaponEnchantmentConfigurator MakeWeaponEnchant(string systemName, string displayName, string description, string affixName, bool prefix, int effectivePlus, bool hidden = false)
         {
             Main.TotFContext.Logger.Log($"Building New Weapon Enchant: {systemName}");
-            var guid = Main.TotFContext.Blueprints.GetGUID(systemName);
+            Kingmaker.Blueprints.BlueprintGuid guid = Main.TotFContext.Blueprints.GetGUID(systemName);
             LocalizedString name = LocalizationTool.CreateString(systemName + ".Name", displayName);
             LocalizedString desc = LocalizationTool.CreateString(systemName + ".Desc", description);
             LocalizedString affix = LocalizationTool.CreateString(systemName + ".Affix", affixName);
-            
-            var enchant = WeaponEnchantmentConfigurator.New(systemName, guid.ToString()).SetEnchantName(name).SetDescription(desc).SetEnchantmentCost(effectivePlus);
+
+            WeaponEnchantmentConfigurator enchant = WeaponEnchantmentConfigurator.New(systemName, guid.ToString()).SetEnchantName(name).SetDescription(desc).SetEnchantmentCost(effectivePlus);
             if (prefix)
             {
                 enchant.SetPrefix(affix);
@@ -104,7 +106,7 @@ namespace TomeOfTheFirebird.Helpers
         public static AbilityConfigurator MakeAbility(string systemName, string displayName, string description, Sprite icon, LocalizedString savestring, LocalizedString durationString)
         {
             Main.TotFContext.Logger.Log($"Building New Spell: {systemName}");
-            var guid = Main.TotFContext.Blueprints.GetGUID(systemName);
+            Kingmaker.Blueprints.BlueprintGuid guid = Main.TotFContext.Blueprints.GetGUID(systemName);
             LocalizedString name = null;
             LocalizedString desc = null;
             Main.TotFContext.Logger.Log("About to try localization");
@@ -130,7 +132,7 @@ namespace TomeOfTheFirebird.Helpers
         public static AbilityConfigurator MakeSpell(string systemName, string displayName, string description, Sprite icon, SpellSchool school, LocalizedString savestring, LocalizedString durationString)
         {
             Main.TotFContext.Logger.Log($"Building New Spell: {systemName}");
-            var guid = Main.TotFContext.Blueprints.GetGUID(systemName);
+            Kingmaker.Blueprints.BlueprintGuid guid = Main.TotFContext.Blueprints.GetGUID(systemName);
             
             LocalizedString name = null;
             LocalizedString desc = null;
@@ -157,13 +159,13 @@ namespace TomeOfTheFirebird.Helpers
         public static ActivatableAbilityConfigurator MakeToggle(string systemName, string displayName, string description, Sprite icon)
         {
             Main.TotFContext.Logger.Log($"Building New Toggle: {systemName}");
-            var guid = Main.TotFContext.Blueprints.GetGUID(systemName);
+            Kingmaker.Blueprints.BlueprintGuid guid = Main.TotFContext.Blueprints.GetGUID(systemName);
             LocalizedString name = LocalizationTool.CreateString(systemName + ".Name", displayName);
             LocalizedString desc = LocalizationTool.CreateString(systemName + ".Desc", description);
 
 
 
-            var made = ActivatableAbilityConfigurator.New(systemName, guid.ToString()).SetDisplayName(name).SetDescription(desc).SetIcon(icon);
+            ActivatableAbilityConfigurator made = ActivatableAbilityConfigurator.New(systemName, guid.ToString()).SetDisplayName(name).SetDescription(desc).SetIcon(icon);
             
 
             return made;
@@ -172,7 +174,7 @@ namespace TomeOfTheFirebird.Helpers
         public static ProgressionConfigurator MakeProg(string systemName, string displayName, string description, Sprite icon = null)
         {
             Main.TotFContext.Logger.Log($"Building New Toggle: {systemName}");
-            var guid = Main.TotFContext.Blueprints.GetGUID(systemName);
+            Kingmaker.Blueprints.BlueprintGuid guid = Main.TotFContext.Blueprints.GetGUID(systemName);
             LocalizedString name = LocalizationTool.CreateString(systemName + ".Name", displayName);
             LocalizedString desc = LocalizationTool.CreateString(systemName + ".Desc", description);
 
@@ -190,7 +192,7 @@ namespace TomeOfTheFirebird.Helpers
 
         public static AbilityConfigurator SetTouchBuff(this AbilityConfigurator abilityConfigurator)
         {
-            return abilityConfigurator.SetRange(Kingmaker.UnitLogic.Abilities.Blueprints.AbilityRange.Touch).AllowTargeting(false, false, true, true).SetAnimationStyle(Kingmaker.View.Animation.CastAnimationStyle.CastActionTouch);
+            return abilityConfigurator.SetRange(Kingmaker.UnitLogic.Abilities.Blueprints.AbilityRange.Touch).AllowTargeting(false, false, true, true).SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Touch);
         }
 
         
@@ -203,12 +205,12 @@ namespace TomeOfTheFirebird.Helpers
         public static BuffConfigurator MakeBuff(string systemName, string displayName, string description, Sprite icon = null)
         {
             Main.TotFContext.Logger.Log($"Building New Buff: {systemName}");
-            var guid = Main.TotFContext.Blueprints.GetGUID(systemName);
+            Kingmaker.Blueprints.BlueprintGuid guid = Main.TotFContext.Blueprints.GetGUID(systemName);
             LocalizedString name = LocalizationTool.CreateString(systemName + ".Name", displayName);
             LocalizedString desc = LocalizationTool.CreateString(systemName + ".Desc", description);
 
 
-            var buff = BuffConfigurator.New(systemName, guid.ToString()).SetDisplayName(name).SetDescription(desc);
+            BuffConfigurator buff = BuffConfigurator.New(systemName, guid.ToString()).SetDisplayName(name).SetDescription(desc);
             buff.SetFxOnStart(new Kingmaker.ResourceLinks.PrefabLink());
             buff.SetFxOnRemove(new Kingmaker.ResourceLinks.PrefabLink());
             if (icon != null)

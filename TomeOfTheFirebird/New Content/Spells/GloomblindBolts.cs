@@ -48,20 +48,20 @@ namespace TomeOfTheFirebird.New_Spells
             
                 string blind = "187f88d96a0ef464280706b63635f2af";
             Main.TotFContext.Logger.Log("Built damage dice");
-            var gloomblind = MakerTools.MakeSpell("GloomblindBolts", "Gloomblind Bolts", "You create one or more bolts of negative energy infused with shadow pulled from the Shadow Plane. You can fire one bolt, plus one for every four levels beyond 5th (to a maximum of three bolts at 13th level) at the same or different targets, but all bolts must be aimed at targets within 30 feet of each other and require a ranged touch attack to hit. Each bolt deals 4d6 points of damage to a living creature or heals 4d6 points of damage to an undead creature. Furthermore, the bolt’s energy spreads over the skin of creature, possibly blinding it for a short time. Any creature struck by a bolt must succeed at a Reflex saving throw or become blinded for 1 round.", gloomicon, SpellSchool.Necromancy, LocalizedStrings.ReflexPartial, new LocalizedString());
+            BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities.AbilityConfigurator gloomblind = MakerTools.MakeSpell("GloomblindBolts", "Gloomblind Bolts", "You create one or more bolts of negative energy infused with shadow pulled from the Shadow Plane. You can fire one bolt, plus one for every four levels beyond 5th (to a maximum of three bolts at 13th level) at the same or different targets, but all bolts must be aimed at targets within 30 feet of each other and require a ranged touch attack to hit. Each bolt deals 4d6 points of damage to a living creature or heals 4d6 points of damage to an undead creature. Furthermore, the bolt’s energy spreads over the skin of creature, possibly blinding it for a short time. Any creature struck by a bolt must succeed at a Reflex saving throw or become blinded for 1 round.", gloomicon, SpellSchool.Necromancy, LocalizedStrings.ReflexPartial, new LocalizedString());
 
 
             gloomblind.SetRange(AbilityRange.Close);
             gloomblind.AllowTargeting(enemies: true, self: true);
                 
-                gloomblind.SetSpellResistance(true).SetEffectOnEnemy(AbilityEffectOnUnit.Harmful).SetAnimationStyle(Kingmaker.View.Animation.CastAnimationStyle.CastActionDirectional).SetActionType(CommandType.Standard).SetAvailableMetamagic(new Metamagic[] { Metamagic.Empower, Metamagic.Maximize, Metamagic.Quicken, Metamagic.Heighten, Metamagic.Reach, Metamagic.CompletelyNormal, Metamagic.Bolstered, Metamagic.Persistent, (Metamagic)CustomMetamagic.Piercing });
+                gloomblind.SetSpellResistance(true).SetEffectOnEnemy(AbilityEffectOnUnit.Harmful).SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Directional).SetActionType(CommandType.Standard).SetAvailableMetamagic(new Metamagic[] { Metamagic.Empower, Metamagic.Maximize, Metamagic.Quicken, Metamagic.Heighten, Metamagic.Reach, Metamagic.CompletelyNormal, Metamagic.Bolstered, Metamagic.Persistent, (Metamagic)CustomMetamagic.Piercing });
 
             //gloomblind.SetSpellDescriptor(new SpellDescriptor[] { SpellDescriptor.None });
 
           
 
             Main.TotFContext.Logger.Log("Building Damage/blind living for gloomblind");
-            var damageAndBlindLiving = ActionsBuilder.New().Conditional(TargetIsConstruct, ifFalse: ActionsBuilder.New().DealDamage(new DamageTypeDescription() { Energy = DamageEnergyType.NegativeEnergy, Type = DamageType.Energy }, value: damage).SavingThrow(SavingThrowType.Reflex, onResult: ActionsBuilder.New().ConditionalSaved(failed: ActionsBuilder.New().ApplyBuff(blind, ContextDuration.Fixed(1, DurationRate.Rounds)))));
+            ActionsBuilder damageAndBlindLiving = ActionsBuilder.New().Conditional(TargetIsConstruct, ifFalse: ActionsBuilder.New().DealDamage(new DamageTypeDescription() { Energy = DamageEnergyType.NegativeEnergy, Type = DamageType.Energy }, value: damage).SavingThrow(SavingThrowType.Reflex, onResult: ActionsBuilder.New().ConditionalSaved(failed: ActionsBuilder.New().ApplyBuff(blind, ContextDuration.Fixed(1, DurationRate.Rounds)))));
 
 
 
@@ -79,7 +79,7 @@ namespace TomeOfTheFirebird.New_Spells
             Main.TotFContext.Logger.Log("Building Gloomblind");
             gloomblind.AddCraftInfoComponent(Kingmaker.Craft.CraftAOE.None,savingThrow: Kingmaker.Craft.CraftSavingThrow.Reflex,spellType: Kingmaker.Craft.CraftSpellType.Damage);
                 Main.TotFContext.Logger.Log("Built Gloomblind");
-            var made = gloomblind.Configure();
+            BlueprintAbility made = gloomblind.Configure();
             if (Main.TotFContext.NewContent.Spells.IsEnabled("GloomblindBolts"))
             {
                 //TODO check bloodrager access
@@ -87,6 +87,7 @@ namespace TomeOfTheFirebird.New_Spells
                 made.AddToSpellList(SpellTools.SpellList.MagusSpellList, 3);
                 made.AddToSpellList(SpellTools.SpellList.WizardSpellList, 3);
                 made.AddToSpellList(SpellTools.SpellList.WitchSpellList, 3);
+                made.AddToSpellSpecialization();
             }
            
             

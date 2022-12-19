@@ -1,4 +1,5 @@
 ﻿using BlueprintCore.Blueprints.Configurators.Classes;
+using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using Kingmaker.Blueprints.Classes.Prerequisites;
 
 namespace TomeOfTheFirebird.Bugfixes.Classes
@@ -14,6 +15,7 @@ namespace TomeOfTheFirebird.Bugfixes.Classes
                 FixHolyWaterJet();
                 void FixHolyWaterJet()
                 {
+                    //Still needed in EE
                     if (Main.TotFContext.Bugfixes.Arcanist.IsDisabled("FixHolyWaterJet"))
                         return;
 

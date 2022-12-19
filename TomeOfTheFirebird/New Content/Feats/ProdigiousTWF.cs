@@ -1,4 +1,5 @@
 ﻿using BlueprintCore.Blueprints.Configurators.Classes.Selection;
+using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Selection;
 using Kingmaker.EntitySystem.Stats;
@@ -10,10 +11,10 @@ namespace TomeOfTheFirebird.New_Content.Feats
 {
     static class ProdigiousTWF
     {
-
+        static BlueprintFeature Prodigious;
         public static void AddProdigiousTWF()
         {
-            var maker = MakerTools.MakeFeature("ProdigiousTWF", "Prodigious Two-Weapon Fighting", "You may fight with a one-handed weapon in your offhand as if it were a light weapon. In addition, you may use your Strength score instead of your Dexterity score for the purpose of qualifying for Two-Weapon Fighting and any feats with Two-Weapon Fighting as a prerequisite.");
+            FeatureConfigurator maker = MakerTools.MakeFeature("ProdigiousTWF", "Prodigious Two-Weapon Fighting", "You may fight with a one-handed weapon in your offhand as if it were a light weapon. In addition, you may use your Strength score instead of your Dexterity score for the purpose of qualifying for Two-Weapon Fighting and any feats with Two-Weapon Fighting as a prerequisite.");
             maker.SetRanks(1);
             maker.SetGroups(FeatureGroup.Feat, FeatureGroup.CombatFeat);
             maker.SetReapplyOnLevelUp(true);
@@ -22,23 +23,23 @@ namespace TomeOfTheFirebird.New_Content.Feats
             maker.AddFeatureTagsComponent(FeatureTag.Attack| FeatureTag.Melee);
             maker.AddComponent(new TWFNoPenaltyFromNotLight());
 
-            var Prodigious = maker.Configure();
+            Prodigious = maker.Configure();
             if (Main.TotFContext.NewContent.Feats.IsDisabled("ProdigiousTWF")) { return; }
 
             TabletopTweaks.Core.Utilities.FeatTools.AddAsFeat(Prodigious);
 
 
+
+
+            BlueprintFeature TWF = BlueprintTools.GetBlueprint<BlueprintFeature>("ac8aaf29054f5b74eb18f2af950e752d");
+
+            BlueprintFeature BashingFinish = BlueprintTools.GetBlueprint<BlueprintFeature>("0b442a7b4aa598d4e912a4ecee0500ff");
+            BlueprintFeature DoubleSlice = BlueprintTools.GetBlueprint<BlueprintFeature>("8a6a1920019c45d40b4561f05dcb3240");
+            BlueprintFeature ShieldMaster = BlueprintTools.GetBlueprint<BlueprintFeature>("dbec636d84482944f87435bd31522fcc");
+            BlueprintFeature ITWF = BlueprintTools.GetBlueprint<BlueprintFeature>("9af88f3ed8a017b45a6837eab7437629");
+            BlueprintFeature GTWF = BlueprintTools.GetBlueprint<BlueprintFeature>("c126adbdf6ddd8245bda33694cd774e8");
+            BlueprintFeature MTWF = BlueprintTools.GetBlueprint<BlueprintFeature>("c6afbb8c1a36a704a8041f35498f41a4");
             
-
-            var TWF = BlueprintTools.GetBlueprint<BlueprintFeature>("ac8aaf29054f5b74eb18f2af950e752d");
-
-            var BashingFinish = BlueprintTools.GetBlueprint<BlueprintFeature>("0b442a7b4aa598d4e912a4ecee0500ff");
-            var DoubleSlice = BlueprintTools.GetBlueprint<BlueprintFeature>("8a6a1920019c45d40b4561f05dcb3240");
-            var ShieldMaster = BlueprintTools.GetBlueprint<BlueprintFeature>("dbec636d84482944f87435bd31522fcc");
-            var ITWF = BlueprintTools.GetBlueprint<BlueprintFeature>("9af88f3ed8a017b45a6837eab7437629");
-            var GTWF = BlueprintTools.GetBlueprint<BlueprintFeature>("c126adbdf6ddd8245bda33694cd774e8");
-            var MTWF = BlueprintTools.GetBlueprint<BlueprintFeature>("c6afbb8c1a36a704a8041f35498f41a4");
-
             Helpers.FeatTools.PatchFeatWithFeatLockedAlternateAbilityPrereqSimple(TWF, StatType.Dexterity, Prodigious, StatType.Strength);
 
             Helpers.FeatTools.PatchFeatWithFeatLockedAlternateAbilityPrereqSimple(BashingFinish, StatType.Dexterity, Prodigious, StatType.Strength);
@@ -60,7 +61,15 @@ namespace TomeOfTheFirebird.New_Content.Feats
 
         }
 
-
+        public static void AddTwoWeaponDefense()
+        {
+            if (Main.TotFContext.NewContent.Feats.IsDisabled("ProdigiousTWF")) { return; }
+            BlueprintFeature TWD = BlueprintTools.GetBlueprint<BlueprintFeature>("3eee747139f94b1d8d672c8bb63137d7");
+            if (TWD != null)
+            {
+                Helpers.FeatTools.PatchFeatWithFeatLockedAlternateAbilityPrereqSimple(TWD, StatType.Dexterity, Prodigious, StatType.Strength);
+            }
+        }
 
     }
 }

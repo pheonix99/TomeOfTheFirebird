@@ -1,4 +1,5 @@
 ﻿using BlueprintCore.Blueprints.Configurators.Classes;
+using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using HarmonyLib;
 using Kingmaker.Blueprints.JsonSystem;
@@ -45,9 +46,10 @@ namespace TomeOfTheFirebird.Bugfixes.Abilities
 
 
                 AbilityConfigurator.For("143775c49ae6b7446b805d3b2e702298").EditComponent<AbilityEffectRunAction>(x => x.Actions.Actions.OfType<ContextActionDispelMagic>().FirstOrDefault().OnlyTargetEnemyBuffs = true).Configure();//Regular Dispel, target
-
-
+                AbilityConfigurator.For("f80896af0e10d7c4f9454cf1ce50ada4").EditComponent<AbilityEffectRunAction>(x => x.Actions.Actions.OfType<ContextActionDispelMagic>().FirstOrDefault().OnlyTargetEnemyBuffs = true).Configure();//Dispelling Bombs
                 
+
+
             }
         }
         /*

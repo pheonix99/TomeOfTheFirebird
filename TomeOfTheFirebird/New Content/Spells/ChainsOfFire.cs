@@ -7,6 +7,7 @@ using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Mechanics;
+using Kingmaker.Visual.Animation.Kingmaker.Actions;
 using TabletopTweaks.Core.Utilities;
 using TomeOfTheFirebird.Helpers;
 using TomeOfTheFirebird.Reference;
@@ -19,8 +20,8 @@ namespace TomeOfTheFirebird.New_Spells
     {
         public static void BuildSpell()
         {
-            var ChainLightning = BlueprintTools.GetBlueprint<BlueprintAbility>("645558d63604747428d55f0dd3a4cb58");
-            var FireSnake = BlueprintTools.GetBlueprint<BlueprintAbility>("ebade19998e1f8542a1b55bd4da766b3");
+            BlueprintAbility ChainLightning = BlueprintTools.GetBlueprint<BlueprintAbility>("645558d63604747428d55f0dd3a4cb58");
+            BlueprintAbility FireSnake = BlueprintTools.GetBlueprint<BlueprintAbility>("ebade19998e1f8542a1b55bd4da766b3");
             Sprite ChainsOfFireSprite = FireSnake.Icon;
             BlueprintProjectile ScorchingRayBeam = BlueprintTools.GetBlueprint<BlueprintProjectile>("8cc159ce94d29fe46a94b80ce549161f");
             
@@ -29,7 +30,7 @@ namespace TomeOfTheFirebird.New_Spells
             ChainsMaker.AllowTargeting(enemies: true);
             ChainsMaker.SetSpellResistance(true);
             ChainsMaker.SetEffectOnEnemy(AbilityEffectOnUnit.Harmful);
-            ChainsMaker.SetAnimationStyle(Kingmaker.View.Animation.CastAnimationStyle.CastActionDirectional);
+            ChainsMaker.SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Directional);
             ChainsMaker.SetAvailableMetamagic(Metamagic.Empower, Metamagic.Maximize, Metamagic.Quicken, Metamagic.Bolstered, Metamagic.CompletelyNormal, Metamagic.Persistent, (Metamagic)CustomMetamagic.Burning, (Metamagic)CustomMetamagic.Flaring, (Metamagic)CustomMetamagic.Intensified, (Metamagic)CustomMetamagic.Piercing);
             
             //ChainsMaker.SetIcon(ChainsOfFireSprite);
@@ -44,7 +45,7 @@ namespace TomeOfTheFirebird.New_Spells
             
             ChainsMaker.AddAbilityDeliverChain(radius: new Kingmaker.Utility.Feet(30), projectile: "8cc159ce94d29fe46a94b80ce549161f", projectileFirst: "8cc159ce94d29fe46a94b80ce549161f", targetsCount: new ContextValue() { ValueType = ContextValueType.Rank, ValueRank = Kingmaker.Enums.AbilityRankType.ProjectilesCount });
             ChainsMaker.AddCraftInfoComponent(Kingmaker.Craft.CraftAOE.AOE, savingThrow: Kingmaker.Craft.CraftSavingThrow.Reflex,spellType:  Kingmaker.Craft.CraftSpellType.Damage);
-            var made = ChainsMaker.Configure();
+            BlueprintAbility made = ChainsMaker.Configure();
 
 
 
@@ -52,7 +53,7 @@ namespace TomeOfTheFirebird.New_Spells
             {
                 made.AddToSpellList(SpellTools.SpellList.WizardSpellList, 6);
                 made.AddToSpellList(SpellTools.SpellList.MagusSpellList, 6);
-
+                made.AddToSpellSpecialization();
             }
           
         }

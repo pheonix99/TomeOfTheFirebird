@@ -1,4 +1,6 @@
-﻿using BlueprintCore.Blueprints.Configurators.Items.Equipment;
+﻿using BlueprintCore.Blueprints.Components.Replacements;
+using BlueprintCore.Blueprints.Configurators.Items.Armors;
+using BlueprintCore.Blueprints.Configurators.Items.Equipment;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
@@ -41,9 +43,9 @@ namespace TomeOfTheFirebird.New_Content.Items
         {
             //+4 effective class level for smitage
             //Damage *and uses*?
-            var avengingFeature = MakerTools.MakeFeature("BracersOfTheAvengingKnightFeature", "Bracers Of The Avenging Knight Feature", "You Shouldn't See This", true);
+            BlueprintCore.Blueprints.CustomConfigurators.Classes.FeatureConfigurator avengingFeature = MakerTools.MakeFeature("BracersOfTheAvengingKnightFeature", "Bracers Of The Avenging Knight Feature", "You Shouldn't See This", true);
             string sharedDesc = "If the wearer has levels in a class that grants a smite ability (such as a paladin or hellknight), her smite damage is treated as though she were a member of that class four levels higher.";
-            var enchant = MakerTools.MakeItemEnchantment("BracersOfTheAvengingKnightEnchant", "Bracers Of The Avenging Knight", sharedDesc, 1);
+            BlueprintCore.Blueprints.Configurators.Items.Ecnchantments.EquipmentEnchantmentConfigurator enchant = MakerTools.MakeItemEnchantment("BracersOfTheAvengingKnightEnchant", "Bracers Of The Avenging Knight", sharedDesc, 1);
             if (Main.TotFContext.NewContent.Items.IsEnabled("BracersOfTheAvengingKnight"))
             {
                 
@@ -54,17 +56,18 @@ namespace TomeOfTheFirebird.New_Content.Items
                 enchant.AddCasterLevelEquipment(bonus: 4, spell: BlueprintTool.GetRef<BlueprintAbilityReference>("a4df3ed7ef5aa9148a69e8364ad359c5"));
                 enchant.AddCasterLevelEquipment(bonus: 4, spell: BlueprintTool.GetRef<BlueprintAbilityReference>("a2736145a29c8814b97a54b45588cd29"));
                 enchant.AddCasterLevelEquipment(bonus: 4, spell: BlueprintTool.GetRef<BlueprintAbilityReference>("7a4f0c48829952e47bb1fd1e4e9da83a"));
-                
-                var destroSmite = BuffConfigurator.For("0dfe08afb3cf3594987bab12d014e74b").AddStatBonusIfHasFact(checkedFacts:  new List<Blueprint<BlueprintUnitFactReference>>() { "BracersOfTheAvengingKnightFeature" }, descriptor: Kingmaker.Enums.ModifierDescriptor.UntypedStackable, stat: Kingmaker.EntitySystem.Stats.StatType.AdditionalDamage, value: new Kingmaker.UnitLogic.Mechanics.ContextValue() { Property = Kingmaker.UnitLogic.Mechanics.Properties.UnitProperty.None, Value = 2, ValueRank = Kingmaker.Enums.AbilityRankType.StatBonus, ValueType = Kingmaker.UnitLogic.Mechanics.ContextValueType.Simple } ).Configure();
+                AddStatBonusIfHasFactFixed fixedFact = new AddStatBonusIfHasFactFixed(stat: Kingmaker.EntitySystem.Stats.StatType.AdditionalDamage, bonus: new Kingmaker.UnitLogic.Mechanics.ContextValue() { Property = Kingmaker.UnitLogic.Mechanics.Properties.UnitProperty.None, Value = 2, ValueRank = Kingmaker.Enums.AbilityRankType.StatBonus, ValueType = Kingmaker.UnitLogic.Mechanics.ContextValueType.Simple }, new List<Blueprint<BlueprintUnitFactReference>>() { "BracersOfTheAvengingKnightFeature" }, descriptor: Kingmaker.Enums.ModifierDescriptor.UntypedStackable);
+                var destroSmite = BuffConfigurator.For("0dfe08afb3cf3594987bab12d014e74b").AddStatBonusIfHasFactFixed(fixedFact).Configure();
+
             }
-            var avengingFeatureBuilt = avengingFeature.Configure();
+            Kingmaker.Blueprints.Classes.BlueprintFeature avengingFeatureBuilt = avengingFeature.Configure();
             
             
             //Add destro active-smite
             //If the wearer is not a member of such a class, once per day she may make one smite attack, gaining a bonus on the attack roll equal to her Charisma bonus, and a +5 bonus to the damage roll on a hit.
             enchant.AddUnitFeatureEquipment(avengingFeatureBuilt.AssetGuidThreadSafe);
 
-            var enchantBuilt = enchant.Configure();
+            Kingmaker.Blueprints.Items.Ecnchantments.BlueprintEquipmentEnchantment enchantBuilt = enchant.Configure();
 
             BlueprintItemEquipment templateItem = BlueprintTools.GetBlueprint<BlueprintItemEquipmentWrist>("d68cea6c999eab4459c030c6588c1083");
 
@@ -72,10 +75,10 @@ namespace TomeOfTheFirebird.New_Content.Items
             string itemName = "Bracers Of The Avenging Knight";
             string itemDesc = $"TThese silver bracers are polished to a mirrored sheen, but otherwise shift their appearance to match whatever suit of armor they are worn with.\n {sharedDesc}.";
             //TODO add the 1/day lesser resto on LoH
-            var guid = Main.TotFContext.Blueprints.GetGUID(itemSysName);
+            BlueprintGuid guid = Main.TotFContext.Blueprints.GetGUID(itemSysName);
             LocalizedString name = LocalizationTool.CreateString(itemSysName + ".Name", itemName);
             LocalizedString desc = LocalizationTool.CreateString(itemSysName + ".Desc", itemDesc);
-            var item = ItemEquipmentWristConfigurator.New(itemSysName, guid.ToString()).SetDisplayNameText(name).SetDescriptionText(desc);
+            ItemEquipmentWristConfigurator item = ItemEquipmentWristConfigurator.New(itemSysName, guid.ToString()).SetDisplayNameText(name).SetDescriptionText(desc);
             item.SetEnchantments(  enchantBuilt.AssetGuidThreadSafe );
             item.SetFlavorText(new LocalizedString());
             item.SetInventoryEquipSound("ArmorPlateEquip");
@@ -100,7 +103,8 @@ namespace TomeOfTheFirebird.New_Content.Items
 
             string armorSysName = "MemoryOfYaniel";
             string armorName = "MemoryOfYaniel";
-
+            string guidForBlessedWay = "30db78c139acf3b41b6572357f0a7650";
+            
             //Blessed Path knockoff
 
             //Drop Wis Bonus
@@ -114,18 +118,18 @@ namespace TomeOfTheFirebird.New_Content.Items
 
         private static void BuildMercy()
         {
-            var MercyFeature = MakerTools.MakeFeature("BracersOfTheMercifulKnightFeature", "Bracers Of The Merciful Knight Feature", "You Shouldn't See This", true);
-            var enchant = MakerTools.MakeItemEnchantment("BracersOfTheMercifulKnightEnchant", "Bracers Of The Merciful Knight", "When worn by a paladin, she is considered four levels higher for the purposes of determining the uses per day and healing provided by her lay on hands class feature. This does not increase the power of her Channel Energy ability.", 1);
+            BlueprintCore.Blueprints.CustomConfigurators.Classes.FeatureConfigurator MercyFeature = MakerTools.MakeFeature("BracersOfTheMercifulKnightFeature", "Bracers Of The Merciful Knight Feature", "You Shouldn't See This", true);
+            BlueprintCore.Blueprints.Configurators.Items.Ecnchantments.EquipmentEnchantmentConfigurator enchant = MakerTools.MakeItemEnchantment("BracersOfTheMercifulKnightEnchant", "Bracers Of The Merciful Knight", "When worn by a paladin, she is considered four levels higher for the purposes of determining the uses per day and healing provided by her lay on hands class feature. This does not increase the power of her Channel Energy ability.", 1);
             if (Main.TotFContext.NewContent.Items.IsEnabled("BracersOfTheMercifulKnight"))
             {
-                var LayOnHandsSelf = BlueprintTools.GetBlueprint<BlueprintAbility>("8d6073201e5395d458b8251386d72df1");
+                BlueprintAbility LayOnHandsSelf = BlueprintTools.GetBlueprint<BlueprintAbility>("8d6073201e5395d458b8251386d72df1");
 
                 LayOnHandsSelf.Components.OfType<ContextRankConfig>().FirstOrDefault().m_UseMax = false;//There's no reason for this and we don't want the item crapping out at 20
 
-                var LayOnHandsOther = BlueprintTools.GetBlueprint<BlueprintAbility>("caae1dc6fcf7b37408686971ee27db13");
+                BlueprintAbility LayOnHandsOther = BlueprintTools.GetBlueprint<BlueprintAbility>("caae1dc6fcf7b37408686971ee27db13");
 
                 LayOnHandsOther.Components.OfType<ContextRankConfig>().FirstOrDefault().m_UseMax = false;//There's no reason for this and we don't want the item crapping out at 20
-                var LayOnHandsSpecial = BlueprintTools.GetBlueprint<BlueprintAbility>("8337cea04c8afd1428aad69defbfc365");
+                BlueprintAbility LayOnHandsSpecial = BlueprintTools.GetBlueprint<BlueprintAbility>("8337cea04c8afd1428aad69defbfc365");
 
                 LayOnHandsSpecial.Components.OfType<ContextRankConfig>().FirstOrDefault().m_UseMax = false;//There's no reason for this and we don't want the item crapping out at 20
 
@@ -138,12 +142,12 @@ namespace TomeOfTheFirebird.New_Content.Items
             }
             //TODO - add resoration effect with smartness
 
-            var mercyFeatureBuilt = MercyFeature.Configure();
+            Kingmaker.Blueprints.Classes.BlueprintFeature mercyFeatureBuilt = MercyFeature.Configure();
 
             
             enchant.AddUnitFeatureEquipment(mercyFeatureBuilt.AssetGuidThreadSafe);
-            
-            var enchantBuilt = enchant.Configure();
+
+            Kingmaker.Blueprints.Items.Ecnchantments.BlueprintEquipmentEnchantment enchantBuilt = enchant.Configure();
 
             BlueprintItemEquipment templateItem = BlueprintTools.GetBlueprint<BlueprintItemEquipmentWrist>("d68cea6c999eab4459c030c6588c1083");
 
@@ -151,10 +155,10 @@ namespace TomeOfTheFirebird.New_Content.Items
             string itemName = "Bracers Of The Merciful Knight";
             string itemDesc = "These golden bracers are engraved with images of celestial creatures.\n When worn by a paladin, she is considered four levels higher for the purposes of determining the uses per day and healing provided by her lay on hands class feature. This does not increase the power of her Channel Energy ability.";
             //TODO add the 1/day lesser resto on LoH
-            var guid = Main.TotFContext.Blueprints.GetGUID(itemSysName);
+            BlueprintGuid guid = Main.TotFContext.Blueprints.GetGUID(itemSysName);
             LocalizedString name = LocalizationTool.CreateString(itemSysName + ".Name", itemName);
             LocalizedString desc = LocalizationTool.CreateString(itemSysName + ".Desc", itemDesc);
-            var item = ItemEquipmentWristConfigurator.New(itemSysName, guid.ToString()).SetDisplayNameText(name).SetDescriptionText(desc);
+            ItemEquipmentWristConfigurator item = ItemEquipmentWristConfigurator.New(itemSysName, guid.ToString()).SetDisplayNameText(name).SetDescriptionText(desc);
             item.SetEnchantments(enchantBuilt.AssetGuidThreadSafe );
             item.SetFlavorText(new LocalizedString());
             item.SetInventoryEquipSound("ArmorPlateEquip");

@@ -31,9 +31,7 @@ namespace TomeOfTheFirebird.New_Content.Feats
 
       
 
-        private static BlueprintFeature AbilityFocusBreathWeapons;
-
-        private static BlueprintFeature EnergizedMaw;
+       
         public static void BuildBreathWeaponFeats()
         {
             
@@ -42,14 +40,14 @@ namespace TomeOfTheFirebird.New_Content.Feats
 
         public static void BuildAbilityFocusBreathWeapons()
         {
-            var abilityFocusconfig = MakerTools.MakeFeature("AbilityFocusBreathWeapon", "Ability Focus - Breath Weapons", "Add +2 to breath weapon DCs");
+            BlueprintCore.Blueprints.CustomConfigurators.Classes.FeatureConfigurator abilityFocusconfig = MakerTools.MakeFeature("AbilityFocusBreathWeapon", "Ability Focus - Breath Weapons", "Add +2 to breath weapon DCs");
             abilityFocusconfig.AddIncreaseSpellDescriptorDC(descriptor: new Kingmaker.Blueprints.Classes.Spells.SpellDescriptorWrapper(Kingmaker.Blueprints.Classes.Spells.SpellDescriptor.BreathWeapon), bonusDC: 2);
 
             abilityFocusconfig.AddToGroups(FeatureGroup.Feat);
             abilityFocusconfig.SetRanks(1);
             abilityFocusconfig.AddComponent<PrerequisiteBreathWeaponAccess>();
 
-            var finished = abilityFocusconfig.Configure();
+            BlueprintFeature finished = abilityFocusconfig.Configure();
             if (Main.TotFContext.NewContent.Feats.IsDisabled("AbilityFocusBreathWeapons"))
                 return;
             TabletopTweaks.Core.Utilities.FeatTools.AddAsFeat(finished);

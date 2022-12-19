@@ -1,4 +1,5 @@
 ﻿using BlueprintCore.Blueprints.Configurators.Classes;
+using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Conditions.Builder;
 using BlueprintCore.Conditions.Builder.ContextEx;
@@ -23,12 +24,12 @@ namespace TomeOfTheFirebird.Bugfixes
             if (Main.TotFContext.Bugfixes.FixExtraHits.IsEnabled("Firebrand"))
             {
                 Main.TotFContext.Logger.Log("Fixing Firebrand");
-                var firebrandBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("c6cc1c5356db4674dbd2be20ea205c86");
+                BlueprintBuff firebrandBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("c6cc1c5356db4674dbd2be20ea205c86");
                 if (firebrandBuff.Components.OfType<AddInitiatorAttackWithWeaponTrigger>().Any())
                 {
                     Main.TotFContext.Logger.Log("Removing base weapon damage effect");
                     //firebrandBuff.Components.Remove(x => x is AddInitiatorAttackWithWeaponTrigger);
-                    var editer = BuffConfigurator.For(firebrandBuff.AssetGuidThreadSafe).RemoveComponents(x => x is AddInitiatorAttackWithWeaponTrigger);
+                    BuffConfigurator editer = BuffConfigurator.For(firebrandBuff.AssetGuidThreadSafe).RemoveComponents(x => x is AddInitiatorAttackWithWeaponTrigger);
                     editer.AddComponent(new ContextWeaponCategoryExtraDamageDice()
                     {
                         ToAllAttacks = true,
@@ -50,7 +51,7 @@ namespace TomeOfTheFirebird.Bugfixes
         {
             if (Main.TotFContext.Bugfixes.FixExtraHits.IsEnabled("SmallDragon"))
             {
-                var smdbuff = BuffConfigurator.For("d37d0c19b37808d4895c836c474f04e3");
+                BuffConfigurator smdbuff = BuffConfigurator.For("d37d0c19b37808d4895c836c474f04e3");
                 smdbuff.RemoveComponents(x => x is AddInitiatorAttackWithWeaponTrigger);
 
                 ContextDiceValue size = new ContextDiceValue() { BonusValue = 0, DiceCountValue = 1, DiceType = Kingmaker.RuleSystem.DiceType.D4 };
@@ -79,9 +80,9 @@ namespace TomeOfTheFirebird.Bugfixes
         {
             if (Main.TotFContext.Bugfixes.FixExtraHits.IsEnabled("ClawsOfASacredBeast"))
             {
-                var natweapons = new WeaponCategory[] { WeaponCategory.Claw, WeaponCategory.Bite, WeaponCategory.Gore, WeaponCategory.OtherNaturalWeapons, WeaponCategory.UnarmedStrike, WeaponCategory.Tail };
+                WeaponCategory[] natweapons = new WeaponCategory[] { WeaponCategory.Claw, WeaponCategory.Bite, WeaponCategory.Gore, WeaponCategory.OtherNaturalWeapons, WeaponCategory.UnarmedStrike, WeaponCategory.Tail };
                 Main.TotFContext.Logger.Log("Patching Claws Of A Sacred Beast");
-                var claws = FeatureConfigurator.For("27d7b88ee7438cf4697224a870e0d129").RemoveComponents(x => x is AddInitiatorAttackWithWeaponTrigger);
+                FeatureConfigurator claws = FeatureConfigurator.For("27d7b88ee7438cf4697224a870e0d129").RemoveComponents(x => x is AddInitiatorAttackWithWeaponTrigger);
                 claws.AddComponent(new ContextWeaponCategoryPhysDamageDiceWithChangeOnCondition() { categories = natweapons, form = PhysicalDamageForm.Slashing, NormalDamage = new Kingmaker.RuleSystem.DiceFormula() { m_Dice = Kingmaker.RuleSystem.DiceType.D8, m_Rolls = 1 }, IncreasedDamage = new Kingmaker.RuleSystem.DiceFormula() { m_Dice = Kingmaker.RuleSystem.DiceType.D6, m_Rolls = 2 }, TargetConditions = ConditionsBuilder.New().Alignment( Kingmaker.Enums.AlignmentComponent.Evil, checkCaster:false).Build() });
 
                 claws.Configure();

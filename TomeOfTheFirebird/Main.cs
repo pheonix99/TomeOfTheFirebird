@@ -21,7 +21,7 @@ namespace TomeOfTheFirebird
             {
                 Enabled = true;
 
-                var harmony = new Harmony(modEntry.Info.Id);
+                Harmony harmony = new Harmony(modEntry.Info.Id);
                 TotFContext = new ModContextTomeOfTheFirebird(modEntry);
                 TotFContext.ModEntry.OnSaveGUI = OnSaveGUI;
                 TotFContext.ModEntry.OnGUI = UMMSettingsUI.OnGUI;

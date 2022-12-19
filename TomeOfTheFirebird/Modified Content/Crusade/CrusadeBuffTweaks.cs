@@ -43,7 +43,7 @@ namespace TomeOfTheFirebird.Modified_Content.Crusade
                 PermBuffsFromList(bladesActions);
                 Main.TotFContext.Logger.LogPatch("Patched", blades);
                 DeRepeatable(blades);
-                var BladesDesc = LocalizationTool.CreateString("BladesGearTweakDesc.Desc", "All infantry and cavalry units gain the {g|FineSteel}[Fine Steel]{/g} feat.", true); ;
+                Kingmaker.Localization.LocalizedString BladesDesc = LocalizationTool.CreateString("BladesGearTweakDesc.Desc", "All infantry and cavalry units gain the {g|FineSteel}[Fine Steel]{/g} feat.", true); ;
 
                 blades.m_MechanicalDescription = BladesDesc;
 
@@ -62,7 +62,7 @@ namespace TomeOfTheFirebird.Modified_Content.Crusade
                 PermBuffsFromList(bowsActions);
                 Main.TotFContext.Logger.LogPatch("Patched", bows);
 
-                var BowDesc = LocalizationTool.CreateString("BowGearTweakDesc.Desc", "All ranged units gain the {g|DeadlyAmmunition}[Serrated Arrows]{/g} feat.", true); ;
+                Kingmaker.Localization.LocalizedString BowDesc = LocalizationTool.CreateString("BowGearTweakDesc.Desc", "All ranged units gain the {g|DeadlyAmmunition}[Serrated Arrows]{/g} feat.", true); ;
 
                 bows.m_MechanicalDescription = BowDesc;
                 BlueprintKingdomBuff bowsBuff = BlueprintTools.GetBlueprint<BlueprintKingdomBuff>("c0b9fa7ccc9546ffa97ca9fee334fa9f");
@@ -85,7 +85,7 @@ namespace TomeOfTheFirebird.Modified_Content.Crusade
                 PermBuffsFromList(spellsActions);
                 Main.TotFContext.Logger.LogPatch("Patched", spells);
 
-                var SpellDesc = LocalizationTool.CreateString("SpellcasterGearTweakDesc.Desc", "All spellcasting units gain the {g|ProtectiveTalismans}[Protective Talismans]{/g} feat.", true); ;
+                Kingmaker.Localization.LocalizedString SpellDesc = LocalizationTool.CreateString("SpellcasterGearTweakDesc.Desc", "All spellcasting units gain the {g|ProtectiveTalismans}[Protective Talismans]{/g} feat.", true); ;
 
                 spells.m_MechanicalDescription = SpellDesc;
                 BlueprintKingdomBuff spellsBuff = BlueprintTools.GetBlueprint<BlueprintKingdomBuff>("6da7dac332424bd589345ee1383d70f2");
@@ -101,7 +101,7 @@ namespace TomeOfTheFirebird.Modified_Content.Crusade
                 DeRepeatable(azataPonies);
                 PermBuffsFromList(azataPoniesActions);
                 Main.TotFContext.Logger.LogPatch("Patched", azataPonies);
-                var PoniesDesc = LocalizationTool.CreateString("AzataPoniesTweakDesc.Desc", "All cavalry units gain the {g|EnchantedMounts}[Enchanted Mounts]{/g} feat.", true); ;
+                Kingmaker.Localization.LocalizedString PoniesDesc = LocalizationTool.CreateString("AzataPoniesTweakDesc.Desc", "All cavalry units gain the {g|EnchantedMounts}[Enchanted Mounts]{/g} feat.", true); ;
 
                 azataPonies.m_MechanicalDescription = PoniesDesc;
                 BlueprintKingdomBuff poniesBuff = BlueprintTools.GetBlueprint<BlueprintKingdomBuff>("7fc82e5db09b47899195e72039818660");
@@ -111,7 +111,7 @@ namespace TomeOfTheFirebird.Modified_Content.Crusade
             }
             static void PermBuffsFromList(ActionList l)
             {
-                foreach (var v in l.Actions.OfType<KingdomActionAddBuff>())
+                foreach (KingdomActionAddBuff v in l.Actions.OfType<KingdomActionAddBuff>())
                 {
                     v.OverrideDuration = 0;
                    
@@ -122,9 +122,9 @@ namespace TomeOfTheFirebird.Modified_Content.Crusade
 
             static void MakeTacFeatureVisible(BlueprintKingdomBuff buff)
             {
-                foreach(var v in buff.Components.OfType<KingdomTacticalArmyFeature>())
+                foreach(KingdomTacticalArmyFeature v in buff.Components.OfType<KingdomTacticalArmyFeature>())
                 {
-                    foreach(var v2 in v.Features)
+                    foreach(Kingmaker.Blueprints.BlueprintFeatureReference v2 in v.Features)
                     {
                         BlueprintFeature tac = v2.Get();
                         if (!tac.Components.Any(x=>x is TacticalCombatVisibleFeature))

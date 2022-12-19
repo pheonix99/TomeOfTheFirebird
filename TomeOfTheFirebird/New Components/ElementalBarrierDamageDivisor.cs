@@ -19,7 +19,7 @@ namespace TomeOfTheFirebird.Components
             {
                 foreach (BaseDamage baseDamage in evt.DamageBundle.OfType<EnergyDamage>().Where(x => x.EnergyType == m_Type))
                 {
-                    baseDamage.AddDecline(new DamageDecline(DamageDeclineType.ByHalf, this));
+                    baseDamage.AddDecline(new DamageDecline(DamageDeclineType.ByHalf, this.Fact));
                 }
             }//TODO Make This Only Work On REF saves
             if (context != null && evt.ParentRule.HalfBecauseSavingThrow)
@@ -28,7 +28,7 @@ namespace TomeOfTheFirebird.Components
                 {
                     
 
-                    baseDamage2.AddDecline(new DamageDecline(DamageDeclineType.Total, this));
+                    baseDamage2.AddDecline(new DamageDecline(DamageDeclineType.Total, this.Fact));
                 }
             }
         }

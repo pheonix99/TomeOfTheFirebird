@@ -98,7 +98,7 @@ namespace TomeOfTheFirebird
                     {
                         Main.TotFContext.Logger.Log($"Acts Of Iomedae Reports No Icon");
                     }
-                    BoneFists.AddToLists();
+                    
                 }
                 catch (Exception e)
                 {
@@ -142,6 +142,8 @@ namespace TomeOfTheFirebird
 
                     FighterArmorTrainingFakeLevel.Connect();
                     WitchPatrons.Finish();
+
+                    ProdigiousTWF.AddTwoWeaponDefense();
                     
                 }
                 catch (Exception e)

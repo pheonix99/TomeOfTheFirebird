@@ -21,7 +21,7 @@ namespace TomeOfTheFirebird.New_Content.WildTalents
     {
         public static void Build()
         {
-            var UtilitySelector = MakerTools.MakeFeatureSelector("UtilityWildTalentFakeSelector", "Utility Wild Talent", "A kineticist gains her selected element’s basic utility wild talent (basic telekinesis, basic aerokinesis, etc.) as a bonus wild talent at level 1.", false);
+            BlueprintCore.Blueprints.Configurators.Classes.Selection.FeatureSelectionConfigurator UtilitySelector = MakerTools.MakeFeatureSelector("UtilityWildTalentFakeSelector", "Utility Wild Talent", "A kineticist gains her selected element’s basic utility wild talent (basic telekinesis, basic aerokinesis, etc.) as a bonus wild talent at level 1.", false);
             UtilitySelector.SetIsClassFeature(true);
 
             UtilitySelector.AddToAllFeatures("BasicGeokinesisFeature", "BasicAerokinesisFeature", "BasicHydrokinesisFeature", "BasicPyrokinesisFeature");
@@ -30,9 +30,9 @@ namespace TomeOfTheFirebird.New_Content.WildTalents
 
         public static void FinishAeroBuff()
         {
-            var lifeBubble = BlueprintTool.Get<BlueprintBuff>("4aa87d3319124a2daf74d80ca5d4595e");
+            BlueprintBuff lifeBubble = BlueprintTool.Get<BlueprintBuff>("4aa87d3319124a2daf74d80ca5d4595e");
 
-            var patchOnAntiBad = BuffConfigurator.For("BasicAerokinesisBuff");
+            BuffConfigurator patchOnAntiBad = BuffConfigurator.For("BasicAerokinesisBuff");
             patchOnAntiBad.AddSavingThrowBonusAgainstSpecificSpells(spells: lifeBubble.Components.OfType<AddSpellImmunity>().FirstOrDefault().m_Exceptions.Select(x => (Blueprint<Kingmaker.Blueprints.BlueprintAbilityReference>)x).ToList());
             patchOnAntiBad.Configure();
 
@@ -40,16 +40,16 @@ namespace TomeOfTheFirebird.New_Content.WildTalents
 
         public static void MakeAerokinesis()
         {
-            var airblast = BlueprintTool.Get<BlueprintAbility>("0ab1552e2ebdacf44bb7b20f5393366d");
-            var aeroBuffConfig = MakerTools.MakeBuff("BasicAerokinesisBuff", "Basic Aerokinesis Breeze", $"You can create a light breeze that blows against a creature or object from a direction of your choice that follows the target wherever it goes. The breeze grants the subject a +2 bonus on saves against very hot conditions, severe heat, breath weapons, and cloud vapors and gases (such as cloudkill, stinking cloud, and inhaled poisons). You can have only one such breeze active at any one time.", icon: airblast.Icon);
+            BlueprintAbility airblast = BlueprintTool.Get<BlueprintAbility>("0ab1552e2ebdacf44bb7b20f5393366d");
+            BuffConfigurator aeroBuffConfig = MakerTools.MakeBuff("BasicAerokinesisBuff", "Basic Aerokinesis Breeze", $"You can create a light breeze that blows against a creature or object from a direction of your choice that follows the target wherever it goes. The breeze grants the subject a +2 bonus on saves against very hot conditions, severe heat, breath weapons, and cloud vapors and gases (such as cloudkill, stinking cloud, and inhaled poisons). You can have only one such breeze active at any one time.", icon: airblast.Icon);
             aeroBuffConfig.AddUniqueBuff();
             aeroBuffConfig.AddSavingThrowBonusAgainstDescriptor(bonus: ContextValues.Constant(2), modifierDescriptor: Kingmaker.Enums.ModifierDescriptor.Circumstance, spellDescriptor: new Kingmaker.Blueprints.Classes.Spells.SpellDescriptorWrapper(Kingmaker.Blueprints.Classes.Spells.SpellDescriptor.BreathWeapon));
             aeroBuffConfig.AddRemoveBuffIfCasterIsMissing(removeOnCasterDeath: true);
-            
 
-            var aerobuff = aeroBuffConfig.Configure();
 
-            var aeroAbilityConfig = MakerTools.MakeAbility("BasicAerokinesisAbility", "Basic Aerokinesis", $"You can create a light breeze that blows against a creature or object from a direction of your choice that follows the target wherever it goes. The breeze grants the subject a +2 bonus on saves against very hot conditions, severe heat, breath weapons, and cloud vapors and gases (such as cloudkill, stinking cloud, and inhaled poisons).  You can have only one such breeze active at any one time.", airblast.Icon, new Kingmaker.Localization.LocalizedString(), new Kingmaker.Localization.LocalizedString());
+            BlueprintBuff aerobuff = aeroBuffConfig.Configure();
+
+            BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities.AbilityConfigurator aeroAbilityConfig = MakerTools.MakeAbility("BasicAerokinesisAbility", "Basic Aerokinesis", $"You can create a light breeze that blows against a creature or object from a direction of your choice that follows the target wherever it goes. The breeze grants the subject a +2 bonus on saves against very hot conditions, severe heat, breath weapons, and cloud vapors and gases (such as cloudkill, stinking cloud, and inhaled poisons).  You can have only one such breeze active at any one time.", airblast.Icon, new Kingmaker.Localization.LocalizedString(), new Kingmaker.Localization.LocalizedString());
             aeroAbilityConfig.SetAnimation(Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle.Kineticist);
 
             aeroAbilityConfig.SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard);
@@ -60,19 +60,19 @@ namespace TomeOfTheFirebird.New_Content.WildTalents
             aeroAbilityConfig.SetCanTargetSelf(true);
 
 
-            var aeroAbility = aeroAbilityConfig.Configure();
+            BlueprintAbility aeroAbility = aeroAbilityConfig.Configure();
 
-           var aeroConfig = MakerTools.MakeFeature("BasicAerokinesisFeature", "Basic Aerokinesis", $"You can create a light breeze that blows against a creature or object from a direction of your choice that follows the target wherever it goes. The breeze grants the subject a +2 bonus on saves against very hot conditions, severe heat, breath weapons, and cloud vapors and gases (such as cloudkill, stinking cloud, and inhaled poisons).  You can have only one such breeze active at any one time.");
+            BlueprintCore.Blueprints.CustomConfigurators.Classes.FeatureConfigurator aeroConfig = MakerTools.MakeFeature("BasicAerokinesisFeature", "Basic Aerokinesis", $"You can create a light breeze that blows against a creature or object from a direction of your choice that follows the target wherever it goes. The breeze grants the subject a +2 bonus on saves against very hot conditions, severe heat, breath weapons, and cloud vapors and gases (such as cloudkill, stinking cloud, and inhaled poisons).  You can have only one such breeze active at any one time.");
             aeroConfig.SetIsClassFeature(true);
             aeroConfig.AddFacts(facts: new List<Blueprint<Kingmaker.Blueprints.BlueprintUnitFactReference>>() { aeroAbility });
 
-            var list = new List<Blueprint<BlueprintFeatureReference>>();
-            foreach (var x in KineticistHelpers.PrimaryAirFocues)
+            List<Blueprint<BlueprintFeatureReference>> list = new List<Blueprint<BlueprintFeatureReference>>();
+            foreach (string x in KineticistHelpers.PrimaryAirFocues)
                 list.Add(x);
-            foreach (var x in KineticistHelpers.SecondaryAirFocues)
+            foreach (string x in KineticistHelpers.SecondaryAirFocues)
                 list.Add(x);
             aeroConfig.AddPrerequisiteFeaturesFromList(features: list , amount: 1);
-            var aero = aeroConfig.Configure();
+            Kingmaker.Blueprints.Classes.BlueprintFeature aero = aeroConfig.Configure();
 
             
         }
@@ -97,17 +97,17 @@ You can move up to 5 pounds per kineticist level of rocks, loose earth, sand, cl
 
         public static void BasicGeokinesis()
         {
-            var geoConfig = MakerTools.MakeFeature("BasicGeokinesisFeature", "Basic Geokinesis", $"Currently no in-game effect: \nTT: You can move up to 5 pounds per kineticist level of rocks, loose earth, sand, clay, and other similar materials up to 15 feet as a move action. You can search earthen and stone areas from a distance as if using the sift cantrip.");
+            BlueprintCore.Blueprints.CustomConfigurators.Classes.FeatureConfigurator geoConfig = MakerTools.MakeFeature("BasicGeokinesisFeature", "Basic Geokinesis", $"Currently no in-game effect: \nTT: You can move up to 5 pounds per kineticist level of rocks, loose earth, sand, clay, and other similar materials up to 15 feet as a move action. You can search earthen and stone areas from a distance as if using the sift cantrip.");
             geoConfig.SetIsClassFeature(true);
-            var list = new List<Blueprint<BlueprintFeatureReference>>();
-            foreach (var x in KineticistHelpers.PrimaryEarthFocuses)
+            List<Blueprint<BlueprintFeatureReference>> list = new List<Blueprint<BlueprintFeatureReference>>();
+            foreach (string x in KineticistHelpers.PrimaryEarthFocuses)
                 list.Add(x);
-            foreach (var x in KineticistHelpers.SecondaryEarthFocuses)
+            foreach (string x in KineticistHelpers.SecondaryEarthFocuses)
                 list.Add(x);
             geoConfig.AddPrerequisiteFeaturesFromList(features: list, amount: 1);
             //geoConfig.AddFacts(facts: new List<Blueprint<Kingmaker.Blueprints.BlueprintUnitFactReference>>() { aeroAbility });
 
-            var geo = geoConfig.Configure();
+            Kingmaker.Blueprints.Classes.BlueprintFeature geo = geoConfig.Configure();
         }
 
         /*Basic Hydrokinesis
@@ -118,17 +118,17 @@ You can create water as the cantrip create water, purify water as if using purif
          */
         public static void BasicHydrokinesis()
         {
-            var hydroConfig = MakerTools.MakeFeature("BasicHydrokinesisFeature", "Basic Hydrokinesis", $"Currently no in-game effect: \nTT: You can create water as the cantrip create water, purify water as if using purify food and drink, and dry wet creatures and objects as if using prestidigitation. While you cannot lift water into the air using this ability, you can create mild currents in a body of water by concentrating. These currents are strong enough to run a water mill as if the mill were being turned manually by a creature with a Strength score equal to your Constitution score.");
+            BlueprintCore.Blueprints.CustomConfigurators.Classes.FeatureConfigurator hydroConfig = MakerTools.MakeFeature("BasicHydrokinesisFeature", "Basic Hydrokinesis", $"Currently no in-game effect: \nTT: You can create water as the cantrip create water, purify water as if using purify food and drink, and dry wet creatures and objects as if using prestidigitation. While you cannot lift water into the air using this ability, you can create mild currents in a body of water by concentrating. These currents are strong enough to run a water mill as if the mill were being turned manually by a creature with a Strength score equal to your Constitution score.");
             hydroConfig.SetIsClassFeature(true);
-            var list = new List<Blueprint<BlueprintFeatureReference>>();
-            foreach (var x in KineticistHelpers.PrimaryWaterFocuses)
+            List<Blueprint<BlueprintFeatureReference>> list = new List<Blueprint<BlueprintFeatureReference>>();
+            foreach (string x in KineticistHelpers.PrimaryWaterFocuses)
                 list.Add(x);
-            foreach (var x in KineticistHelpers.SecondaryWaterFocuses)
+            foreach (string x in KineticistHelpers.SecondaryWaterFocuses)
                 list.Add(x);
             hydroConfig.AddPrerequisiteFeaturesFromList(features: list, amount: 1);
             //geoConfig.AddFacts(facts: new List<Blueprint<Kingmaker.Blueprints.BlueprintUnitFactReference>>() { aeroAbility });
 
-            var hydro = hydroConfig.Configure();
+            Kingmaker.Blueprints.Classes.BlueprintFeature hydro = hydroConfig.Configure();
         }
         /*
          * Basic Pyrokinesis
@@ -139,17 +139,48 @@ You can use your inner flame to reproduce the effects of a flare, light, or spar
          */
         public static void BasicPyrokinesis()
         {
-            var pyroConfig = MakerTools.MakeFeature("BasicPyrokinesisFeature", "Basic Pyrokinesis", $"Currently no in-game effect: \nTT: You can use your inner flame to reproduce the effects of a flare or light cantrip; using any of the three abilities ends any previous light effect from this wild talent.");
+            BlueprintCore.Blueprints.CustomConfigurators.Classes.FeatureConfigurator pyroConfig = MakerTools.MakeFeature("BasicPyrokinesisFeature", "Basic Pyrokinesis", $"Currently no in-game effect: \nTT: You can use your inner flame to reproduce the effects of a flare or light cantrip; using any of the three abilities ends any previous light effect from this wild talent.");
             pyroConfig.SetIsClassFeature(true);
-            var list = new List<Blueprint<BlueprintFeatureReference>>();
-            foreach (var x in KineticistHelpers.PrimaryFireFocuses)
+            List<Blueprint<BlueprintFeatureReference>> list = new List<Blueprint<BlueprintFeatureReference>>();
+            foreach (string x in KineticistHelpers.PrimaryFireFocuses)
                 list.Add(x);
-            foreach (var x in KineticistHelpers.SecondaryFireFocuses)
+            foreach (string x in KineticistHelpers.SecondaryFireFocuses)
                 list.Add(x);
             pyroConfig.AddPrerequisiteFeaturesFromList(features: list, amount: 1);
             //geoConfig.AddFacts(facts: new List<Blueprint<Kingmaker.Blueprints.BlueprintUnitFactReference>>() { aeroAbility });
 
-            var hydro = pyroConfig.Configure();
+            Kingmaker.Blueprints.Classes.BlueprintFeature pyro = pyroConfig.Configure();
         }
+
+        /*
+         * Basic Telekinesis
+
+Element(s) aether; Type utility (Sp); Level 1; Burn 0
+
+This ability is similar to mage hand, except you can move an object that weighs up to 5 pounds per 2 kineticist levels you possess (minimum 5 pounds), and you can move magical objects. Additionally, you can create a container of entwined strands of aether in order to hold liquids or piles of small objects of the same weight. You can dip the container to pick up or drop a liquid as a move action. If you possess the extended range wild talent, you can increase the range of basic telekinesis to medium range and increase the rate of movement to 30 feet per round, and if you possess the extreme range wild talent, You can increase the range of basic telekinesis to long range and increase the rate of movement to 60 feet per round. You can also use your basic telekinesis to duplicate the effects of the open/close cantrip.
+         */
+
+        //Extend opening/closing/looting reach?
+
+        //You can open or close (your choice) a door, chest, box, window, bag, pouch, bottle, barrel, or other container. If anything resists this activity (such as a bar on a door or a lock on a chest), the spell fails. In addition, the spell can only open and close things weighing 30 pounds or less. Thus, doors, chests, and similar objects sized for enormous creatures may be beyond this spell’s ability to affect.
+
+        /*
+         * Basic Phytokinesis
+
+Element wood; Type utility (Sp); Level 1; Burn 0
+You can prune and otherwise tend plants within 30 feet without using gardening tools. You can search wooded areas and other plant-heavy areas from a distance as if using the sift cantrip. By concentrating, you can detect plants within 120 feet as if using detect animals or plants.
+         */
+
+        /*
+         * Basic Chaokinesis
+
+Source PPC:OO
+
+Element void; Type utility (Sp); Level 1; Burn 0
+
+You can create a shadow that protects a target from bright light. You can also change gravity to increase a creature’s carrying capacity by half or grant a creature a +4 bonus on Acrobatics checks to jump.
+
+Each benefit lasts 1 hour or until you use basic chaokinesis again.
+         */
     }
 }

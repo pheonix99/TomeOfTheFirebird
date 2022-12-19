@@ -17,18 +17,18 @@ namespace TomeOfTheFirebird.New_Content
     {
         public static void Make()
         {
-            var template = BlueprintTools.GetBlueprint<BlueprintFeature>("4f068ba134bcabf47a370c5ecde812c4");
-            var witch = BlueprintTools.GetBlueprintReference<BlueprintCharacterClassReference>("1b9873f1e7bfe5449bc84d03e9c8e3cc");
-            var templateprog = BlueprintTools.GetBlueprint<BlueprintProgression>("cad7c2fdabeb9574f95f4b9ffee20afe");
+            BlueprintFeature template = BlueprintTools.GetBlueprint<BlueprintFeature>("4f068ba134bcabf47a370c5ecde812c4");
+            BlueprintCharacterClassReference witch = BlueprintTools.GetBlueprintReference<BlueprintCharacterClassReference>("1b9873f1e7bfe5449bc84d03e9c8e3cc");
+            BlueprintProgression templateprog = BlueprintTools.GetBlueprint<BlueprintProgression>("cad7c2fdabeb9574f95f4b9ffee20afe");
            
             MakeDeath();
             void MakeDeath()
             {
                 List<BlueprintAbility> spells = new();
-                var rayOfEnfeeblement = BlueprintTools.GetBlueprint<BlueprintAbility>("450af0402422b0b4980d9c2175869612");
+                BlueprintAbility rayOfEnfeeblement = BlueprintTools.GetBlueprint<BlueprintAbility>("450af0402422b0b4980d9c2175869612");
                 spells.Add(rayOfEnfeeblement);
-                var blessingOfCourageAndLife = BlueprintTools.GetBlueprint<BlueprintAbility>("c36c1d11771b0584f8e100b92ee5475b");
-                var boneshaker = BlueprintTools.GetBlueprint<BlueprintAbility>("b7731c2b4fa1c9844a092329177be4c3");
+                BlueprintAbility blessingOfCourageAndLife = BlueprintTools.GetBlueprint<BlueprintAbility>("c36c1d11771b0584f8e100b92ee5475b");
+                BlueprintAbility boneshaker = BlueprintTools.GetBlueprint<BlueprintAbility>("b7731c2b4fa1c9844a092329177be4c3");
                 if (Main.TotFContext.NewContent.WitchPatrons.IsDisabled("DeathPatronReplaceBlessingOfCourageAndLife"))
                 {
                     spells.Add(blessingOfCourageAndLife);
@@ -46,11 +46,11 @@ namespace TomeOfTheFirebird.New_Content
                 spells.Add(BlueprintTools.GetBlueprint<BlueprintAbility>("08323922485f7e246acb3d2276515526"));//HorridWilting
                 spells.Add(BlueprintTools.GetBlueprint<BlueprintAbility>("b24583190f36a8442b212e45226c54fc"));//HorridWilting
 
-              
 
-               
 
-                var deathprog = MakePatronProgression("Death", spells);
+
+
+                BlueprintProgression deathprog = MakePatronProgression("Death", spells);
 
                 
 
@@ -62,7 +62,7 @@ namespace TomeOfTheFirebird.New_Content
                     return null;
                 else
                 {
-                    var progression = TabletopTweaks.Core.Utilities.Helpers.CreateBlueprint<BlueprintProgression>(Main.TotFContext, $"Witch{patronName}PatronProgression", x =>
+                    BlueprintProgression progression = TabletopTweaks.Core.Utilities.Helpers.CreateBlueprint<BlueprintProgression>(Main.TotFContext, $"Witch{patronName}PatronProgression", x =>
                     {
                         x.SetName(Main.TotFContext, patronName);
                         x.AddClass(witch);
@@ -70,7 +70,7 @@ namespace TomeOfTheFirebird.New_Content
                         for (int i = 0; i < 9; i++)
                         {
                             int spelllevel = i + 1;
-                            var feature = MakeEntry(spelllevel, spells[i], patronName);
+                            BlueprintFeature feature = MakeEntry(spelllevel, spells[i], patronName);
                             x.LevelEntries = x.LevelEntries.AppendToArray(new LevelEntry { m_Features = new List<BlueprintFeatureBaseReference>() { feature.ToReference<BlueprintFeatureBaseReference>() }, Level = spelllevel * 2 });
 
                         }
@@ -93,7 +93,7 @@ namespace TomeOfTheFirebird.New_Content
 
             BlueprintFeature MakeEntry(int level, BlueprintAbility Spell, string patron)
             {
-                var entry = TabletopTweaks.Core.Utilities.Helpers.CreateBlueprint<BlueprintFeature>(Main.TotFContext, $"Witch{patron}PatronSpellLevel{level}", x =>
+                BlueprintFeature entry = TabletopTweaks.Core.Utilities.Helpers.CreateBlueprint<BlueprintFeature>(Main.TotFContext, $"Witch{patron}PatronSpellLevel{level}", x =>
                 {
                     x.HideInCharacterSheetAndLevelUp = true;
                     x.SetNameDescription(template);
@@ -114,7 +114,7 @@ namespace TomeOfTheFirebird.New_Content
     
         public static void Finish()
         {
-            var witchSelector = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("381cf4c890815d049a4420c6f31d063f");
+            BlueprintFeatureSelection witchSelector = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("381cf4c890815d049a4420c6f31d063f");
             if (!Main.TotFContext.NewContent.WitchPatrons.IsDisabled("DeathPatron") && !Main.TotFContext.NewContent.Spells.IsDisabled("GloomblindBolts"))
             {
                 witchSelector.AddFeatures(BlueprintTools.GetModBlueprint<BlueprintProgression>(Main.TotFContext, "WitchDeathPatronProgression"));

@@ -15,7 +15,7 @@ namespace TomeOfTheFirebird.New_Content.Features
 
         public static void MakeSelector()
         {
-            var selector = MakerTools.MakeFeatureSelector("FighterCombatBoostSelector", "Select Combat Boost", "Fighters can select a minor combat boost at levels 2, 6, 10, 14 and 18. This is a generalization of Bravery");
+            BlueprintCore.Blueprints.Configurators.Classes.Selection.FeatureSelectionConfigurator selector = MakerTools.MakeFeatureSelector("FighterCombatBoostSelector", "Select Combat Boost", "Fighters can select a minor combat boost at levels 2, 6, 10, 14 and 18. This is a generalization of Bravery");
             selector.SetIsClassFeature(true);
 
             selector.Configure();
@@ -26,7 +26,7 @@ namespace TomeOfTheFirebird.New_Content.Features
         {
             foreach(string guid in MinorBoosts)
             {
-                var boost = BlueprintTool.GetRef<BlueprintFeatureReference>(guid);
+                BlueprintFeatureReference boost = BlueprintTool.GetRef<BlueprintFeatureReference>(guid);
             }
         }
 
