@@ -11,11 +11,17 @@ NOW REQUIRES TabletopTweaks Core Module!
 ## Changelog
 
 1.3.1
+
 Added Kineticist Internal Buffer class feature
+
 Added Burn Resistance, Extra Burn, Extended Buffer feats
+
 Added Mythic Kinetic Aegis mythic ability
+
 Added Shimmering Mirage wild talent
+
 Added Flame Shield wild talent's cold damage halving effect
+
 Hooked Kineticist Elemental Defense talents into the rest of the burn mechanics
 
 1.3.0
