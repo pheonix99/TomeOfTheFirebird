@@ -7,7 +7,9 @@ And also some more random stuff I made when I got annoyed at the game.
 All homebrew content or divergences from TT will be called out.
 
 NOW REQUIRES TabletopTweaks Core Module!
+
 ##Changelog
+
 1.3.1
 Added Kineticist Internal Buffer class feature
 Added Burn Resistance, Extra Burn, Extended Buffer feats
