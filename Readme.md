@@ -8,7 +8,7 @@ All homebrew content or divergences from TT will be called out.
 
 NOW REQUIRES TabletopTweaks Core Module!
 
-##Changelog
+## Changelog
 
 1.3.1
 Added Kineticist Internal Buffer class feature
