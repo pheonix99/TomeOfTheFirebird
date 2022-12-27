@@ -13,6 +13,7 @@ namespace TomeOfTheFirebird.Components
         // Token: 0x0600A094 RID: 41108 RVA: 0x00297EA8 File Offset: 0x002960A8
         public void OnEventAboutToTrigger(RuleCalculateDamage evt)
         {
+            
 
             MechanicsContext context = evt.Reason.Context;
             if (context != null && !evt.ParentRule.HalfBecauseSavingThrow)
@@ -22,7 +23,7 @@ namespace TomeOfTheFirebird.Components
                     baseDamage.AddDecline(new DamageDecline(DamageDeclineType.ByHalf, this.Fact));
                 }
             }//TODO Make This Only Work On REF saves
-            if (context != null && evt.ParentRule.HalfBecauseSavingThrow)
+            if (CancelAllOnSuccess && context != null && evt.ParentRule.HalfBecauseSavingThrow)
             {
                 foreach (BaseDamage baseDamage2 in evt.DamageBundle.OfType<EnergyDamage>().Where(x => x.EnergyType == m_Type))
                 {
@@ -42,7 +43,7 @@ namespace TomeOfTheFirebird.Components
         [SerializeField]
         public DamageEnergyType m_Type;
 
-
+        public bool CancelAllOnSuccess = false;
     }
 
 }

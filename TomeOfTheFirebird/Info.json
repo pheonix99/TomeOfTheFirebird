@@ -8,5 +8,5 @@
   "EntryMethod": "TomeOfTheFirebird.Main.Load",
   "HomePage": "https://github.com/pheonix99/TomeOfTheFirebird/releases",
   "Requirements": [ "TabletopTweaks-Core" ],
-  "LoadAfter": [ "TabletopTweaks-Core" ]
+  "LoadAfter": [ "TabletopTweaks-Core", "KineticistElementsExpanded" ]
 }

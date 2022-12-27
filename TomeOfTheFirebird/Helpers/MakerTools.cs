@@ -17,31 +17,91 @@ using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Blueprints.Configurators.Classes.Selection;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using Kingmaker.Visual.Animation.Kingmaker.Actions;
+using Kingmaker.Blueprints.Classes;
+using TabletopTweaks.Core.ModLogic;
+using Kingmaker.Blueprints;
+using TomeOfTheFirebird.New_Components;
 
 namespace TomeOfTheFirebird.Helpers
 {
     public static class MakerTools
     {
+        public static BlueprintFeature ApplySpellsPerDayChangeToFeature(Blueprint<BlueprintReference<BlueprintFeature>> blueprint, BlueprintCharacterClassReference charclass, int change = -1)
+        {
+            return FeatureConfigurator.For(blueprint).AddComponent<AllLevelsSpellSlotShift>(x =>
+            {
+                x.Amount = change;
+                x.ClassReference = charclass;
+
+            }).Configure();
+        }
+
+        public static BlueprintFeature MakeSpellsPerDayChangeFeature(BlueprintArchetypeReference archetype, string sourceArchetypeDisplayName, string sourceClassDisplayName, string description, string sysName = "", int change = -1, Sprite icon = null)
+        {
+            BlueprintCharacterClass classObj = archetype.Get().GetParentClass();
+
+            if (String.IsNullOrEmpty(sysName))
+            {
+                sysName = classObj.Name.Replace("Class", "") + archetype.NameSafe().Replace("Archetype", "") + "ReducedSpellcastingFeature";
+            }
+
+            BlueprintFeature bp = TabletopTweaks.Core.Utilities.Helpers.CreateDerivedBlueprint<BlueprintFeature>(Main.TotFContext, sysName, Main.TotFContext.Blueprints.GetDerivedMaster("DiminishedSpellcastingMaster"), new SimpleBlueprint[] { archetype.Get() });
+
+
+            FeatureConfigurator feature = FeatureGuts(FeatureConfigurator.For(bp), sysName, $"{sourceArchetypeDisplayName} Diminished Spellcasting: {sourceClassDisplayName}", description, false, icon);
+            feature.SetIsClassFeature(true);
+            feature.AddComponent<AllLevelsSpellSlotShift>(x =>
+            {
+                x.Amount = change;
+                x.ClassReference = classObj.ToReference<BlueprintCharacterClassReference>();
+            });
+            BlueprintFeature made = feature.Configure();
+
+            //BuildContent.CastReducers.Add(made.ToReference<BlueprintFeatureReference>());
+
+            return made;
+
+        }
+
+        public static FeatureConfigurator MakeFeatureWithPredefinedGuid(BlueprintGuid guid, string systemName, string displayName, string description, bool hide = false, Sprite icon = null)
+        {
+            Main.TotFContext.Logger.Log($"Building New Feature: {systemName}");
+
+          
+            Main.TotFContext.Logger.Log($"Guid for {systemName} is {guid.ToString()}");
+            FeatureConfigurator res = FeatureConfigurator.New(systemName, guid.ToString());
+
+            return FeatureGuts(res, systemName, displayName, description, hide, icon);
+        }
+
+        private static FeatureConfigurator FeatureGuts(FeatureConfigurator featureConfigurator, string systemName, string displayName, string description, bool hide = false, Sprite icon = null)
+        {
+            LocalizedString name = LocalizationTool.CreateString(systemName + ".Name", displayName);
+            LocalizedString desc = LocalizationTool.CreateString(systemName + ".Desc", description);
+
+
+            featureConfigurator.SetDisplayName(name).SetDescription(desc);
+            if (icon != null)
+            {
+                featureConfigurator.SetIcon(icon);
+            }
+            if (hide)
+            {
+                featureConfigurator.SetHideInUI(true);
+                featureConfigurator.SetHideInCharacterSheetAndLevelUp(true);
+            }
+            return featureConfigurator;
+        }
+
         public static FeatureConfigurator MakeFeature(string systemName, string displayName, string description, bool hide = false, Sprite icon = null)
         {
             Main.TotFContext.Logger.Log($"Building New Feature: {systemName}");
 
             Kingmaker.Blueprints.BlueprintGuid guid = Main.TotFContext.Blueprints.GetGUID(systemName);
-            LocalizedString name = LocalizationTool.CreateString(systemName + ".Name", displayName);
-            LocalizedString desc = LocalizationTool.CreateString(systemName + ".Desc", description);
             Main.TotFContext.Logger.Log($"Guid for {systemName} is {guid.ToString()}");
-            FeatureConfigurator res = FeatureConfigurator.New(systemName, guid.ToString()).SetDisplayName(name).SetDescription(desc);
-            if (icon != null)
-            {
-                res.SetIcon(icon);
-            }
-            if (hide)
-            {
-                res.SetHideInUI(true);
-                res.SetHideInCharacterSheetAndLevelUp(true);
-            }
-            return res;
+            FeatureConfigurator res = FeatureConfigurator.New(systemName, guid.ToString());
 
+            return FeatureGuts(res, systemName, displayName, description, hide, icon);
         }
 
         public static FeatureSelectionConfigurator MakeFeatureSelector(string systemName, string displayName, string description, bool hide = false, Sprite icon = null)

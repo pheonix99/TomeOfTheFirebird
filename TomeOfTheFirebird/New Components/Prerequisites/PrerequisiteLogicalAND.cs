@@ -4,7 +4,7 @@ using Kingmaker.UnitLogic;
 using Kingmaker.UnitLogic.Class.LevelUp;
 using System.Text;
 
-namespace TabletopTweaksExtended.NewComponents.Prerequisites
+namespace TomeOfTheFirebird.NewComponents.Prerequisites
 {
     public class PrerequisiteLogicalAND : PrerequisiteAbstractLogical
     {

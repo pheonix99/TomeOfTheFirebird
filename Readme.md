@@ -8,6 +8,14 @@ All homebrew content or divergences from TT will be called out.
 
 NOW REQUIRES TabletopTweaks Core Module!
 ##Changelog
+1.3.1
+Added Kineticist Internal Buffer class feature
+Added Burn Resistance, Extra Burn, Extended Buffer feats
+Added Mythic Kinetic Aegis mythic ability
+Added Shimmering Mirage wild talent
+Added Flame Shield wild talent's cold damage halving effect
+Hooked Kineticist Elemental Defense talents into the rest of the burn mechanics
+
 1.3.0
 Upgraded to EE
 Removed redundant fixes to the Angel Path Artifact cloak (they still haven't fixed the weapon damage portion)
@@ -70,7 +78,7 @@ Chains Of Fire: Level 6  Wizard/Magus evocation. Is literally just Chain Lightni
 
 Fire Shield: Level 4 Alchemist/Bloodrager/Magus/Wizard/ Sun Domain, Level 5 Fire Domain. Pick between Warm and Cold shield. Warm shield cuts incoming cold damage in half, reduces to none on successful save, and retaliates with fire damage when hit in melee. Cold Shield works the same but protecting from fire and retaliating with cold.
 Existing domain picks were not removed - Sun 4 / Fire 5 have two picks. 1 round per level.
-Changes From Tabletop: Damage cancel on successful save works on all saves not reflex. Will patch this one later.
+Changes From Tabletop: Damage cancel on successful save works on all saves not reflex. Will patch this one later, if I can figure out how
 
 Vitrolic Mist: Level 4 Alchemist/Bloodrager/Magus/Wizard: Fire Sheild, only the protection and backlash are both acid.
 Changes From Tabletop: Damage cancel on successful save works on all saves not reflex. Will patch this one later.
@@ -95,7 +103,13 @@ Telekinetic Strikes: Level 2 Magus/Wizard buff: Target ally deals 1d4 extra forc
 ---
 Ability Focus- Breath Weapon: Adds +2 DC to breath weapons. Requires a breath weapon to take (or mixblooded bloodrager). This prereq uses significant hardcoding to detect polymorphs granting breath attacks and hasn't been fully tested.
 
+Burn Resistance: Treat your level as two lower for determining nonlethal damage from burn
+
 Discordant Song: Bardsong adds 1d6 sonic damage to ally weapon attacks. For ranged attacks, targets must also be in the area of effect.
+
+Extra Burn: Increases daily burn limit by two points
+
+Extended Buffer: Increases internal buffer size by one
 
 Prodigious TWF: Use strength rather than dex for TWF prereqs, no penalty for large offhand weapon.
 
@@ -114,6 +128,8 @@ Bracers Of The Merciful Knight: Available for purchase from Arsinoe, these incre
 
 Bracers Of The Avenging Knight: Available for purchase from Arsinoe, these increase the wearer's effective level when using Smite abilities by four.
 
+### Mythic Abilities:
+Mythic Kinetic Aegis: Treat Kineticist Elemental Defense as having had 1 burn invested for free, one more at MR 3/6/9.
 
 ## Bugfixes
 ---
@@ -122,16 +138,22 @@ Bracers Of The Avenging Knight: Available for purchase from Arsinoe, these incre
 Radiance +6 (uncorrupted) now gets Holy like it should
 
 ### Classes
+Arcanist: Holy Water Jet no longer requires Azata/Angel mythic class
+
 Cavalier: Made Order abilities actually show up in the UI. 
 
 Made Order Of The Stars's Calling Channeling support ability work. 
 Changes from Tabletop: Works on anything with a Channel Positive / Channel Negative keyword set, which means it will work on Warpriest and Oracle and Necromancer channels. No idea if it works on Warpriest fervor used normally.
 
-Arcanist: Holy Water Jet no longer requires Azata/Angel mythic class
+Kineticist: Now has the Internal Buffer feature - reduce accepted burn by one a limited number of times per day
 
 ### Archetypes
 ---
 Purifier: Gets back level 3 revelation - TT purifier has forced unique pick, said ability is not implemented and probably not implementable so giving the pick back.
+
+### Wild Talents:
+Elemental Defenses and Aerial Evasion now use the main burn cost system - this is *not* disableable
+Flame Shield correctly halves incoming frost damage
 
 ### Other
 ---
@@ -185,8 +207,8 @@ Made rewards from Monster Slayers and Local Production crusade events permanent 
 
 
 ##Coming Soon:
-Shield Other + Unwilling Shield
-Draconic Bloodline Claw Merges for Bloodrager
-More Breath Weapon Fun
+Extending Draconic Bloodline claw upgrades to Dragon Mystery abilities if Expanded Content is installed
+More utility kinetic talents
+Divine Conduit Kineticist Archetype
 
 

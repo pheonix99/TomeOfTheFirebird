@@ -18,7 +18,7 @@ namespace TomeOfTheFirebird.Bugfixes
                 if (Initialized) return;
                 Initialized = true;
                 //Still needed in EE
-                var goodHope = AbilityConfigurator.For("a5e23522eda32dc45801e32c05dc9f96").SetEffectOnAlly(AbilityEffectOnUnit.Helpful).AllowTargeting(true, false, true, true).Configure();
+                BlueprintAbility goodHope = AbilityConfigurator.For("a5e23522eda32dc45801e32c05dc9f96").SetEffectOnAlly(AbilityEffectOnUnit.Helpful).AllowTargeting(true, false, true, true).Configure();
 
                 
             }

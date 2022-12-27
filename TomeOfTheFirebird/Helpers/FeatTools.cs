@@ -6,7 +6,7 @@ using Kingmaker.Blueprints.Classes.Prerequisites;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Utility;
 using System.Linq;
-using TabletopTweaksExtended.NewComponents.Prerequisites;
+using TomeOfTheFirebird.NewComponents.Prerequisites;
 
 
 namespace TomeOfTheFirebird.Helpers

@@ -1,5 +1,15 @@
 {
   "NewSettingsOffByDefault": false,
+  "ClassFeatures": {
+    "DisableAll": false,
+    "Settings": {
+      "InternalBuffer": {
+        "Enabled": true,
+        "Description": "Restores Kineticist Internal Buffer Class Feature",
+        "Homebrew": false
+      }
+    }
+  },
   "Spells": {
     "DisableAll": false,
     "Settings": {
@@ -84,6 +94,22 @@
         "Enabled": true,
         "Description": "Perform Sunder Armor on critical hit",
         "Homebrew": false
+      },
+      "ExtraBurn": {
+        "Enabled": true,
+        "Description": "Increase max burn by two",
+        "Homebrew": false
+      },
+      "ExtendedBuffer": {
+        "Enabled": true,
+        "Description": "Increase internal buffer size by one",
+        "Homebrew": false
+
+      },
+      "BurnResistance": {
+        "Enabled": true,
+        "Description": "Treat character level as two lower when calculating nonlethal damage from burn",
+        "Homebrew": false
       }
     }
   },
@@ -103,6 +129,17 @@
       }
     }
 
+  },
+  "MythicAbilities": {
+    "DisableAll": false,
+    "Settings": {
+      "MythicKineticAegis": {
+        "Enabled": true,
+        "Description": "Improves Kineticist Elemental Defenses with Mythic Rank",
+        "Homebrew": true
+
+      }
+    }
   },
   "Items": {
     "DisableAll": false,
@@ -138,7 +175,10 @@
   "WildTalents": {
     "DisableAll": false,
     "Settings": {
-      
+      "ShimmeringMirage": {
+        "Enabled": true,
+        "Description": "Adds 20 percent miss chance as long as shroud of water is up."
+      }
     }
   }
 

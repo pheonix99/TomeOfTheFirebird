@@ -57,7 +57,7 @@ namespace TomeOfTheFirebird.New_Content.Items
                 enchant.AddCasterLevelEquipment(bonus: 4, spell: BlueprintTool.GetRef<BlueprintAbilityReference>("a2736145a29c8814b97a54b45588cd29"));
                 enchant.AddCasterLevelEquipment(bonus: 4, spell: BlueprintTool.GetRef<BlueprintAbilityReference>("7a4f0c48829952e47bb1fd1e4e9da83a"));
                 AddStatBonusIfHasFactFixed fixedFact = new AddStatBonusIfHasFactFixed(stat: Kingmaker.EntitySystem.Stats.StatType.AdditionalDamage, bonus: new Kingmaker.UnitLogic.Mechanics.ContextValue() { Property = Kingmaker.UnitLogic.Mechanics.Properties.UnitProperty.None, Value = 2, ValueRank = Kingmaker.Enums.AbilityRankType.StatBonus, ValueType = Kingmaker.UnitLogic.Mechanics.ContextValueType.Simple }, new List<Blueprint<BlueprintUnitFactReference>>() { "BracersOfTheAvengingKnightFeature" }, descriptor: Kingmaker.Enums.ModifierDescriptor.UntypedStackable);
-                var destroSmite = BuffConfigurator.For("0dfe08afb3cf3594987bab12d014e74b").AddStatBonusIfHasFactFixed(fixedFact).Configure();
+                Kingmaker.UnitLogic.Buffs.Blueprints.BlueprintBuff destroSmite = BuffConfigurator.For("0dfe08afb3cf3594987bab12d014e74b").AddStatBonusIfHasFactFixed(fixedFact).Configure();
 
             }
             Kingmaker.Blueprints.Classes.BlueprintFeature avengingFeatureBuilt = avengingFeature.Configure();

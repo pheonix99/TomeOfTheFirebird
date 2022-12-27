@@ -1,7 +1,7 @@
 ﻿using Kingmaker.Blueprints.Classes.Prerequisites;
 using System.Collections.Generic;
 
-namespace TabletopTweaksExtended.NewComponents.Prerequisites
+namespace TomeOfTheFirebird.NewComponents.Prerequisites
 {
     public abstract class PrerequisiteAbstractLogical : Prerequisite
     {

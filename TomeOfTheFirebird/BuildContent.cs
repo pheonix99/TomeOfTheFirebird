@@ -21,6 +21,9 @@ using TomeOfTheFirebird.Bugfixes.Items;
 using System;
 using UnityModManagerNet;
 using TomeOfTheFirebird.New_Content;
+using TomeOfTheFirebird.New_Content.MythicAbilities;
+using TomeOfTheFirebird.Modified_Content.Classes;
+using BlueprintCore.Utils;
 
 namespace TomeOfTheFirebird
 {
@@ -45,49 +48,77 @@ namespace TomeOfTheFirebird
                     Initialized = true;
                     Main.TotFContext.Logger.Log("Building new spells");
 
-                    
 
+                    //Early class fixes
 
                     ArcanistFixes.DoFixes();
+
+                    //build spells
                     ChainsOfFire.BuildSpell();
 
                     BoneFists.BuildSpell();
                     TelekineticStrikes.BuildSpell();
                     SpearOfPurity.BuildSpearOfPurity();
                     HealMount.Build();
-                    KeenEdge.BuildSPell();
+                    KeenEdge.BuildSpell();
                     FreezingSphere.Build();
                     GloomblindBolts.BuildSpell();
-                    PurifierLimitedCures.AddPurifierLimitedCures();
-
-                    FighterArmorTrainingFakeLevel.AddFighterArmorTrainingRank();
-
-                    CelestialArmorRevelation.Make();
-
-
                     ElementalShieldSpells.Build();
-                    ProdigiousTWF.AddProdigiousTWF();
+                    EntropicShield.Make();
 
+                    //Build Feats
+                    ProdigiousTWF.AddProdigiousTWF();
+                    SunderingStrike.Build();
+                    DiscordantSong.Make();
+                    BurnResistance.Make();
+                    BreathWeaponFeats.BuildAbilityFocusBreathWeapons();
+                    ExtraBurn.Make();
+                    //New Mythics
+                    MythicKineticDefenses.Make();
+
+                    //Build Class Features
+
+                    PurifierLimitedCures.AddPurifierLimitedCures();
+                    FighterArmorTrainingFakeLevel.AddFighterArmorTrainingRank();
+                    CelestialArmorRevelation.Make();
+                    ExtraMercies.Build();
+                    WitchPatrons.Make();
+                    KineticistInternalBuffer.Make();
+
+                    //Goes after buffer because uses
+
+                    ExtendedBuffer.Make();
+
+                    //Fix class features
+                    DraconicBloodlineModifications.SorcererClawsOverhaul();
+                    AbyssalBloodlineModifications.GiveInfiniteUses();
+
+
+                    //Crusade fixes and tweaks
                     MonavicsUseTwoHanders.Do();
                     CrusadeBuffTweaks.PermaMonsterSlayers();
                     CrusadeBuffTweaks.PermaLocalProduction();
+
+                    //Quest Tweaks
                     DawnOfDragons.Fix();
 
+
+                    //Loot fixes
                     RadianceLevel2Fix.Fixes();
                     AngelCloak.CloakFix();
+
+                    //New Loot
                     PaladinGear.Build();
-                    ExtraMercies.Build();
 
-                    SunderingStrike.Build();
-                    DiscordantSong.Make();
-                    EntropicShield.Make();
 
-                    DraconicBloodlineModifications.SorcererClawsOverhaul();
-                    AbyssalBloodlineModifications.GiveInfiniteUses();
-                    BreathWeaponFeats.BuildAbilityFocusBreathWeapons();
+
+
+
+
+
                     Witch.ReturnAccursedPatrons();
-                    WitchPatrons.Make();
-                    //New_Content.WildTalents.ShimmeringMirage.Make();
+
+                    New_Content.WildTalents.ShimmeringMirage.Make();
                     BlueprintFeature ActsBook = BlueprintTools.GetBlueprint<BlueprintFeature>("f16ea400ed67470b83cfd6c0dedbce6f");
                     if (ActsBook.Icon != null)
                     {
@@ -98,7 +129,7 @@ namespace TomeOfTheFirebird
                     {
                         Main.TotFContext.Logger.Log($"Acts Of Iomedae Reports No Icon");
                     }
-                    
+
                 }
                 catch (Exception e)
                 {
@@ -106,6 +137,7 @@ namespace TomeOfTheFirebird
                 }
             }
         }
+
 
         [HarmonyPatch(typeof(BlueprintsCache), "Init")]
         static class BlueprintsCache_Init_Patch2
@@ -120,7 +152,7 @@ namespace TomeOfTheFirebird
 
                     if (Initialized) return;
                     Initialized = true;
-                    
+
                     Main.TotFContext.Logger.Log("Adding to spell lists");
 
 
@@ -131,6 +163,8 @@ namespace TomeOfTheFirebird
 
                     AddItemsToShop.Add();
                     Purifier.PatchPurifier();
+                    Kineticist.PatchKineticist();
+
                     FixExtraHitsOnProcs.FixFirebrand();
                     FixExtraHitsOnProcs.FixRandomWeaponsRiders();
                     FixExtraHitsOnProcs.FixClawsOfSacredBeast();
@@ -144,16 +178,42 @@ namespace TomeOfTheFirebird
                     WitchPatrons.Finish();
 
                     ProdigiousTWF.AddTwoWeaponDefense();
-                    
+
+                    //Modified_Content.ImprovedMultiarchetypeProjct.SpellSlots.Execute();                    
                 }
                 catch (Exception e)
                 {
-                    
+
                     Main.TotFContext.Logger.LogError(e, $"Error caught in Late patch");
                 }
             }
         }
 
+        [HarmonyPriority(Priority.Last)]
+        [HarmonyPatch(typeof(StartGameLoader), "LoadAllJson")]
+        static class StartGameLoader_LoadAllJson
+        {
+            private static bool Run = false;
 
+            static void Postfix()
+            {
+                //This is for running compat with KineticistExpandedElements
+                if (Run) return; Run = true;
+                try
+                {
+                    MythicKineticDefenses.MakeLater();
+                    Kineticist.FixKEEAbilities();
+
+
+                }
+                catch (Exception e)
+                {
+
+                    Main.TotFContext.Logger.LogError(e, $"Error caught in KineticistExpandedElements integration");
+                }
+
+            }
+
+        }
     }
 }

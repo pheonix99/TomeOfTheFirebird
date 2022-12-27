@@ -10,6 +10,7 @@ namespace TomeOfTheFirebird.Config
         public SettingGroup Cavalier;
         public SettingGroup Arcanist;
         public SettingGroup Items;
+        public SettingGroup Kineticist;
         public void Init()
         {
             
@@ -23,6 +24,7 @@ namespace TomeOfTheFirebird.Config
             Purifier.LoadSettingGroup(loadedSettings.Purifier, NewSettingsOffByDefault);
             Cavalier.LoadSettingGroup(loadedSettings.Cavalier, NewSettingsOffByDefault);
             Arcanist.LoadSettingGroup(loadedSettings.Arcanist, NewSettingsOffByDefault);
+            Kineticist.LoadSettingGroup(loadedSettings.Kineticist, NewSettingsOffByDefault);
             Items.LoadSettingGroup(loadedSettings.Items, NewSettingsOffByDefault);
             
 

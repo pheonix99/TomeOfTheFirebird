@@ -49,11 +49,20 @@ namespace TomeOfTheFirebird.New_Spells
             ActionsBuilder coldBacklash = ActionsBuilder.New().DealDamage(new Kingmaker.RuleSystem.Rules.Damage.DamageTypeDescription() { Type = Kingmaker.RuleSystem.Rules.Damage.DamageType.Energy, Energy = Kingmaker.Enums.Damage.DamageEnergyType.Cold }, value: new ContextDiceValue() { DiceCountValue = 1, BonusValue = new ContextValue() { ValueType = ContextValueType.Rank }, DiceType = Kingmaker.RuleSystem.DiceType.D6 });
             ActionsBuilder acidBacklash = ActionsBuilder.New().DealDamage(new Kingmaker.RuleSystem.Rules.Damage.DamageTypeDescription() { Type = Kingmaker.RuleSystem.Rules.Damage.DamageType.Energy, Energy = Kingmaker.Enums.Damage.DamageEnergyType.Acid }, value: new ContextDiceValue() { DiceCountValue = 1, BonusValue = new ContextValue() { ValueType = ContextValueType.Rank }, DiceType = Kingmaker.RuleSystem.DiceType.D6 });
 
-            FireShieldWarmBuffBuilder.AddTargetAttackRollTrigger(onlyHit: true, onlyMelee: true, notReach: true, actionsOnAttacker: fireBacklash).AddContextRankConfig(new Kingmaker.UnitLogic.Mechanics.Components.ContextRankConfig() { m_Max = 15, m_UseMax = true }).AddComponent<ElementalBarrierDamageDivisor>(x => x.m_Type = Kingmaker.Enums.Damage.DamageEnergyType.Cold);
+            FireShieldWarmBuffBuilder.AddTargetAttackRollTrigger(onlyHit: true, onlyMelee: true, notReach: true, actionsOnAttacker: fireBacklash).AddContextRankConfig(new Kingmaker.UnitLogic.Mechanics.Components.ContextRankConfig() { m_Max = 15, m_UseMax = true }).AddComponent<ElementalBarrierDamageDivisor>(x =>
+            { x.m_Type = Kingmaker.Enums.Damage.DamageEnergyType.Cold;
+                x.CancelAllOnSuccess = true;
+            });
 
            
-            FireShieldColdBuffBuilder.AddTargetAttackRollTrigger(onlyHit: true, onlyMelee: true, notReach: true, actionsOnAttacker: coldBacklash).AddContextRankConfig(new Kingmaker.UnitLogic.Mechanics.Components.ContextRankConfig() { m_Max = 15, m_UseMax = true }).AddComponent<ElementalBarrierDamageDivisor>(x => x.m_Type = Kingmaker.Enums.Damage.DamageEnergyType.Fire);
-            VitrolicMistBuffBuilder.AddTargetAttackRollTrigger(onlyHit: true, onlyMelee: true, notReach: true, actionsOnAttacker: acidBacklash).AddContextRankConfig(new Kingmaker.UnitLogic.Mechanics.Components.ContextRankConfig() { m_Max = 15, m_UseMax = true }).AddComponent<ElementalBarrierDamageDivisor>(x => x.m_Type = Kingmaker.Enums.Damage.DamageEnergyType.Acid);
+            FireShieldColdBuffBuilder.AddTargetAttackRollTrigger(onlyHit: true, onlyMelee: true, notReach: true, actionsOnAttacker: coldBacklash).AddContextRankConfig(new Kingmaker.UnitLogic.Mechanics.Components.ContextRankConfig() { m_Max = 15, m_UseMax = true }).AddComponent<ElementalBarrierDamageDivisor>(x => { x.m_Type = Kingmaker.Enums.Damage.DamageEnergyType.Fire;
+                x.CancelAllOnSuccess = true;
+            });
+            VitrolicMistBuffBuilder.AddTargetAttackRollTrigger(onlyHit: true, onlyMelee: true, notReach: true, actionsOnAttacker: acidBacklash).AddContextRankConfig(new Kingmaker.UnitLogic.Mechanics.Components.ContextRankConfig() { m_Max = 15, m_UseMax = true }).AddComponent<ElementalBarrierDamageDivisor>(x =>
+            { 
+                x.m_Type = Kingmaker.Enums.Damage.DamageEnergyType.Acid;
+                x.CancelAllOnSuccess = true;
+            });
 
             Kingmaker.UnitLogic.Buffs.Blueprints.BlueprintBuff warmBuffBuilt = FireShieldWarmBuffBuilder.Configure();
             Kingmaker.UnitLogic.Buffs.Blueprints.BlueprintBuff coldBuffBuilt = FireShieldColdBuffBuilder.Configure();

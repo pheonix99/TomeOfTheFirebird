@@ -59,6 +59,16 @@
         "Description": "Restores Purifier Level 3 relevation - TT forced pick was not implemented and is unimplementable so pick should be available."
       }
     }
+  },
+  "Kineticist": {
+    "DisableAll": false,
+    "Settings": {
+      "FixFlameShield": {
+        "Enabled": true,
+        "Description": "Flame Shield wild talent correctly halves incoming cold damage"
+      }
+    }
+
   }
 
 }

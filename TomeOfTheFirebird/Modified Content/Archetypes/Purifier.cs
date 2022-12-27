@@ -33,7 +33,7 @@ namespace TomeOfTheFirebird.Modified_Content.Archetypes
                     PuriferArchetype.RemoveFeatures = PuriferArchetype.RemoveFeatures.RemoveFromArray(target);
                 }
 
-                Main.TotFContext.Logger.LogPatch("Patched", PuriferArchetype);
+                Main.TotFContext.Logger.LogPatch("Patched level 3 revelation back", PuriferArchetype);
             }
 
             void PatchRestoreCure()
