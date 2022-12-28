@@ -168,6 +168,10 @@
     <Compile Include="Modified Content\Crusade\BetterDisplay.cs" />
     <Compile Include="Modified Content\Crusade\CrusadeBuffTweaks.cs" />
     <Compile Include="Modified Content\ImprovedMultiarchetypeProjct\SpellSlots.cs" />
+    <Compile Include="Modified Content\KineticistOverhaul\CreateProperElementalFoci.cs" />
+    <Compile Include="Modified Content\KineticistOverhaul\FixProgressionLayoutSillyness.cs" />
+    <Compile Include="Modified Content\KineticistOverhaul\RationalizeElementalPrerequisites.cs" />
+    <Compile Include="Modified Content\KineticistOverhaul\SortTalentsByElement.cs" />
     <Compile Include="Modified Content\WildTalents\FlameShield.cs" />
     <Compile Include="ModLogic\ModContextTomeOfTheFirebird.cs" />
     <Compile Include="New Components\AbilityRestrictionWildTalentCastCapper.cs" />
@@ -177,10 +181,12 @@
     <Compile Include="New Components\ConditionalPropertyGetter.cs" />
     <Compile Include="New Components\ContextDamageValueEnergyDamageDice.cs" />
     <Compile Include="New Components\CustomShroudOfWater.cs" />
+    <Compile Include="New Components\DoubleBlastComponent.cs" />
     <Compile Include="New Components\FeatureRanksWithExtrasPropertyValueGetter.cs" />
     <Compile Include="New Components\HasFeaturePropertyGetter.cs" />
     <Compile Include="New Components\IncreaseSpecificSpellsCasterLevel.cs" />
     <Compile Include="New Components\InternalBufferComponent.cs" />
+    <Compile Include="New Components\PrequisiteKineticistElement.cs" />
     <Compile Include="New Components\Prerequisites\PrerequisiteBreathWeaponAccess.cs" />
     <Compile Include="New Components\Prerequisites\PrerequisiteAddedByFeature.cs" />
     <Compile Include="New Components\Prerequisites\PrerequisiteClassLevelPerRank.cs" />
@@ -205,6 +211,7 @@
     <Compile Include="New Content\Feats\KineticLeap.cs" />
     <Compile Include="New Content\Feats\OverwhelmingDefense.cs" />
     <Compile Include="New Content\Features\KineticistDefenseOverclocks.cs" />
+    <Compile Include="New Content\Features\KineticistDoubleMetakinesis.cs" />
     <Compile Include="New Content\Features\KineticistInternalBuffer.cs" />
     <Compile Include="New Content\MythicAbilities\MythicKineticDefenses.cs" />
     <Compile Include="New Content\Feats\SunderingStrike.cs" />

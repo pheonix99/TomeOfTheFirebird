@@ -98,6 +98,7 @@
     "InternalBufferActivatableAbility": "ce742c6b-7a93-442b-abbd-d455e3b92a0b",
     "InternalBufferBuff": "d7e73ad0-f07a-4471-863a-51cd0a4f8fac",
     "InternalBufferFeature": "01d9ff38-84fe-45e0-9fe2-ac373e3bdc1b",
+    "InternalBufferExtraUseFeature": "7453d8da-fb83-443f-9d2f-72b9b80a013c",
     "InternalBufferResource": "4e77471d-cb87-4ea7-b662-3c483bf42de2",
     "ExtraBurnFeature": "aaaa9f4a-0b8d-40f3-a8a2-0c853704566a",
     "ExtraBurnFeaturePK": "2ffcd633-2be4-49b2-941a-e3cde0e4820e",
