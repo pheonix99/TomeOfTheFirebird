@@ -35,7 +35,7 @@ namespace TomeOfTheFirebird.Modified_Content.KineticistOverhaul
                 {
                     bool foundElement = false;
                     var bp = v.Get();
-                    if (bp)
+                    //if (bp)
                 }
             }
         }
