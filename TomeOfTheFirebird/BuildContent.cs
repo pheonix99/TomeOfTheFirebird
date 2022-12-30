@@ -24,6 +24,7 @@ using TomeOfTheFirebird.New_Content;
 using TomeOfTheFirebird.New_Content.MythicAbilities;
 using TomeOfTheFirebird.Modified_Content.Classes;
 using BlueprintCore.Utils;
+using TomeOfTheFirebird.Modified_Content.ImprovedMultiarchetypeProjct;
 
 namespace TomeOfTheFirebird
 {
@@ -112,23 +113,14 @@ namespace TomeOfTheFirebird
 
 
 
-
+                    //FighterCombatBoosts.Setup();
 
 
 
                     Witch.ReturnAccursedPatrons();
 
                     New_Content.WildTalents.ShimmeringMirage.Make();
-                    BlueprintFeature ActsBook = BlueprintTools.GetBlueprint<BlueprintFeature>("f16ea400ed67470b83cfd6c0dedbce6f");
-                    if (ActsBook.Icon != null)
-                    {
-                        Main.TotFContext.Logger.Log($"Acts Of Iomedae reports Icon Name {ActsBook.Icon.name} ");
-
-                    }
-                    else
-                    {
-                        Main.TotFContext.Logger.Log($"Acts Of Iomedae Reports No Icon");
-                    }
+                    
 
                 }
                 catch (Exception e)
@@ -179,12 +171,25 @@ namespace TomeOfTheFirebird
 
                     ProdigiousTWF.AddTwoWeaponDefense();
 
+                    
+
                     //Modified_Content.ImprovedMultiarchetypeProjct.SpellSlots.Execute();                    
                 }
                 catch (Exception e)
                 {
 
                     Main.TotFContext.Logger.LogError(e, $"Error caught in Late patch");
+                }
+                try
+                {
+                    //TODO hack see how this impacts levelups
+                    //FighterCombatBoosts.Patch();
+
+                    //HomebrewArchetypesCompFix.ModifyVikingBonusFeats();
+                }
+                catch (Exception e)
+                {
+                    Main.TotFContext.Logger.LogError(e, $"Error caught in Fighter Combat Boosts");
                 }
             }
         }
@@ -204,13 +209,15 @@ namespace TomeOfTheFirebird
                     MythicKineticDefenses.MakeLater();
                     Kineticist.FixKEEAbilities();
 
-
+                    Main.TotFContext.TerminalWipe();
                 }
                 catch (Exception e)
                 {
 
                     Main.TotFContext.Logger.LogError(e, $"Error caught in KineticistExpandedElements integration");
                 }
+                
+                
 
             }
 

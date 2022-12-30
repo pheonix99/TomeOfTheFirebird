@@ -58,7 +58,7 @@ namespace TomeOfTheFirebird.New_Content.WildTalents
             BlueprintCore.Blueprints.CustomConfigurators.Classes.FeatureConfigurator mirage = Helpers.MakerTools.MakeFeature("ShimmeringMirageWildTalent", "Shimmering Mirage", "Your shroud bends light, creating a shimmering mirage. While your shroud of water is active, attacks against you suffer a 20% miss chance due to concealment until the next time your burn is removed.");
             mirage.SetIsClassFeature(true);
             mirage.AddFacts(new List<BlueprintCore.Utils.Blueprint<Kingmaker.Blueprints.BlueprintUnitFactReference>>() { ability });
-            mirage.AddPrerequisiteClassLevel(characterClass: "42a455d9ec1ad924d889272429eb8391", level: 1);
+            
             foreach(string s in KineticistHelpers.PrimaryWaterFocuses)
             {
                 mirage.AddPrerequisiteFeature(feature: s, group: Kingmaker.Blueprints.Classes.Prerequisites.Prerequisite.GroupType.Any);

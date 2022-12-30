@@ -40,6 +40,11 @@ namespace TomeOfTheFirebird.New_Components
                     ranks += rank.Value;
                 }
             }
+            if (IsDefense && m_MythicKineticDefense != null && owner.HasFact(m_MythicKineticDefense.Get()))
+            {
+                if (owner.Progression.MythicLevel > 0)
+                    ranks += ( 1 + (owner.Progression.MythicLevel / 3));
+            }
             
             return ranks;
         }
@@ -63,6 +68,9 @@ namespace TomeOfTheFirebird.New_Components
         public int simplecap;
 
         public bool useCapResource;
+
+        public bool IsDefense;
+        public BlueprintFeatureReference m_MythicKineticDefense;
 
         public List<BlueprintUnitFactReference> m_facts = new();
 

@@ -13,12 +13,12 @@ namespace TomeOfTheFirebird.Modified_Content.KineticistOverhaul
 {
     class SortTalentsByElement
     {
-        public static void ReadVanillaElementalFociForBlasts()
+        public static void ReadExistingSimpleBastData()
         {
 
         }
 
-        public static void ReadVanillaCompositeBlastData()
+        public static void ReadExistingCompositeBlastData()
         {
             //cb30a291c75def84090430fbf2b5c05e - composite blast granter buff
         }

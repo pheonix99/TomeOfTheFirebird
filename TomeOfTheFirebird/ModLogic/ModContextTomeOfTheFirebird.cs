@@ -36,12 +36,22 @@ namespace TomeOfTheFirebird.ModLogic
             base.AfterBlueprintCachePatches();
             if (Debug)
             {
-                Blueprints.RemoveUnused();
+                
                 SaveSettings(BlueprintsFile, Blueprints);
-                ModLocalizationPack.RemoveUnused();
+                
                 SaveLocalization(ModLocalizationPack);
             }
         }
+
+        public void TerminalWipe()
+        {
+            if (Debug)
+            {
+                Blueprints.RemoveUnused();
+                ModLocalizationPack.RemoveUnused();
+            }
+        }
+
         public override void SaveAllSettings()
         {
             base.SaveAllSettings();

@@ -84,7 +84,7 @@ namespace TomeOfTheFirebird.Modified_Content.Classes
 
         private static void FixElementalDefenseAbility(string abilityGuid, string stackingFactguid)
         {
-
+            
             BlueprintAbility ability = BlueprintTool.Get<BlueprintAbility>(abilityGuid);
             BlueprintAbilityResourceReference resource = ability.GetComponent<AbilityResourceLogic>().m_RequiredResource;
             if (resource == null)
@@ -101,21 +101,18 @@ namespace TomeOfTheFirebird.Modified_Content.Classes
                 return;
             }
             ability.RemoveComponents<AbilityAcceptBurnOnCast>();
-            BlueprintUnitFactReference effectFeature = BlueprintTool.GetRef<BlueprintUnitFactReference>("MythicKineticDefensesEffectFeature");
-            if (effectFeature == null)
-            {
-                Main.TotFContext.Logger.Log("EffectFeature is null");
-            }
+            
             AbilityConfigurator.For(ability).AddAbilityKineticist(amount: 1, wildTalentBurnCost: 1).AddComponent< AbilityRestrictionWildTalentCastCapper>(x=> {
 
                 x.m_facts = new List<BlueprintUnitFactReference>()
                 {
-                    buff,
-                    effectFeature
+                    buff
 
                 };
                 x.m_CapResource = resource;
                 x.useCapResource = true;
+                x.IsDefense = true;
+                x.m_MythicKineticDefense = BlueprintTool.GetRef<BlueprintFeatureReference>("MythicKineticDefenses");
                 
             }).Configure();
                 
@@ -134,8 +131,8 @@ namespace TomeOfTheFirebird.Modified_Content.Classes
                
                 FixElementalDefenseAbility("c4e945c830e842528d0fb89a30787fa0", "b16c53343ea447578306d79cfbcae43e");//FleshofWoodAbility
                 FixElementalDefenseAbility("3a8b76ab4d1a45db8e9cb3ee0bda020a", "01f5444fcf5f4a3490411787c1f7db63");//Emptyness
-                FixForceWard();//ForceWard
-                return;
+                //FixForceWard();//ForceWard
+                
                 void FixForceWard()
                 {
                     BlueprintAbility forceWardAbility = BlueprintTool.Get<BlueprintAbility>("9dd89afa73bf4e189808a2270deb0bb7");

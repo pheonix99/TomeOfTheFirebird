@@ -104,6 +104,7 @@ namespace TomeOfTheFirebird.Helpers
             return FeatureGuts(res, systemName, displayName, description, hide, icon);
         }
 
+       
         public static FeatureSelectionConfigurator MakeFeatureSelector(string systemName, string displayName, string description, bool hide = false, Sprite icon = null)
         {
             Main.TotFContext.Logger.Log($"Building New Feature: {systemName}");

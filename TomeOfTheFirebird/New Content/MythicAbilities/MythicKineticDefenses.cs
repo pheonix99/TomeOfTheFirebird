@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TabletopTweaks.Core.NewComponents;
 using TabletopTweaks.Core.NewComponents.Properties;
 using TabletopTweaks.Core.Utilities;
 using TomeOfTheFirebird.New_Components;
@@ -42,23 +43,14 @@ namespace TomeOfTheFirebird.New_Content.MythicAbilities
             BlueprintFeature effectbuilt = effectfeatureConfig.Configure();
             Main.TotFContext.Logger.LogPatch(effectbuilt);
             ProgressionConfigurator prog = Helpers.MakerTools.MakeProg("MythicKineticDefensesProgression", "Mythic Kinetic Defenses", "Mythic power augments your defensive wild talents. Core kinetic defenses now act as if you'd enhanceed them with a point of burn for free, gaining another virtual point at MR 3, 6, and 9");
-            prog.AddHideFeatureInInspect();
-            prog.SetHideInCharacterSheetAndLevelUp(true);
-            prog.SetHideInUI(true);
-            prog.SetHideNotAvailibleInUI(true);
-            prog.AddToLevelEntries(1, effectbuilt);
-            prog.AddToLevelEntries(3, effectbuilt);
-            prog.AddToLevelEntries(6, effectbuilt);
-            prog.AddToLevelEntries(9, effectbuilt);
-            prog.SetGiveFeaturesForPreviousLevels(true);
-            prog.SetClasses("530b6a79cb691c24ba99e1577b4beb6d", "5d501618a28bdc24c80007a5c937dcb7", "15a85e67b7d69554cab9ed5830d0268e", "211f49705f478b3468db6daa802452a2", "9a3b2c63afa79744cbca46bea0da9a16", "a5a9fe8f663d701488bd1db8ea40484e", "8df873a8c6e48294abdb78c45834aa0a", "247aa787806d5da4f89cfc3dff0b217f", "8e19495ea576a8641964102d177e34b7", "daf1235b6217787499c14e4e32142523", "3d420403f3e7340499931324640efe96");
+            
 
             BlueprintProgression progBuilt = prog.Configure();
             Main.TotFContext.Logger.LogPatch(progBuilt);
             BlueprintCore.Blueprints.CustomConfigurators.Classes.FeatureConfigurator featureConfig = Helpers.MakerTools.MakeFeature("MythicKineticDefenses", "Mythic Kinetic Aegis", "Mythic power augments your defensive wild talents. Core kinetic defenses now act as if you'd enhanceed them with a point of burn for free, gaining another virtual point at MR 3, 6, and 9");
             featureConfig.AddToGroups(FeatureGroup.MythicAbility);
-            
-            featureConfig.AddFacts(facts: new() { progBuilt });
+            featureConfig.SetRanks(1);
+            featureConfig.SetReapplyOnLevelUp(true);
             featureConfig.AddPrerequisiteFeature(shroudFeatureid, group: Prerequisite.GroupType.Any);
             featureConfig.AddPrerequisiteFeature(searingFleshId, group: Prerequisite.GroupType.Any);
             featureConfig.AddPrerequisiteFeature(fleshOfStoneId, group: Prerequisite.GroupType.Any);
@@ -72,29 +64,91 @@ namespace TomeOfTheFirebird.New_Content.MythicAbilities
             FixEnvelopingWinds();
             FixShroudOfWater();
             FixSearingFlesh();
+            TabletopTweaks.Core.Utilities.Helpers.CreateBlueprint<BlueprintUnitProperty>(Main.TotFContext, "EmptinessScalingProperty");
+            TabletopTweaks.Core.Utilities.Helpers.CreateBlueprint<BlueprintUnitProperty>(Main.TotFContext, "FleshOfWoodScalingProperty");
             void FixFleshOfStone()
             {
                 string fleshOfStoneEffectFeatureID = "a942347023fedb2419f8bdbb4450e528";
+                var scalar = TabletopTweaks.Core.Utilities.Helpers.CreateBlueprint<BlueprintUnitProperty>(Main.TotFContext, "FleshOfStoneScalingProperty", x =>
+                {
+                    x.AddComponent<CompositeCustomPropertyGetter>(x =>
+                    {
+                        x.CalculationMode = CompositeCustomPropertyGetter.Mode.Sum;
+                        x.Properties = new CompositeCustomPropertyGetter.ComplexCustomProperty[]
+                        {
+                            new CompositeCustomPropertyGetter.ComplexCustomProperty()
+                            {
+                                Property = new FactRankGetter()
+                                {
+                                    m_Fact = BlueprintTool.GetRef<BlueprintUnitFactReference>(fleshOfStoneEffectFeatureID)
+                                }
+                            },
+                            new CompositeCustomPropertyGetter.ComplexCustomProperty()
+                            {
+                                Property = new HasFeaturePropertyGetter()
+                                {
+                                    Property = new MR1369Property(),
+                                    featureBaseReference = built.ToReference<BlueprintFeatureBaseReference>()
+                                }
+                            }
+                        };
+                    });
+                });
+
+                
                 BlueprintFeature fosEffectFeature = BlueprintTool.Get<BlueprintFeature>(fleshOfStoneEffectFeatureID);
                 ContextRankConfig scalingConfig = fosEffectFeature.GetComponents<ContextRankConfig>(x => x.m_Type == Kingmaker.Enums.AbilityRankType.DamageDice).FirstOrDefault();//Because Vek needs to kill getComponent because it collides with the vanilla exentsion
-                scalingConfig.m_BaseValueType = ContextRankBaseValueType.FeatureListRanks;
-                scalingConfig.m_FeatureList = new BlueprintFeatureReference[]
+                scalingConfig.m_BaseValueType = ContextRankBaseValueType.CustomProperty;
+                scalingConfig.m_CustomProperty = scalar.ToReference<BlueprintUnitPropertyReference>();
+                /*scalingConfig.m_FeatureList = new BlueprintFeatureReference[]
                 {
                     scalingConfig.m_Feature,
                     effectbuilt.ToReference<BlueprintFeatureReference>()
+                
                 };
+                */
                 RecalculateOnFactsChange recalcer = fosEffectFeature.GetComponent<RecalculateOnFactsChange>();
-                recalcer.m_CheckedFacts = recalcer.m_CheckedFacts.AppendToArray(effectbuilt.ToReference<BlueprintUnitFactReference>());
-
+                recalcer.m_CheckedFacts = recalcer.m_CheckedFacts.AppendToArray(built.ToReference<BlueprintUnitFactReference>());
+                fosEffectFeature.AddComponent<RecalculateOnLevelUp>();
                 Main.TotFContext.Logger.LogPatch("Patched in Mythic Kinetic Aegis", fosEffectFeature);
             }
 
             void FixEnvelopingWinds()
             {
                 string envelopingWindsBuffGUID = "b803fcd9da7b1564fb52978f08372767";//EvelopingWindsBuff
+                string envelopingWindseffectSource = "bbba1600582cf8446bb515a33bd89af8";//EvelopingWindsBuff
                 BlueprintBuff envelopingWindsBuff = BlueprintTool.Get<BlueprintBuff>(envelopingWindsBuffGUID);
+                var scalar = TabletopTweaks.Core.Utilities.Helpers.CreateBlueprint<BlueprintUnitProperty>(Main.TotFContext, "EnvelopingWindsScalingProperty", x =>
+                {
+                    x.AddComponent<CompositeCustomPropertyGetter>(x =>
+                    {
+                        x.CalculationMode = CompositeCustomPropertyGetter.Mode.Sum;
+                        x.Properties = new CompositeCustomPropertyGetter.ComplexCustomProperty[]
+                        {
+                            new CompositeCustomPropertyGetter.ComplexCustomProperty()
+                            {
+                                Property = new FactRankGetter()
+                                {
+                                    m_Fact = BlueprintTool.GetRef<BlueprintUnitFactReference>(envelopingWindseffectSource)
+                                }
+                            },
+                            new CompositeCustomPropertyGetter.ComplexCustomProperty()
+                            {
+                                Property = new HasFeaturePropertyGetter()
+                                {
+                                    Property = new MR1369Property(),
+                                    featureBaseReference = built.ToReference<BlueprintFeatureBaseReference>()
+                                }
+                            }
+                        };
+                    });
+                });
+
                 ContextRankConfig scalingConfig = envelopingWindsBuff.GetComponents<ContextRankConfig>(x => x.m_Type == Kingmaker.Enums.AbilityRankType.Default).FirstOrDefault();//Because Vek needs to kill getComponent because it collides with the vanilla exentsion
-                scalingConfig.m_BaseValueType = ContextRankBaseValueType.FeatureListRanks;
+                scalingConfig.m_BaseValueType = ContextRankBaseValueType.CustomProperty;
+                scalingConfig.m_CustomProperty = scalar.ToReference<BlueprintUnitPropertyReference>();
+                envelopingWindsBuff.AddComponent<RecalculateOnLevelUp>();
+                /*
                 scalingConfig.m_FeatureList = new BlueprintFeatureReference[]
                 {
                     scalingConfig.m_Feature,
@@ -102,7 +156,7 @@ namespace TomeOfTheFirebird.New_Content.MythicAbilities
                 };
                 RecalculateOnFactsChange recalcer = envelopingWindsBuff.GetComponent<RecalculateOnFactsChange>();
                 recalcer.m_CheckedFacts = recalcer.m_CheckedFacts.AppendToArray(effectbuilt.ToReference<BlueprintUnitFactReference>());
-
+                */
 
                 Main.TotFContext.Logger.LogPatch("Patched in Mythic Kinetic Aegis", envelopingWindsBuff);
             }
@@ -110,20 +164,47 @@ namespace TomeOfTheFirebird.New_Content.MythicAbilities
             void FixShroudOfWater()
             {
                 string shroudUpgradeFeatureId = "fc083e19a8c961c4890de1a36e2b5c20";
+                
+
                 BlueprintFeature upgradeEffectFeature = BlueprintTool.Get<BlueprintFeature>(shroudUpgradeFeatureId);
+                var scalar = TabletopTweaks.Core.Utilities.Helpers.CreateBlueprint<BlueprintUnitProperty>(Main.TotFContext, "ShroudOfWaterScalingProperty", x =>
+                {
+                    x.AddComponent<CompositeCustomPropertyGetter>(x =>
+                    {
+                        x.CalculationMode = CompositeCustomPropertyGetter.Mode.Sum;
+                        x.Properties = new CompositeCustomPropertyGetter.ComplexCustomProperty[]
+                        {
+                            new CompositeCustomPropertyGetter.ComplexCustomProperty()
+                            {
+                                Property = new FactRankGetter()
+                                {
+                                    m_Fact = BlueprintTool.GetRef<BlueprintUnitFactReference>(shroudUpgradeFeatureId)
+                                }
+                            },
+                            new CompositeCustomPropertyGetter.ComplexCustomProperty()
+                            {
+                                Property = new HasFeaturePropertyGetter()
+                                {
+                                    Property = new MR1369Property(),
+                                    featureBaseReference = built.ToReference<BlueprintFeatureBaseReference>()
+                                }
+                            }
+                        };
+                    });
+                });
+                ContextRankConfig scalarConfig = TabletopTweaks.Core.Utilities.Helpers.CreateContextRankConfig(ContextRankBaseValueType.CustomProperty, ContextRankProgression.AsIs, Kingmaker.Enums.AbilityRankType.StatBonus, customProperty: scalar);
+
                 FixArmor();
                 void FixArmor()
                 {
                     string shroudArmorEffecFeaturetId = "1ff803cb49f63ea4185490fae2c43ca7";
                     BlueprintFeature armorEffectFeature = BlueprintTool.Get<BlueprintFeature>(shroudArmorEffecFeaturetId);
 
-                    ShroudOfWater existingComp = armorEffectFeature.GetComponent<ShroudOfWater>();
-                    if (existingComp is not CustomShroudOfWater)
-                    {
+                    
                         armorEffectFeature.RemoveComponents<ShroudOfWater>();
-                        armorEffectFeature.AddComponent<CustomShroudOfWater>(x =>
+                        armorEffectFeature.AddComponent<ContextRankConfigShroudOfWater>(x =>
                         {
-                            x.m_UpgradeFeature = upgradeEffectFeature.ToReference<BlueprintFeatureReference>();
+                            
                             x.Descriptor = Kingmaker.Enums.ModifierDescriptor.Armor;
                             x.Stat = Kingmaker.EntitySystem.Stats.StatType.AC;
                             x.BaseValue = new Kingmaker.UnitLogic.Mechanics.ContextValue()
@@ -133,19 +214,17 @@ namespace TomeOfTheFirebird.New_Content.MythicAbilities
                                 ValueRank = Kingmaker.Enums.AbilityRankType.Default,
                                 ValueShared = Kingmaker.UnitLogic.Abilities.AbilitySharedValue.Damage
                             };
-                            x.m_UpgradeFeatures = new List<BlueprintFeatureReference>()
+                            x.Boost = new Kingmaker.UnitLogic.Mechanics.ContextValue()
                             {
-                            effectbuilt.ToReference<BlueprintFeatureReference>()
+                                m_CustomProperty = scalar.ToReference<BlueprintUnitPropertyReference>(),
+                                ValueType = Kingmaker.UnitLogic.Mechanics.ContextValueType.CasterCustomProperty,
+                                Value = 0
                             };
                         });
-                    }
-                    else
-                    {
-                        (existingComp as CustomShroudOfWater).m_UpgradeFeatures.Add(effectbuilt.ToReference<BlueprintFeatureReference>());
-                    }
-                    RecalculateOnFactsChange recalcer = armorEffectFeature.GetComponent<RecalculateOnFactsChange>();
-                    recalcer.m_CheckedFacts = recalcer.m_CheckedFacts.AppendToArray(effectbuilt.ToReference<BlueprintUnitFactReference>());
+                    
+                   
                     Main.TotFContext.Logger.LogPatch("Patched in Mythic Kinetic Aegis", armorEffectFeature);
+                    armorEffectFeature.AddComponent<RecalculateOnLevelUp>();
                 }
                 FixShield();
                 void FixShield()
@@ -153,11 +232,9 @@ namespace TomeOfTheFirebird.New_Content.MythicAbilities
                     string shroudshieldEffecFeaturetId = "4d8feca11d6e29a499ae761b90eacdba";
                     BlueprintFeature shieldEffectFeature = BlueprintTool.Get<BlueprintFeature>(shroudshieldEffecFeaturetId);
 
-                    ShroudOfWater existingComp = shieldEffectFeature.GetComponent<ShroudOfWater>();
-                    if (existingComp is not CustomShroudOfWater)
-                    {
+                    
                         shieldEffectFeature.RemoveComponents<ShroudOfWater>();
-                        shieldEffectFeature.AddComponent<CustomShroudOfWater>(x =>
+                        shieldEffectFeature.AddComponent<ContextRankConfigShroudOfWater>(x =>
                         {
                             x.Descriptor = Kingmaker.Enums.ModifierDescriptor.Shield;
                             x.Stat = Kingmaker.EntitySystem.Stats.StatType.AC;
@@ -168,32 +245,53 @@ namespace TomeOfTheFirebird.New_Content.MythicAbilities
                                 ValueRank = Kingmaker.Enums.AbilityRankType.Default,
                                 ValueShared = Kingmaker.UnitLogic.Abilities.AbilitySharedValue.Damage
                             };
-                            x.m_UpgradeFeature = upgradeEffectFeature.ToReference<BlueprintFeatureReference>();
-                            x.m_UpgradeFeatures = new List<BlueprintFeatureReference>()
+                            x.Boost = new Kingmaker.UnitLogic.Mechanics.ContextValue()
                             {
-                            effectbuilt.ToReference<BlueprintFeatureReference>()
+                                m_CustomProperty = scalar.ToReference<BlueprintUnitPropertyReference>(),
+                                ValueType = Kingmaker.UnitLogic.Mechanics.ContextValueType.CasterCustomProperty,
+                                Value = 0
                             };
                         });
-                    }
-                    else
-                    {
-                        (existingComp as CustomShroudOfWater).m_UpgradeFeatures.Add(effectbuilt.ToReference<BlueprintFeatureReference>());
-                    }
-                    RecalculateOnFactsChange recalcer = shieldEffectFeature.GetComponent<RecalculateOnFactsChange>();
-                    recalcer.m_CheckedFacts = recalcer.m_CheckedFacts.AppendToArray(effectbuilt.ToReference<BlueprintUnitFactReference>());
+
+                    shieldEffectFeature.AddComponent<RecalculateOnLevelUp>();
                     Main.TotFContext.Logger.LogPatch("Patched in Mythic Kinetic Aegis", shieldEffectFeature);
                 }
 
-              
+
 
 
             }
 
-           
+
             void FixSearingFlesh()
             {
                 string searingFleshEffectFeature = "642bb6097c37b3b4b8be1f46d2d9296e";
                 BlueprintFeature searingFleshEffect = BlueprintTool.Get<BlueprintFeature>(searingFleshEffectFeature);
+                var scalar = TabletopTweaks.Core.Utilities.Helpers.CreateBlueprint<BlueprintUnitProperty>(Main.TotFContext, "SearingFleshScalingProperty", x =>
+                {
+                    x.AddComponent<CompositeCustomPropertyGetter>(x =>
+                    {
+                        x.CalculationMode = CompositeCustomPropertyGetter.Mode.Sum;
+                        x.Properties = new CompositeCustomPropertyGetter.ComplexCustomProperty[]
+                        {
+                            new CompositeCustomPropertyGetter.ComplexCustomProperty()
+                            {
+                                Property = new FactRankGetter()
+                                {
+                                    m_Fact = BlueprintTool.GetRef<BlueprintUnitFactReference>(searingFleshEffectFeature)
+                                }
+                            },
+                            new CompositeCustomPropertyGetter.ComplexCustomProperty()
+                            {
+                                Property = new HasFeaturePropertyGetter()
+                                {
+                                    Property = new MR1369Property(),
+                                    featureBaseReference = built.ToReference<BlueprintFeatureBaseReference>()
+                                }
+                            }
+                        };
+                    });
+                });
                 if (searingFleshEffect == null)
                 {
                     Main.TotFContext.Logger.LogError("searingFleshEffect is null on searingflesh");
@@ -203,25 +301,21 @@ namespace TomeOfTheFirebird.New_Content.MythicAbilities
                 {
                     Main.TotFContext.Logger.LogError("ScalingConfig is null on searingflesh");
                 }
-                scalingConfig.m_BaseValueType = ContextRankBaseValueType.FeatureListRanks;
-                scalingConfig.m_FeatureList = new BlueprintFeatureReference[]
-                {
-                    scalingConfig.m_Feature,
-                    effectbuilt.ToReference<BlueprintFeatureReference>()
-                };
-               
+                scalingConfig.m_BaseValueType = ContextRankBaseValueType.CustomProperty;
+                scalingConfig.m_CustomProperty = scalar.ToReference<BlueprintUnitPropertyReference>();
+                searingFleshEffect.AddComponent<RecalculateOnLevelUp>();
                 Main.TotFContext.Logger.LogPatch("Patched in Mythic Kinetic Aegis", searingFleshEffect);
             }
-          
-            
+
+
 
             FeatTools.AddAsMythicAbility(built);
-            
 
-            
+
+
         }
 
-       public static void MakeLater()
+        public static void MakeLater()
         {
             if (Main.TotFContext.NewContent.MythicAbilities.IsDisabled("MythicKineticAegis"))
                 return;
@@ -231,24 +325,47 @@ namespace TomeOfTheFirebird.New_Content.MythicAbilities
 
                 BlueprintFeature built = BlueprintTool.Get<BlueprintFeature>("MythicKineticDefenses");
                 BlueprintFeature mythicEffectFeature = BlueprintTool.Get<BlueprintFeature>("MythicKineticDefensesEffectFeature");
-                FixForceWard();
+                //FixForceWard();
                 FixEmptiness();
                 FixFleshOfWood();
                 void FixForceWard()
                 {
                     string forceWardHPPropertyid = "f84ce6cafefb4080957f0559676fa980";
-                    BlueprintUnitProperty forceWardHPProperty = BlueprintTool.Get< BlueprintUnitProperty>(forceWardHPPropertyid);
+                    string forceWardEffectBuffid = "7a9693aa83c747cf94716a13b7f797e4";
+                   
+
+                    BlueprintUnitProperty forceWardHPProperty = BlueprintTool.Get<BlueprintUnitProperty>(forceWardHPPropertyid);
+
                     IEnumerable<PropertyValueGetter> getters = forceWardHPProperty.GetComponents<PropertyValueGetter>();
                     PropertyValueGetter getterToEdit = getters.FirstOrDefault(x => x is not ClassLevelGetter);//Does this look insane? Yes. Is it the best way to mess around with a custom class from another mod? Yeah probably
                     forceWardHPProperty.RemoveComponent(getterToEdit);
+                    
                     string forceWardEffectFeatureid = "4710d10f66304a8eaf5cb835f94e9453";
-
-                    forceWardHPProperty.AddComponent<FeatureRanksWithExtrasPropertyValueGetter>(x =>
+                    forceWardHPProperty.AddComponent<CompositeCustomPropertyGetter>(x =>
                     {
-                        x.bonus = 4;
-                        x.Features.Add(built.ToReference<BlueprintFeatureReference>());
-                        x.Features.Add(BlueprintTool.GetRef<BlueprintFeatureReference>(forceWardEffectFeatureid));
+                        x.CalculationMode = CompositeCustomPropertyGetter.Mode.Sum;
+                        
+                        x.Properties = new CompositeCustomPropertyGetter.ComplexCustomProperty[]
+                        {
+                            new CompositeCustomPropertyGetter.ComplexCustomProperty()
+                            {
+                                Property = new FactRankGetter()
+                                {
+                                    m_Fact = BlueprintTool.GetRef<BlueprintUnitFactReference>(forceWardEffectFeatureid)
+                                },
+                                 Bonus = 4//This is in the original mod, I don't know why
+                            },
+                            new CompositeCustomPropertyGetter.ComplexCustomProperty()
+                            {
+                                Property = new HasFeaturePropertyGetter()
+                                {
+                                    Property = new MR1369Property(),
+                                    featureBaseReference = built.ToReference<BlueprintFeatureBaseReference>()
+                                }
+                            }
+                        };
                     });
+                    
 
 
                     /*mythicEffectFeature.AddComponent<IncreaseResourceAmount>(x =>
@@ -270,7 +387,34 @@ namespace TomeOfTheFirebird.New_Content.MythicAbilities
                 void FixEmptiness()
                 {
                     string emptinessEffectBuffID = "9226ccc4238f44d6b9efa66ccf32a3d9";
+                    string emptinessEffectFeature = "01f5444fcf5f4a3490411787c1f7db63";
                     BlueprintBuff emptinessEffectBuff = BlueprintTool.Get<BlueprintBuff>(emptinessEffectBuffID);
+                    var scalar = BlueprintTools.GetModBlueprint<BlueprintUnitProperty>(Main.TotFContext, "EmptinessScalingProperty");
+                    
+                        scalar.AddComponent<CompositeCustomPropertyGetter>(x =>
+                        {
+                            x.CalculationMode = CompositeCustomPropertyGetter.Mode.Sum;
+                            x.Properties = new CompositeCustomPropertyGetter.ComplexCustomProperty[]
+                            {
+                            new CompositeCustomPropertyGetter.ComplexCustomProperty()
+                            {
+                                Property = new FactRankGetter()
+                                {
+                                    m_Fact = BlueprintTool.GetRef<BlueprintUnitFactReference>(emptinessEffectFeature)
+                                }
+                            },
+                            new CompositeCustomPropertyGetter.ComplexCustomProperty()
+                            {
+                                Property = new HasFeaturePropertyGetter()
+                                {
+                                    Property = new MR1369Property(),
+                                    featureBaseReference = built.ToReference<BlueprintFeatureBaseReference>()
+                                }
+                            }
+                            };
+                        });
+                   
+
                     if (emptinessEffectBuff == null)
                     {
                         Main.TotFContext.Logger.LogError("emptinessBuff is null on emptineess");
@@ -280,21 +424,17 @@ namespace TomeOfTheFirebird.New_Content.MythicAbilities
                     {
                         Main.TotFContext.Logger.LogError("ScalingConfig is null on emptineess");
                     }
-                    scalingConfig.m_BaseValueType = ContextRankBaseValueType.FeatureListRanks;
-                    scalingConfig.m_FeatureList = new BlueprintFeatureReference[]
-                    {
-                        scalingConfig.m_Feature,
-                        mythicEffectFeature.ToReference<BlueprintFeatureReference>()
-                    };
+                    scalingConfig.m_BaseValueType = ContextRankBaseValueType.CustomProperty;
+                    scalingConfig.m_CustomProperty = scalar.ToReference<BlueprintUnitPropertyReference>();
+                    scalingConfig.m_Min = 0;
                     /*mythicEffectFeature.AddComponent<IncreaseResourceAmount>(x =>
                     {
                         x.Value = -1;
                         x.m_Resource = BlueprintTool.GetRef<BlueprintAbilityResourceReference>("210861baca74448fb7486f0dffc22150");
                     });*/
 
-                    RecalculateOnFactsChange recalcer = emptinessEffectBuff.GetComponent<RecalculateOnFactsChange>();
-                    recalcer.m_CheckedFacts = recalcer.m_CheckedFacts.AppendToArray(mythicEffectFeature.ToReference<BlueprintUnitFactReference>());
 
+                    emptinessEffectBuff.AddComponent<RecalculateOnLevelUp>();
                     BlueprintFeature negativeFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("92de8ee602184f1eb81434edc204a7b5");
                     built.AddPrerequisiteFeature(negativeFeature, Kingmaker.Blueprints.Classes.Prerequisites.Prerequisite.GroupType.Any);
                     Main.TotFContext.Logger.LogPatch("Patched in Mythic Kinetic Aegis", emptinessEffectBuff);
@@ -307,7 +447,36 @@ namespace TomeOfTheFirebird.New_Content.MythicAbilities
                 void FixFleshOfWood()
                 {
                     string fleshOfWoodBuffid = "925b8a3794aa417e8b2d8a0fbf089255";
+                    string fleshOfWoodeffect = "b16c53343ea447578306d79cfbcae43e";
                     BlueprintBuff fleshOfWoodBuf = BlueprintTool.Get<BlueprintBuff>(fleshOfWoodBuffid);
+                    var comp = fleshOfWoodBuf.GetComponent<AddContextStatBonus>();
+
+                    var scalar = BlueprintTools.GetModBlueprint<BlueprintUnitProperty>(Main.TotFContext, "FleshOfWoodScalingProperty");
+                    scalar.AddComponent<CompositeCustomPropertyGetter>(x =>
+                        {
+                            x.CalculationMode = CompositeCustomPropertyGetter.Mode.Sum;
+                            x.Properties = new CompositeCustomPropertyGetter.ComplexCustomProperty[]
+                            {
+                            new CompositeCustomPropertyGetter.ComplexCustomProperty()
+                            {
+                                Property = new FactRankGetter()
+                                {
+                                    m_Fact = BlueprintTool.GetRef<BlueprintUnitFactReference>(fleshOfWoodeffect)
+                                },
+                                
+                                
+                            },
+                            new CompositeCustomPropertyGetter.ComplexCustomProperty()
+                            {
+                                Property = new HasFeaturePropertyGetter()
+                                {
+                                    Property = new MR1369Property(),
+                                    featureBaseReference = built.ToReference<BlueprintFeatureBaseReference>()
+                                }
+                            }
+                            };
+                        });
+                    
                     if (fleshOfWoodBuf == null)
                     {
                         Main.TotFContext.Logger.LogError("fleshOfWoodBuf is null on fleshOfWood");
@@ -317,28 +486,18 @@ namespace TomeOfTheFirebird.New_Content.MythicAbilities
                     {
                         Main.TotFContext.Logger.LogError("ScalingConfig is null on fleshOfWood");
                     }
-                    scalingConfig.m_BaseValueType = ContextRankBaseValueType.FeatureListRanks;
-                    scalingConfig.m_FeatureList = new BlueprintFeatureReference[]
-                    {
-                        scalingConfig.m_Feature,
-                        mythicEffectFeature.ToReference<BlueprintFeatureReference>()
-                    };
-                    /*mythicEffectFeature.AddComponent<IncreaseResourceAmount>(x =>
-                    {
-                        x.Value = -1;
-                        x.m_Resource = BlueprintTool.GetRef<BlueprintAbilityResourceReference>("9ccaff4d3095448b87d4dab29357d5db");
-                    });*/
-
-                    RecalculateOnFactsChange recalcer = fleshOfWoodBuf.GetComponent<RecalculateOnFactsChange>();
-                    recalcer.m_CheckedFacts = recalcer.m_CheckedFacts.AppendToArray(mythicEffectFeature.ToReference<BlueprintUnitFactReference>());
-
+                    scalingConfig.m_BaseValueType = ContextRankBaseValueType.CustomProperty;
+                    
+                    scalingConfig.m_CustomProperty = scalar.ToReference<BlueprintUnitPropertyReference>();
+                    scalingConfig.m_Min = 0;
+                    fleshOfWoodBuf.AddComponent<RecalculateOnLevelUp>();
                     BlueprintFeature negativeFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("12617b1537b749a0b7a4e30d2627ba7a");
                     built.AddPrerequisiteFeature(negativeFeature, Kingmaker.Blueprints.Classes.Prerequisites.Prerequisite.GroupType.Any);
                     Main.TotFContext.Logger.LogPatch("Patched in Mythic Kinetic Aegis", fleshOfWoodBuf);
                 }
 
                 BlueprintFeature woodFeature = BlueprintTool.Get<BlueprintFeature>("12617b1537b749a0b7a4e30d2627ba7a");
-               
+
             }
             else
             {

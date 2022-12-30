@@ -10,6 +10,11 @@ NOW REQUIRES TabletopTweaks Core Module!
 
 ## Changelog
 
+1.3.2
+Patch for Mythic Kinetic Aegis not actually scaling with rank
+Removed Mythic Kinetic Aegis support for Expanded Elements Force Ward until I figure out what is supposed to be happening with that talent - sorry!
+
+
 1.3.1
 
 Added Kineticist Internal Buffer class feature

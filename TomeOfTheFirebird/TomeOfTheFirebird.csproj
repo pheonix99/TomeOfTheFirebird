@@ -47,7 +47,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="ILRepack.MSBuild.Task" Version="2.0.13" />
-    <PackageReference Include="WW-Blueprint-Core" Version="2.7.1" />
+    <PackageReference Include="WW-Blueprint-Core" Version="2.7.3" />
   </ItemGroup>
   <!-- DLL Merging -->
   <Target Name="ILRepack" AfterTargets="Build">
@@ -167,6 +167,8 @@
     <Compile Include="Modified Content\Classes\Kineticist.cs" />
     <Compile Include="Modified Content\Crusade\BetterDisplay.cs" />
     <Compile Include="Modified Content\Crusade\CrusadeBuffTweaks.cs" />
+    <Compile Include="Modified Content\ImprovedMultiarchetypeProjct\FighterCombatBoosts.cs" />
+    <Compile Include="Modified Content\ImprovedMultiarchetypeProjct\HomebrewArchetypesCompFix.cs" />
     <Compile Include="Modified Content\ImprovedMultiarchetypeProjct\SpellSlots.cs" />
     <Compile Include="Modified Content\KineticistOverhaul\CreateProperElementalFoci.cs" />
     <Compile Include="Modified Content\KineticistOverhaul\FixProgressionLayoutSillyness.cs" />
@@ -180,12 +182,13 @@
     <Compile Include="New Components\ArtifactEnabledWeaponAngelDamageDice.cs" />
     <Compile Include="New Components\ConditionalPropertyGetter.cs" />
     <Compile Include="New Components\ContextDamageValueEnergyDamageDice.cs" />
-    <Compile Include="New Components\CustomShroudOfWater.cs" />
+    <Compile Include="New Components\ContextRankConfigShroudOfWater.cs" />
     <Compile Include="New Components\DoubleBlastComponent.cs" />
     <Compile Include="New Components\FeatureRanksWithExtrasPropertyValueGetter.cs" />
     <Compile Include="New Components\HasFeaturePropertyGetter.cs" />
     <Compile Include="New Components\IncreaseSpecificSpellsCasterLevel.cs" />
     <Compile Include="New Components\InternalBufferComponent.cs" />
+    <Compile Include="New Components\MR1369Property.cs" />
     <Compile Include="New Components\PrequisiteKineticistElement.cs" />
     <Compile Include="New Components\Prerequisites\PrerequisiteBreathWeaponAccess.cs" />
     <Compile Include="New Components\Prerequisites\PrerequisiteAddedByFeature.cs" />
@@ -217,7 +220,6 @@
     <Compile Include="New Content\Feats\SunderingStrike.cs" />
     <Compile Include="New Content\Features\CelestialArmorRevelation.cs" />
     <Compile Include="New Content\Features\FighterArmorTrainingFakeLevel.cs" />
-    <Compile Include="New Content\Features\FighterCombatBoosts.cs" />
     <Compile Include="New Content\Features\PurifierEarlyCures.cs" />
     <Compile Include="New Components\AbilityTargetHasSlashingPiercingWeaponInRelevantHand.cs" />
     <Compile Include="New Components\ContextWeaponCategoryExtraDamageDice.cs" />
