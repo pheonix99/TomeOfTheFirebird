@@ -11,7 +11,7 @@ using TomeOfTheFirebird.NewComponents.Prerequisites;
 
 namespace TomeOfTheFirebird.Helpers
 {
-    static class FeatTools
+    static class MoreFeatTools
     {
        
        

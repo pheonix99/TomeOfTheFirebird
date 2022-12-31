@@ -40,14 +40,14 @@ namespace TomeOfTheFirebird.New_Content.Feats
             BlueprintFeature GTWF = BlueprintTools.GetBlueprint<BlueprintFeature>("c126adbdf6ddd8245bda33694cd774e8");
             BlueprintFeature MTWF = BlueprintTools.GetBlueprint<BlueprintFeature>("c6afbb8c1a36a704a8041f35498f41a4");
             
-            Helpers.FeatTools.PatchFeatWithFeatLockedAlternateAbilityPrereqSimple(TWF, StatType.Dexterity, Prodigious, StatType.Strength);
+            Helpers.MoreFeatTools.PatchFeatWithFeatLockedAlternateAbilityPrereqSimple(TWF, StatType.Dexterity, Prodigious, StatType.Strength);
 
-            Helpers.FeatTools.PatchFeatWithFeatLockedAlternateAbilityPrereqSimple(BashingFinish, StatType.Dexterity, Prodigious, StatType.Strength);
-            Helpers.FeatTools.PatchFeatWithFeatLockedAlternateAbilityPrereqSimple(DoubleSlice, StatType.Dexterity, Prodigious, StatType.Strength);
-            Helpers.FeatTools.PatchFeatWithFeatLockedAlternateAbilityPrereqSimple(ShieldMaster, StatType.Dexterity, Prodigious, StatType.Strength);
-            Helpers.FeatTools.PatchFeatWithFeatLockedAlternateAbilityPrereqSimple(ITWF, StatType.Dexterity, Prodigious, StatType.Strength);
-            Helpers.FeatTools.PatchFeatWithFeatLockedAlternateAbilityPrereqSimple(GTWF, StatType.Dexterity, Prodigious, StatType.Strength);
-            Helpers.FeatTools.PatchFeatWithFeatLockedAlternateAbilityPrereqSimple(MTWF, StatType.Dexterity, Prodigious, StatType.Strength);
+            Helpers.MoreFeatTools.PatchFeatWithFeatLockedAlternateAbilityPrereqSimple(BashingFinish, StatType.Dexterity, Prodigious, StatType.Strength);
+            Helpers.MoreFeatTools.PatchFeatWithFeatLockedAlternateAbilityPrereqSimple(DoubleSlice, StatType.Dexterity, Prodigious, StatType.Strength);
+            Helpers.MoreFeatTools.PatchFeatWithFeatLockedAlternateAbilityPrereqSimple(ShieldMaster, StatType.Dexterity, Prodigious, StatType.Strength);
+            Helpers.MoreFeatTools.PatchFeatWithFeatLockedAlternateAbilityPrereqSimple(ITWF, StatType.Dexterity, Prodigious, StatType.Strength);
+            Helpers.MoreFeatTools.PatchFeatWithFeatLockedAlternateAbilityPrereqSimple(GTWF, StatType.Dexterity, Prodigious, StatType.Strength);
+            Helpers.MoreFeatTools.PatchFeatWithFeatLockedAlternateAbilityPrereqSimple(MTWF, StatType.Dexterity, Prodigious, StatType.Strength);
 
             FeatureSelectionConfigurator.For(TabletopTweaks.Core.Utilities.FeatTools.Selections.RangerStyleTwoWeaponSelection2.AssetGuidThreadSafe).AddToAllFeatures(Prodigious.AssetGuidThreadSafe);
             FeatureSelectionConfigurator.For(TabletopTweaks.Core.Utilities.FeatTools.Selections.RangerStyleTwoWeaponSelection6.AssetGuidThreadSafe).AddToAllFeatures(Prodigious.AssetGuidThreadSafe);
@@ -67,7 +67,7 @@ namespace TomeOfTheFirebird.New_Content.Feats
             BlueprintFeature TWD = BlueprintTools.GetBlueprint<BlueprintFeature>("3eee747139f94b1d8d672c8bb63137d7");
             if (TWD != null)
             {
-                Helpers.FeatTools.PatchFeatWithFeatLockedAlternateAbilityPrereqSimple(TWD, StatType.Dexterity, Prodigious, StatType.Strength);
+                Helpers.MoreFeatTools.PatchFeatWithFeatLockedAlternateAbilityPrereqSimple(TWD, StatType.Dexterity, Prodigious, StatType.Strength);
             }
         }
 

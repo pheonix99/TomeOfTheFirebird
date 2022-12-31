@@ -1,5 +1,15 @@
 {
   "NewSettingsOffByDefault": false,
+  "Bloodlines": {
+    "DisableAll": false,
+    "Settings": {
+      "BloodragerPhoenixBloodline": {
+        "Enabled": true,
+        "Description": "Adds Bloodrager Phoenix Bloodline",
+        "Homebrew": false
+      }
+    }
+  },
   "ClassFeatures": {
     "DisableAll": false,
     "Settings": {
@@ -178,6 +188,10 @@
       "ShimmeringMirage": {
         "Enabled": true,
         "Description": "Adds 20 percent miss chance as long as shroud of water is up."
+      },
+      "ClockworkHeart": {
+        "Enabled": true,
+        "Description": "Requires Metal Blast (earth + earth), grants Improved Initiative and Lightning Reflexes"
       }
     }
   }

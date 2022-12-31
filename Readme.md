@@ -10,6 +10,15 @@ NOW REQUIRES TabletopTweaks Core Module!
 
 ## Changelog
 
+1.3.4
+Phoenix Bloodline for Bloodrager
+--Difference from tabletop, damage aura from level 20 power is save for half, rather than save for none
+--Soft dependency on Tabletop Tweaks Base's Bloodline Fixes for this component because I could not be bothered to write Owlcat bloodline logic then convert it to use Vek's if that's installed
+
+Clockwork Heart wild talent
+
+
+
 1.3.3
 Patch for Mythic Kinetic Aegis not actually scaling with rank
 Removed Mythic Kinetic Aegis support for Expanded Elements Force Ward until I figure out what is supposed to be happening with that talent - sorry!
@@ -225,5 +234,11 @@ Made rewards from Monster Slayers and Local Production crusade events permanent 
 Extending Draconic Bloodline claw upgrades to Dragon Mystery abilities if Expanded Content is installed
 More utility kinetic talents
 Divine Conduit Kineticist Archetype
+Banishing Warden Paladin Archetype
+Something for characters who get wings from multiple sources (bloodlines, mythic paths)
+Goodies for Aivu
+Overhaul Discordant Song and Hat Of Heartening Song to work through the auras directly, not their own buffs, so range modification effects them
+
+Phoenix Sorcerer Bloodline? Maybe?
 
 

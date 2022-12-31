@@ -25,6 +25,8 @@ using TomeOfTheFirebird.New_Content.MythicAbilities;
 using TomeOfTheFirebird.Modified_Content.Classes;
 using BlueprintCore.Utils;
 using TomeOfTheFirebird.Modified_Content.ImprovedMultiarchetypeProjct;
+using TomeOfTheFirebird.New_Content.Bloodlines;
+using TomeOfTheFirebird.New_Content.WildTalents;
 
 namespace TomeOfTheFirebird
 {
@@ -115,12 +117,14 @@ namespace TomeOfTheFirebird
 
                     //FighterCombatBoosts.Setup();
 
+                    PheonixBloodline.MakePheonixBloodline();
+                    PheonixBloodline.MakePhoenixBloodragerBloodline();
 
 
                     Witch.ReturnAccursedPatrons();
 
-                    New_Content.WildTalents.ShimmeringMirage.Make();
-                    
+                    ShimmeringMirage.Make();
+                    ClockworkHeart.Make();
 
                 }
                 catch (Exception e)

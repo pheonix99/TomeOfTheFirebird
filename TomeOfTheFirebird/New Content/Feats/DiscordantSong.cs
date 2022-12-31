@@ -1,7 +1,10 @@
 ﻿using BlueprintCore.Blueprints.Configurators.Classes.Selection;
+using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Conditions.Builder;
 using BlueprintCore.Conditions.Builder.ContextEx;
+using BlueprintCore.Utils;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.RuleSystem.Rules.Damage;
@@ -93,10 +96,27 @@ namespace TomeOfTheFirebird.New_Content.Feats
             DiscordantFeatMaker.SetRanks(1);
             DiscordantFeatMaker.SetGroups(FeatureGroup.Feat);
 
+            //PatchOntoHat("ba5a328cf82603f4398ca402dad252b1");//Oath Of People's Council inspire competence
+            //PatchOntoHat("7d7943671c60e9c40829d16b000fd453");//Oath Of People's Council inspire courage
+           
+
+
+            void PatchOntoHat(string guid)
+            {
+                var buff = BlueprintTool.Get<BlueprintBuff>(guid);
+                if (buff != null)
+                {
+                    FeatureConfigurator.For("c25df29d2599a81428a7badf51ebd4d1").AddBuffExtraEffects(guid, extraEffectBuff: "2ac1f04db1e7da34cab38a32f9794e28").Configure();
+                    Main.TotFContext.Logger.LogPatch("Connected To Hat Of Heartening Song", buff);
+                }
+            }
+
+
             foreach(BuffExtraEffects v in HatOfHearteningSong.Components.OfType<BuffExtraEffects>())
             {
-                DiscordantFeatMaker.AddBuffExtraEffects(v.CheckedBuff.AssetGuidThreadSafe, DiscordantSongBuffMade.AssetGuidThreadSafe);
-                DiscordantFeatMaker.AddBuffExtraEffects(v.CheckedBuff.AssetGuidThreadSafe, DiscordantSongBuff2Made.AssetGuidThreadSafe);
+                DiscordantFeatMaker.AddBuffExtraEffects(v.CheckedBuff.AssetGuidThreadSafe, extraEffectBuff: DiscordantSongBuffMade.AssetGuidThreadSafe);
+                DiscordantFeatMaker.AddBuffExtraEffects(v.CheckedBuff.AssetGuidThreadSafe, extraEffectBuff: DiscordantSongBuff2Made.AssetGuidThreadSafe);
+                Main.TotFContext.Logger.LogPatch("Added to Discordant Song", v.CheckedBuff);
 
             }
             //Bard or Skald
@@ -104,7 +124,9 @@ namespace TomeOfTheFirebird.New_Content.Feats
             DiscordantFeatMaker.AddPrerequisiteClassLevel("6afa347d804838b48bda16acb0573dc0", 10, group: Kingmaker.Blueprints.Classes.Prerequisites.Prerequisite.GroupType.Any);
             DiscordantFeatMaker.AddPrerequisiteArchetypeLevel(characterClass:"bfa11238e7ae3544bbeb4d0b92e897ec", archetype: "4d9a864eae278744aafa7ff23f2a6466", level: 10, group: Kingmaker.Blueprints.Classes.Prerequisites.Prerequisite.GroupType.Any);
             DiscordantFeatMaker.AddPrerequisiteArchetypeLevel(characterClass:"e8f21e5b58e0569468e420ebea456124", archetype: "f8767821ec805bf479706392fcc3394c", level: 10, group: Kingmaker.Blueprints.Classes.Prerequisites.Prerequisite.GroupType.Any); ;
-
+            
+            //TODO DETECT AND ADD OATH OF PEOPLE'S COUNCIL!
+            //TODO DETECT AND HOOK IN AZATA!
             BlueprintFeature DiscordantSong = DiscordantFeatMaker.Configure();
 
             if (Main.TotFContext.NewContent.Feats.IsEnabled("DiscordantSong"))

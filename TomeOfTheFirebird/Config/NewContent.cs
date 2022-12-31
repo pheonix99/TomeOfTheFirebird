@@ -5,7 +5,9 @@ namespace TomeOfTheFirebird.Config
     public class NewContent : IUpdatableSettings
     {
         public bool NewSettingsOffByDefault = false;
+        public SettingGroup Bloodlines;
         public SettingGroup ClassFeatures;
+
 
         public SettingGroup Spells;
         public SettingGroup Feats;
@@ -24,6 +26,7 @@ namespace TomeOfTheFirebird.Config
         {
             NewContent loadedSettings = userSettings as NewContent;
             NewSettingsOffByDefault = loadedSettings.NewSettingsOffByDefault;
+            Bloodlines.LoadSettingGroup(loadedSettings.Bloodlines, NewSettingsOffByDefault);
             ClassFeatures.LoadSettingGroup(loadedSettings.ClassFeatures, NewSettingsOffByDefault);
             Spells.LoadSettingGroup(loadedSettings.Spells, NewSettingsOffByDefault);
             Feats.LoadSettingGroup(loadedSettings.Feats, NewSettingsOffByDefault);

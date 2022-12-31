@@ -158,13 +158,14 @@
     <Compile Include="Bugfixes\Classes\CavalierFixes.cs" />
     <Compile Include="Bugfixes\RadianceLevel2Fix.cs" />
     <Compile Include="Helpers\Extensions.cs" />
-    <Compile Include="Helpers\FeatTools.cs" />
+    <Compile Include="Helpers\MoreFeatTools.cs" />
     <Compile Include="Helpers\SpellSpecializationTool.cs" />
     <Compile Include="Modified Content\Archetypes\Purifier.cs" />
     <Compile Include="Modified Content\Archetypes\Witch.cs" />
     <Compile Include="Modified Content\Bloodlines\AbyssalBloodlineModifications.cs" />
     <Compile Include="Modified Content\Bloodlines\DraconicBloodlineModifications.cs" />
     <Compile Include="Modified Content\Classes\Kineticist.cs" />
+    <Compile Include="Modified Content\Classes\Paladin.cs" />
     <Compile Include="Modified Content\Crusade\BetterDisplay.cs" />
     <Compile Include="Modified Content\Crusade\CrusadeBuffTweaks.cs" />
     <Compile Include="Modified Content\ImprovedMultiarchetypeProjct\FighterCombatBoosts.cs" />
@@ -186,6 +187,7 @@
     <Compile Include="New Components\DoubleBlastComponent.cs" />
     <Compile Include="New Components\FeatureRanksWithExtrasPropertyValueGetter.cs" />
     <Compile Include="New Components\HasFeaturePropertyGetter.cs" />
+    <Compile Include="New Components\PhoenixHeartOfFireHealingComponent.cs" />
     <Compile Include="New Components\IncreaseSpecificSpellsCasterLevel.cs" />
     <Compile Include="New Components\InternalBufferComponent.cs" />
     <Compile Include="New Components\MR1369Property.cs" />
@@ -195,11 +197,13 @@
     <Compile Include="New Components\Prerequisites\PrerequisiteClassLevelPerRank.cs" />
     <Compile Include="New Components\Prerequisites\PrerequisiteProperty.cs" />
     <Compile Include="New Components\Prerequisites\PrerequisiteUsesStandardBurn.cs" />
+    <Compile Include="New Content\Archetypes\BanishingWarden.cs" />
     <Compile Include="New Content\Archetypes\Beastmorph.cs" />
     <Compile Include="New Content\Archetypes\CinderAdept.cs" />
     <Compile Include="New Content\Archetypes\DivineConduit.cs" />
     <Compile Include="New Content\Archetypes\DragonbloodChymist.cs" />
     <Compile Include="New Content\Archetypes\KineticLancer.cs" />
+    <Compile Include="New Content\Bloodlines\PheonixBloodline.cs" />
     <Compile Include="New Content\Feats\Afterburn.cs" />
     <Compile Include="New Content\Feats\Autobuffer.cs" />
     <Compile Include="New Content\Feats\BreathWeaponFeats.cs" />
@@ -244,7 +248,6 @@
     <Compile Include="New Content\Items\PaladinGear.cs" />
     <Compile Include="New Content\Mercies\ExtraMercies.cs" />
     <Compile Include="New Content\Spells\TODO\AuraOfDoom.cs" />
-    <Compile Include="New Content\Spells\TODO\BladedDash.cs" />
     <Compile Include="New Content\Spells\BoneFists.cs" />
     <Compile Include="New Content\Spells\TODO\BowSpirit.cs" />
     <Compile Include="New Content\Spells\TODO\BurstOfRadiance.cs" />
@@ -254,6 +257,7 @@
     <Compile Include="New Content\Spells\EntropicShield.cs" />
     <Compile Include="New Content\Spells\TODO\ExplodeHead.cs" />
     <Compile Include="New Content\Spells\TODO\FieryRunes.cs" />
+    <Compile Include="New Content\Spells\TODO\FiresFriend.cs" />
     <Compile Include="New Content\Spells\TODO\ForcefulStrike.cs" />
     <Compile Include="New Content\Spells\FreezingSphere.cs" />
     <Compile Include="New Content\Spells\TODO\Frostbite.cs" />
@@ -271,7 +275,6 @@
     <Compile Include="New Content\Spells\TODO\TremorBlast.cs" />
     <Compile Include="New Content\Spells\TODO\UmbralWeapon.cs" />
     <Compile Include="New Content\Spells\TODO\WardingWeapon.cs" />
-    <Compile Include="New Content\Spells\TODO\WeaponOfAwe.cs" />
     <Compile Include="New Content\Spells\TODO\WingThorns.cs" />
     <Compile Include="New Content\Spells\TODO\WreathOfBlades.cs" />
     <Compile Include="New Content\WildTalents\AirsLeap.cs" />
@@ -316,6 +319,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Abilities\Phoenix_Bloodline.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Spells\BoneFists.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -345,11 +351,13 @@
       <SpellAssets Include="$(OutputPath)\Assets\Spells\FreezingSphere.png" />
       <SpellAssets Include="$(OutputPath)\Assets\Spells\GloomblindBolts.png" />
       <SpellAssets Include="$(OutputPath)\Assets\Spells\SpearOfPurity.png" />
+      <AbilityAssets Include="$(OutputPath)\Assets\Abilities\Phoenix_Bloodline.png" />
     </ItemGroup>
     <Copy SourceFiles="@(Assembly)" DestinationFolder="$(WrathPath)\Mods\$(MSBuildProjectName)" />
     <Copy SourceFiles="@(ModConfig)" DestinationFolder="$(WrathPath)\Mods\$(MSBuildProjectName)" />
     <Copy SourceFiles="@(Localization)" DestinationFolder="$(WrathPath)\Mods\$(MSBuildProjectName)\Localization" />
     <Copy SourceFiles="@(SpellAssets)" DestinationFolder="$(WrathPath)\Mods\$(MSBuildProjectName)\Assets\Spells" />
+    <Copy SourceFiles="@(AbilityAssets)" DestinationFolder="$(WrathPath)\Mods\$(MSBuildProjectName)\Assets\Abilities" />
   </Target>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
