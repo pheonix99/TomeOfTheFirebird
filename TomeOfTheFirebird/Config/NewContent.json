@@ -1,5 +1,15 @@
 {
   "NewSettingsOffByDefault": false,
+  "Archetypes": {
+    "DisableAll": false,
+    "Settings": {
+      "EldritchScionSage": {
+        "Enabled": true,
+        "Description": "Adds Eldritch Scion version of Sage Sorc",
+        "Homebrew": false
+      }
+    }
+  },
   "Bloodlines": {
     "DisableAll": false,
     "Settings": {

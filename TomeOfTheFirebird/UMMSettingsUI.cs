@@ -40,6 +40,8 @@ namespace TomeOfTheFirebird
             {
                 UI.Toggle("New Settings Off By Default".bold(), ref AddedContent.NewSettingsOffByDefault);
                 UI.Space(25);
+                SetttingUI.SettingGroup("Archetypes", TabLevel, AddedContent.Archetypes);
+                SetttingUI.SettingGroup("Bloodlines", TabLevel, AddedContent.Bloodlines);
                 SetttingUI.SettingGroup("ClassFeatures", TabLevel, AddedContent.ClassFeatures);
                 SetttingUI.SettingGroup("Feats", TabLevel, AddedContent.Feats);
                 SetttingUI.SettingGroup("Mercies", TabLevel, AddedContent.Mercies);
@@ -88,6 +90,7 @@ namespace TomeOfTheFirebird
             {
                 UI.Toggle("New Settings Off By Default".bold(), ref Tweaks.NewSettingsOffByDefault);
                 UI.Space(25);
+            
                 SetttingUI.SettingGroup("Bloodlines", TabLevel, Tweaks.Bloodlines);
                 SetttingUI.SettingGroup("Crusade", TabLevel, Tweaks.Crusade);
                 SetttingUI.SettingGroup("Mythic", TabLevel, Tweaks.Mythic);
