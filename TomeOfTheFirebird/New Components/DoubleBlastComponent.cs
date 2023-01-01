@@ -5,6 +5,7 @@ using Kingmaker.RuleSystem.Rules.Abilities;
 using Kingmaker.UnitLogic;
 using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
+using Kingmaker.UnitLogic.Class.Kineticist;
 using Kingmaker.Utility;
 using System;
 using System.Collections.Generic;
@@ -29,24 +30,24 @@ namespace TomeOfTheFirebird.New_Components
 			}
 			AbilityData spell = evt.Spell;
 			var bp = spell.Blueprint.Parent ?? spell.Blueprint;
-
-            //Insert Validation HERE
-            if (!m_appliableTo.HasItem((BlueprintAbilityReference r) => r.Is(bp)))
-            {
+            
+            var part = evt.Spell.Caster?.Get<UnitPartKineticist>();
+            if (part == null)
                 return;
+            else if (part.Blasts.Any(x=>x.ToReference<BlueprintAbilityReference>().Is(bp)))
+            {
+                Rulebook.Trigger<RuleCastSpell>(new RuleCastSpell(spell, evt.SpellTarget)
+                {
+                    IsDuplicateSpellApplied = true
+                });
             }
 
-            Rulebook.Trigger<RuleCastSpell>(new RuleCastSpell(spell, evt.SpellTarget)
-            {
-                IsDuplicateSpellApplied = true
-            });
+            
+
+            
         }
 
-        private bool IsKineticBlast(BlueprintAbility blueprint)
-        {
-            throw new NotImplementedException();
-        }
-
-        List<BlueprintAbilityReference> m_appliableTo = new();
+        
+        
     }
 }

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TomeOfTheFirebird.New_Components
+namespace TomeOfTheFirebird.New_Components.Properties
 {
     public class HasFeaturePropertyGetter : ConditionalPropertyGetter
     {

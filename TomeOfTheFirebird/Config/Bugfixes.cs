@@ -7,6 +7,7 @@ namespace TomeOfTheFirebird.Config
         public bool NewSettingsOffByDefault = false;
         public SettingGroup FixExtraHits;
         public SettingGroup Purifier;
+        public SettingGroup Magus;
         public SettingGroup Cavalier;
         public SettingGroup Arcanist;
         public SettingGroup Items;
@@ -22,6 +23,7 @@ namespace TomeOfTheFirebird.Config
             NewSettingsOffByDefault = loadedSettings.NewSettingsOffByDefault;
             FixExtraHits.LoadSettingGroup(loadedSettings.FixExtraHits, NewSettingsOffByDefault);
             Purifier.LoadSettingGroup(loadedSettings.Purifier, NewSettingsOffByDefault);
+            Magus.LoadSettingGroup(loadedSettings.Magus, NewSettingsOffByDefault);
             Cavalier.LoadSettingGroup(loadedSettings.Cavalier, NewSettingsOffByDefault);
             Arcanist.LoadSettingGroup(loadedSettings.Arcanist, NewSettingsOffByDefault);
             Kineticist.LoadSettingGroup(loadedSettings.Kineticist, NewSettingsOffByDefault);

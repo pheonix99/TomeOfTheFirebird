@@ -10,23 +10,37 @@ NOW REQUIRES TabletopTweaks Core Module!
 
 ## Changelog
 
-1.3.4
+### 1.3.5
+Added Eldritch Scion (Sage) - it's just the Sage Bloodline / Sage Wildblood version of the Arcane Bloodline applied to Eldritch Scion. Warning: 
+
+Owlcat Eldritch Scion Magus was adding and removing the Arcane Weapon upgrades, creating some UI weirdness and possibly (not sure) causing issues with the multiple archetypes mod. Fixed this
+
+Improved Readme Formatting
+
+Dragonheir Scion gets Arcane Strike scaling now
+
+### 1.3.4
 Phoenix Bloodline for Bloodrager
+
 --Difference from tabletop, damage aura from level 20 power is save for half, rather than save for none
+
 --Soft dependency on Tabletop Tweaks Base's Bloodline Fixes for this component because I could not be bothered to write Owlcat bloodline logic then convert it to use Vek's if that's installed
 
 Clockwork Heart wild talent
 
 
 
-1.3.3
+### 1.3.3
+
 Patch for Mythic Kinetic Aegis not actually scaling with rank
+
 Removed Mythic Kinetic Aegis support for Expanded Elements Force Ward until I figure out what is supposed to be happening with that talent - sorry!
 
-1.3.2
+### 1.3.2
+
 Emergency fix for GUID issue
 
-1.3.1
+### 1.3.1
 
 Added Kineticist Internal Buffer class feature
 
@@ -40,49 +54,75 @@ Added Flame Shield wild talent's cold damage halving effect
 
 Hooked Kineticist Elemental Defense talents into the rest of the burn mechanics
 
-1.3.0
+### 1.3.0
+
 Upgraded to EE
+
 Removed redundant fixes to the Angel Path Artifact cloak (they still haven't fixed the weapon damage portion)
+
 Made Prodigious TWF alter requirements for Two Weapon Defense from Tabletop Tweaks Base
+
 Added Dispelling Bombs to the Dispel IFF Fix
 
-1.2.7
+### 1.2.7
+
 Added Death Witch Patron
+
 Fixed Feature-version of the vanilla Good reward from Dawn Of Dragons not working
+
 Reworked to bundle all files into one .dll
 
-1.2.6
+### 1.2.6
+
 Fix freezing sphere not doing damage
 
-1.2.5
+### 1.2.5
+
 Fix for discordant song UI errors
 
-1.2.4
+### 1.2.4
+
 Actually fixed the Prodigious TWF penalty-reduction.
+
 In unlimited-use mode Dragon and Abyssal bloodlines claws stay on after rest.
 
-1.2.3
+
+### 1.2.3
+
 Fixed Prodigious TWF penalty-reduction being active when it shouldn't be.
+
 Fixed Angel Cloak Artifact.
 
-1.2.2
+### 1.2.2
+
 Claws should stay active after combat if infinite-uses is active
+
 Improved Tabletop Tweaks Base detection
 
-1.2.1
+### 1.2.1
+
 Fixed bug with Oracle not being able to learn Bone Fists
 
-1.2.0
+### 1.2.0
+
 Requires Tabletop Tweaks Core Module
+
 Added Infinite-use sorc bloodline claw powers
+
 Added merged sorc draconic bloodline claw powers
+
 Added Ability Focus: Breath Weapon
+
 Added option to give Stigmatized Witch patron back, and options for Ember's default patron
+
 Purifier unique revelation Celestial Armor now behaves exactly as Armor Training including Advanced Armor Training access (Requires Tabletop Tweaks Base Module and Advanced Armor Training to be enabled)
+
 Discordant Song should now work with Martyr and Sensei
 
-1.1.1
+### 1.1.1
+
 Fixed Mercy: Injured always applying
+
 Fixed Chains Of Fire doing all hits on primary target.
 
 
@@ -110,9 +150,11 @@ Changes From Tabletop: Damage cancel on successful save works on all saves not r
 Entropic Shield: Cleric 1 self-buff. Incoming ranged attacks have 20% miss chance, non-illusion. 1 minute per level.
 
 Freezing Sphere: Wizard/Magus 6 evocation. 1d6/level cold damage to a spherical area, increased damage to water subtype.
+
 Changes From Tabletop: Damage cap is 20d6 instead of 15d6 to make vaguely relevant at the same level as chain lightning/chains of fire (effectively have selective baked in), Hellfire Ray (massively more damage and defenses against it are rarer) and Cold Ice Strike (natively quickened). Available in both tabletop 40ft blast and fireball standard 20ft blast - again, to make relevant when other on-level spells have much better form factor than nuking almost everything you can see.
 
 Gloomblind bolts: Level 3 Bloodrager/Magus/Witch/Wizard necromancy. Scorching ray, only dealing negative energy damage and blinding if the target doesn't save. 
+
 Changes From Tabletop: Was Conjuration (creation)[shadow] on TT but that makes about zero kinds of sense so I changed it to necromancy.
 
 Heal Mount: Level 3 Paladin. Is literally heal but you can only cast it on your animal companion. At last something to do with Paladin level 3 spell slots!
@@ -175,8 +217,15 @@ Kineticist: Now has the Internal Buffer feature - reduce accepted burn by one a 
 ---
 Purifier: Gets back level 3 revelation - TT purifier has forced unique pick, said ability is not implemented and probably not implementable so giving the pick back.
 
+### Bloodlines
+
+Blooderager Phoenix Bloodline is in.
+Tabletop Tweaks Base is required.
+
 ### Wild Talents:
+
 Elemental Defenses and Aerial Evasion now use the main burn cost system - this is *not* disableable
+
 Flame Shield correctly halves incoming frost damage
 
 ### Other
@@ -204,6 +253,7 @@ Movanic Devas now use greatswords properly
 ### Archetypes
 ---
 Purifers now get Cure Light / Cure Moderate automatically - the archetype takes till level five to not be Oracle But Worse In Literally Every Way otherwise.
+
 Purifier Celestial Armor now works exactly like Armor Training of a fighter with 4 less fighter levels - including Advanced Armor Training. This hard-requires Tabletop Tweaks Base and will not activate if it can't detect that.
 
 Stigmatized Witch gets Patron selection back - I consider switching from prepared to spontaneous a side-grade at best, with Witch's weak spell list downgrading patron to curse at the same time was just a nerfing. Comes with options to select Ember's patron. Disabled by default.
@@ -231,12 +281,19 @@ Made rewards from Monster Slayers and Local Production crusade events permanent 
 
 
 ##Coming Soon:
+
 Extending Draconic Bloodline claw upgrades to Dragon Mystery abilities if Expanded Content is installed
+
 More utility kinetic talents
+
 Divine Conduit Kineticist Archetype
+
 Banishing Warden Paladin Archetype
+
 Something for characters who get wings from multiple sources (bloodlines, mythic paths)
+
 Goodies for Aivu
+
 Overhaul Discordant Song and Hat Of Heartening Song to work through the auras directly, not their own buffs, so range modification effects them
 
 Phoenix Sorcerer Bloodline? Maybe?

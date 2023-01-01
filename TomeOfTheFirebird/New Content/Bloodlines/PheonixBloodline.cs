@@ -34,8 +34,8 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
 {
     static class PheonixBloodline
     {
-        static BlueprintFeatureReference BloodlineRequisiteFeature;
-        static BlueprintFeatureReference PhoenixBloodlineRequisiteFeature;
+        public static BlueprintFeatureReference BloodlineRequisiteFeature;
+        public static BlueprintFeatureReference PhoenixBloodlineRequisiteFeature;
         public static void MakePheonixBloodline()
         {
 

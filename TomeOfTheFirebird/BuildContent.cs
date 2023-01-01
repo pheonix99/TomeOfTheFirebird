@@ -27,6 +27,8 @@ using BlueprintCore.Utils;
 using TomeOfTheFirebird.Modified_Content.ImprovedMultiarchetypeProjct;
 using TomeOfTheFirebird.New_Content.Bloodlines;
 using TomeOfTheFirebird.New_Content.WildTalents;
+using TomeOfTheFirebird.Modified_Content.Feats;
+using TomeOfTheFirebird.New_Content.Archetypes;
 
 namespace TomeOfTheFirebird
 {
@@ -120,11 +122,15 @@ namespace TomeOfTheFirebird
                     PheonixBloodline.MakePheonixBloodline();
                     PheonixBloodline.MakePhoenixBloodragerBloodline();
 
+                    EldritchScionSage.Make();
 
                     Witch.ReturnAccursedPatrons();
 
                     ShimmeringMirage.Make();
                     ClockworkHeart.Make();
+
+
+                    ArcaneStrike.AddDHSScaling();
 
                 }
                 catch (Exception e)
@@ -174,7 +180,8 @@ namespace TomeOfTheFirebird
                     WitchPatrons.Finish();
 
                     ProdigiousTWF.AddTwoWeaponDefense();
-
+                    Magus.EScionSanityCheck();
+                   // MagusArcanaHandling.MergeEScion();
                     
 
                     //Modified_Content.ImprovedMultiarchetypeProjct.SpellSlots.Execute();                    

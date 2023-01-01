@@ -26,5 +26,14 @@
 
       }
     }
+  },
+  "Fighter": {
+    "DisableAll": false,
+    "Settings": {
+      "DragonheirScionArcaneStrikeScaling": {
+        "Enabled": false,
+        "Description": "Arcane Strike scales with DHS plus Dragon Disciple level if that's better than max caster level"
+      }
+    }
   }
 }

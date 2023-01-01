@@ -27,6 +27,16 @@
 
     }
   },
+  "Magus": {
+    "DisableAll": false,
+    "Settings": {
+      "CleanupEldritchScion": {
+        "Enabled": true,
+        "Description": "Kills weird add/remove of Arcane Weapon on Eldritch Scion."
+      }
+
+    }
+  },
   "Arcanist": {
     "DisableAll": false,
     "Settings": {

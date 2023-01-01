@@ -151,6 +151,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bugfixes\Classes\Magus.cs" />
     <Compile Include="Bugfixes\Items\AngelCloak.cs" />
     <Compile Include="BuildContent.cs" />
     <Compile Include="Config\ContentModifications.cs" />
@@ -168,6 +169,7 @@
     <Compile Include="Modified Content\Classes\Paladin.cs" />
     <Compile Include="Modified Content\Crusade\BetterDisplay.cs" />
     <Compile Include="Modified Content\Crusade\CrusadeBuffTweaks.cs" />
+    <Compile Include="Modified Content\Feats\ArcaneStrike.cs" />
     <Compile Include="Modified Content\ImprovedMultiarchetypeProjct\FighterCombatBoosts.cs" />
     <Compile Include="Modified Content\ImprovedMultiarchetypeProjct\HomebrewArchetypesCompFix.cs" />
     <Compile Include="Modified Content\ImprovedMultiarchetypeProjct\SpellSlots.cs" />
@@ -181,16 +183,17 @@
     <Compile Include="New Components\AllLevelsSpellSlotShift.cs" />
     <Compile Include="New Components\AllLevelsSpellSlotShiftPart.cs" />
     <Compile Include="New Components\ArtifactEnabledWeaponAngelDamageDice.cs" />
-    <Compile Include="New Components\ConditionalPropertyGetter.cs" />
+    <Compile Include="New Components\Properties\ConditionalPropertyGetter.cs" />
     <Compile Include="New Components\ContextDamageValueEnergyDamageDice.cs" />
     <Compile Include="New Components\ContextRankConfigShroudOfWater.cs" />
     <Compile Include="New Components\DoubleBlastComponent.cs" />
-    <Compile Include="New Components\FeatureRanksWithExtrasPropertyValueGetter.cs" />
-    <Compile Include="New Components\HasFeaturePropertyGetter.cs" />
+    <Compile Include="New Components\Properties\FeatureRanksWithExtrasPropertyValueGetter.cs" />
+    <Compile Include="New Components\Properties\HasFeaturePropertyGetter.cs" />
     <Compile Include="New Components\PhoenixHeartOfFireHealingComponent.cs" />
     <Compile Include="New Components\IncreaseSpecificSpellsCasterLevel.cs" />
     <Compile Include="New Components\InternalBufferComponent.cs" />
-    <Compile Include="New Components\MR1369Property.cs" />
+    <Compile Include="New Components\Properties\MaxCasterLevelPropertyGetter.cs" />
+    <Compile Include="New Components\Properties\MR1369Property.cs" />
     <Compile Include="New Components\PrequisiteKineticistElement.cs" />
     <Compile Include="New Components\Prerequisites\PrerequisiteBreathWeaponAccess.cs" />
     <Compile Include="New Components\Prerequisites\PrerequisiteAddedByFeature.cs" />
@@ -202,6 +205,7 @@
     <Compile Include="New Content\Archetypes\CinderAdept.cs" />
     <Compile Include="New Content\Archetypes\DivineConduit.cs" />
     <Compile Include="New Content\Archetypes\DragonbloodChymist.cs" />
+    <Compile Include="New Content\Archetypes\EldritchScionSage.cs" />
     <Compile Include="New Content\Archetypes\KineticLancer.cs" />
     <Compile Include="New Content\Bloodlines\PheonixBloodline.cs" />
     <Compile Include="New Content\Feats\Afterburn.cs" />

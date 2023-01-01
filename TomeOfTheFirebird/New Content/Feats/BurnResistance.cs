@@ -13,6 +13,7 @@ using TabletopTweaks.Core.NewComponents.Properties;
 using TabletopTweaks.Core.Utilities;
 using TomeOfTheFirebird.New_Components;
 using TomeOfTheFirebird.New_Components.Prerequisites;
+using TomeOfTheFirebird.New_Components.Properties;
 
 namespace TomeOfTheFirebird.New_Content.Feats
 {

@@ -20,6 +20,7 @@ using TabletopTweaks.Core.NewComponents;
 using TabletopTweaks.Core.NewComponents.Properties;
 using TabletopTweaks.Core.Utilities;
 using TomeOfTheFirebird.New_Components;
+using TomeOfTheFirebird.New_Components.Properties;
 using UnityModManagerNet;
 
 namespace TomeOfTheFirebird.New_Content.MythicAbilities
