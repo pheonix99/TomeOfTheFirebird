@@ -181,6 +181,7 @@ namespace TomeOfTheFirebird
 
                     ProdigiousTWF.AddTwoWeaponDefense();
                     Magus.EScionSanityCheck();
+                    EldritchScionSage.Link();
                    // MagusArcanaHandling.MergeEScion();
                     
 

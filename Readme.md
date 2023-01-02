@@ -10,7 +10,13 @@ NOW REQUIRES TabletopTweaks Core Module!
 
 ## Changelog
 
+
+### 1.3.6
+
+Eldritch Scion (Sage) learns bloodline spells!
+
 ### 1.3.5
+
 Added Eldritch Scion (Sage) - it's just the Sage Bloodline / Sage Wildblood version of the Arcane Bloodline applied to Eldritch Scion. Warning: Odd thingss may happen when crossclassing with sorc. Fixes/enforcing sage/sage awaiting Tabletop Tweaks Base updates.
 
 Owlcat Eldritch Scion Magus was adding and removing the Arcane Weapon upgrades, creating some UI weirdness and possibly (not sure) causing issues with the multiple archetypes mod. Fixed this
