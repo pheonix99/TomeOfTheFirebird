@@ -115,9 +115,9 @@ namespace TomeOfTheFirebird.New_Content.Archetypes
                     {
                         foreach (var q in x.m_Features)
                         {
-                            
 
-                            AddKnownSpell referant = q.Get()?.GetComponent<AddKnownSpell>();
+                            var feature = q.Get();
+                            AddKnownSpell referant = feature.GetComponent<AddKnownSpell>();
                             if (referant != null)
                             {
                                 q.Get().AddComponent<AddKnownSpell>(x =>
@@ -127,7 +127,7 @@ namespace TomeOfTheFirebird.New_Content.Archetypes
                                     x.m_Archetype = escionsage;
                                     x.SpellLevel = referant.SpellLevel;
                                 });
-                                Main.TotFContext.Logger.LogPatch($"Proliferated spell {referant.m_Spell} onto Eldritch Scion - Sage", v2);
+                                Main.TotFContext.Logger.LogPatch($"Proliferated spell {referant.m_Spell} onto Eldritch Scion - Sage", feature);
                             }
                         }
 

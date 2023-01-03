@@ -106,6 +106,11 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
                 x.SetDescription(Main.TotFContext, "At 1st level, when you confirm a critical hit against a target, you can also attempt to dispel the target as if you had cast dispel magic as a bloodrager spell and used the targeted dispel function. You can dispel only a single magical effect per use of this ability, and you can use this ability against a particular creature only once per day. At 8th level, you gain a +2 bonus on your dispel check when using this ability. At 20th level, you can attempt to dispel all magical effects on your target when using this ability.");
                 x.HideInCharacterSheetAndLevelUp = true;
                 x.HideInUI = true;
+                x.AddComponent<PrerequisiteFeature>(x =>
+                {
+                    x.m_Feature = BloodragerPhoenixDispellingStrikesDisplay.ToReference<BlueprintFeatureReference>();
+                    x.CheckInProgression = true;
+                });
             });
             Main.TotFContext.Logger.LogPatch("Created", BloodragerPhoenixDispellingStrikesLevel1);
             var BloodragerPhoenixDispellingStrikesBuffLevel1 = CreateBlueprint<BlueprintBuff>(Main.TotFContext, "BloodragerPhoenixDispellingStrikesLevel1Buff", x =>
@@ -156,6 +161,11 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
                 {
                     x.m_Feature = BloodragerPhoenixDispellingStrikesLevel1.ToReference<BlueprintUnitFactReference>();
                 });
+                x.AddComponent<PrerequisiteFeature>(x =>
+                {
+                    x.m_Feature = BloodragerPhoenixDispellingStrikesDisplay.ToReference<BlueprintFeatureReference>();
+                    x.CheckInProgression = true;
+                });
             });
             Main.TotFContext.Logger.LogPatch("Created", BloodragerPhoenixDispellingStrikesLevel8);
             var BloodragerPhoenixDispellingStrikesBuffLevel8 = CreateBlueprint<BlueprintBuff>(Main.TotFContext, "BloodragerPhoenixDispellingStrikesLevel8Buff", x =>
@@ -204,6 +214,11 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
                 x.AddComponent<RemoveFeatureOnApply>(x =>
                 {
                     x.m_Feature = BloodragerPhoenixDispellingStrikesLevel8.ToReference<BlueprintUnitFactReference>();
+                });
+                x.AddComponent<PrerequisiteFeature>(x =>
+                {
+                    x.m_Feature = BloodragerPhoenixDispellingStrikesDisplay.ToReference<BlueprintFeatureReference>();
+                    x.CheckInProgression = true;
                 });
             });
             Main.TotFContext.Logger.LogPatch("Created", BloodragerPhoenixDispellingStrikesLevel20);

@@ -165,6 +165,7 @@
     <Compile Include="Modified Content\Archetypes\Witch.cs" />
     <Compile Include="Modified Content\Bloodlines\AbyssalBloodlineModifications.cs" />
     <Compile Include="Modified Content\Bloodlines\DraconicBloodlineModifications.cs" />
+    <Compile Include="Modified Content\Classes\Bloodrager.cs" />
     <Compile Include="Modified Content\Classes\Kineticist.cs" />
     <Compile Include="Modified Content\Classes\Paladin.cs" />
     <Compile Include="Modified Content\Crusade\BetterDisplay.cs" />
