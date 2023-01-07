@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TomeOfTheFirebird.Modified_Content.KineticistOverhaul
+﻿namespace TomeOfTheFirebird.Modified_Content.KineticistOverhaul
 {
     class FixProgressionLayoutSillyness
     {

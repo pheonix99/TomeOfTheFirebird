@@ -1,17 +1,7 @@
-﻿using BlueprintCore.Blueprints.Configurators.Classes;
-using BlueprintCore.Blueprints.Configurators.Items.Ecnchantments;
-using BlueprintCore.Blueprints.Configurators.Items.Equipment;
-using BlueprintCore.Blueprints.Configurators.Items.Weapons;
-using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
+﻿using BlueprintCore.Blueprints.Configurators.Items.Ecnchantments;
 using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
-using Kingmaker.Designers.Mechanics.EquipmentEnchants;
 using Kingmaker.Designers.Mechanics.Facts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TomeOfTheFirebird.New_Components;
 
 namespace TomeOfTheFirebird.Bugfixes.Items

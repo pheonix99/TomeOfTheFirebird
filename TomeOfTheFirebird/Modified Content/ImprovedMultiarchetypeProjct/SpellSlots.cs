@@ -1,18 +1,9 @@
-﻿using BlueprintCore.Blueprints.CustomConfigurators.Classes;
-using BlueprintCore.Utils;
-using HarmonyLib;
+﻿using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
-using Kingmaker.EntitySystem.Stats;
-using Kingmaker.UnitLogic;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TabletopTweaks.Core.Utilities;
 using TomeOfTheFirebird.Helpers;
-using TomeOfTheFirebird.New_Components;
 
 namespace TomeOfTheFirebird.Modified_Content.ImprovedMultiarchetypeProjct
 {

@@ -1,19 +1,12 @@
 ﻿using BlueprintCore.Actions.Builder;
-using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Conditions.Builder;
 using BlueprintCore.Conditions.Builder.ContextEx;
 using BlueprintCore.Utils;
-using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Abilities.Components;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
-using Kingmaker.UnitLogic.Mechanics;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TomeOfTheFirebird.Helpers;
 
 namespace TomeOfTheFirebird.Modified_Content.Classes

@@ -1,17 +1,9 @@
 ﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
-using BlueprintCore.Actions.Builder.BasicEx;
-using BlueprintCore.Conditions.Builder;
-using BlueprintCore.Conditions.Builder.ContextEx;
-using BlueprintCore.Conditions.Builder.BasicEx;
 using Kingmaker.Blueprints.Classes.Selection;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TabletopTweaks.Core.Utilities;
 using TabletopTweaks.Core.NewComponents;
 using Kingmaker.Blueprints;

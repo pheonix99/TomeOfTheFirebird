@@ -1,17 +1,9 @@
-﻿using Kingmaker.Assets.UnitLogic.Mechanics.Properties;
-using Kingmaker.Blueprints;
+﻿using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
-using Kingmaker.Blueprints.Classes.Prerequisites;
 using Kingmaker.UnitLogic.Class.Kineticist.Properties;
 using Kingmaker.UnitLogic.Mechanics.Properties;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TabletopTweaks.Core.NewComponents.Properties;
 using TabletopTweaks.Core.Utilities;
-using TomeOfTheFirebird.New_Components;
 using TomeOfTheFirebird.New_Components.Prerequisites;
 using TomeOfTheFirebird.New_Components.Properties;
 

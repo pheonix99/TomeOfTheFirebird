@@ -1,13 +1,6 @@
 ﻿using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
-using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Selection;
-using Kingmaker.UnitLogic.Class.Kineticist;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TomeOfTheFirebird.Modified_Content.KineticistOverhaul
 {

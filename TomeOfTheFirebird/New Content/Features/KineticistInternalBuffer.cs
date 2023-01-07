@@ -1,23 +1,12 @@
 ﻿using BlueprintCore.Actions.Builder;
-using BlueprintCore.Actions.Builder.BasicEx;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
-using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
-using BlueprintCore.Conditions.Builder;
-using BlueprintCore.Conditions.Builder.BasicEx;
-using BlueprintCore.Conditions.Builder.ContextEx;
-using BlueprintCore.Conditions.Builder.NewEx;
 using BlueprintCore.Utils;
 using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.UnitLogic.ActivatableAbilities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TomeOfTheFirebird.Helpers;
 using TomeOfTheFirebird.New_Components;
 

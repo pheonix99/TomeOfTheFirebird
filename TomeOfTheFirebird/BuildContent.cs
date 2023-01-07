@@ -1,8 +1,6 @@
 ﻿using HarmonyLib;
-using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.JsonSystem;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
-using TabletopTweaks.Core.Utilities;
 using TomeOfTheFirebird.Crusade;
 using TomeOfTheFirebird.Bugfixes;
 using TomeOfTheFirebird.Modified_Content.Bloodlines;
@@ -19,17 +17,13 @@ using TomeOfTheFirebird.Modified_Content.Archetypes;
 using TomeOfTheFirebird.New_Content.Features;
 using TomeOfTheFirebird.Bugfixes.Items;
 using System;
-using UnityModManagerNet;
 using TomeOfTheFirebird.New_Content;
 using TomeOfTheFirebird.New_Content.MythicAbilities;
 using TomeOfTheFirebird.Modified_Content.Classes;
-using BlueprintCore.Utils;
-using TomeOfTheFirebird.Modified_Content.ImprovedMultiarchetypeProjct;
 using TomeOfTheFirebird.New_Content.Bloodlines;
 using TomeOfTheFirebird.New_Content.WildTalents;
 using TomeOfTheFirebird.Modified_Content.Feats;
 using TomeOfTheFirebird.New_Content.Archetypes;
-using BlueprintCore.Blueprints.CustomConfigurators;
 using BlueprintCore.Blueprints.Configurators.Root;
 
 namespace TomeOfTheFirebird

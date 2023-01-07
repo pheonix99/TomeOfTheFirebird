@@ -1,5 +1,4 @@
-﻿using BlueprintCore.Blueprints.Configurators.Classes;
-using BlueprintCore.Blueprints.CustomConfigurators.Classes;
+﻿using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using Kingmaker.Blueprints.Classes.Prerequisites;
 
 namespace TomeOfTheFirebird.Bugfixes.Classes

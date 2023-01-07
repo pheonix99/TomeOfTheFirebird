@@ -1,5 +1,4 @@
 ﻿using Kingmaker.Blueprints;
-using Kingmaker.Blueprints.Classes;
 using Kingmaker.ElementsSystem;
 using Kingmaker.PubSubSystem;
 using Kingmaker.UnitLogic;
@@ -8,11 +7,6 @@ using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.Class.Kineticist;
 using Kingmaker.UnitLogic.Mechanics.Components;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TomeOfTheFirebird.New_Components
 {

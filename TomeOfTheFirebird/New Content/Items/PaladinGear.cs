@@ -1,5 +1,4 @@
 ﻿using BlueprintCore.Blueprints.Components.Replacements;
-using BlueprintCore.Blueprints.Configurators.Items.Armors;
 using BlueprintCore.Blueprints.Configurators.Items.Equipment;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Utils;

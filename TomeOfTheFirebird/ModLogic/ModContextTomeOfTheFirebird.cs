@@ -1,5 +1,4 @@
 ﻿using TabletopTweaks.Core.ModLogic;
-using TomeOfTheFirebird.Config;
 using UnityModManagerNet;
 
 namespace TomeOfTheFirebird.ModLogic

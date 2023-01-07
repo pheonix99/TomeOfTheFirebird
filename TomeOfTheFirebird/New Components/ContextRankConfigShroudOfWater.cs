@@ -1,14 +1,7 @@
-﻿using Kingmaker.Blueprints;
-using Kingmaker.EntitySystem.Stats;
-using Kingmaker.UnitLogic;
+﻿using Kingmaker.EntitySystem.Stats;
 using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics;
-using Kingmaker.UnitLogic.Mechanics.Properties;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TomeOfTheFirebird.New_Components
 {

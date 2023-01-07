@@ -1,15 +1,11 @@
 ﻿using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.UnitLogic;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TomeOfTheFirebird.New_Components
 {
-	[AllowedOn(typeof(BlueprintFeature), false)]
+    [AllowedOn(typeof(BlueprintFeature), false)]
 	public class AllLevelsSpellSlotShift : UnitFactComponentDelegate
 	{
 		public override void OnActivate()

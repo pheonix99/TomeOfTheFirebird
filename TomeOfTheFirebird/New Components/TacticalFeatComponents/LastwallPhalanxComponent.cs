@@ -1,16 +1,10 @@
 ﻿using Kingmaker.Blueprints;
-using Kingmaker.Blueprints.Facts;
 using Kingmaker.Designers;
 using Kingmaker.EntitySystem.Entities;
 using Kingmaker.Enums;
 using Kingmaker.PubSubSystem;
 using Kingmaker.RuleSystem.Rules;
 using Kingmaker.UnitLogic;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TomeOfTheFirebird.New_Components.TacticalFeatComponents
 {

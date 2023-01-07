@@ -8,13 +8,7 @@ using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics.Components;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TabletopTweaks.Core.Utilities;
-using TomeOfTheFirebird.Helpers;
 using TomeOfTheFirebird.New_Content.Bloodlines;
 
 namespace TomeOfTheFirebird.New_Content.Archetypes

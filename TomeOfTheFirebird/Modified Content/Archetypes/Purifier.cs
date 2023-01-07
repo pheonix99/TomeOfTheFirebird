@@ -4,7 +4,6 @@ using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Selection;
 using System.Linq;
 using TabletopTweaks.Core.Utilities;
-using UnityModManagerNet;
 
 namespace TomeOfTheFirebird.Modified_Content.Archetypes
 {

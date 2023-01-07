@@ -6,11 +6,8 @@ using Kingmaker.Blueprints.Root.Strings;
 using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.UnitLogic;
 using Kingmaker.UnitLogic.Class.LevelUp;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace TomeOfTheFirebird.New_Components.Prerequisites
 {

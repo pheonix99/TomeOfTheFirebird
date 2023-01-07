@@ -1,8 +1,6 @@
-﻿using BlueprintCore.Blueprints.Configurators.Classes;
-using BlueprintCore.Blueprints.Configurators.Items.Ecnchantments;
+﻿using BlueprintCore.Blueprints.Configurators.Items.Ecnchantments;
 using BlueprintCore.Blueprints.Configurators.UnitLogic.ActivatableAbilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
-using BlueprintCore.Blueprints.Configurators.Classes.Spells;
 using BlueprintCore.Utils;
 using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.Localization;
@@ -11,18 +9,14 @@ using Kingmaker.UnitLogic.Mechanics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TabletopTweaks.Core.Utilities;
 using UnityEngine;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
-using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.Configurators.Classes.Selection;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using Kingmaker.Visual.Animation.Kingmaker.Actions;
 using Kingmaker.Blueprints.Classes;
-using TabletopTweaks.Core.ModLogic;
 using Kingmaker.Blueprints;
 using TomeOfTheFirebird.New_Components;
-using Kingmaker.Designers.Mechanics.Facts;
 
 namespace TomeOfTheFirebird.Helpers
 {

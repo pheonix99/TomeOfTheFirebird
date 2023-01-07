@@ -2,11 +2,6 @@
 using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TomeOfTheFirebird.Helpers;
 using TomeOfTheFirebird.New_Components.Prerequisites;
 

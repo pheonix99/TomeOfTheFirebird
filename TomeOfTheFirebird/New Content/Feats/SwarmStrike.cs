@@ -1,12 +1,7 @@
 ﻿using BlueprintCore.Utils;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Selection;
-using Kingmaker.UnitLogic.Abilities.Blueprints;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TomeOfTheFirebird.Helpers;
 using TomeOfTheFirebird.New_Components.TacticalFeatComponents;
 using UnityEngine;
