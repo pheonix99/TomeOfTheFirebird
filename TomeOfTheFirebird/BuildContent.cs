@@ -29,6 +29,8 @@ using TomeOfTheFirebird.New_Content.Bloodlines;
 using TomeOfTheFirebird.New_Content.WildTalents;
 using TomeOfTheFirebird.Modified_Content.Feats;
 using TomeOfTheFirebird.New_Content.Archetypes;
+using BlueprintCore.Blueprints.CustomConfigurators;
+using BlueprintCore.Blueprints.Configurators.Root;
 
 namespace TomeOfTheFirebird
 {
@@ -51,6 +53,8 @@ namespace TomeOfTheFirebird
                 {
                     if (Initialized) return;
                     Initialized = true;
+                    Settings.Make();
+
                     Main.TotFContext.Logger.Log("Building new spells");
 
 
@@ -130,6 +134,9 @@ namespace TomeOfTheFirebird
                     ClockworkHeart.Make();
 
 
+                    CoordinatedShot.Make();
+                    LastwallPhalanx.Make();
+                    SwarmStrike.Make();
                     ArcaneStrike.AddDHSScaling();
 
                 }
@@ -183,8 +190,10 @@ namespace TomeOfTheFirebird
                     Magus.EScionSanityCheck();
                     EldritchScionSage.Link();
                     Bloodrager.FixIcons();
-                   // MagusArcanaHandling.MergeEScion();
+                    // MagusArcanaHandling.MergeEScion();
                     
+
+                    RootConfigurator.ConfigureDelayedBlueprints();
 
                     //Modified_Content.ImprovedMultiarchetypeProjct.SpellSlots.Execute();                    
                 }

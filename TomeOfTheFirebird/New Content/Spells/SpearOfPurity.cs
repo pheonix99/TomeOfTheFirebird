@@ -88,7 +88,7 @@ namespace TomeOfTheFirebird.New_Spells
             builder.AddCraftInfoComponent(Kingmaker.Craft.CraftAOE.None, savingThrow: Kingmaker.Craft.CraftSavingThrow.Will,spellType:  Kingmaker.Craft.CraftSpellType.Damage);
             BlueprintAbility result = builder.Configure();
 
-            if (Main.TotFContext.NewContent.Spells.IsEnabled("SpearOfPurity"))
+            if (Settings.IsEnabled("SpearOfPurity"))
             {
                 result.AddToSpellList(SpellTools.SpellList.ClericSpellList, 2);
                 result.AddToSpellList(SpellTools.SpellList.AngelClericSpelllist, 2);

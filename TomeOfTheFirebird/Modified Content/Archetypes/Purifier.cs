@@ -24,7 +24,7 @@ namespace TomeOfTheFirebird.Modified_Content.Archetypes
             void PatchLevel3Revelation()
             {
 
-                if (Main.TotFContext.Bugfixes.Purifier.IsDisabled("LevelThreeRevelation")) { return; }
+                if (Settings.IsDisabled("PurifierLevelThreeRevelation")) { return; }
 
                 //var PuriferArchetype = Resources.GetBlueprint<BlueprintArchetype>("c9df67160a77ecd4a97928f2455545d7");
                 LevelEntry target = PuriferArchetype.RemoveFeatures.FirstOrDefault(x => x.Level == 3);
@@ -39,7 +39,7 @@ namespace TomeOfTheFirebird.Modified_Content.Archetypes
             void PatchRestoreCure()
             {
 
-                if (Main.TotFContext.Tweaks.Purifier.IsDisabled("RestoreEarlyCures")) { return; }
+                if (Settings.IsDisabled("PurifierRestoreEarlyCures")) { return; }
 
 
                 BlueprintFeature earlycure = BlueprintTool.Get<BlueprintFeature>("PurifierLimitedCures");
@@ -70,9 +70,10 @@ namespace TomeOfTheFirebird.Modified_Content.Archetypes
 
             void CelestialArmorTraining()
             {
-                if (Main.TotFContext.Tweaks.Purifier.IsDisabled("CelestialArmorTraining"))
+                if (Settings.IsDisabled("PurifierCelestialArmorTraining"))
                     return;
-                if (UnityModManager.FindMod("TabletopTweaks-Base") == null)
+                if (!Settings.IsTTTBaseEnabled())
+               
                     return;
                 BlueprintFeatureSelection ArmorTrainingSelection = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("354f1a4426d24ea38718905108f48e72");
                 if (ArmorTrainingSelection == null)

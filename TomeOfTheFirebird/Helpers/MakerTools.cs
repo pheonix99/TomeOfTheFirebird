@@ -14,6 +14,7 @@ using System.Linq;
 using TabletopTweaks.Core.Utilities;
 using UnityEngine;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.Configurators.Classes.Selection;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using Kingmaker.Visual.Animation.Kingmaker.Actions;
@@ -21,11 +22,14 @@ using Kingmaker.Blueprints.Classes;
 using TabletopTweaks.Core.ModLogic;
 using Kingmaker.Blueprints;
 using TomeOfTheFirebird.New_Components;
+using Kingmaker.Designers.Mechanics.Facts;
 
 namespace TomeOfTheFirebird.Helpers
 {
     public static class MakerTools
     {
+        
+
         public static BlueprintFeature ApplySpellsPerDayChangeToFeature(Blueprint<BlueprintReference<BlueprintFeature>> blueprint, BlueprintCharacterClassReference charclass, int change = -1)
         {
             return FeatureConfigurator.For(blueprint).AddComponent<AllLevelsSpellSlotShift>(x =>
@@ -48,7 +52,8 @@ namespace TomeOfTheFirebird.Helpers
             BlueprintFeature bp = TabletopTweaks.Core.Utilities.Helpers.CreateDerivedBlueprint<BlueprintFeature>(Main.TotFContext, sysName, Main.TotFContext.Blueprints.GetDerivedMaster("DiminishedSpellcastingMaster"), new SimpleBlueprint[] { archetype.Get() });
 
 
-            FeatureConfigurator feature = FeatureGuts(FeatureConfigurator.For(bp), sysName, $"{sourceArchetypeDisplayName} Diminished Spellcasting: {sourceClassDisplayName}", description, false, icon);
+            FeatureConfigurator feature = FeatureGuts(FeatureConfigurator.For(bp),  false, icon);
+            feature = MakeLocals(feature, sysName, $"{sourceArchetypeDisplayName} Diminished Spellcasting: {sourceClassDisplayName}", description);
             feature.SetIsClassFeature(true);
             feature.AddComponent<AllLevelsSpellSlotShift>(x =>
             {
@@ -71,16 +76,22 @@ namespace TomeOfTheFirebird.Helpers
             Main.TotFContext.Logger.Log($"Guid for {systemName} is {guid.ToString()}");
             FeatureConfigurator res = FeatureConfigurator.New(systemName, guid.ToString());
 
-            return FeatureGuts(res, systemName, displayName, description, hide, icon);
+            res = MakeLocals(res, systemName, displayName, description);
+            return FeatureGuts(res, hide, icon);
         }
 
-        private static FeatureConfigurator FeatureGuts(FeatureConfigurator featureConfigurator, string systemName, string displayName, string description, bool hide = false, Sprite icon = null)
+        private static FeatureConfigurator MakeLocals(FeatureConfigurator featureConfigurator, string systemName, string displayName, string description)
         {
             LocalizedString name = LocalizationTool.CreateString(systemName + ".Name", displayName);
             LocalizedString desc = LocalizationTool.CreateString(systemName + ".Desc", description);
 
 
-            featureConfigurator.SetDisplayName(name).SetDescription(desc);
+           return featureConfigurator.SetDisplayName(name).SetDescription(desc);
+        }
+
+        private static FeatureConfigurator FeatureGuts(FeatureConfigurator featureConfigurator, bool hide = false, Sprite icon = null)
+        {
+            
             if (icon != null)
             {
                 featureConfigurator.SetIcon(icon);
@@ -93,6 +104,17 @@ namespace TomeOfTheFirebird.Helpers
             return featureConfigurator;
         }
 
+        public static FeatureConfigurator MakeFeature(string systemName, LocalizedString displayName, LocalizedString description, bool hide = false, Sprite icon = null)
+        {
+            Main.TotFContext.Logger.Log($"Building New Feature: {systemName}");
+
+            Kingmaker.Blueprints.BlueprintGuid guid = Main.TotFContext.Blueprints.GetGUID(systemName);
+            Main.TotFContext.Logger.Log($"Guid for {systemName} is {guid.ToString()}");
+            FeatureConfigurator res = FeatureConfigurator.New(systemName, guid.ToString());
+        
+            return FeatureGuts(res, hide, icon);
+        }
+
         public static FeatureConfigurator MakeFeature(string systemName, string displayName, string description, bool hide = false, Sprite icon = null)
         {
             Main.TotFContext.Logger.Log($"Building New Feature: {systemName}");
@@ -100,8 +122,8 @@ namespace TomeOfTheFirebird.Helpers
             Kingmaker.Blueprints.BlueprintGuid guid = Main.TotFContext.Blueprints.GetGUID(systemName);
             Main.TotFContext.Logger.Log($"Guid for {systemName} is {guid.ToString()}");
             FeatureConfigurator res = FeatureConfigurator.New(systemName, guid.ToString());
-
-            return FeatureGuts(res, systemName, displayName, description, hide, icon);
+            res = MakeLocals(res, systemName, displayName, description);
+            return FeatureGuts(res,  hide, icon);
         }
 
        
@@ -263,6 +285,29 @@ namespace TomeOfTheFirebird.Helpers
             return new ContextDurationValue() { m_IsExtendable = extendable, Rate = duration, BonusValue = new ContextValue() { ValueType = Kingmaker.UnitLogic.Mechanics.ContextValueType.Rank }, DiceType = Kingmaker.RuleSystem.DiceType.One, DiceCountValue = new ContextValue() };
         }
 
+        public static BuffConfigurator MakeBuff(string systemName, LocalizedString displayName, LocalizedString description, Sprite icon = null)
+        {
+            Main.TotFContext.Logger.Log($"Building New Buff: {systemName}");
+            Kingmaker.Blueprints.BlueprintGuid guid = Main.TotFContext.Blueprints.GetGUID(systemName);
+            
+
+
+            BuffConfigurator buff = BuffConfigurator.New(systemName, guid.ToString()).SetDisplayName(displayName).SetDescription(description);
+            buff.SetFxOnStart(new Kingmaker.ResourceLinks.PrefabLink());
+            buff.SetFxOnRemove(new Kingmaker.ResourceLinks.PrefabLink());
+            if (icon != null)
+            {
+                buff.SetIcon(icon);
+
+            }
+            else
+            {
+                buff.AddToFlags(BlueprintBuff.Flags.HiddenInUi);
+            }
+
+            return buff;
+        }
+
         public static BuffConfigurator MakeBuff(string systemName, string displayName, string description, Sprite icon = null)
         {
             Main.TotFContext.Logger.Log($"Building New Buff: {systemName}");
@@ -286,6 +331,5 @@ namespace TomeOfTheFirebird.Helpers
 
             return buff;
         }
-
     }
 }

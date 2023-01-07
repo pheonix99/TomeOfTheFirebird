@@ -17,6 +17,9 @@ namespace TomeOfTheFirebird.Modified_Content.Classes
     {
         public static void FixIcons()
         {
+            if (Settings.IsDisabled("FixBloodragerSpellIcons"))
+                return;
+
             var bloodlineselector = BlueprintTool.Get<BlueprintFeatureSelection>("62b33ac8ceb18dd47ad4c8f06849bc01");
 
             foreach (var v in bloodlineselector.m_AllFeatures)

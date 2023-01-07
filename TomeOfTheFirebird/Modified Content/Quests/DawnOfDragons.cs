@@ -60,7 +60,7 @@ namespace TomeOfTheFirebird.QuestTweaks
             angelBlessingFeature.AddResistEnergy(type: Kingmaker.Enums.Damage.DamageEnergyType.Cold, value: new ContextValue() { Value = 10 }).AddStatBonus(Kingmaker.Enums.ModifierDescriptor.NaturalArmorEnhancement, stat: Kingmaker.EntitySystem.Stats.StatType.AC, value: 5);
             //angelBlessingFeature.AddFeatureSurvivesRespec();
             Kingmaker.Blueprints.Classes.BlueprintFeature angelBuilt = angelBlessingFeature.Configure();
-            if (Main.TotFContext.Tweaks.RewardFeatureConversion.IsDisabled("DawnOfDragons"))
+            if (Settings.IsDisabled("DawnOfDragonsRewardFeatureConversion"))
                 return;
             BlueprintEtude BuffGiver = BlueprintTools.GetBlueprint<BlueprintEtude>("ed86bf33a6a58cd40bf17ed141b6b94a");
             ActionList BuffGiverList = BuffGiver.Components.OfType<EtudePlayTrigger>().First().Actions;
@@ -68,25 +68,24 @@ namespace TomeOfTheFirebird.QuestTweaks
             ActionsBuilder DragonPowerAdd = ActionsBuilder.New().AddFact(angelBuilt.AssetGuidThreadSafe, new PlayerCharacter());
 
             GameAction adder;
-            if (Main.TotFContext.ContentModifications.DawnOfDragons.IsEnabled("CustomRewardForEveryone"))
+            switch (Settings.GetDD<Settings.DawnOfDragonsCustomReward>("DawnOfDragonsCustomReward"))
             {
-                adder = DragonPowerAdd.Build().Actions[0];
+                case Settings.DawnOfDragonsCustomReward.Everyone:
+                    adder = DragonPowerAdd.Build().Actions[0];
+                    break;
+                case Settings.DawnOfDragonsCustomReward.Angel:
+                    ConditionsBuilder isAngel = ConditionsBuilder.New().EtudeStatus(etude: isAngelEtude, started: true);
+                    ActionList angelOnlyAct = ActionsBuilder.New().Conditional(isAngel, ifTrue: DragonPowerAdd, ifFalse: AuraFeatureAdder).Build();
+                    //var act = ActionsBuilder.New().AddFact(AuraFeatureBuilt.AssetGuidThreadSafe, new PlayerCharacter()).Build();
+                    adder = angelOnlyAct.Actions[0];
+                    break;
+                case Settings.DawnOfDragonsCustomReward.Nobody:
+                default:
+                    adder = AuraFeatureAdder.Build().Actions[0];
+                    break;
             }
-            else if (Main.TotFContext.ContentModifications.DawnOfDragons.IsEnabled("CustomRewardForAngel"))
-            {
 
-
-                ConditionsBuilder isAngel = ConditionsBuilder.New().EtudeStatus(etude: isAngelEtude, started: true);
-                ActionList angelOnlyAct = ActionsBuilder.New().Conditional(isAngel, ifTrue: DragonPowerAdd, ifFalse: AuraFeatureAdder).Build();
-                //var act = ActionsBuilder.New().AddFact(AuraFeatureBuilt.AssetGuidThreadSafe, new PlayerCharacter()).Build();
-                adder = angelOnlyAct.Actions[0];
-
-                
-            }
-            else
-            {
-                adder = AuraFeatureAdder.Build().Actions[0];
-            }
+            
             BuffGiverList.Actions.Remove(x => x is AttachBuff);
             BuffGiverList.Actions = BuffGiverList.Actions.Append(adder).ToArray();
 

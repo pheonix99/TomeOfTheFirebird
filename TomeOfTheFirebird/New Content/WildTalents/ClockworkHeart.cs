@@ -1,4 +1,5 @@
 ﻿using BlueprintCore.Blueprints.Configurators.Classes.Selection;
+using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using Kingmaker.Blueprints.Classes;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace TomeOfTheFirebird.New_Content.WildTalents
     {
         public static void Make()
         {
-            var config = MakerTools.MakeFeature("WildTalentClockworkHeart", "Clockwork Heart", "You have used your power over metal to add clockwork components to your own body. So long as these clockwork components are kept wound (per the winding ability of the clockwork subtypeB3), you gain the benefits of both the Improved Initiative and Lightning Reflexes feats.", false);
+            var config = MakerTools.MakeFeature("WildTalentClockworkHeart", "Clockwork Heart", $"Element: Earth\nType utility (Su)\n Level 3\n Burn —\nYou have used your power over metal to add clockwork components to your own body. So long as these clockwork components are kept wound (per the winding ability of the clockwork subtype), you gain the benefits of both the Improved Initiative and Lightning Reflexes feats.", false);
             config.SetIsClassFeature(true);
             config.SetRanks(1);
             config.AddToGroups(FeatureGroup.KineticWildTalent);
@@ -23,10 +24,11 @@ namespace TomeOfTheFirebird.New_Content.WildTalents
 
             var made = config.Configure();
 
-            if (Main.TotFContext.NewContent.WildTalents.IsDisabled("ClockworkHeart"))
+            if (!Settings.IsEnabled("ClockworkHeart"))
                 return;
+            
             FeatureSelectionConfigurator.For("5c883ae0cd6d7d5448b7a420f51f8459").AddToAllFeatures(made).Configure();
-
+            FeatureConfigurator.For("ad20bc4e586278c4996d4a81b2448998").AddToIsPrerequisiteFor("WildTalentClockworkHeart").Configure();
 
 
 

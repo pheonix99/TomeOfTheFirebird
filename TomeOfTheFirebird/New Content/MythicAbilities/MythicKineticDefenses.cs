@@ -59,7 +59,7 @@ namespace TomeOfTheFirebird.New_Content.MythicAbilities
             BlueprintFeature built = featureConfig.Configure();
 
             Main.TotFContext.Logger.LogPatch(built);
-            if (Main.TotFContext.NewContent.MythicAbilities.IsDisabled("MythicKineticAegis"))
+            if (Settings.IsDisabled("MythicKineticAegis"))
                 return;
             FixFleshOfStone();
             FixEnvelopingWinds();
@@ -318,7 +318,7 @@ namespace TomeOfTheFirebird.New_Content.MythicAbilities
 
         public static void MakeLater()
         {
-            if (Main.TotFContext.NewContent.MythicAbilities.IsDisabled("MythicKineticAegis"))
+            if (Settings.IsDisabled("MythicKineticAegis"))
                 return;
             if (UnityModManager.FindMod("KineticistElementsExpanded")?.Enabled == true)
             {

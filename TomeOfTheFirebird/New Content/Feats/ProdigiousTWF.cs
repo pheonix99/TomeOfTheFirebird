@@ -24,7 +24,7 @@ namespace TomeOfTheFirebird.New_Content.Feats
             maker.AddComponent(new TWFNoPenaltyFromNotLight());
 
             Prodigious = maker.Configure();
-            if (Main.TotFContext.NewContent.Feats.IsDisabled("ProdigiousTWF")) { return; }
+            if (Settings.IsDisabled("ProdigiousTWF")) { return; }
 
             TabletopTweaks.Core.Utilities.FeatTools.AddAsFeat(Prodigious);
 
@@ -63,7 +63,7 @@ namespace TomeOfTheFirebird.New_Content.Feats
 
         public static void AddTwoWeaponDefense()
         {
-            if (Main.TotFContext.NewContent.Feats.IsDisabled("ProdigiousTWF")) { return; }
+            if (Settings.IsDisabled("ProdigiousTWF")) { return; }
             BlueprintFeature TWD = BlueprintTools.GetBlueprint<BlueprintFeature>("3eee747139f94b1d8d672c8bb63137d7");
             if (TWD != null)
             {

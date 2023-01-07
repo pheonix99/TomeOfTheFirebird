@@ -34,7 +34,7 @@ namespace TomeOfTheFirebird.Bugfixes
             BlueprintWeaponEnchantment HolyAvengerEnchant = BlueprintTools.GetBlueprint<BlueprintWeaponEnchantment>("119b0b2ddae69d4438e6a4bedff32412");
 
             AddFactContextActions list =  HolyAvengerEnchant.Components.OfType<AddFactContextActions>().FirstOrDefault();
-            if (Main.TotFContext.Bugfixes.Items.IsEnabled("FixRadianceFinalForm"))
+            if (Settings.IsEnabled("FixRadianceFinalForm"))
             {
 
                 list.Activated.Actions = list.Activated.Actions.Append<GameAction>(apply.Build().Actions[0]).ToArray();

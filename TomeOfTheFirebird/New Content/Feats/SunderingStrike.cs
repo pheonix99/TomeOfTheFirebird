@@ -57,7 +57,7 @@ namespace TomeOfTheFirebird.New_Content.Feats
             SunderingFeat.AddFeatureTagsComponent(FeatureTag.Attack| FeatureTag.CombatManeuver);
 
             BlueprintFeature sunderprocbuild = SunderingFeat.Configure();
-            if (Main.TotFContext.NewContent.Feats.IsEnabled("SunderingStrike"))
+            if (Settings.IsEnabled("SunderingStrike"))
             {
                 FeatureConfigurator.For("9719015edcbf142409592e2cbaab7fe1").AddToIsPrerequisiteFor(sunderprocbuild.AssetGuidThreadSafe);
 

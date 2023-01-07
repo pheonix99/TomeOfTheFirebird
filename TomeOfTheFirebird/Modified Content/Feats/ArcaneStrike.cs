@@ -62,7 +62,7 @@ namespace TomeOfTheFirebird.Modified_Content.Feats
                 });
 
             });
-            if (Main.TotFContext.ContentModifications.Fighter.IsDisabled("DragonheirScionArcaneStrikeScaling"))
+            if (Settings.IsDisabled("DragonheirScionArcaneStrikeScaling"))
                 return;
             var arcanestrikebuff = BlueprintTool.Get<BlueprintBuff>("98ac795afd1b2014eb9fdf2b9820808f");
             var scalarConfig = arcanestrikebuff.GetComponent<ContextRankConfig>();

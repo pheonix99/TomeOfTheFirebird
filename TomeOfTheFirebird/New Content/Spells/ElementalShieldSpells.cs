@@ -83,7 +83,7 @@ namespace TomeOfTheFirebird.New_Spells
 
             rootFireShieldBuilder.AddAbilityVariants( new List<Blueprint<BlueprintAbilityReference>>() { warmSpellBuilt.ToReference<BlueprintAbilityReference>(), coldSpellBuilt.ToReference<BlueprintAbilityReference>() });
             BlueprintAbility rootFireIceSpell = rootFireShieldBuilder.Configure();
-            if (Main.TotFContext.NewContent.Spells.IsEnabled("FireShield"))
+            if (Settings.IsEnabled("FireShield"))
             {
                 rootFireIceSpell.AddToSpellList(SpellTools.SpellList.AlchemistSpellList, 4);
                 rootFireIceSpell.AddToSpellList(SpellTools.SpellList.BloodragerSpellList, 4);
@@ -94,7 +94,7 @@ namespace TomeOfTheFirebird.New_Spells
                 rootFireIceSpell.AddToSpellSpecialization();
 
             }
-            if (Main.TotFContext.NewContent.Spells.IsEnabled("VitrolicMist"))
+            if (Settings.IsEnabled("VitrolicMist"))
             {
                 acidSpellBuilt.AddToSpellList(SpellTools.SpellList.AlchemistSpellList, 4);
                 acidSpellBuilt.AddToSpellList(SpellTools.SpellList.BloodragerSpellList, 4);

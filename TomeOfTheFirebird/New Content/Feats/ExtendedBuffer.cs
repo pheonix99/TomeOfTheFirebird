@@ -1,4 +1,5 @@
-﻿using BlueprintCore.Utils;
+﻿using BlueprintCore.Blueprints.CustomConfigurators.Classes;
+using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using System;
@@ -31,13 +32,13 @@ namespace TomeOfTheFirebird.New_Content.Feats
 
             BlueprintFeature done = config.Configure();
             Main.TotFContext.Logger.LogPatch(done);
-            if (Main.TotFContext.NewContent.ClassFeatures.IsDisabled("InternalBuffer"))
+            if (Settings.IsDisabled("InternalBuffer"))
                 return;
-            if (Main.TotFContext.NewContent.Feats.IsDisabled("ExtendedBuffer"))
+            if (Settings.IsDisabled("ExtendedBuffer"))
                 return;
             TabletopTweaks.Core.Utilities.FeatTools.AddAsFeat(done);
 
-            
+            FeatureConfigurator.For("InternalBufferFeature").AddToIsPrerequisiteFor("ExtendedBufferFeature").Configure();
 
 
 

@@ -48,7 +48,7 @@ namespace TomeOfTheFirebird.New_Content.Feats
             abilityFocusconfig.AddComponent<PrerequisiteBreathWeaponAccess>();
 
             BlueprintFeature finished = abilityFocusconfig.Configure();
-            if (Main.TotFContext.NewContent.Feats.IsDisabled("AbilityFocusBreathWeapons"))
+            if (Settings.IsDisabled("AbilityFocusBreathWeapons"))
                 return;
             TabletopTweaks.Core.Utilities.FeatTools.AddAsFeat(finished);
 

@@ -65,7 +65,7 @@ namespace TomeOfTheFirebird.New_Spells
             TKStrikeBuilderCast.AddCraftInfoComponent(Kingmaker.Craft.CraftAOE.None, savingThrow: Kingmaker.Craft.CraftSavingThrow.None,spellType: Kingmaker.Craft.CraftSpellType.Buff);
             BlueprintAbility builtCast = TKStrikeBuilderCast.Configure();
             
-            if (Main.TotFContext.NewContent.Spells.IsEnabled("TelekineticStrikes"))
+            if (Settings.IsEnabled("TelekineticStrikes"))
             {
                 builtCast.AddToSpellList(SpellTools.SpellList.MagusSpellList, 2);
                 builtCast.AddToSpellList(SpellTools.SpellList.WizardSpellList, 2);

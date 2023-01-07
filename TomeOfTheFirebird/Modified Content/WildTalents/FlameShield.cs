@@ -17,6 +17,9 @@ namespace TomeOfTheFirebird.Modified_Content.WildTalents
     {
         public static void PatchFlameSheild()
         {
+            if (Settings.IsDisabled("FixFlameShield"))
+                return;
+
             var buff = BlueprintTool.Get<BlueprintBuff>("23c0f0417981608479131d25d4349f7d");
             buff.AddComponent<ElementalBarrierDamageDivisor>(x =>
             {

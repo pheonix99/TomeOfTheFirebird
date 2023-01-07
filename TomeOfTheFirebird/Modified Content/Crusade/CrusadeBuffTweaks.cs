@@ -14,7 +14,7 @@ namespace TomeOfTheFirebird.Modified_Content.Crusade
     {
         public static void PermaMonsterSlayers()
         {
-            if (Main.TotFContext.ContentModifications.Crusade.IsDisabled("MonsterSlayers"))
+            if (Settings.IsDisabled("CrusadeMonsterSlayers"))
                 return;
             BlueprintKingdomBuff monsterSlayers = BlueprintTools.GetBlueprint<BlueprintKingdomBuff>("c1b2b611c9b242b4ae84944eb0eb9e91");
             monsterSlayers.DurationDays = 0;
@@ -29,7 +29,7 @@ namespace TomeOfTheFirebird.Modified_Content.Crusade
 
         public static void PermaLocalProduction()
         {
-            if (Main.TotFContext.ContentModifications.Crusade.IsDisabled("LocalProduction"))
+            if (Settings.IsDisabled("CrusadeLocalProduction"))
                 return;
             Blades();
             Bows();

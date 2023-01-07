@@ -35,7 +35,7 @@ namespace TomeOfTheFirebird.New_Content.Spells
 
             BlueprintAbility build = maker.Configure();
 
-            if (Main.TotFContext.NewContent.Spells.IsEnabled("EntropicShield"))
+            if (Settings.IsEnabled("EntropicShield"))
             {
                 SpellTools.AddToSpellList(build, SpellTools.SpellList.ClericSpellList, 1);
                 build.AddToSpellSpecialization();

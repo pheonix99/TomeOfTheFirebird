@@ -57,7 +57,7 @@ namespace TomeOfTheFirebird.New_Spells
             BoneFists.AddAbilityTargetsAround(radius: new Kingmaker.Utility.Feet(15f), spreadSpeed: new Kingmaker.Utility.Feet(11f), targetType: Kingmaker.UnitLogic.Abilities.Components.TargetType.Ally);
             //BoneFists.AddCraftInfoComponent(Kingmaker.Craft.CraftSpellType.Buff, Kingmaker.Craft.CraftSavingThrow.None, Kingmaker.Craft.CraftAOE.AOE);
             bonefists = BoneFists.Configure();
-            if (Main.TotFContext.NewContent.Spells.IsEnabled("BoneFists"))
+            if (Settings.IsEnabled("BoneFists"))
             {
                 bonefists.AddToSpellList(SpellTools.SpellList.BloodragerSpellList, 2);
                 bonefists.AddToSpellList(SpellTools.SpellList.ClericSpellList, 2);

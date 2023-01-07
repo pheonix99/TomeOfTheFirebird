@@ -49,7 +49,7 @@ namespace TomeOfTheFirebird.New_Spells
 
 
 
-            if (Main.TotFContext.NewContent.Spells.IsEnabled("ChainsOfFire"))
+            if (Settings.IsEnabled("ChainsOfFire"))
             {
                 made.AddToSpellList(SpellTools.SpellList.WizardSpellList, 6);
                 made.AddToSpellList(SpellTools.SpellList.MagusSpellList, 6);

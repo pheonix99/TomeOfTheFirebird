@@ -46,7 +46,7 @@ namespace TomeOfTheFirebird.New_Content.Items
             BlueprintCore.Blueprints.CustomConfigurators.Classes.FeatureConfigurator avengingFeature = MakerTools.MakeFeature("BracersOfTheAvengingKnightFeature", "Bracers Of The Avenging Knight Feature", "You Shouldn't See This", true);
             string sharedDesc = "If the wearer has levels in a class that grants a smite ability (such as a paladin or hellknight), her smite damage is treated as though she were a member of that class four levels higher.";
             BlueprintCore.Blueprints.Configurators.Items.Ecnchantments.EquipmentEnchantmentConfigurator enchant = MakerTools.MakeItemEnchantment("BracersOfTheAvengingKnightEnchant", "Bracers Of The Avenging Knight", sharedDesc, 1);
-            if (Main.TotFContext.NewContent.Items.IsEnabled("BracersOfTheAvengingKnight"))
+            if (Settings.IsEnabled("BracersOfTheAvengingKnight"))
             {
                 
                 //var DestroSmite = Resources.GetBlueprint<BlueprintAbility>("e69898f762453514780eb5e467694bdb");
@@ -120,7 +120,7 @@ namespace TomeOfTheFirebird.New_Content.Items
         {
             BlueprintCore.Blueprints.CustomConfigurators.Classes.FeatureConfigurator MercyFeature = MakerTools.MakeFeature("BracersOfTheMercifulKnightFeature", "Bracers Of The Merciful Knight Feature", "You Shouldn't See This", true);
             BlueprintCore.Blueprints.Configurators.Items.Ecnchantments.EquipmentEnchantmentConfigurator enchant = MakerTools.MakeItemEnchantment("BracersOfTheMercifulKnightEnchant", "Bracers Of The Merciful Knight", "When worn by a paladin, she is considered four levels higher for the purposes of determining the uses per day and healing provided by her lay on hands class feature. This does not increase the power of her Channel Energy ability.", 1);
-            if (Main.TotFContext.NewContent.Items.IsEnabled("BracersOfTheMercifulKnight"))
+            if (Settings.IsEnabled("BracersOfTheMercifulKnight"))
             {
                 BlueprintAbility LayOnHandsSelf = BlueprintTools.GetBlueprint<BlueprintAbility>("8d6073201e5395d458b8251386d72df1");
 

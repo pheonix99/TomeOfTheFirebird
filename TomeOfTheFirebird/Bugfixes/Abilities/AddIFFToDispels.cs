@@ -26,7 +26,7 @@ namespace TomeOfTheFirebird.Bugfixes.Abilities
             {
                 if (Initialized) return;
                 Initialized = true;
-                if (Main.TotFContext.Tweaks.Spells.IsDisabled("DispelsAreBuffSafe"))
+                if (Settings.IsDisabled("DispelsAreBuffSafe"))
                     return;
                 Main.TotFContext.Logger.Log("Patching Dispel IFF");
                 FeatureConfigurator.For("1b92146b8a9830d4bb97ab694335fa7c").EditComponent<AddInitiatorAttackRollTrigger>(x => x.Action.Actions.OfType<ContextActionDispelMagic>().FirstOrDefault().OnlyTargetEnemyBuffs = true).Configure();

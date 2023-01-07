@@ -1,4 +1,5 @@
 ﻿using BlueprintCore.Blueprints.CustomConfigurators;
+using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
@@ -37,8 +38,9 @@ namespace TomeOfTheFirebird.New_Content.Feats
 
 
                 Main.TotFContext.Logger.LogPatch(done);
-                if (Main.TotFContext.NewContent.Feats.IsDisabled("ExtraBurn"))
+                if (Settings.IsDisabled("ExtraBurn"))
                     return;
+                FeatureConfigurator.For("57e3577a0eb53294e9d7cc649d5239a3").AddToIsPrerequisiteFor("ExtraBurnFeature").Configure();
                 TabletopTweaks.Core.Utilities.FeatTools.AddAsFeat(done);
             }
            
@@ -57,8 +59,9 @@ namespace TomeOfTheFirebird.New_Content.Feats
                 comp.RestoreOnLevelUp = true;
 
                 Main.TotFContext.Logger.LogPatch(done);
-                if (Main.TotFContext.NewContent.Feats.IsDisabled("ExtraBurn"))
+                if (Settings.IsDisabled("ExtraBurn"))
                     return;
+                FeatureConfigurator.For("2fa48527ba627254ba9bf4556330a4d4").AddToIsPrerequisiteFor("ExtraBurnFeaturePK").Configure();
                 TabletopTweaks.Core.Utilities.FeatTools.AddAsFeat(done);
             }
         }

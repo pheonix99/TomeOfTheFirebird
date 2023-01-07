@@ -1,0 +1,94 @@
+﻿[
+  {
+    "Key": "TotF.Settings.Title",
+    "ProcessTemplates": false,
+    "enGB": "Character Options+"
+  },
+
+  {
+    "Key": "TotF.Settings.VerboseLogging",
+    "ProcessTemplates": false,
+    "enGB": "Enable Detailed Logs"
+  },
+  {
+    "Key": "TotF.Settings.VerboseLogging.Description",
+    "ProcessTemplates": false,
+    "enGB": "REQUIRES RESTART\nTurn this on and restart your game to get detailed logs for capturing bug reports.\nThis will probably cause lag as the logging is extremely detailed, but this makes it a lot easier to identify and fix bugs quickly."
+  },
+
+  {
+    "Key": "TotF.Settings.Homebrew.Title",
+    "ProcessTemplates": false,
+    "enGB": "Optional Rules",
+    "ruRU": "Опциональные правила"
+  },
+
+  {
+    "Key": "TotF.Settings.Archetypes.Title",
+    "ProcessTemplates": false,
+    "enGB": "Archetypes",
+    "ruRU": "Архетипы"
+  },
+
+  {
+    "Key": "TotF.Settings.ClassFeatures.Title",
+    "ProcessTemplates": false,
+    "enGB": "Class Features",
+    "ruRU": "Классовые черты"
+  },
+
+  {
+    "Key": "TotF.Settings.Feats.Title",
+    "ProcessTemplates": false,
+    "enGB": "Feats",
+    "ruRU": "Черты"
+  },
+
+  {
+    "Key": "TotF.Settings.Fixes.Title",
+    "ProcessTemplates": false,
+    "enGB": "Bug Fixes",
+    "ruRU": "Исправления багов"
+  },
+
+  {
+    "Key": "TotF.Settings.Spells.Title",
+    "ProcessTemplates": false,
+    "enGB": "Spells",
+    "ruRU": "Заклинания"
+  },
+  {
+    "Key": "TotF.Settings.Items.Title",
+    "ProcessTemplates": false,
+    "enGB": "Items"
+  },
+  {
+    "Key": "TotF.Settings.Crusade.Title",
+    "ProcessTemplates": false,
+    "enGB": "Crusade"
+  },
+  {
+    "Key": "TotF.Settings.Tweaks.Title",
+    "ProcessTemplates": false,
+    "enGB": "Tweaks"
+  },
+  {
+    "Key": "TotF.Settings.MythicAbilities.Title",
+    "ProcessTemplates": false,
+    "enGB": "Mythic Abilities"
+  },
+
+  {
+    "Key": "TotF.Settings.WildTalents.Title",
+    "ProcessTemplates": false,
+    "enGB": "Wild Talents"
+  },
+
+  {
+    "Key": "TotF.Settings.EnableFeature",
+    "ProcessTemplates": false,
+    "enGB": "REQUIRES RESTART\n\nTurning this off prevents the feature from working: characters cannot select this feature and characters with it cannot use it. You can still load save games that reference it.",
+    "ruRU": "ТРЕБУЕТ РЕСТАРТ\n\nЕсли вы отключите эту настройку, черта перестанет работать: персонажи, у которых она уже есть, не смогут ею пользоваться. Но это не помешает загружать сохранения, в которых присутствует эта черта."
+  }
+
+]

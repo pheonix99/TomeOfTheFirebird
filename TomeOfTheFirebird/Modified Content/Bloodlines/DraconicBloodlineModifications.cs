@@ -207,7 +207,7 @@ namespace TomeOfTheFirebird.Modified_Content.Bloodlines
             toggle2.SetActivationType(Kingmaker.UnitLogic.ActivatableAbilities.AbilityActivationType.WithUnitCommand);
             toggle3.SetActivationType(Kingmaker.UnitLogic.ActivatableAbilities.AbilityActivationType.WithUnitCommand);
             toggle4.SetActivationType(Kingmaker.UnitLogic.ActivatableAbilities.AbilityActivationType.WithUnitCommand);
-            if (Main.TotFContext.Tweaks.Bloodlines.IsDisabled("UnlimitedSorcererBloodlineClaws"))
+            if (Settings.IsDisabled("UnlimitedSorcererBloodlineClaws"))
             {
                 toggle1.AddActivatableAbilityResourceLogic(spendType: Kingmaker.UnitLogic.ActivatableAbilities.ActivatableAbilityResourceLogic.ResourceSpendType.NewRound, requiredResource:  "5be91334e3de5aa458ade509cc16daff").SetDeactivateImmediately(true).SetDeactivateIfCombatEnded(true);
                 toggle2.AddActivatableAbilityResourceLogic(spendType: Kingmaker.UnitLogic.ActivatableAbilities.ActivatableAbilityResourceLogic.ResourceSpendType.NewRound, requiredResource:  "5be91334e3de5aa458ade509cc16daff").SetDeactivateImmediately(true).SetDeactivateIfCombatEnded(true);
@@ -259,7 +259,7 @@ namespace TomeOfTheFirebird.Modified_Content.Bloodlines
             realt3Feature.Configure();
             BlueprintFeature t4build = t4Feature.Configure();
            
-            if (Main.TotFContext.Tweaks.Bloodlines.IsDisabled("CombineSorcererDragonClaws"))
+            if (Settings.IsDisabled("CombineSorcererDragonClaws"))
                 return;
             
 

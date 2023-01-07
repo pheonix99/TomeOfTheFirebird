@@ -29,7 +29,8 @@ namespace TomeOfTheFirebird.New_Content
                 spells.Add(rayOfEnfeeblement);
                 BlueprintAbility blessingOfCourageAndLife = BlueprintTools.GetBlueprint<BlueprintAbility>("c36c1d11771b0584f8e100b92ee5475b");
                 BlueprintAbility boneshaker = BlueprintTools.GetBlueprint<BlueprintAbility>("b7731c2b4fa1c9844a092329177be4c3");
-                if (Main.TotFContext.NewContent.WitchPatrons.IsDisabled("DeathPatronReplaceBlessingOfCourageAndLife"))
+                
+                if (!Settings.IsEnabled("witchpatronl2replace"))
                 {
                     spells.Add(blessingOfCourageAndLife);
                 }
@@ -115,7 +116,7 @@ namespace TomeOfTheFirebird.New_Content
         public static void Finish()
         {
             BlueprintFeatureSelection witchSelector = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("381cf4c890815d049a4420c6f31d063f");
-            if (!Main.TotFContext.NewContent.WitchPatrons.IsDisabled("DeathPatron") && !Main.TotFContext.NewContent.Spells.IsDisabled("GloomblindBolts"))
+            if (Settings.IsEnabled("witchpatrondeath") && Settings.IsEnabled("GloomblindBolts"))
             {
                 witchSelector.AddFeatures(BlueprintTools.GetModBlueprint<BlueprintProgression>(Main.TotFContext, "WitchDeathPatronProgression"));
                 Main.TotFContext.Logger.LogPatch("Added Death Patron", witchSelector);

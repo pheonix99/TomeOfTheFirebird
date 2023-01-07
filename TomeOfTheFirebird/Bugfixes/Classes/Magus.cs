@@ -13,7 +13,7 @@ namespace TomeOfTheFirebird.Bugfixes.Classes
     {
         public static void EScionSanityCheck()
         {
-            if (Main.TotFContext.Bugfixes.Magus.IsDisabled("CleanupEldritchScion"))
+            if (Settings.IsDisabled("CleanupEldritchScion"))
                 return;
 
             BlueprintArchetype escion = BlueprintTool.Get<BlueprintArchetype>("d078b2ef073f2814c9e338a789d97b73");

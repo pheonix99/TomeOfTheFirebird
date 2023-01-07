@@ -6,10 +6,17 @@ And also some more random stuff I made when I got annoyed at the game.
 
 All homebrew content or divergences from TT will be called out.
 
-NOW REQUIRES TabletopTweaks Core Module!
+NOW REQUIRES TabletopTweaks Core Module and ModMenu
 
 ## Changelog
 
+### 1.4.0
+
+Switched to building UI with ModMenu
+
+Added Coordinated Strike, Lastwall Phalanx and Swarm Strike teamwork feats.
+
+Improved prerequisite for handling in several places
 
 ### 1.3.6
 

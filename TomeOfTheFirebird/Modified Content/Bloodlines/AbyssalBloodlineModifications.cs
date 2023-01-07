@@ -13,7 +13,7 @@ namespace TomeOfTheFirebird.Modified_Content.Bloodlines
 "f68af48f9ebf32549b5f9fdc4edfd475" };
         public static void GiveInfiniteUses()
         {
-            if (Main.TotFContext.Tweaks.Bloodlines.IsDisabled("UnlimitedSorcererBloodlineClaws"))
+            if (Settings.IsDisabled("UnlimitedSorcererBloodlineClaws"))
             {
                 return;
             }

@@ -20,7 +20,7 @@ namespace TomeOfTheFirebird.Bugfixes.Items
     {
         public static void CloakFix()
         {
-            if (Main.TotFContext.Bugfixes.Items.IsDisabled("FixAngelArtifactCloak"))
+            if (Settings.IsDisabled("FixAngelArtifactCloak"))
                 return;
 
             //Kingmaker.Blueprints.Items.Ecnchantments.BlueprintEquipmentEnchantment enchant = EquipmentEnchantmentConfigurator.For("10b62f56302c49c887d53787948c5cda").RemoveComponents(x => x is AddUnitFeatureEquipment).AddUnitFeatureEquipment("58b832df3c4a4ccba1f0c64138ca95fc").Configure();

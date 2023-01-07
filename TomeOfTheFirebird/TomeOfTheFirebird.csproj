@@ -84,6 +84,9 @@
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Build.Utilities.v4.0" />
+    <Reference Include="ModMenu">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Pathfinder Second Adventure\Mods\ModMenu\ModMenu.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -154,13 +157,13 @@
     <Compile Include="Bugfixes\Classes\Magus.cs" />
     <Compile Include="Bugfixes\Items\AngelCloak.cs" />
     <Compile Include="BuildContent.cs" />
-    <Compile Include="Config\ContentModifications.cs" />
     <Compile Include="Bugfixes\Classes\ArcanistFixes.cs" />
     <Compile Include="Bugfixes\Classes\CavalierFixes.cs" />
     <Compile Include="Bugfixes\RadianceLevel2Fix.cs" />
     <Compile Include="Helpers\Extensions.cs" />
     <Compile Include="Helpers\MoreFeatTools.cs" />
     <Compile Include="Helpers\SpellSpecializationTool.cs" />
+    <Compile Include="Helpers\TeamworkFeatFactory.cs" />
     <Compile Include="Modified Content\Archetypes\Purifier.cs" />
     <Compile Include="Modified Content\Archetypes\Witch.cs" />
     <Compile Include="Modified Content\Bloodlines\AbyssalBloodlineModifications.cs" />
@@ -201,6 +204,9 @@
     <Compile Include="New Components\Prerequisites\PrerequisiteClassLevelPerRank.cs" />
     <Compile Include="New Components\Prerequisites\PrerequisiteProperty.cs" />
     <Compile Include="New Components\Prerequisites\PrerequisiteUsesStandardBurn.cs" />
+    <Compile Include="New Components\TacticalFeatComponents\CoordinatedShotComponent.cs" />
+    <Compile Include="New Components\TacticalFeatComponents\LastwallPhalanxComponent.cs" />
+    <Compile Include="New Components\TacticalFeatComponents\SwarmStrikeComponent.cs" />
     <Compile Include="New Content\Archetypes\BanishingWarden.cs" />
     <Compile Include="New Content\Archetypes\Beastmorph.cs" />
     <Compile Include="New Content\Archetypes\CinderAdept.cs" />
@@ -213,6 +219,7 @@
     <Compile Include="New Content\Feats\Autobuffer.cs" />
     <Compile Include="New Content\Feats\BreathWeaponFeats.cs" />
     <Compile Include="New Content\Feats\BurnResistance.cs" />
+    <Compile Include="New Content\Feats\CoordinatedShot.cs" />
     <Compile Include="New Content\Feats\DiscordantSong.cs" />
     <Compile Include="New Content\Feats\ElementalOverload.cs" />
     <Compile Include="New Content\Feats\EnergyAim.cs" />
@@ -221,7 +228,9 @@
     <Compile Include="New Content\Feats\ExtraBurn.cs" />
     <Compile Include="New Content\Feats\KineticInvocation.cs" />
     <Compile Include="New Content\Feats\KineticLeap.cs" />
+    <Compile Include="New Content\Feats\LastwallPhalanx.cs" />
     <Compile Include="New Content\Feats\OverwhelmingDefense.cs" />
+    <Compile Include="New Content\Feats\SwarmStrike.cs" />
     <Compile Include="New Content\Features\KineticistDefenseOverclocks.cs" />
     <Compile Include="New Content\Features\KineticistDoubleMetakinesis.cs" />
     <Compile Include="New Content\Features\KineticistInternalBuffer.cs" />
@@ -239,9 +248,6 @@
     <Compile Include="New Components\Prerequisites\PrerequisiteLogicalAND.cs" />
     <Compile Include="New Components\RandomEnergyDamageOnWeaponAttack.cs" />
     <Compile Include="New Components\TWFNoPenaltyFromNotLight.cs" />
-    <Compile Include="Config\Bugfixes.cs" />
-    <Compile Include="Config\NewContent.cs" />
-    <Compile Include="Config\Tweaks.cs" />
     <Compile Include="Modified Content\Crusade\MonavicsUseTwoHanders.cs" />
     <Compile Include="Bugfixes\Abilities\AddIFFToDispels.cs" />
     <Compile Include="Bugfixes\FixExtraHitsOnProcs.cs" />
@@ -302,14 +308,10 @@
     <Compile Include="Reference\Guids.cs" />
     <Compile Include="Reference\LocalizedStrings.cs" />
     <Compile Include="Resources.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="Tweaks\FlawlessAttacks.cs" />
-    <Compile Include="UMMSettingsUI.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Config\NewContent.json" />
-    <EmbeddedResource Include="Config\Tweaks.json" />
-    <EmbeddedResource Include="Config\Bugfixes.json" />
-    <EmbeddedResource Include="Config\ContentModifications.json" />
     <None Include="app.config" />
     <EmbeddedResource Include="Config\Blueprints.json" />
     <None Include="BlueprintCore\changes.md" />
@@ -319,6 +321,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <EmbeddedResource Include="Localization\LocalizationPack.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localization\Settings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <None Include="packages.config" />
@@ -352,6 +357,7 @@
       <Assembly Include="$(OutputPath)\TomeOfTheFirebird.dll" />
       <ModConfig Include="$(OutputPath)\Info.json" />
       <Localization Include="$(OutputPath)\Localization\LocalizationPack.json" />
+      <Localization Include="$(OutputPath)\Localization\Settings.json" />
       <SpellAssets Include="$(OutputPath)\Assets\Spells\BoneFists.png" />
       <SpellAssets Include="$(OutputPath)\Assets\Spells\FreezingSphere.png" />
       <SpellAssets Include="$(OutputPath)\Assets\Spells\GloomblindBolts.png" />

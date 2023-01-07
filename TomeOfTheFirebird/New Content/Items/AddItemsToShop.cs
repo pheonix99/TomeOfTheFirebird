@@ -8,7 +8,7 @@ namespace TomeOfTheFirebird.New_Content.Items
     {
         public static void Add()
         {
-            if (Main.TotFContext.NewContent.Items.IsEnabled("BracersOfTheMercifulKnight"))
+            if (Settings.IsEnabled("BracersOfTheMercifulKnight"))
             {
 
                 //var merciful = Resources.GetModBlueprint<BlueprintItemEquipmentWrist>("BracersOfTheMercifulKnight");
@@ -30,7 +30,7 @@ namespace TomeOfTheFirebird.New_Content.Items
                 }).Configure(); ;
                 Main.TotFContext.Logger.LogPatch("Added Merciful Knight", editArsinoe);
             }
-            if (Main.TotFContext.NewContent.Items.IsEnabled("BracersOfTheAvengingKnight"))
+            if (Settings.IsEnabled("BracersOfTheAvengingKnight"))
             {
 
                 //var merciful = Resources.GetModBlueprint<BlueprintItemEquipmentWrist>("BracersOfTheMercifulKnight");

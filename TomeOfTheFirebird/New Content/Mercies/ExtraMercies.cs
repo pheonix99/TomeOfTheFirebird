@@ -139,12 +139,12 @@ namespace TomeOfTheFirebird.New_Content.Mercies
         public static void AddToThings()
         {
             string TTTExtraMercies = "6e76496c2748405d9946949977bd3e8d";
-            if (Main.TotFContext.NewContent.Mercies.IsEnabled("Injured"))
+            if (Settings.IsEnabled("mercyinjured"))
             {
                 FeatureSelectionConfigurator.For("02b187038a8dce545bb34bbfb346428d").AddToAllFeatures(injured.AssetGuidThreadSafe).Configure();
                 try
                 {
-                    FeatureSelectionConfigurator.For(TTTExtraMercies).AddToAllFeatures(injured.AssetGuidThreadSafe).Configure();
+                    //FeatureSelectionConfigurator.For(TTTExtraMercies).AddToAllFeatures(injured.AssetGuidThreadSafe).Configure();
 
                    
                 }
@@ -153,12 +153,12 @@ namespace TomeOfTheFirebird.New_Content.Mercies
                     Main.TotFContext.Logger.Log("Outright error throwin trying to add to TTT selector");
                 }
             }
-            if (Main.TotFContext.NewContent.Mercies.IsEnabled("Ensorcelled"))
+            if (Settings.IsEnabled("mercyensorcelled"))
             {
                 FeatureSelectionConfigurator.For("02b187038a8dce545bb34bbfb346428d").AddToAllFeatures(ensorcelled.AssetGuidThreadSafe).Configure();
                 try
                 {
-                    FeatureSelectionConfigurator.For(TTTExtraMercies).AddToAllFeatures(ensorcelled.AssetGuidThreadSafe).Configure();
+                    //FeatureSelectionConfigurator.For(TTTExtraMercies).AddToAllFeatures(ensorcelled.AssetGuidThreadSafe).Configure();
 
 
                 }

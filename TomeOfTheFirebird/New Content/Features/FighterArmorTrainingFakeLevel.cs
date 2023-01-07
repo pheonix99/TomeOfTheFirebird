@@ -27,7 +27,7 @@ namespace TomeOfTheFirebird.New_Content.Features
 
         public static void Connect()
         {
-            if (Main.TotFContext.Tweaks.Purifier.IsDisabled("CelestialArmorTraining"))
+            if (Settings.IsDisabled("PurifierCelestialArmorTraining"))
                 return;
             if (UnityModManager.FindMod("TabletopTweaks-Base") == null)
             {

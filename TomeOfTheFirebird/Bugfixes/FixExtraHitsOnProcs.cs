@@ -21,7 +21,7 @@ namespace TomeOfTheFirebird.Bugfixes
     {
         public static void FixFirebrand()
         {
-            if (Main.TotFContext.Bugfixes.FixExtraHits.IsEnabled("Firebrand"))
+            if (Settings.IsEnabled("FixExtraHitsFirebrand"))
             {
                 Main.TotFContext.Logger.Log("Fixing Firebrand");
                 BlueprintBuff firebrandBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("c6cc1c5356db4674dbd2be20ea205c86");
@@ -49,7 +49,7 @@ namespace TomeOfTheFirebird.Bugfixes
 
         public static void FixRandomWeaponsRiders()
         {
-            if (Main.TotFContext.Bugfixes.FixExtraHits.IsEnabled("SmallDragon"))
+            if (Settings.IsEnabled("FixExtraHitsSmallDragon"))
             {
                 BuffConfigurator smdbuff = BuffConfigurator.For("d37d0c19b37808d4895c836c474f04e3");
                 smdbuff.RemoveComponents(x => x is AddInitiatorAttackWithWeaponTrigger);
@@ -78,7 +78,7 @@ namespace TomeOfTheFirebird.Bugfixes
 
         public static void FixClawsOfSacredBeast()
         {
-            if (Main.TotFContext.Bugfixes.FixExtraHits.IsEnabled("ClawsOfASacredBeast"))
+            if (Settings.IsEnabled("FixExtraHitsClawsOfASacredBeast"))
             {
                 WeaponCategory[] natweapons = new WeaponCategory[] { WeaponCategory.Claw, WeaponCategory.Bite, WeaponCategory.Gore, WeaponCategory.OtherNaturalWeapons, WeaponCategory.UnarmedStrike, WeaponCategory.Tail };
                 Main.TotFContext.Logger.Log("Patching Claws Of A Sacred Beast");

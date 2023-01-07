@@ -80,7 +80,7 @@ namespace TomeOfTheFirebird.New_Spells
             gloomblind.AddCraftInfoComponent(Kingmaker.Craft.CraftAOE.None,savingThrow: Kingmaker.Craft.CraftSavingThrow.Reflex,spellType: Kingmaker.Craft.CraftSpellType.Damage);
                 Main.TotFContext.Logger.Log("Built Gloomblind");
             BlueprintAbility made = gloomblind.Configure();
-            if (Main.TotFContext.NewContent.Spells.IsEnabled("GloomblindBolts"))
+            if (Settings.IsEnabled("GloomblindBolts"))
             {
                 //TODO check bloodrager access
                 made.AddToSpellList(SpellTools.SpellList.BloodragerSpellList, 3);

@@ -75,7 +75,7 @@ namespace TomeOfTheFirebird.New_Content.Spells
 
             BlueprintAbility castMade = healmountcastmaker.Configure();
 
-            if (Main.TotFContext.NewContent.Spells.IsEnabled("HealMount"))
+            if (Settings.IsEnabled("HealMount"))
             {
                 SpellTools.AddToSpellList(castMade, SpellTools.SpellList.PaladinSpellList, 3);
                 castMade.AddToSpellSpecialization();

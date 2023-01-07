@@ -626,23 +626,24 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
                 bp.m_Icon = spell.Get().Icon;
             });
             Main.TotFContext.Logger.LogPatch("Created", BloodragerPhoenixSpell13);
+            var fourthSpell = Settings.IsEnabled("FireShield") ? FireShield : ControlledFireball;
             var BloodragerPhoenixSpell16 = CreateBlueprint<BlueprintFeature>(Main.TotFContext, "BloodragerPhoenixSpell16", bp =>
             {
-                var spell = Main.TotFContext.NewContent.Spells.IsEnabled("FireShield") ? FireShield : ControlledFireball;
-                bp.SetName(Main.TotFContext, $"Bonus Spell — {(Main.TotFContext.NewContent.Spells.IsEnabled("FireShield") ? "Fire Shield" : "Controlled Fireball")}");
+                
+                bp.SetName(Main.TotFContext, $"Bonus Spell — {fourthSpell.Get().Name}");
                 bp.SetDescription(Main.TotFContext, "At 7th, 10th, 13th, and 16th levels, a bloodrager learns an additional spell derived from his bloodline.");
                 bp.IsClassFeature = true;
                 bp.AddComponent<AddKnownSpell>(c =>
                 {
                     c.m_CharacterClass = BloodragerClass;
-                    c.m_Spell = spell;
+                    c.m_Spell = fourthSpell;
                     c.SpellLevel = 4;
                 });
-                bp.m_Icon = spell.Get().Icon;
+                bp.m_Icon = fourthSpell.Get().Icon;
             });
             Main.TotFContext.Logger.LogPatch("Created", BloodragerPhoenixSpell16);
 
-            string fourthSpell = Main.TotFContext.NewContent.Spells.IsEnabled("FireShield") ? "Fire Shield" : "Controlled Fireball";
+            
 
             //Bloodline Core
             var BloodragerPhoenixBloodline = TabletopTweaks.Core.Utilities.Helpers.CreateBlueprint<BlueprintProgression>(Main.TotFContext, "BloodragerPhoenixBloodline", bp =>
@@ -651,7 +652,7 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
                 bp.SetDescription(Main.TotFContext, "One of your ancestors may have witnessed the fiery resurrection of a phoenix or been healed by the grace of this legendary bird. Whatever the case, the flames of the phoenix burn brightly within your soul, filling you with an inextinguishable vitality that can withstand the most harrowing of assaults. .\n"
                     + "When you bloodrage, vibrant energy boils forth from beneath your skin, granting you both the soothing warmth to heal a friend’s wounds and the brutal power to burn flesh from bone. Your rage is an awesome and terrible thing to behold, as the raw power of your untamed life force can allow you to pull yourself back from the grasp of death itself.\n"
                     + BloodragerPhoenixFeatSelection.Description
-                    + $"\nBonus Spells: Burning Hands(7th), Lesser Restoration (10th), Cure Serious Wounds (13th), {fourthSpell} (16th).");
+                    + $"\nBonus Spells: Burning Hands(7th), Lesser Restoration (10th), Cure Serious Wounds (13th), {fourthSpell.Get().Name} (16th).");
                 bp.IsClassFeature = true;
                 bp.m_Classes = new BlueprintProgression.ClassWithLevel[] {
                     new BlueprintProgression.ClassWithLevel {
@@ -719,7 +720,7 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
             BloodlineTools.ApplyPrimalistException(SelfRez, 16, BloodragerPhoenixBloodline);
             BloodlineTools.ApplyPrimalistException(PheonixFireFeature, 20, BloodragerPhoenixBloodline);
             ProgressionConfigurator.For(BloodragerClass.Get().Progression).AddToUIGroups(BloodragerPhoenixSpell7, BloodragerPhoenixSpell10, BloodragerPhoenixSpell13, BloodragerPhoenixSpell16).AddToUIGroups(BloodragerPhoenixDispellingStrikesDisplay, MoltenWingsFeature, SelfRez, PheonixFireFeature).Configure();
-            if (Main.TotFContext.NewContent.Bloodlines.IsDisabled("BloodragerPhoenixBloodline")) { return; }
+            if (Settings.IsDisabled("PhoenixBloodline")) { return; }
             BloodlineTools.RegisterBloodragerBloodline(BloodragerPhoenixBloodline, BloodragerPhoenixBloodlineWandering);
 
           

@@ -58,7 +58,7 @@ namespace TomeOfTheFirebird.New_Content.WildTalents
             aeroBuffConfig.AddUniqueBuff();
             aeroBuffConfig.AddSavingThrowBonusAgainstDescriptor(bonus: ContextValues.Constant(2), modifierDescriptor: Kingmaker.Enums.ModifierDescriptor.Circumstance, spellDescriptor: new Kingmaker.Blueprints.Classes.Spells.SpellDescriptorWrapper(Kingmaker.Blueprints.Classes.Spells.SpellDescriptor.BreathWeapon));
             aeroBuffConfig.AddRemoveBuffIfCasterIsMissing(removeOnCasterDeath: true);
-
+          
 
             BlueprintBuff aerobuff = aeroBuffConfig.Configure();
 

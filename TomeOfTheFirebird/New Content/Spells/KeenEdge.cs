@@ -42,7 +42,7 @@ namespace TomeOfTheFirebird.New_Spells
 
 
             BlueprintAbility made = maker.Configure();
-            if (Main.TotFContext.NewContent.Spells.IsEnabled("KeenEdge"))
+            if (Settings.IsEnabled("KeenEdge"))
             {
                 made.AddToSpellList(SpellTools.SpellList.BloodragerSpellList, 3);
                 made.AddToSpellList(SpellTools.SpellList.InquisitorSpellList, 3);

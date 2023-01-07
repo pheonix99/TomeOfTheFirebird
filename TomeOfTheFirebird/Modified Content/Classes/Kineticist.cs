@@ -39,7 +39,7 @@ namespace TomeOfTheFirebird.Modified_Content.Classes
 
             void AddInternalBuffer()
             {
-                if (Main.TotFContext.NewContent.ClassFeatures.IsDisabled("InternalBuffer"))
+                if (Settings.IsDisabled("InternalBuffer"))
                     return;
 
                 BlueprintFeature buffer = BlueprintTool.Get<BlueprintFeature>("InternalBufferFeature");

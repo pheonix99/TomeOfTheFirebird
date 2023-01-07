@@ -27,6 +27,7 @@ namespace TomeOfTheFirebird.New_Content.Feats
             config.AddPrerequisiteClassLevel("42a455d9ec1ad924d889272429eb8391", 7);
             config.AddComponent<PrerequisiteUsesStandardBurn>();
             config.SetRanks(1);
+            config.AddFeatureTagsComponent(featureTags: Kingmaker.Blueprints.Classes.Selection.FeatureTag.ClassSpecific);
             BlueprintFeature done = config.Configure();
 
             //ac8b7875fff5c0643ac499d404947fff
@@ -60,7 +61,7 @@ namespace TomeOfTheFirebird.New_Content.Feats
                 }
             );
             Main.TotFContext.Logger.LogPatch(done);
-            if (Main.TotFContext.NewContent.Feats.IsDisabled("BurnResistance"))
+            if (Settings.IsDisabled("BurnResistance"))
                 return;
             TabletopTweaks.Core.Utilities.FeatTools.AddAsFeat(done);
 

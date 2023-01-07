@@ -73,7 +73,7 @@ namespace TomeOfTheFirebird.New_Spells
 
             SelectFreezeBuild.AddAbilityVariants(new List<Blueprint<BlueprintAbilityReference>>() { bigbuilt.AssetGuidThreadSafe, smallbuilt.AssetGuidThreadSafe });
             BlueprintAbility built = SelectFreezeBuild.Configure();
-            if (Main.TotFContext.NewContent.Spells.IsEnabled("FreezingSphere"))
+            if (Settings.IsEnabled("FreezingSphere"))
             {
                 //built.AddToSpellList(SpellTools.SpellList.FrostSpiritSpellList, 6);
                 built.AddToSpellList(SpellTools.SpellList.WizardSpellList, 6);

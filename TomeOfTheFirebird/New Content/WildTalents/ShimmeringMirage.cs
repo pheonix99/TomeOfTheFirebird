@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using TabletopTweaks.Core.Utilities;
 using TabletopTweaks.Core.NewComponents;
 using Kingmaker.Blueprints;
+using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 
 namespace TomeOfTheFirebird.New_Content.WildTalents
 {
@@ -75,9 +76,12 @@ namespace TomeOfTheFirebird.New_Content.WildTalents
 
             Kingmaker.Blueprints.Classes.BlueprintFeature mirageMake = mirage.Configure();
 
-            if (Main.TotFContext.NewContent.WildTalents.IsDisabled("ShimmeringMirage"))
+
+
+            if (!Settings.IsEnabled("ShimmeringMirage"))
                 return;
             
+            FeatureConfigurator.For("29ec36fa2a5b8b94ebce170bd369083a").AddToIsPrerequisiteFor("ShimmeringMirageWildTalent").Configure();
 
             BlueprintFeatureSelection wtselector = BlueprintTools.GetBlueprint<BlueprintFeatureSelection>("5c883ae0cd6d7d5448b7a420f51f8459");
 

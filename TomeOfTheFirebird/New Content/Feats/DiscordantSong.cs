@@ -129,7 +129,7 @@ namespace TomeOfTheFirebird.New_Content.Feats
             //TODO DETECT AND HOOK IN AZATA!
             BlueprintFeature DiscordantSong = DiscordantFeatMaker.Configure();
 
-            if (Main.TotFContext.NewContent.Feats.IsEnabled("DiscordantSong"))
+            if (Settings.IsEnabled("DiscordantSong"))
             {
                 TabletopTweaks.Core.Utilities.FeatTools.AddAsFeat(DiscordantSong);
                 

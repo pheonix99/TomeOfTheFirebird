@@ -8,7 +8,7 @@ namespace TomeOfTheFirebird.Crusade
     {
         public static void Do()
         {
-            if (Main.TotFContext.Tweaks.Crusade.IsEnabled("MovanicDevasWeaponFix"))
+            if (Settings.IsEnabled("MovanicDevasWeaponFix"))
             {
 
                 BlueprintUnit Monavic = BlueprintTools.GetBlueprint<BlueprintUnit>("88547ce8c98f4797831b8d19494a474d");
