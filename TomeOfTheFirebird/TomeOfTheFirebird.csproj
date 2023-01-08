@@ -374,6 +374,32 @@
     <Copy SourceFiles="@(SpellAssets)" DestinationFolder="$(WrathPath)\Mods\$(MSBuildProjectName)\Assets\Spells" />
     <Copy SourceFiles="@(AbilityAssets)" DestinationFolder="$(WrathPath)\Mods\$(MSBuildProjectName)\Assets\Abilities" />
   </Target>
+    <!-- Automatically creates a release zip -->
+  <Target Name="ZipRelease" AfterTargets="ILRepack" Condition="'$(Configuration)' == 'Release'">
+    <ItemGroup>
+      <Assembly Include="$(OutputPath)\$(AssemblyName).dll" />
+      <ModConfig Include="$(OutputPath)\Info.json" />
+      <SpellAssets Include="$(OutputPath)\Assets\Spells\BoneFists.png" />
+      <SpellAssets Include="$(OutputPath)\Assets\Spells\FreezingSphere.png" />
+      <SpellAssets Include="$(OutputPath)\Assets\Spells\GloomblindBolts.png" />
+      <SpellAssets Include="$(OutputPath)\Assets\Spells\SpearOfPurity.png" />
+      <AbilityAssets Include="$(OutputPath)\Assets\Abilities\Phoenix_Bloodline.png" />
+	        <Localization Include="$(OutputPath)\Localization\LocalizationPack.json" />
+      <Localization Include="$(OutputPath)\Localization\Settings.json" />
+    </ItemGroup>
+
+    <Copy SourceFiles="@(Assembly)" DestinationFolder="$(OutputPath)\$(AssemblyName)" />
+    <Copy SourceFiles="@(ModConfig)" DestinationFolder="$(OutputPath)\$(AssemblyName)" />
+	    <Copy SourceFiles="@(Localization)" DestinationFolder="$(OutputPath)\$(AssemblyName)\Localization" />
+     <Copy SourceFiles="@(SpellAssets)" DestinationFolder="$(OutputPath)\$(AssemblyName)\Assets\Spells" />
+		<Copy SourceFiles="@(AbilityAssets)" DestinationFolder="$(OutputPath)\$(AssemblyName)\Assets\Abilities" />
+	 <Message Text="Copying zip  to $(OutputPath)\$(AssemblyName).zip" Importance="High" />
+    <ZipDirectory
+      SourceDirectory="$(OutputPath)\$(AssemblyName)"
+      DestinationFile="C:\ModReleaseCandidates\$(AssemblyName).zip"
+      Overwrite="true"/>
+  </Target>
+ 
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>

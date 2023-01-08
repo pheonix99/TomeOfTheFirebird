@@ -61,7 +61,7 @@ namespace TomeOfTheFirebird
             builder.AddToggle(MakeToggle("MercyInjured", "Mercy: Injured", true, "Grant target fast healing 3 for one round per two paladin levels."));
             builder.AddToggle(MakeToggle("internalbuffer", "Kineticist: Internal Buffer", true, "Restores Kineticist Internal Buffer Class Feature"));
             builder.AddToggle(MakeToggle("phoenixbloodline", "Phoenix Bloodline", true, "Adds Phoenix Bloodline (Bloodrager Only)"));
-            builder.AddToggle(MakeToggle("RagePowerElementalStance", "Rage Power: Elemental Stance", true, "Adds barbarian rage power elemental stance to the game. Increasess low-level damage from TT to get closer to balance with damage stances"));
+            builder.AddToggle(MakeToggle("RagePowerElementalStance", "Rage Power: Elemental Stance", true, "Adds barbarian rage power elemental stance to the game. Increases low-level damage from TT to balance with Powerful Stance,"));
             builder.AddToggle(MakeToggle("witchpatrondeath", "Witch Patron: Death", true, "Adds the Death witch patron, focusing on necromantic attack spells. Some deviation from tabletop to account for unimplmentable (speak with dead, rest eternal), unimplemented (suffocate, symbol of death) and just plain bad (power word kill) TT spells. Requires Gloomblind Bolts to be enabled."));
             builder.AddToggle(MakeToggle("witchpatronl2replace", "Death Patron: Replace Blessing Of Courage And Life", true, "Replaces TT Death level 2 : Blessing Of Courage and Life with Boneshaker to go all in on necromantic attack"));
 
@@ -139,7 +139,7 @@ namespace TomeOfTheFirebird
             builder.AddToggle(MakeToggle("PurifierLevelThreeRevelation", "Purifier: Restore Level Three Revelation", true, "Restores Purifier Level 3 relevation - TT forced pick was not implemented and is unimplementable so pick should be available."));
             builder.AddToggle(MakeToggle("PurifierCelestialArmorTraining", "Purifier: Enhance Celestial Armor Training", true, "Purifier's Celestial Armor unique revelation now grants advanced armor training access. Note: Absolutely Requires Tabletop Tweaks Base."));
             builder.AddToggle(MakeToggle("WitchRestoreStigmatizedPatron", "Stigmatized Witch: Restore Patron", true, "Moves stigmatized somewhat out of the suck by cancelling the patron removal. By default, this will give Ember the Endurance Patron when first met"));
-            builder.AddDropdown<EmberPatron>(MakeDropdown<EmberPatron>("WitchEmberPatron", "Stigmatized Witch: Select Ember's Patron", EmberPatron.Endurance, UnityEngine.ScriptableObject.CreateInstance<EmberUnityEnumEnum>()));
+            builder.AddDropdown<EmberPatron>(MakeDropdown<EmberPatron>("WitchEmberPatron", "Stigmatized Witch: Select Ember's Patron", EmberPatron.Endurance, UnityEngine.ScriptableObject.CreateInstance<EmberUnityEnumEnum>(), "Select Ember's Patron"));
 
             builder.AddToggle(MakeToggle("DawnOfDragonsRewardFeatureConversion", "Dawn Of Dragons: Convert Reward To Feature", true, "Converts the Holy Aura you get from siding with the silver dragon in Dawn Of Dragons to a feature from a permabuff to make it harder to lose and clear what is up."));
             builder.AddDropdown<DawnOfDragonsCustomReward>(MakeDropdown<DawnOfDragonsCustomReward>("DawnOfDragonsCustomReward", "Dawn Of Dragons: Custom Reward Selector", DawnOfDragonsCustomReward.Everyone, UnityEngine.ScriptableObject.CreateInstance<DawnOfDragonsCustomRewardEnum>(), "The custom reward replaces the often redundant perma-Holy-Aura effect with a more thematic perk - bit of cold weapon damage, natural armor and cold resist. Perks are comparable to the level 5 Geniekind as opposed to the level 8 Holy Aura. Requires the above setting to be active."));
@@ -148,25 +148,26 @@ namespace TomeOfTheFirebird
             builder.AddSubHeader(GetString("Crusade.Title"), startExpanded: true);
             builder.AddToggle(MakeToggle("MovanicDevasWeaponFix", "Movanic Devas Use Correct Weapon", true, "Fixes Movanic Devas to greatswords as per TT rather than longswords wielded in both hands, making their damage quite a bit less bad."));
             builder.AddToggle(MakeToggle("CrusadeMonsterSlayers", "Permanent Upgrade: Ready For Anything", true, "Makes Ready For Anything training decree from one outcome of Crusade Event 54: Monster Slayers permanent rather than a one off 60-day buff."));
-            builder.AddToggle(MakeToggle("CrusadeLocalProduction", "Permanent Upgrade: LocalProduction", true, "Makes Ready For Anything training decree from one outcome of Crusade Event 54: Monster Slayers permanent rather than a one off 60-day buff."));
+            builder.AddToggle(MakeToggle("CrusadeLocalProduction", "Permanent Upgrade: Local Production", true, "Makes Ready For Anything training decree from one outcome of Crusade Event 54: Monster Slayers permanent rather than a one off 60-day buff."));
             ModMenu.ModMenu.AddSettings(builder);
         }
 
-        private static Dropdown<T> MakeDropdown<T>(string keyStub, string name, T defaultVal, UISettingsEntityDropdownEnum<T> dd, string desc = null) where T : Enum
+        private static Dropdown<T> MakeDropdown<T>(string keyStub, string name, T defaultVal, UISettingsEntityDropdownEnum<T> dd, string desc) where T : Enum
         {
 
-            var dropper = new Dropdown<T>(GetKey(keyStub), defaultVal, LocalizationTool.CreateString($"{RootStringKey}.{keyStub}", name), dd);
+            var dropper = Dropdown<T>.New(GetKey(keyStub), defaultVal, LocalizationTool.CreateString($"{RootStringKey}.{keyStub}", name), dd);
             if (desc != null)
-                dropper.WithLongDescription(LocalizationTool.CreateString($"{RootStringKey}.{keyStub}.Desc|", name));
+                dropper.WithLongDescription(LocalizationTool.CreateString($"{RootStringKey}.{keyStub}.Desc", desc));
             return dropper;
+
         }
 
-        private static Toggle MakeToggle(string keyStub, string name, bool defaultVal, string desc = null)
+        private static Toggle MakeToggle(string keyStub, string name, bool defaultVal, string desc)
         {
          
-            var toggle = new Toggle($"{RootKey}.{keyStub.ToLower()}", defaultVal, LocalizationTool.CreateString($"{RootStringKey}.{keyStub}", name));
+            var toggle = Toggle.New($"{RootKey}.{keyStub.ToLower()}", defaultVal, LocalizationTool.CreateString($"{RootStringKey}.{keyStub}", name));
             if (desc != null)
-                toggle.WithLongDescription(LocalizationTool.CreateString($"{RootStringKey}.{keyStub}.Desc|", name));
+                toggle.WithLongDescription(LocalizationTool.CreateString($"{RootStringKey}.{keyStub}.Desc", desc));
 
             return toggle;
         }
