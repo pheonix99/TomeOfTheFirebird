@@ -118,8 +118,7 @@ namespace TomeOfTheFirebird
                     //FighterCombatBoosts.Setup();
 
                     PheonixBloodline.MakePheonixBloodline();
-                    PheonixBloodline.MakePhoenixBloodragerBloodline();
-
+                   
                     EldritchScionSage.Make();
 
                     Witch.ReturnAccursedPatrons();
@@ -127,12 +126,13 @@ namespace TomeOfTheFirebird
                     ShimmeringMirage.Make();
                     ClockworkHeart.Make();
 
+                    New_Content.RagePowers.ElementalStance.Make();
 
                     CoordinatedShot.Make();
                     LastwallPhalanx.Make();
                     SwarmStrike.Make();
                     ArcaneStrike.AddDHSScaling();
-
+                  
                 }
                 catch (Exception e)
                 {
@@ -185,8 +185,8 @@ namespace TomeOfTheFirebird
                     EldritchScionSage.Link();
                     Bloodrager.FixIcons();
                     // MagusArcanaHandling.MergeEScion();
-                    
 
+                    New_Content.RagePowers.ElementalStance.Finish();
                     RootConfigurator.ConfigureDelayedBlueprints();
 
                     //Modified_Content.ImprovedMultiarchetypeProjct.SpellSlots.Execute();                    

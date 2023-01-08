@@ -109,19 +109,20 @@ namespace TomeOfTheFirebird.Helpers
             return FeatureGuts(res, hide, icon);
         }
 
-        public static FeatureConfigurator MakeFeature(string systemName, string displayName, string description, bool hide = false, Sprite icon = null)
+        public static FeatureConfigurator MakeFeature(string systemName, string displayName, string description, bool hide = false, Sprite icon = null, params FeatureGroup[] groups)
         {
             Main.TotFContext.Logger.Log($"Building New Feature: {systemName}");
 
             Kingmaker.Blueprints.BlueprintGuid guid = Main.TotFContext.Blueprints.GetGUID(systemName);
             Main.TotFContext.Logger.Log($"Guid for {systemName} is {guid.ToString()}");
-            FeatureConfigurator res = FeatureConfigurator.New(systemName, guid.ToString());
+            FeatureConfigurator res = FeatureConfigurator.New(systemName, guid.ToString(), groups);
+           
             res = MakeLocals(res, systemName, displayName, description);
             return FeatureGuts(res,  hide, icon);
         }
 
        
-        public static FeatureSelectionConfigurator MakeFeatureSelector(string systemName, string displayName, string description, bool hide = false, Sprite icon = null)
+        public static FeatureSelectionConfigurator MakeFeatureSelector(string systemName, string displayName, string description, bool hide = false, Sprite icon = null, params FeatureGroup[] groups)
         {
             Main.TotFContext.Logger.Log($"Building New Feature: {systemName}");
 
@@ -130,6 +131,7 @@ namespace TomeOfTheFirebird.Helpers
             LocalizedString desc = LocalizationTool.CreateString(systemName + ".Desc", description);
             Main.TotFContext.Logger.Log($"Guid for {systemName} is {guid.ToString()}");
             FeatureSelectionConfigurator res = FeatureSelectionConfigurator.New(systemName, guid.ToString()).SetDisplayName(name).SetDescription(desc);
+            res.AddToGroups(groups);
             if (icon != null)
             {
                 res.SetIcon(icon);

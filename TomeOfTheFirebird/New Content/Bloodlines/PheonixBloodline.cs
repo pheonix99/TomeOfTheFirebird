@@ -53,8 +53,10 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
                 Main.TotFContext.Logger.LogPatch("Created", AberrantBloodlineRequisiteFeature);
                 return AberrantBloodlineRequisiteFeature.ToReference<BlueprintFeatureReference>();
             }
+
+            MakePhoenixBloodragerBloodline();
         }
-        public static void MakePhoenixBloodragerBloodline()
+        private static void MakePhoenixBloodragerBloodline()
         {
             if (BloodlineRequisiteFeature == null)
                 return;
@@ -658,6 +660,8 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
                 bp.Ranks = 1;
                 bp.IsClassFeature = true;
                 bp.GiveFeaturesForPreviousLevels = true;
+                bp.m_Icon = AssetLoader.LoadInternal(Main.TotFContext, folder: "Abilities", file: "Phoenix_Bloodline.png");
+                bp.HideInUI = false;
                 bp.LevelEntries = new LevelEntry[] {
                     TabletopTweaks.Core.Utilities.Helpers.CreateLevelEntry(1, BloodragerPhoenixDispellingStrikesDisplay, BloodragerPhoenixDispellingStrikesLevel1, PhoenixBloodlineRequisiteFeature, BloodlineRequisiteFeature),
                     TabletopTweaks.Core.Utilities.Helpers.CreateLevelEntry(4, HeartOfFireFeature),
@@ -715,11 +719,14 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
             BloodlineTools.ApplyPrimalistException(SelfRez, 16, BloodragerPhoenixBloodline);
             BloodlineTools.ApplyPrimalistException(PheonixFireFeature, 20, BloodragerPhoenixBloodline);
             ProgressionConfigurator.For(BloodragerClass.Get().Progression).AddToUIGroups(BloodragerPhoenixSpell7, BloodragerPhoenixSpell10, BloodragerPhoenixSpell13, BloodragerPhoenixSpell16).AddToUIGroups(BloodragerPhoenixDispellingStrikesDisplay, MoltenWingsFeature, SelfRez, PheonixFireFeature).Configure();
-            if (Settings.IsDisabled("PhoenixBloodline")) { return; }
-            BloodlineTools.RegisterBloodragerBloodline(BloodragerPhoenixBloodline, BloodragerPhoenixBloodlineWandering);
+            
 
-          
+            BloodlineTools.RegisterBloodragerBloodline(BloodragerPhoenixBloodline, BloodragerPhoenixBloodlineWandering);
+            TotFBloodlineTools.MetamagicSupport(BlueprintTools.GetModBlueprint<BlueprintProgression>(Main.TotFContext, "BloodragerPhoenixBloodline"));
+
 
         }
+
+       
     }
 }

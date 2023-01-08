@@ -20,11 +20,17 @@ namespace TomeOfTheFirebird.Modified_Content.Feats
                 x.AddComponent<CompositeCustomPropertyGetter>(x =>
                 {
                     x.CalculationMode = CompositeCustomPropertyGetter.Mode.Highest;
+                    
                     x.Properties = new CompositeCustomPropertyGetter.ComplexCustomProperty[]
                     {
+                        
                         new CompositeCustomPropertyGetter.ComplexCustomProperty()
                         {
-                            Property = new MaxCasterLevelPropertyGetter()
+                            Property = new MaxCasterLevelPropertyGetter(),
+                            Numerator = 1,
+                            Denominator = 1,
+                            Bonus = 0
+                            
                         },
                          new CompositeCustomPropertyGetter.ComplexCustomProperty()
                          {
@@ -51,7 +57,10 @@ namespace TomeOfTheFirebird.Modified_Content.Feats
                                          }
                                      }
                                  }
-                             }
+                             },
+                             Numerator = 1,
+                            Denominator = 1,
+                            Bonus = 0
                          }
                     };
                 });
@@ -70,6 +79,8 @@ namespace TomeOfTheFirebird.Modified_Content.Feats
             {
                 scalarConfig.m_BaseValueType = ContextRankBaseValueType.CustomProperty;
                 scalarConfig.m_CustomProperty = scalar.ToReference<BlueprintUnitPropertyReference>();
+                Main.TotFContext.Logger.LogPatch(arcanestrikebuff);
+                scalarConfig.m_Max = 40;
             }
         }
     }

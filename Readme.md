@@ -18,6 +18,10 @@ Added Coordinated Strike, Lastwall Phalanx and Swarm Strike teamwork feats.
 
 Improved prerequisite for handling in several places
 
+Patch for Phoenix Bloodline / Metamagic Rager compatibility
+
+Elemental Stance barbarian rage power
+
 ### 1.3.6
 
 Eldritch Scion (Sage) learns bloodline spells!
@@ -297,9 +301,7 @@ Made rewards from Monster Slayers and Local Production crusade events permanent 
 
 Extending Draconic Bloodline claw upgrades to Dragon Mystery abilities if Expanded Content is installed
 
-More utility kinetic talents
 
-Divine Conduit Kineticist Archetype
 
 Banishing Warden Paladin Archetype
 

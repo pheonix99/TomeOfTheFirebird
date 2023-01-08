@@ -21,7 +21,9 @@ namespace TomeOfTheFirebird.Components
     {
         public ConditionsChecker wielderCondition;
 
+        public bool MeleeOnly = false;
 
+        
 
         public WeaponCategory[] categories;
 
@@ -39,6 +41,9 @@ namespace TomeOfTheFirebird.Components
 
             if ( ToAllAttacks || categories.Contains(evt.Weapon.Blueprint.Category))
             {
+                if (MeleeOnly && !evt.Weapon.Blueprint.IsMelee)
+                    return;
+
                 if (wielderCondition != null)
                 {
                     using (base.Context.GetDataScope(evt.Initiator))

@@ -61,6 +61,7 @@ namespace TomeOfTheFirebird
             builder.AddToggle(MakeToggle("MercyInjured", "Mercy: Injured", true, "Grant target fast healing 3 for one round per two paladin levels."));
             builder.AddToggle(MakeToggle("internalbuffer", "Kineticist: Internal Buffer", true, "Restores Kineticist Internal Buffer Class Feature"));
             builder.AddToggle(MakeToggle("phoenixbloodline", "Phoenix Bloodline", true, "Adds Phoenix Bloodline (Bloodrager Only)"));
+            builder.AddToggle(MakeToggle("RagePowerElementalStance", "Rage Power: Elemental Stance", true, "Adds barbarian rage power elemental stance to the game. Increasess low-level damage from TT to get closer to balance with damage stances"));
             builder.AddToggle(MakeToggle("witchpatrondeath", "Witch Patron: Death", true, "Adds the Death witch patron, focusing on necromantic attack spells. Some deviation from tabletop to account for unimplmentable (speak with dead, rest eternal), unimplemented (suffocate, symbol of death) and just plain bad (power word kill) TT spells. Requires Gloomblind Bolts to be enabled."));
             builder.AddToggle(MakeToggle("witchpatronl2replace", "Death Patron: Replace Blessing Of Courage And Life", true, "Replaces TT Death level 2 : Blessing Of Courage and Life with Boneshaker to go all in on necromantic attack"));
 
@@ -138,10 +139,10 @@ namespace TomeOfTheFirebird
             builder.AddToggle(MakeToggle("PurifierLevelThreeRevelation", "Purifier: Restore Level Three Revelation", true, "Restores Purifier Level 3 relevation - TT forced pick was not implemented and is unimplementable so pick should be available."));
             builder.AddToggle(MakeToggle("PurifierCelestialArmorTraining", "Purifier: Enhance Celestial Armor Training", true, "Purifier's Celestial Armor unique revelation now grants advanced armor training access. Note: Absolutely Requires Tabletop Tweaks Base."));
             builder.AddToggle(MakeToggle("WitchRestoreStigmatizedPatron", "Stigmatized Witch: Restore Patron", true, "Moves stigmatized somewhat out of the suck by cancelling the patron removal. By default, this will give Ember the Endurance Patron when first met"));
-            builder.AddDropdown<EmberPatron>(MakeDropdown<EmberPatron>("WitchEmberPatron", "Stigmatized Witch: Select Ember's Patron", EmberPatron.Endurance, new()));
+            builder.AddDropdown<EmberPatron>(MakeDropdown<EmberPatron>("WitchEmberPatron", "Stigmatized Witch: Select Ember's Patron", EmberPatron.Endurance, UnityEngine.ScriptableObject.CreateInstance<EmberUnityEnumEnum>()));
 
             builder.AddToggle(MakeToggle("DawnOfDragonsRewardFeatureConversion", "Dawn Of Dragons: Convert Reward To Feature", true, "Converts the Holy Aura you get from siding with the silver dragon in Dawn Of Dragons to a feature from a permabuff to make it harder to lose and clear what is up."));
-            builder.AddDropdown<DawnOfDragonsCustomReward>(MakeDropdown<DawnOfDragonsCustomReward>("DawnOfDragonsCustomReward", "Dawn Of Dragons: Custom Reward Selector", DawnOfDragonsCustomReward.Everyone, new(), "The custom reward replaces the often redundant perma-Holy-Aura effect with a more thematic perk - bit of cold weapon damage, natural armor and cold resist. Perks are comparable to the level 5 Geniekind as opposed to the level 8 Holy Aura. Requires the above setting to be active."));
+            builder.AddDropdown<DawnOfDragonsCustomReward>(MakeDropdown<DawnOfDragonsCustomReward>("DawnOfDragonsCustomReward", "Dawn Of Dragons: Custom Reward Selector", DawnOfDragonsCustomReward.Everyone, UnityEngine.ScriptableObject.CreateInstance<DawnOfDragonsCustomRewardEnum>(), "The custom reward replaces the often redundant perma-Holy-Aura effect with a more thematic perk - bit of cold weapon damage, natural armor and cold resist. Perks are comparable to the level 5 Geniekind as opposed to the level 8 Holy Aura. Requires the above setting to be active."));
 
 
             builder.AddSubHeader(GetString("Crusade.Title"), startExpanded: true);

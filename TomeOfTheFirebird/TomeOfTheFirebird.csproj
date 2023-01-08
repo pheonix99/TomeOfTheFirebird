@@ -187,6 +187,7 @@
     <Compile Include="New Components\AllLevelsSpellSlotShift.cs" />
     <Compile Include="New Components\AllLevelsSpellSlotShiftPart.cs" />
     <Compile Include="New Components\ArtifactEnabledWeaponAngelDamageDice.cs" />
+    <Compile Include="New Components\ElementalStanceComponent.cs" />
     <Compile Include="New Components\Properties\ConditionalPropertyGetter.cs" />
     <Compile Include="New Components\ContextDamageValueEnergyDamageDice.cs" />
     <Compile Include="New Components\ContextRankConfigShroudOfWater.cs" />
@@ -215,6 +216,7 @@
     <Compile Include="New Content\Archetypes\EldritchScionSage.cs" />
     <Compile Include="New Content\Archetypes\KineticLancer.cs" />
     <Compile Include="New Content\Bloodlines\PheonixBloodline.cs" />
+    <Compile Include="New Content\Bloodlines\TotFBloodlineTools.cs" />
     <Compile Include="New Content\Feats\Afterburn.cs" />
     <Compile Include="New Content\Feats\Autobuffer.cs" />
     <Compile Include="New Content\Feats\BreathWeaponFeats.cs" />
@@ -230,6 +232,7 @@
     <Compile Include="New Content\Feats\KineticLeap.cs" />
     <Compile Include="New Content\Feats\LastwallPhalanx.cs" />
     <Compile Include="New Content\Feats\OverwhelmingDefense.cs" />
+    <Compile Include="New Content\Feats\RageStanceMastery.cs" />
     <Compile Include="New Content\Feats\SwarmStrike.cs" />
     <Compile Include="New Content\Features\KineticistDefenseOverclocks.cs" />
     <Compile Include="New Content\Features\KineticistDoubleMetakinesis.cs" />
@@ -258,6 +261,7 @@
     <Compile Include="New Content\Items\AddItemsToShop.cs" />
     <Compile Include="New Content\Items\PaladinGear.cs" />
     <Compile Include="New Content\Mercies\ExtraMercies.cs" />
+    <Compile Include="New Content\RagePowers\ElementalStance.cs" />
     <Compile Include="New Content\Spells\TODO\AuraOfDoom.cs" />
     <Compile Include="New Content\Spells\BoneFists.cs" />
     <Compile Include="New Content\Spells\TODO\BowSpirit.cs" />
