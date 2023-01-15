@@ -1,4 +1,5 @@
-﻿using Kingmaker.Blueprints;
+﻿using BlueprintCore.Utils;
+using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Selection;
 using System.Linq;
@@ -42,6 +43,14 @@ namespace TomeOfTheFirebird.Modified_Content.Archetypes
                     {
                         m_Selection = patron.ToReference<BlueprintFeatureSelectionReference>(),
                         m_Features = new BlueprintFeatureReference[] { BlueprintTools.GetBlueprintReference<BlueprintFeatureReference>("8fe0a14c90d3ea94a833d087b8a09bb9") }
+
+                    });
+                    break;
+                case Settings.EmberPatron.Light:
+                    emberFeature.Components.OfType<AddClassLevels>().FirstOrDefault().Selections = emberFeature.Components.OfType<AddClassLevels>().FirstOrDefault().Selections.AppendToArray(new SelectionEntry
+                    {
+                        m_Selection = patron.ToReference<BlueprintFeatureSelectionReference>(),
+                        m_Features = new BlueprintFeatureReference[] { BlueprintTool.GetRef<BlueprintFeatureReference>("WitchLightPatronProgression") }
 
                     });
                     break;

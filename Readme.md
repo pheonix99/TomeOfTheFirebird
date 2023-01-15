@@ -10,6 +10,19 @@ NOW REQUIRES TabletopTweaks Core Module and ModMenu
 
 ## Changelog
 
+### 1.4.1
+Added Homebrew Rage Power: Rage Stance Mastery. Use two Barbarian stances at once.
+
+Add Burst Of Radiance
+
+Fixed Death Patron being missing from Second Patron
+
+Added Light, Animal, Protection and Plague patrons
+
+Added Light to default patron selection list for Ember
+
+Made Witch Patron spell features use the spell icon.
+
 ### 1.4.0
 
 Switched to building UI with ModMenu
@@ -299,9 +312,21 @@ Made rewards from Monster Slayers and Local Production crusade events permanent 
 
 ##Coming Soon:
 
+Some Crusade Mode goodies
+
+Earth Tremor spell
+
+Mountain Witch Patron
+
+Witch Unique Patrons
+
+Compatibility Hack for Expanded Content so Death Patron can be used with the EC version of Gloomblind Bolts if that one is enabled and ToTF version is disabled
+
 Extending Draconic Bloodline claw upgrades to Dragon Mystery abilities if Expanded Content is installed
 
+Improved Multi-Archetyping for Witch archetypes that alter patron selection - you explictly *can* take multiple archetypes that reduce your selection as long as you comply with all the restriction on TT
 
+Seasonal Witch archetype
 
 Banishing Warden Paladin Archetype
 

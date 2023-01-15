@@ -62,7 +62,7 @@ namespace TomeOfTheFirebird.New_Content.Items
             Kingmaker.Blueprints.Classes.BlueprintFeature avengingFeatureBuilt = avengingFeature.Configure();
             
             
-            //Add destro active-smite
+         
             //If the wearer is not a member of such a class, once per day she may make one smite attack, gaining a bonus on the attack roll equal to her Charisma bonus, and a +5 bonus to the damage roll on a hit.
             enchant.AddUnitFeatureEquipment(avengingFeatureBuilt.AssetGuidThreadSafe);
 
@@ -72,7 +72,7 @@ namespace TomeOfTheFirebird.New_Content.Items
 
             string itemSysName = "BracersOfTheAvengingKnight";
             string itemName = "Bracers Of The Avenging Knight";
-            string itemDesc = $"TThese silver bracers are polished to a mirrored sheen, but otherwise shift their appearance to match whatever suit of armor they are worn with.\n {sharedDesc}.";
+            string itemDesc = $"These silver bracers are polished to a mirrored sheen, but otherwise shift their appearance to match whatever suit of armor they are worn with.\n {sharedDesc}.";
             //TODO add the 1/day lesser resto on LoH
             BlueprintGuid guid = Main.TotFContext.Blueprints.GetGUID(itemSysName);
             LocalizedString name = LocalizationTool.CreateString(itemSysName + ".Name", itemName);

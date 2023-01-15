@@ -43,7 +43,13 @@ namespace TomeOfTheFirebird
               .Any();
         }
 
-        
+        internal static bool IsCharOpsPlusEnabled()
+        {
+            return UnityModManager.modEntries.Where(
+                mod => mod.Info.Id.Equals("CharacterOptionsPlus") && mod.Enabled && !mod.ErrorOnLoading)
+              .Any();
+        }
+
         public static void Make()
         {
             LocalizationTool.LoadLocalizationPack("Mods\\TomeOfTheFirebird\\Localization\\Settings.json");
@@ -62,8 +68,15 @@ namespace TomeOfTheFirebird
             builder.AddToggle(MakeToggle("internalbuffer", "Kineticist: Internal Buffer", true, "Restores Kineticist Internal Buffer Class Feature"));
             builder.AddToggle(MakeToggle("phoenixbloodline", "Phoenix Bloodline", true, "Adds Phoenix Bloodline (Bloodrager Only)"));
             builder.AddToggle(MakeToggle("RagePowerElementalStance", "Rage Power: Elemental Stance", true, "Adds barbarian rage power elemental stance to the game. Increases low-level damage from TT to balance with Powerful Stance,"));
+            builder.AddToggle(MakeToggle("RagePowerRageStanceMastery", "Rage Power: Stance Mastery", true, "Homebrew: Allows a barbarian to use two rage power stances at once. Requires level 14 in a rage power using class or archetype"));
+            builder.AddToggle(MakeToggle("WitchPatronAnimal", "Witch Patron: Animal", true, "Adds the Animal witch patron. Some deviation from tabletop to deal with unimplementable (speak with/charm animals) and unimplemented (antilife shell) spells."));
             builder.AddToggle(MakeToggle("witchpatrondeath", "Witch Patron: Death", true, "Adds the Death witch patron, focusing on necromantic attack spells. Some deviation from tabletop to account for unimplmentable (speak with dead, rest eternal), unimplemented (suffocate, symbol of death) and just plain bad (power word kill) TT spells. Requires Gloomblind Bolts to be enabled."));
-            builder.AddToggle(MakeToggle("witchpatronl2replace", "Death Patron: Replace Blessing Of Courage And Life", true, "Replaces TT Death level 2 : Blessing Of Courage and Life with Boneshaker to go all in on necromantic attack"));
+            builder.AddToggle(MakeToggle("WitchPatronDeathL2replace", "Death Patron: Replace Blessing Of Courage And Life", true, "Replaces TT Death level 2 : Blessing Of Courage and Life with Boneshaker to go all in on necromantic attack"));
+            builder.AddToggle(MakeToggle("WitchPatronLight", "Witch Patron: Light", true, "Adds the Light witch patron, focusing on light-themed crowd control and damage spells. Some deviation from tabletop to account for lack of detailed lighting system in game making dancing lantern, continual flame, and daylight unimplementable. Also swapped out Sirocco for Chains Of Light because seriously?").IsModificationAllowed(() => Settings.GetDD<EmberPatron>("WitchEmberPatron") != EmberPatron.Light)); 
+            builder.AddToggle(MakeToggle("WitchPatronPlague", "Witch Patron: Plague", true, "Adds the Plague witch patron, focusing on different necromantic nastiness. Some deviation from tabletop to account for unimplemented (detect undead, control undead, 16th — create greater undead), and just plain bad (giant vermin) TT spells. Kicks Create Undead up a level to slot in Plague Storm"));
+            builder.AddToggle(MakeToggle("PlaguePerniciousPoison", "Plague Patron: Replace Command Undead with Pernicious Poison", false, "Follow Call Of The Wild's lead and swap Command Undead for Pernicious Poison on the Plague patron"));
+            builder.AddToggle(MakeToggle("WitchPatronProtection", "Witch Patron: Protection", true, "Adds the Protection witch patron, focusing on defense spells. Some deviation from tabletop to account for most of the list being unimplemented, using CoTW list instead."));
+
 
 
             builder.AddSubHeader(GetString("Feats.Title"), startExpanded: true);
@@ -86,14 +99,14 @@ namespace TomeOfTheFirebird
             builder.AddToggle(MakeToggle("FixHolyWaterJet", "Arcanist: Fix Holy Water Jet", true, "Holy Water Jet has correct prereqs - no more mythic path requirement"));
 
             builder.AddToggle(MakeToggle("FixAngelArtifactCloak", "Bound Of Possibility: Fix Angel Version", true, "The Angel version of Bound Of Possibility now properly applies to weapon attacks - they partially fixed in EE"));
-            builder.AddToggle(MakeToggle("FixBloodragerSpellIcons", "Bloodrager: Fix Bloodline SpellIcons", true, "Gives Bloodline Spell features the icon of the spell."));
+            builder.AddToggle(MakeToggle("FixBloodragerSpellIcons", "Bloodrager: Fix Bloodline Spell Icons", true, "Gives Bloodline Spell features the icon of the spell."));
 
             builder.AddToggle(MakeToggle("FixExtraHitsFirebrand", "Fix Extra Hits: Firebrand", true, "Firebrand now adds a 1d6 fire rider to all attacks, rather than a 1d6 fire extra hit."));
 
             builder.AddToggle(MakeToggle("FixExtraHitsSmallDragon", "Fix Extra Hits: Small Dragon", true, "The adorable little dragon from Dawn Of Dragons now gives his random extra damage as part of the attack, not as an extra hit."));
             builder.AddToggle(MakeToggle("FixExtraHitsClawsOfASacredBeast", "Fix Extra Hits: Claws Of A Sacred Beast", true, "Claws Of A Sacred Beast no longer gives an extra hit, now simply adds the correct slash damage."));
+            builder.AddToggle(MakeToggle("FixWitchSpellIcons", "Witch: Fix Patron Spell Icons", true, "Gives Witch Spell features the icon of the spell."));
 
-          
             builder.AddToggle(MakeToggle("CleanupEldritchScion", "Eldritch Scion: Cleanup Progression", true, "Dynamically kills weird add / remove of Arcane Weapon upgrades on Eldritch Scion"));
             
             builder.AddToggle(MakeToggle("FixRadianceFinalForm", "Radiance: Fix Final (Holy) Form", true, "The good version of Radiance's final form now properly retains its holy effect"));
@@ -113,6 +126,7 @@ namespace TomeOfTheFirebird
             builder.AddToggle(MakeToggle("MythicKineticAegis", "Mythic Kinetic Aegis", true, "(Homebrew) Improves Kineticist Elemental Defenses with Mythic Rank."));
             builder.AddSubHeader(GetString("Spells.Title"), startExpanded: true);
             builder.AddToggle(MakeToggle("BoneFists", "Bone Fists", true, "Level 2 spell for many classes, gives +1 natural armor (form-type) and +2 natural weapons damage to group."));
+            builder.AddToggle(MakeToggle("BurstOfRadiance", "Burst Of Radiance", true, "Level 2 spell for many classes, targets area, blinds on failed save, dazzles on success, deals small damage to evil."));
             builder.AddToggle(MakeToggle("ChainsOfFire", "Chains Of Fire", true, "A fire damage knockoff of chain lightning."));
             builder.AddToggle(MakeToggle("EntropicShield", "Entropic Shield", true, "Level 1 Cleric/Oracle spell, gives 20% miss chance to incoming ranged attacks"));
             builder.AddToggle(MakeToggle("FireShield", "Fire Shield", true, "Resist Fire/Cold, deal backlash damage of other element."));
@@ -139,7 +153,11 @@ namespace TomeOfTheFirebird
             builder.AddToggle(MakeToggle("PurifierLevelThreeRevelation", "Purifier: Restore Level Three Revelation", true, "Restores Purifier Level 3 relevation - TT forced pick was not implemented and is unimplementable so pick should be available."));
             builder.AddToggle(MakeToggle("PurifierCelestialArmorTraining", "Purifier: Enhance Celestial Armor Training", true, "Purifier's Celestial Armor unique revelation now grants advanced armor training access. Note: Absolutely Requires Tabletop Tweaks Base."));
             builder.AddToggle(MakeToggle("WitchRestoreStigmatizedPatron", "Stigmatized Witch: Restore Patron", true, "Moves stigmatized somewhat out of the suck by cancelling the patron removal. By default, this will give Ember the Endurance Patron when first met"));
-            builder.AddDropdown<EmberPatron>(MakeDropdown<EmberPatron>("WitchEmberPatron", "Stigmatized Witch: Select Ember's Patron", EmberPatron.Endurance, UnityEngine.ScriptableObject.CreateInstance<EmberUnityEnumEnum>(), "Select Ember's Patron"));
+            builder.AddDropdown<EmberPatron>(MakeDropdown<EmberPatron>("WitchEmberPatron", "Stigmatized Witch: Select Ember's Patron", EmberPatron.Endurance, UnityEngine.ScriptableObject.CreateInstance<EmberUnityEnumEnum>(), "Select Ember's Patron").OnValueChanged(x=> {
+
+                if (x == EmberPatron.Light)
+                    ModMenu.ModMenu.SetSetting(GetKey("WitchPatronLight"), true);
+            }));
 
             builder.AddToggle(MakeToggle("DawnOfDragonsRewardFeatureConversion", "Dawn Of Dragons: Convert Reward To Feature", true, "Converts the Holy Aura you get from siding with the silver dragon in Dawn Of Dragons to a feature from a permabuff to make it harder to lose and clear what is up."));
             builder.AddDropdown<DawnOfDragonsCustomReward>(MakeDropdown<DawnOfDragonsCustomReward>("DawnOfDragonsCustomReward", "Dawn Of Dragons: Custom Reward Selector", DawnOfDragonsCustomReward.Everyone, UnityEngine.ScriptableObject.CreateInstance<DawnOfDragonsCustomRewardEnum>(), "The custom reward replaces the often redundant perma-Holy-Aura effect with a more thematic perk - bit of cold weapon damage, natural armor and cold resist. Perks are comparable to the level 5 Geniekind as opposed to the level 8 Holy Aura. Requires the above setting to be active."));
@@ -194,7 +212,8 @@ namespace TomeOfTheFirebird
         {
             Elements,
             Healing,
-            Endurance
+            Endurance,
+            Light
         }
         // Declare a non-generic class which inherits from the generic type
         private class EmberUnityEnumEnum : UISettingsEntityDropdownEnum<EmberPatron>

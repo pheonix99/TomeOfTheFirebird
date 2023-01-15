@@ -69,6 +69,8 @@ namespace TomeOfTheFirebird
                     ElementalShieldSpells.Build();
                     EntropicShield.Make();
 
+                    BurstOfRadiance.Make();
+
                     //Build Feats
                     ProdigiousTWF.AddProdigiousTWF();
                     SunderingStrike.Build();
@@ -121,12 +123,14 @@ namespace TomeOfTheFirebird
                    
                     EldritchScionSage.Make();
 
-                    Witch.ReturnAccursedPatrons();
+                    Modified_Content.Archetypes.Witch.ReturnAccursedPatrons();
+                    Modified_Content.Classes.Witch.FixIcons();
 
                     ShimmeringMirage.Make();
                     ClockworkHeart.Make();
 
                     New_Content.RagePowers.ElementalStance.Make();
+                    New_Content.RagePowers.RageStanceMastery.Make();
 
                     CoordinatedShot.Make();
                     LastwallPhalanx.Make();
@@ -178,7 +182,7 @@ namespace TomeOfTheFirebird
                     ExtraMercies.AddToThings();
 
                     FighterArmorTrainingFakeLevel.Connect();
-                    WitchPatrons.Finish();
+                    
 
                     ProdigiousTWF.AddTwoWeaponDefense();
                     Magus.EScionSanityCheck();
@@ -187,6 +191,8 @@ namespace TomeOfTheFirebird
                     // MagusArcanaHandling.MergeEScion();
 
                     New_Content.RagePowers.ElementalStance.Finish();
+                    New_Content.RagePowers.RageStanceMastery.Finish();
+                    
                     RootConfigurator.ConfigureDelayedBlueprints();
 
                     //Modified_Content.ImprovedMultiarchetypeProjct.SpellSlots.Execute();                    

@@ -4,6 +4,7 @@ using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Selection;
 using System.Linq;
 using Kingmaker.Utility;
+using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
 
 namespace TomeOfTheFirebird.Modified_Content.ImprovedMultiarchetypeProjct
 {

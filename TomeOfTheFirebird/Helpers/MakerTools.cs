@@ -17,6 +17,7 @@ using Kingmaker.Visual.Animation.Kingmaker.Actions;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints;
 using TomeOfTheFirebird.New_Components;
+using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
 
 namespace TomeOfTheFirebird.Helpers
 {
@@ -208,7 +209,7 @@ namespace TomeOfTheFirebird.Helpers
         }
 
 
-        public static AbilityConfigurator MakeSpell(string systemName, string displayName, string description, Sprite icon, SpellSchool school, LocalizedString savestring, LocalizedString durationString)
+        public static AbilityConfigurator MakeSpell(string systemName, string displayName, string description, Sprite icon, SpellSchool school, LocalizedString savestring, LocalizedString durationString = null)
         {
             Main.TotFContext.Logger.Log($"Building New Spell: {systemName}");
             Kingmaker.Blueprints.BlueprintGuid guid = Main.TotFContext.Blueprints.GetGUID(systemName);
@@ -226,10 +227,14 @@ namespace TomeOfTheFirebird.Helpers
             {
                 Main.TotFContext.Logger.LogError(e.Message);
             }
-            
-           
-            
-            return AbilityConfigurator.New(systemName, guid.ToString()).SetDisplayName(name).SetDescription(desc).SetIcon(icon).AddSpellComponent(school).SetLocalizedSavingThrow(savestring).SetLocalizedDuration(durationString);
+
+
+
+            var config = AbilityConfigurator.New(systemName, guid.ToString()).SetDisplayName(name).SetDescription(desc).SetIcon(icon).AddSpellComponent(school).SetLocalizedSavingThrow(savestring);
+            if (durationString != null)
+                config.SetLocalizedDuration(durationString);
+
+            return config;
 
 
         }

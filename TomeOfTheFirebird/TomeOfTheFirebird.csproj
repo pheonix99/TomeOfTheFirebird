@@ -47,7 +47,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="ILRepack.MSBuild.Task" Version="2.0.13" />
-    <PackageReference Include="WW-Blueprint-Core" Version="2.7.3" />
+    <PackageReference Include="WW-Blueprint-Core" Version="2.7.7" />
   </ItemGroup>
   <!-- DLL Merging -->
   <Target Name="ILRepack" AfterTargets="Build">
@@ -171,12 +171,15 @@
     <Compile Include="Modified Content\Classes\Bloodrager.cs" />
     <Compile Include="Modified Content\Classes\Kineticist.cs" />
     <Compile Include="Modified Content\Classes\Paladin.cs" />
+    <Compile Include="Modified Content\Classes\Witch.cs" />
     <Compile Include="Modified Content\Crusade\BetterDisplay.cs" />
     <Compile Include="Modified Content\Crusade\CrusadeBuffTweaks.cs" />
     <Compile Include="Modified Content\Feats\ArcaneStrike.cs" />
     <Compile Include="Modified Content\ImprovedMultiarchetypeProjct\FighterCombatBoosts.cs" />
     <Compile Include="Modified Content\ImprovedMultiarchetypeProjct\HomebrewArchetypesCompFix.cs" />
     <Compile Include="Modified Content\ImprovedMultiarchetypeProjct\SpellSlots.cs" />
+    <Compile Include="Modified Content\ImprovedMultiarchetypeProjct\WitchPatronUpgrade.cs" />
+    <Compile Include="Modified Content\Items\RadianceUpgrades.cs" />
     <Compile Include="Modified Content\KineticistOverhaul\CreateProperElementalFoci.cs" />
     <Compile Include="Modified Content\KineticistOverhaul\FixProgressionLayoutSillyness.cs" />
     <Compile Include="Modified Content\KineticistOverhaul\RationalizeElementalPrerequisites.cs" />
@@ -188,6 +191,7 @@
     <Compile Include="New Components\AllLevelsSpellSlotShiftPart.cs" />
     <Compile Include="New Components\ArtifactEnabledWeaponAngelDamageDice.cs" />
     <Compile Include="New Components\ElementalStanceComponent.cs" />
+    <Compile Include="New Components\Prerequisites\PrerequisiteArchetypeCantTakeWithX.cs" />
     <Compile Include="New Components\Properties\ConditionalPropertyGetter.cs" />
     <Compile Include="New Components\ContextDamageValueEnergyDamageDice.cs" />
     <Compile Include="New Components\ContextRankConfigShroudOfWater.cs" />
@@ -215,6 +219,7 @@
     <Compile Include="New Content\Archetypes\DragonbloodChymist.cs" />
     <Compile Include="New Content\Archetypes\EldritchScionSage.cs" />
     <Compile Include="New Content\Archetypes\KineticLancer.cs" />
+    <Compile Include="New Content\Archetypes\SeasonalWitch.cs" />
     <Compile Include="New Content\Bloodlines\PheonixBloodline.cs" />
     <Compile Include="New Content\Bloodlines\TotFBloodlineTools.cs" />
     <Compile Include="New Content\Feats\Afterburn.cs" />
@@ -232,7 +237,7 @@
     <Compile Include="New Content\Feats\KineticLeap.cs" />
     <Compile Include="New Content\Feats\LastwallPhalanx.cs" />
     <Compile Include="New Content\Feats\OverwhelmingDefense.cs" />
-    <Compile Include="New Content\Feats\RageStanceMastery.cs" />
+    <Compile Include="New Content\RagePowers\RageStanceMastery.cs" />
     <Compile Include="New Content\Feats\SwarmStrike.cs" />
     <Compile Include="New Content\Features\KineticistDefenseOverclocks.cs" />
     <Compile Include="New Content\Features\KineticistDoubleMetakinesis.cs" />
@@ -262,10 +267,11 @@
     <Compile Include="New Content\Items\PaladinGear.cs" />
     <Compile Include="New Content\Mercies\ExtraMercies.cs" />
     <Compile Include="New Content\RagePowers\ElementalStance.cs" />
+    <Compile Include="New Content\Spells\EarthTremor.cs" />
     <Compile Include="New Content\Spells\TODO\AuraOfDoom.cs" />
     <Compile Include="New Content\Spells\BoneFists.cs" />
     <Compile Include="New Content\Spells\TODO\BowSpirit.cs" />
-    <Compile Include="New Content\Spells\TODO\BurstOfRadiance.cs" />
+    <Compile Include="New Content\Spells\BurstOfRadiance.cs" />
     <Compile Include="New Content\Spells\ChainsOfFire.cs" />
     <Compile Include="New Content\Spells\TODO\ChillTouch.cs" />
     <Compile Include="New Content\Spells\TODO\CosmicRay.cs" />
@@ -311,7 +317,6 @@
     <Compile Include="Modified Content\Quests\DawnOfDragons.cs" />
     <Compile Include="Reference\Guids.cs" />
     <Compile Include="Reference\LocalizedStrings.cs" />
-    <Compile Include="Resources.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Tweaks\FlawlessAttacks.cs" />
   </ItemGroup>
@@ -351,7 +356,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Crusade\" />
-    <Folder Include="Modified Content\Items\" />
     <Folder Include="New Content\MythicFeats\" />
     <Folder Include="New Spells\" />
   </ItemGroup>
@@ -374,7 +378,7 @@
     <Copy SourceFiles="@(SpellAssets)" DestinationFolder="$(WrathPath)\Mods\$(MSBuildProjectName)\Assets\Spells" />
     <Copy SourceFiles="@(AbilityAssets)" DestinationFolder="$(WrathPath)\Mods\$(MSBuildProjectName)\Assets\Abilities" />
   </Target>
-    <!-- Automatically creates a release zip -->
+  <!-- Automatically creates a release zip -->
   <Target Name="ZipRelease" AfterTargets="ILRepack" Condition="'$(Configuration)' == 'Release'">
     <ItemGroup>
       <Assembly Include="$(OutputPath)\$(AssemblyName).dll" />
@@ -384,22 +388,17 @@
       <SpellAssets Include="$(OutputPath)\Assets\Spells\GloomblindBolts.png" />
       <SpellAssets Include="$(OutputPath)\Assets\Spells\SpearOfPurity.png" />
       <AbilityAssets Include="$(OutputPath)\Assets\Abilities\Phoenix_Bloodline.png" />
-	        <Localization Include="$(OutputPath)\Localization\LocalizationPack.json" />
+      <Localization Include="$(OutputPath)\Localization\LocalizationPack.json" />
       <Localization Include="$(OutputPath)\Localization\Settings.json" />
     </ItemGroup>
-
     <Copy SourceFiles="@(Assembly)" DestinationFolder="$(OutputPath)\$(AssemblyName)" />
     <Copy SourceFiles="@(ModConfig)" DestinationFolder="$(OutputPath)\$(AssemblyName)" />
-	    <Copy SourceFiles="@(Localization)" DestinationFolder="$(OutputPath)\$(AssemblyName)\Localization" />
-     <Copy SourceFiles="@(SpellAssets)" DestinationFolder="$(OutputPath)\$(AssemblyName)\Assets\Spells" />
-		<Copy SourceFiles="@(AbilityAssets)" DestinationFolder="$(OutputPath)\$(AssemblyName)\Assets\Abilities" />
-	 <Message Text="Copying zip  to $(OutputPath)\$(AssemblyName).zip" Importance="High" />
-    <ZipDirectory
-      SourceDirectory="$(OutputPath)\$(AssemblyName)"
-      DestinationFile="C:\ModReleaseCandidates\$(AssemblyName).zip"
-      Overwrite="true"/>
+    <Copy SourceFiles="@(Localization)" DestinationFolder="$(OutputPath)\$(AssemblyName)\Localization" />
+    <Copy SourceFiles="@(SpellAssets)" DestinationFolder="$(OutputPath)\$(AssemblyName)\Assets\Spells" />
+    <Copy SourceFiles="@(AbilityAssets)" DestinationFolder="$(OutputPath)\$(AssemblyName)\Assets\Abilities" />
+    <Message Text="Copying zip  to $(OutputPath)\$(AssemblyName).zip" Importance="High" />
+    <ZipDirectory SourceDirectory="$(OutputPath)\$(AssemblyName)" DestinationFile="C:\ModReleaseCandidates\$(AssemblyName).zip" Overwrite="true" />
   </Target>
- 
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>

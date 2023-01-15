@@ -1,5 +1,6 @@
 ﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
+using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Utils;
 using BlueprintCore.Utils.Types;
@@ -17,7 +18,7 @@ namespace TomeOfTheFirebird.New_Content.WildTalents
     {
         public static void Build()
         {
-            BlueprintCore.Blueprints.Configurators.Classes.Selection.FeatureSelectionConfigurator UtilitySelector = MakerTools.MakeFeatureSelector("UtilityWildTalentFakeSelector", "Utility Wild Talent", "A kineticist gains her selected element’s basic utility wild talent (basic telekinesis, basic aerokinesis, etc.) as a bonus wild talent at level 1.", false);
+            FeatureSelectionConfigurator UtilitySelector = MakerTools.MakeFeatureSelector("UtilityWildTalentFakeSelector", "Utility Wild Talent", "A kineticist gains her selected element’s basic utility wild talent (basic telekinesis, basic aerokinesis, etc.) as a bonus wild talent at level 1.", false);
             UtilitySelector.SetIsClassFeature(true);
 
             MakeAerokinesis();

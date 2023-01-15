@@ -1,6 +1,7 @@
 ﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.Configurators.Classes.Selection;
+using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
 using BlueprintCore.Conditions.Builder;
 using BlueprintCore.Conditions.Builder.ContextEx;
 using Kingmaker.Blueprints.Classes;
@@ -138,7 +139,7 @@ namespace TomeOfTheFirebird.New_Content.Mercies
 
         public static void AddToThings()
         {
-            string TTTExtraMercies = "6e76496c2748405d9946949977bd3e8d";
+            //string TTTExtraMercies = "6e76496c2748405d9946949977bd3e8d";
             if (Settings.IsEnabled("mercyinjured"))
             {
                 FeatureSelectionConfigurator.For("02b187038a8dce545bb34bbfb346428d").AddToAllFeatures(injured.AssetGuidThreadSafe).Configure();

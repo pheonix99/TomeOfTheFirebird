@@ -1,6 +1,7 @@
 ﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.Configurators.Classes.Selection;
+using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Conditions.Builder;
 using BlueprintCore.Conditions.Builder.ContextEx;
@@ -109,6 +110,7 @@ namespace TomeOfTheFirebird.New_Content.RagePowers
 
 
             selector = stanceSelectFeature.Configure().ToReference<BlueprintFeatureSelectionReference>();
+            /*
             if (Settings.IsEnabled("RagePowerElementalStance"))
             {
                 FeatureSelectionConfigurator.For("28710502f46848d48b3f0d6132817c4e").AddToAllFeatures(selector.Guid).Configure();
@@ -122,6 +124,7 @@ namespace TomeOfTheFirebird.New_Content.RagePowers
                    
                 }
             }
+            */
             //TODO check if need to patch on viking!
 
 
