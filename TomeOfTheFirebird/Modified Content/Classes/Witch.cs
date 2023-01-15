@@ -15,6 +15,10 @@ namespace TomeOfTheFirebird.Modified_Content.Classes
 {
     class Witch
     {
+        //TODO patch freezing sphere into Elements 6
+        //TODO patch firestorm into Elements 8
+        //TODO patch meteor swarm into Elements 9?
+
         public static void FixIcons()
         {
             if (Settings.IsDisabled("FixWitchSpellIcons"))

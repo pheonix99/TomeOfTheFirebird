@@ -10,6 +10,9 @@ NOW REQUIRES TabletopTweaks Core Module and ModMenu
 
 ## Changelog
 
+### 1.4.2
+Emergency hotfix to catch Burn Resistance being backwards
+
 ### 1.4.1
 Added Homebrew Rage Power: Rage Stance Mastery. Use two Barbarian stances at once.
 

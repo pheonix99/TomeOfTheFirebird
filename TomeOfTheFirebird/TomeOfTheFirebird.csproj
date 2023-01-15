@@ -223,7 +223,10 @@
     <Compile Include="New Content\Bloodlines\PheonixBloodline.cs" />
     <Compile Include="New Content\Bloodlines\TotFBloodlineTools.cs" />
     <Compile Include="New Content\Feats\Afterburn.cs" />
+    <Compile Include="New Content\Feats\AncestralScorn.cs" />
+    <Compile Include="New Content\Feats\ArmorOfThePit.cs" />
     <Compile Include="New Content\Feats\Autobuffer.cs" />
+    <Compile Include="New Content\Feats\BannerOfDoom.cs" />
     <Compile Include="New Content\Feats\BreathWeaponFeats.cs" />
     <Compile Include="New Content\Feats\BurnResistance.cs" />
     <Compile Include="New Content\Feats\CoordinatedShot.cs" />
@@ -237,6 +240,7 @@
     <Compile Include="New Content\Feats\KineticLeap.cs" />
     <Compile Include="New Content\Feats\LastwallPhalanx.cs" />
     <Compile Include="New Content\Feats\OverwhelmingDefense.cs" />
+    <Compile Include="New Content\RacialOptions\Tiefling.cs" />
     <Compile Include="New Content\RagePowers\RageStanceMastery.cs" />
     <Compile Include="New Content\Feats\SwarmStrike.cs" />
     <Compile Include="New Content\Features\KineticistDefenseOverclocks.cs" />

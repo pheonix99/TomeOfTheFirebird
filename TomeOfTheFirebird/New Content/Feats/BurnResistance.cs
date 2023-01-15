@@ -45,7 +45,7 @@ namespace TomeOfTheFirebird.New_Content.Feats
                                     Property = new KineticistBurnPropertyGetter(),
                                 featureBaseReference = done.ToReference<BlueprintFeatureBaseReference>()
                             },
-                            Numerator = 2
+                            Numerator = -2
 
                          }
                     };
