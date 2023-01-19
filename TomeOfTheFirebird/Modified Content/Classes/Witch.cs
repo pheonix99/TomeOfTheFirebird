@@ -19,33 +19,57 @@ namespace TomeOfTheFirebird.Modified_Content.Classes
         //TODO patch firestorm into Elements 8
         //TODO patch meteor swarm into Elements 9?
 
-        public static void FixIcons()
+        public static void AllPatronFixes()
         {
-            if (Settings.IsDisabled("FixWitchSpellIcons"))
-                return;
+            bool fixIcons = Settings.IsEnabled("FixWitchSpellIcons");
+            
+            bool fixWWProg = Settings.IsEnabled("WinterWitchPatronProgression");
+            var wwPRC = BlueprintTool.GetRef<BlueprintCharacterClassReference>("eb24ca44debf6714aabe1af1fd905a07");
+            var patronselector = BlueprintTool.Get<BlueprintFeatureSelection>("381cf4c890815d049a4420c6f31d063f");
 
-            var bloodlineselector = BlueprintTool.Get<BlueprintFeatureSelection>("381cf4c890815d049a4420c6f31d063f");
-
-            foreach (var v in bloodlineselector.m_AllFeatures)
+            foreach (var v in patronselector.m_AllFeatures)
             {
                 var v2 = BlueprintTools.GetBlueprint<BlueprintProgression>(v.Guid);
+
                 if (v2 != null)
                 {
-                    ProgressionConfigurator.For(v2).ModifyLevelEntries(x =>
+                    var patron = ProgressionConfigurator.For(v2);
+                    if (fixIcons)
                     {
-                        foreach (var q in x.m_Features)
+                        patron.ModifyLevelEntries(x =>
+                          {
+                              foreach (var q in x.m_Features)
+                              {
+                                  var feature = q.Get();
+
+                                  AddKnownSpell referant = feature.GetComponent<AddKnownSpell>();
+                                  if (referant != null)
+                                  {
+                                      FeatureConfigurator.For(feature).SetIcon(referant.m_Spell.Get().Icon).Configure();
+
+                                  }
+                                  Main.TotFContext.Logger.LogPatch($"Patched Icon on", feature);
+                              }
+                          });
+                    }
+                    if (fixWWProg)
+                    {
+                        bool hasWW = false;
+
+                        if (v2.m_Classes.Any(x => x.Class.ToReference<BlueprintCharacterClassReference>().Equals(wwPRC)))
                         {
-                            var feature = q.Get();
-
-                            AddKnownSpell referant = feature.GetComponent<AddKnownSpell>();
-                            if (referant != null)
-                            {
-                                FeatureConfigurator.For(feature).SetIcon(referant.m_Spell.Get().Icon).Configure();
-
-                            }
-                            Main.TotFContext.Logger.LogPatch($"Patched Icon on", feature);
+                            Main.TotFContext.Logger.LogPatch("Skipped Adding Winter Witch Progression to patron", v2);
+                            hasWW = true;
                         }
-                    }).Configure();
+                           
+                        
+                        if (!hasWW)
+                        {
+                            Main.TotFContext.Logger.LogPatch("Added Winter Witch Progression to patron", v2);
+                            patron.AddToClasses(wwPRC);
+                        }
+                    }
+                    patron.Configure();
                 }
             }
 

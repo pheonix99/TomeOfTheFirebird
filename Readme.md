@@ -10,6 +10,24 @@ NOW REQUIRES TabletopTweaks Core Module and ModMenu
 
 ## Changelog
 
+### 1.4.3
+Added Tiefling Alternate Racial Abilities
+
+Scaled Skin - trade energy resist for natural armor
+
+Maw And Claw - trade SLA for bite or claw attack
+
+Armor Of The Pit - tiefling racial feat. +2 natural armor without Scaled Skin, +1 and regain missing energy resists with
+
+Fix for setting Ember's default patron to Light breaking the mod.
+
+Fix for Winter Witch not progressing non-winter patrons acquired via second patron.
+
+Fixed Burst Of Radiance not doing damage.
+
+Fixed Bloodrager Elemental Strikes doing an extra hit
+
+
 ### 1.4.2
 Emergency hotfix to catch Burn Resistance being backwards
 

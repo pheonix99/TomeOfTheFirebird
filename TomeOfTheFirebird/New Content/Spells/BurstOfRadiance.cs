@@ -38,20 +38,24 @@ namespace TomeOfTheFirebird.New_Spells
             burst.SetSpellResistance(true);
             burst.SetAnimation(Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle.Directional);
             burst.SetAvailableMetamagic(Metamagic.Quicken, Metamagic.Heighten, Metamagic.CompletelyNormal, Metamagic.Reach, Metamagic.Bolstered, Metamagic.Empower, Metamagic.Heighten, Metamagic.Maximize, Metamagic.Persistent, Metamagic.Selective, (Metamagic)CustomMetamagic.Flaring, (Metamagic)CustomMetamagic.Intensified, (Metamagic)CustomMetamagic.Piercing);
-            burst.AddAbilityEffectRunAction(savingThrowType: Kingmaker.EntitySystem.Stats.SavingThrowType.Reflex, actions: ActionsBuilder.New().ConditionalSaved(failed: ActionsBuilder.New().ApplyBuff("0ec36e7596a4928489d2049e1e1c76a7", ContextDuration.FixedDice(diceType: Kingmaker.RuleSystem.DiceType.D4)), succeed: ActionsBuilder.New().ApplyBuff("df6d1025da07524429afbae248845ecc", ContextDuration.FixedDice(diceType: Kingmaker.RuleSystem.DiceType.D4))).Conditional(conditions: ConditionsBuilder.New().Alignment(Kingmaker.Enums.AlignmentComponent.Evil), ifTrue: ActionsBuilder.New().DealDamage(damageType: new Kingmaker.RuleSystem.Rules.Damage.DamageTypeDescription()
+            ActionsBuilder burstAction = ActionsBuilder.New().Conditional(conditions: ConditionsBuilder.New().Alignment(Kingmaker.Enums.AlignmentComponent.Evil), ifTrue: ActionsBuilder.New().DealDamage(damageType: new Kingmaker.RuleSystem.Rules.Damage.DamageTypeDescription()
             {
                 Type = Kingmaker.RuleSystem.Rules.Damage.DamageType.Energy,
                 Energy = Kingmaker.Enums.Damage.DamageEnergyType.Divine
 
             }, new Kingmaker.UnitLogic.Mechanics.ContextDiceValue()
             {
-                DiceType = Kingmaker.RuleSystem.DiceType.D6,
+                DiceType = Kingmaker.RuleSystem.DiceType.D4,
                 DiceCountValue = new Kingmaker.UnitLogic.Mechanics.ContextValue()
                 {
                     ValueType = Kingmaker.UnitLogic.Mechanics.ContextValueType.Rank,
                     ValueRank = Kingmaker.Enums.AbilityRankType.DamageDice
-                }
-            })));
+                },
+                BonusValue = ContextValues.Constant(0)
+            }, isAoE: true, halfIfSaved: false).ConditionalSaved(failed: ActionsBuilder.New().ApplyBuff("187f88d96a0ef464280706b63635f2af", ContextDuration.FixedDice(diceType: Kingmaker.RuleSystem.DiceType.D4)), succeed: ActionsBuilder.New().ApplyBuff("df6d1025da07524429afbae248845ecc", ContextDuration.FixedDice(diceType: Kingmaker.RuleSystem.DiceType.D4)))) ;
+
+
+            burst.AddAbilityEffectRunAction(savingThrowType: Kingmaker.EntitySystem.Stats.SavingThrowType.Reflex, actions: burstAction);
             burst.AddAbilityTargetsAround(radius: new Kingmaker.Utility.Feet(10f), targetType: Kingmaker.UnitLogic.Abilities.Components.TargetType.Any, spreadSpeed: new Kingmaker.Utility.Feet(10f));
             burst.AddContextRankConfig(ContextRankConfigs.CasterLevel(type: Kingmaker.Enums.AbilityRankType.DamageDice, max: 5));
             burst.AddAbilitySpawnFx(anchor: flarefx.Anchor, delay: flarefx.Delay, prefabLink: flarefx.PrefabLink);

@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TabletopTweaks.Core.Utilities;
+using TomeOfTheFirebird.Helpers;
 
 namespace TomeOfTheFirebird.New_Content
 {
@@ -54,7 +55,11 @@ namespace TomeOfTheFirebird.New_Content
 
         public static void Make()
         {
+            if (Settings.IsTTTBaseEnabled())
+                BlueprintTool.AddGuidsByName(("SecondPatronReference", "d3135a2ddba34502b82670ed770c9068"));
+
             BlueprintTool.AddGuidsByName(("HagboundPatronSelect", "0b9af221d99a91842b3a2afbc6a68a1e"));
+            
             BlueprintTool.AddGuidsByName(("ElementalPatronSelect", "3172b6960c774e19ad029c5e4a96d3e4"));
             if (Settings.IsCharOpsPlusEnabled())
             {
@@ -314,38 +319,42 @@ namespace TomeOfTheFirebird.New_Content
                 if (patronDefine.CanComplete())
                 {
 
+                    var config = ProgressionConfigurator.New(patronDefine.ProgName, Main.TotFContext.Blueprints.GetGUID(patronDefine.ProgName).ToString());
+                    config.SetDisplayName(LocalizationTool.CreateString(patronDefine.ProgName + ".Name", patronDefine.Name));
+                    config.AddToClasses(new Blueprint<BlueprintCharacterClassReference>[] { witch });
+
                     List<BlueprintAbility> spells = patronDefine.spells.Select(x => BlueprintTool.Get<BlueprintAbility>(x)).ToList();
-                    BlueprintProgression progression = TabletopTweaks.Core.Utilities.Helpers.CreateBlueprint<BlueprintProgression>(Main.TotFContext, patronDefine.ProgName, x =>
+                   
+                    for (int i = 0; i < 9; i++)
                     {
-                        x.SetName(Main.TotFContext, patronDefine.Name);
-                        x.AddClass(witch);
-                        x.LevelEntries = new LevelEntry[0];
+                        int spelllevel = i + 1;
+                        BlueprintFeature feature = MakeEntry(spelllevel, spells[i], patronDefine.Name);
 
-                        for (int i = 0; i < 9; i++)
-                        {
-                            int spelllevel = i + 1;
-                            BlueprintFeature feature = MakeEntry(spelllevel, spells[i], patronDefine.Name);
-                            x.LevelEntries = x.LevelEntries.AppendToArray(new LevelEntry { m_Features = new List<BlueprintFeatureBaseReference>() { feature.ToReference<BlueprintFeatureBaseReference>() }, Level = spelllevel * 2 });
-
-                        }
-                        x.AddComponent<AddSpellsToDescription>(x =>
-                        {
-                            x.m_Spells = spells.Select(x => x.ToReference<BlueprintAbilityReference>()).ToArray();
-                            x.Introduction = templateprog.GetComponent<AddSpellsToDescription>().Introduction;
-
-                        });
+                        config.AddToLevelEntries(spelllevel * 2, new Blueprint<BlueprintFeatureBaseReference>[] { feature.ToReference<BlueprintFeatureBaseReference>() });
+                      
                         
-                        x.IsClassFeature = true;
+                        
 
-                    });
-
+                    }
+                    config.AddSpellsToDescription(introduction: templateprog.GetComponent<AddSpellsToDescription>().Introduction, spells: patronDefine.spells.Select(x=>(Blueprint<BlueprintAbilityReference>)x).ToList());
+                    config.SetIsClassFeature(true);
                     
-                    FeatureConfigurator.For(progression).SetGroups(FeatureGroup.WitchPatron).Configure();
-                    Main.TotFContext.Logger.LogPatch(progression);
+                    
+
+                 
+
+
+                    if (Settings.IsTTTBaseEnabled())
+                    {
+                        //prog.AddFacts(new() { "SecondPatronReference" });
+                    }
+                   
+                    var prog = config.SetGroups(FeatureGroup.WitchPatron).Configure();
+                    Main.TotFContext.Logger.LogPatch(prog);
 
                     
                        // FeatureSelectionConfigurator.For(witchSelector).AddToAllFeatures( progression).Configure();
-                        FeatureSelectionConfigurator.For("24afc8be7a964e5a939b2a199ba60682").AddToAllFeatures(progression).Configure();
+                        FeatureSelectionConfigurator.For("24afc8be7a964e5a939b2a199ba60682").AddToAllFeatures(prog).Configure();
                     
                 }
                 else
@@ -355,7 +364,7 @@ namespace TomeOfTheFirebird.New_Content
                         x.SetName(Main.TotFContext, patronDefine.Name);
                         x.AddClass(witch);
                         x.LevelEntries = new LevelEntry[0];
-
+                        x.GiveFeaturesForPreviousLevels = true;
                         for (int i = 0; i < 9; i++)
                         {
                             int spelllevel = i + 1;

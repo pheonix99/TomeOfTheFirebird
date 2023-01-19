@@ -235,7 +235,25 @@
     "WitchProtectionPatronSpellLevel6": "4a732e96-ac5f-4c0f-a299-eb9238952ed6",
     "WitchProtectionPatronSpellLevel7": "c7383468-3c60-4994-ba59-55e348b00d8c",
     "WitchProtectionPatronSpellLevel8": "eb1b5787-ddfd-4c4a-8539-58e08218d112",
-    "WitchProtectionPatronSpellLevel9": "b9685c67-6d2a-428c-b99d-9a09106ba249"
+    "WitchProtectionPatronSpellLevel9": "b9685c67-6d2a-428c-b99d-9a09106ba249",
+    "ClawTieflingRacialFeature": "a5bec04c-6816-4c18-a264-9d8be52c0b8d",
+    "MawTieflingRacialFeature": "914fe87b-7eba-4892-b82b-6c0a5c720385",
+    "ScaledSkinResistColdFeature": "088bd1c4-3905-427d-aaa5-45d9eab1869b",
+    "ScaledSkinResistElectricityFeature": "7cb252b9-458d-4423-8e83-f7387e6bd5e9",
+    "ScaledSkinResistFireFeature": "99b18971-bfdf-49f2-8f50-fb0231596d91",
+    "ScaledSkinTieflingRacialFeature": "8e014c31-bfb7-4999-8770-ff9737943374",
+    "TieflingAlternateTraitSelector": "1260d938-b78e-4c39-b46b-ddc841660161",
+    "TieflingNoAlternateTrait": "316a236f-bb9f-4121-9988-de6db8812878",
+    "TieflingNoSLAFeature": "562d3cf6-ce3d-413c-bf5d-f0727f08ff27",
+    "TieflingNAStackerFeature": "9c049536-197f-461a-8a07-6b027018b925",
+    "ArmorOfThePitMasterFeature": "f2389d68-e5ce-4444-9187-7c30c3322a0e",
+    "ArmorOfThePitSSOffFeature": "7b0f336e-90a4-4b85-a77c-81979e91ecee",
+    "ArmorOfThePitSSOnFeature": "d33f714d-2cfd-426a-9279-8ad687ff393a",
+    "AotPSSonResistColdFeature": "81e00159-b855-4534-afb7-6f6d8e2ad6ae",
+    "AotPSSonResistElectricityFeature": "33bcbccc-2d30-4c58-acee-0a7e816a9e87",
+    "AotPSSonResistFireFeature": "182ad10e-e03a-4871-8a42-181b532cc455"
+
+
   },
   "DerivedBlueprintMasters": {
     "DiminishedSpellcastingMaster": "ba5d3cd1-29c3-4836-ae1d-88467323c6cd",

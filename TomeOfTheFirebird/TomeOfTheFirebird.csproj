@@ -191,6 +191,8 @@
     <Compile Include="New Components\AllLevelsSpellSlotShiftPart.cs" />
     <Compile Include="New Components\ArtifactEnabledWeaponAngelDamageDice.cs" />
     <Compile Include="New Components\ElementalStanceComponent.cs" />
+    <Compile Include="New Components\Prerequisites\PrerequisitePartyMember.cs" />
+    <Compile Include="New Components\Prerequisites\PrerequisiteAbilityFromList1.cs" />
     <Compile Include="New Components\Prerequisites\PrerequisiteArchetypeCantTakeWithX.cs" />
     <Compile Include="New Components\Properties\ConditionalPropertyGetter.cs" />
     <Compile Include="New Components\ContextDamageValueEnergyDamageDice.cs" />
@@ -227,6 +229,7 @@
     <Compile Include="New Content\Feats\ArmorOfThePit.cs" />
     <Compile Include="New Content\Feats\Autobuffer.cs" />
     <Compile Include="New Content\Feats\BannerOfDoom.cs" />
+    <Compile Include="New Content\Feats\BlastingCharge.cs" />
     <Compile Include="New Content\Feats\BreathWeaponFeats.cs" />
     <Compile Include="New Content\Feats\BurnResistance.cs" />
     <Compile Include="New Content\Feats\CoordinatedShot.cs" />

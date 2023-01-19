@@ -121,10 +121,12 @@ namespace TomeOfTheFirebird
 
                     PheonixBloodline.MakePheonixBloodline();
                    
+
+
                     EldritchScionSage.Make();
 
                     Modified_Content.Archetypes.Witch.ReturnAccursedPatrons();
-                    Modified_Content.Classes.Witch.FixIcons();
+                    Modified_Content.Classes.Witch.AllPatronFixes();
 
                     ShimmeringMirage.Make();
                     ClockworkHeart.Make();
@@ -136,7 +138,11 @@ namespace TomeOfTheFirebird
                     LastwallPhalanx.Make();
                     SwarmStrike.Make();
                     ArcaneStrike.AddDHSScaling();
+
                   
+
+                    TomeOfTheFirebird.New_Content.RacialOptions.Tiefling.Make();
+                    ArmorOfThePit.Make();
                 }
                 catch (Exception e)
                 {
@@ -175,6 +181,7 @@ namespace TomeOfTheFirebird
                     FixExtraHitsOnProcs.FixFirebrand();
                     FixExtraHitsOnProcs.FixRandomWeaponsRiders();
                     FixExtraHitsOnProcs.FixClawsOfSacredBeast();
+                    FixExtraHitsOnProcs.FixElementalStrikes();
 
 
                     CavalierFixes.FixOrderAbilityDisplays();

@@ -76,11 +76,13 @@ namespace TomeOfTheFirebird
             builder.AddToggle(MakeToggle("WitchPatronPlague", "Witch Patron: Plague", true, "Adds the Plague witch patron, focusing on different necromantic nastiness. Some deviation from tabletop to account for unimplemented (detect undead, control undead, 16th — create greater undead), and just plain bad (giant vermin) TT spells. Kicks Create Undead up a level to slot in Plague Storm"));
             builder.AddToggle(MakeToggle("PlaguePerniciousPoison", "Plague Patron: Replace Command Undead with Pernicious Poison", false, "Follow Call Of The Wild's lead and swap Command Undead for Pernicious Poison on the Plague patron"));
             builder.AddToggle(MakeToggle("WitchPatronProtection", "Witch Patron: Protection", true, "Adds the Protection witch patron, focusing on defense spells. Some deviation from tabletop to account for most of the list being unimplemented, using CoTW list instead."));
+            builder.AddToggle(MakeToggle("WinterWitchPatronProgression", "Winter Witch Progresses Patron", true,"If you have two witch patrons ex from TTT-Base Second patron, winter witch will progress both."));
 
 
 
             builder.AddSubHeader(GetString("Feats.Title"), startExpanded: true);
             builder.AddToggle(MakeToggle("AbilityFocusBreathWeapons", "Ability Focus Breath Weapons", true, "Increases DC of breath weapon attacks by 2"));
+            builder.AddToggle(MakeToggle("ArmorOfThePit", "Armor Of The Pit", true, "Tiefling Racial Feat: +2 natural armor. +1 and the other two resists with the Scaled Skin racial trait."));
             builder.AddToggle(MakeToggle("BurnResistance", "Burn Resistance", true, "Treat character level as two lower when calculating nonlethal damage from burn"));
             builder.AddToggle(MakeToggle("CoordinatedShot", "Coordinated Shot", true, "Teamwork Feat: +1 to hit if ally engaging target of ranged attack has feat, another if target is flanked by allies"));
             builder.AddToggle(MakeToggle("discordantsong", "Discordant Song", true, "Bard Song adds 1d6 sonic damage rider"));
@@ -100,30 +102,35 @@ namespace TomeOfTheFirebird
 
             builder.AddToggle(MakeToggle("FixAngelArtifactCloak", "Bound Of Possibility: Fix Angel Version", true, "The Angel version of Bound Of Possibility now properly applies to weapon attacks - they partially fixed in EE"));
             builder.AddToggle(MakeToggle("FixBloodragerSpellIcons", "Bloodrager: Fix Bloodline Spell Icons", true, "Gives Bloodline Spell features the icon of the spell."));
-
-            builder.AddToggle(MakeToggle("FixExtraHitsFirebrand", "Fix Extra Hits: Firebrand", true, "Firebrand now adds a 1d6 fire rider to all attacks, rather than a 1d6 fire extra hit."));
-
-            builder.AddToggle(MakeToggle("FixExtraHitsSmallDragon", "Fix Extra Hits: Small Dragon", true, "The adorable little dragon from Dawn Of Dragons now gives his random extra damage as part of the attack, not as an extra hit."));
             builder.AddToggle(MakeToggle("FixExtraHitsClawsOfASacredBeast", "Fix Extra Hits: Claws Of A Sacred Beast", true, "Claws Of A Sacred Beast no longer gives an extra hit, now simply adds the correct slash damage."));
-            builder.AddToggle(MakeToggle("FixWitchSpellIcons", "Witch: Fix Patron Spell Icons", true, "Gives Witch Spell features the icon of the spell."));
+            builder.AddToggle(MakeToggle("FixExtraHitsElementalStrikes", "Fix Extra Hits: Elemental Strikes", true, "Bloodrager Elemental Strikes now adds damage to the attacks, not an extra hit."));
+            builder.AddToggle(MakeToggle("FixExtraHitsFirebrand", "Fix Extra Hits: Firebrand", true, "Firebrand now adds a 1d6 fire rider to all attacks, rather than a 1d6 fire extra hit."));
+         
+            builder.AddToggle(MakeToggle("FixExtraHitsSmallDragon", "Fix Extra Hits: Small Dragon", true, "The adorable little dragon from Dawn Of Dragons now gives his random extra damage as part of the attack, not as an extra hit."));
+
+            builder.AddToggle(MakeToggle("FixFlameShield", "Flame Shield Wild Talent: Cold Protection", true, "Flame Shield wild talent correctly halves incoming cold damage."));
+
+
 
             builder.AddToggle(MakeToggle("CleanupEldritchScion", "Eldritch Scion: Cleanup Progression", true, "Dynamically kills weird add / remove of Arcane Weapon upgrades on Eldritch Scion"));
-            
+            builder.AddToggle(MakeToggle("FixOrderOfTheStarCallingChannelingSupport", "Order Of The Star: Add Calling Channeling Support", true, "Order Of The Stars is supposed to grant half class level to Paladin and Cleric channeling progression. It didn't. Now it does."));
             builder.AddToggle(MakeToggle("FixRadianceFinalForm", "Radiance: Fix Final (Holy) Form", true, "The good version of Radiance's final form now properly retains its holy effect"));
 
             
 
-            builder.AddToggle(MakeToggle("FixOrderOfTheStarCallingChannelingSupport", "Order Of The Star: Add Calling Channeling Support", true, "Order Of The Stars is supposed to grant half class level to Paladin and Cleric channeling progression. It didn't. Now it does."));
+           
 
-            builder.AddToggle(MakeToggle("FixFlameShield", "Flame Shield Wild Talent: Cold Protection", true, "Flame Shield wild talent correctly halves incoming cold damage."));
-
+             builder.AddToggle(MakeToggle("FixWitchSpellIcons", "Witch: Fix Patron Spell Icons", true, "Gives Witch Spell features the icon of the spell."));
             builder.AddSubHeader(GetString("Items.Title"), startExpanded: true);
             builder.AddToggle(MakeToggle("BracersOfTheMercifulKnight", "Bracers Of The Merciful Knight", true, "Adds a set of magic bracers that improve Paladin Lay On Hands to Arsinoe's stock. Uncaps Lay On Hands healing as a side effect. I do not know what will happen if you disable this mid-game."));
-            builder.AddToggle(MakeToggle("BracersOfTheAvengingKnight", "Bracers Of The Merciful Knight", true, "Adds a set of magic bracers that improve Paladin Smite Evil to Arsinoe's stock. I do not know what will happen if you disable this mid-game."));
+            builder.AddToggle(MakeToggle("BracersOfTheAvengingKnight", "Bracers Of The Avenging Knight", true, "Adds a set of magic bracers that improve Paladin Smite Evil to Arsinoe's stock. I do not know what will happen if you disable this mid-game."));
 
 
             builder.AddSubHeader(GetString("MythicAbilities.Title"), startExpanded: true);
             builder.AddToggle(MakeToggle("MythicKineticAegis", "Mythic Kinetic Aegis", true, "(Homebrew) Improves Kineticist Elemental Defenses with Mythic Rank."));
+
+            builder.AddSubHeader(GetString("RacialAbilities.Title"), startExpanded: true);
+            builder.AddToggle(MakeToggle("TieflingAlternateFeatures", "Tiefling Alternate Features", true, "Adds Tiefling Alternate Racial Feature Selection"));
             builder.AddSubHeader(GetString("Spells.Title"), startExpanded: true);
             builder.AddToggle(MakeToggle("BoneFists", "Bone Fists", true, "Level 2 spell for many classes, gives +1 natural armor (form-type) and +2 natural weapons damage to group."));
             builder.AddToggle(MakeToggle("BurstOfRadiance", "Burst Of Radiance", true, "Level 2 spell for many classes, targets area, blinds on failed save, dazzles on success, deals small damage to evil."));
@@ -138,7 +145,9 @@ namespace TomeOfTheFirebird
             
             builder.AddToggle(MakeToggle("TelekineticStrikes", "Telekinetic Strikes", true, "Add 1d4 force damage rider to natural weapons"));
             builder.AddToggle(MakeToggle("VitrolicMist", "Vitrolic Mist", true, "Fire Shield, but for acid damage"));
-            
+
+           
+
 
             builder.AddSubHeader(GetString("WildTalents.Title"), startExpanded: true);
             builder.AddToggle(MakeToggle("ClockworkHeart", "Clockwork Heart", true, "Passive Earth Wild Talent. Requires Metal Blast (earth + earth), grants Improved Initiative and Lightning Reflexes"));

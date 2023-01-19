@@ -2,6 +2,7 @@
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Conditions.Builder;
 using BlueprintCore.Conditions.Builder.ContextEx;
+using BlueprintCore.Utils.Types;
 using Kingmaker.Enums;
 using Kingmaker.Enums.Damage;
 using Kingmaker.RuleSystem.Rules.Damage;
@@ -13,6 +14,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TabletopTweaks.Core.Utilities;
 using TomeOfTheFirebird.Components;
+using TomeOfTheFirebird.New_Components;
 
 namespace TomeOfTheFirebird.Bugfixes
 {
@@ -44,6 +46,112 @@ namespace TomeOfTheFirebird.Bugfixes
                 }
 
             }
+        }
+
+        public static void FixElementalStrikes()
+        {
+            if (Settings.IsDisabled("FixExtraHitsElementalStrikes"))
+                return;
+
+            BuffConfigurator.For("eb71b69ec2b317140b950fbc879efdc3").RemoveComponents(x => x is AddInitiatorAttackWithWeaponTrigger).AddComponent<ContextDamageValueEnergyDamageDice>(x =>
+              {
+                  x.damageType = new DamageTypeDescription() { Type = DamageType.Energy, Energy = DamageEnergyType.Fire };
+                  x.Value = new ContextDiceValue()
+                  {
+                      DiceCountValue = ContextValues.Rank(),
+                      DiceType = Kingmaker.RuleSystem.DiceType.D6,
+                      BonusValue = ContextValues.Constant(0)
+                  };
+
+              }).Configure();//Fire strikes before 20
+
+            FeatureConfigurator.For("837067e4608bc5948994d79a3f3b9e17").RemoveComponents(x => x is AddInitiatorAttackWithWeaponTrigger).AddComponent<ContextDamageValueEnergyDamageDice>(x =>
+            {
+                x.damageType = new DamageTypeDescription() { Type = DamageType.Energy, Energy = DamageEnergyType.Fire };
+                x.Value = new ContextDiceValue()
+                {
+                    DiceCountValue = ContextValues.Rank(),
+                    DiceType = Kingmaker.RuleSystem.DiceType.D6,
+                    BonusValue = ContextValues.Constant(0)
+                };
+
+            }).Configure();//Fire strikes at 20
+
+
+
+            BuffConfigurator.For("11fd8bc21f8de6a408859f8f2e845094").RemoveComponents(x => x is AddInitiatorAttackWithWeaponTrigger).AddComponent<ContextDamageValueEnergyDamageDice>(x =>
+            {
+                x.damageType = new DamageTypeDescription() { Type = DamageType.Energy, Energy = DamageEnergyType.Cold };
+                x.Value = new ContextDiceValue()
+                {
+                    DiceCountValue = ContextValues.Rank(),
+                    DiceType = Kingmaker.RuleSystem.DiceType.D6,
+                    BonusValue = ContextValues.Constant(0)
+                };
+
+            }).Configure();//Cold strikes before 20
+
+            FeatureConfigurator.For("c1710599b2f72e644918a3f7b0e2b44a").RemoveComponents(x => x is AddInitiatorAttackWithWeaponTrigger).AddComponent<ContextDamageValueEnergyDamageDice>(x =>
+            {
+                x.damageType = new DamageTypeDescription() { Type = DamageType.Energy, Energy = DamageEnergyType.Cold };
+                x.Value = new ContextDiceValue()
+                {
+                    DiceCountValue = ContextValues.Rank(),
+                    DiceType = Kingmaker.RuleSystem.DiceType.D6,
+                    BonusValue = ContextValues.Constant(0)
+                };
+
+            }).Configure();//Cold strikes at 20
+
+            BuffConfigurator.For("8792f9cb9a9b03d4ebb057137bf853d9").RemoveComponents(x => x is AddInitiatorAttackWithWeaponTrigger).AddComponent<ContextDamageValueEnergyDamageDice>(x =>
+            {
+                x.damageType = new DamageTypeDescription() { Type = DamageType.Energy, Energy = DamageEnergyType.Electricity };
+                x.Value = new ContextDiceValue()
+                {
+                    DiceCountValue = ContextValues.Rank(),
+                    DiceType = Kingmaker.RuleSystem.DiceType.D6,
+                    BonusValue = ContextValues.Constant(0)
+                };
+
+            }).Configure();//Elect strikes before 20
+
+            FeatureConfigurator.For("99e577bf8876f294eaaa47dec8dae994").RemoveComponents(x => x is AddInitiatorAttackWithWeaponTrigger).AddComponent<ContextDamageValueEnergyDamageDice>(x =>
+            {
+                x.damageType = new DamageTypeDescription() { Type = DamageType.Energy, Energy = DamageEnergyType.Electricity };
+                x.Value = new ContextDiceValue()
+                {
+                    DiceCountValue = ContextValues.Rank(),
+                    DiceType = Kingmaker.RuleSystem.DiceType.D6,
+                    BonusValue = ContextValues.Constant(0)
+                };
+
+            }).Configure();//Elect strikes at 20
+
+            BuffConfigurator.For("ad90034a6f8a6f144bf8f329917e1d38").RemoveComponents(x => x is AddInitiatorAttackWithWeaponTrigger).AddComponent<ContextDamageValueEnergyDamageDice>(x =>
+            {
+                x.damageType = new DamageTypeDescription() { Type = DamageType.Energy, Energy = DamageEnergyType.Acid };
+                x.Value = new ContextDiceValue()
+                {
+                    DiceCountValue = ContextValues.Rank(),
+                    DiceType = Kingmaker.RuleSystem.DiceType.D6,
+                    BonusValue = ContextValues.Constant(0)
+                };
+
+            }).Configure();//Elect strikes before 20
+
+            FeatureConfigurator.For("d37a8f6f5df057a4ea50b2c065288263").RemoveComponents(x => x is AddInitiatorAttackWithWeaponTrigger).AddComponent<ContextDamageValueEnergyDamageDice>(x =>
+            {
+                x.damageType = new DamageTypeDescription() { Type = DamageType.Energy, Energy = DamageEnergyType.Acid };
+                x.Value = new ContextDiceValue()
+                {
+                    DiceCountValue = ContextValues.Rank(),
+                    DiceType = Kingmaker.RuleSystem.DiceType.D6,
+                    BonusValue = ContextValues.Constant(0)
+                };
+
+            }).Configure();//Elect strikes at 20
+
+
         }
 
         public static void FixRandomWeaponsRiders()

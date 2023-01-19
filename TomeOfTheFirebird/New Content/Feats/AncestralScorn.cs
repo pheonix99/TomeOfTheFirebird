@@ -8,6 +8,8 @@ namespace TomeOfTheFirebird.New_Content.Feats
 {
     class AncestralScorn
     {
+        //Need to interpile Demoralize for this one
+
         /*
          *  Ancestral Scorn
 Source Blood of Fiends pg. 24

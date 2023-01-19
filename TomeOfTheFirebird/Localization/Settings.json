@@ -73,6 +73,11 @@
     "enGB": "Tweaks"
   },
   {
+    "Key": "TotF.Settings.RacialAbilities.Title",
+    "ProcessTemplates": false,
+    "enGB": "Racial Abilities"
+  },
+  {
     "Key": "TotF.Settings.MythicAbilities.Title",
     "ProcessTemplates": false,
     "enGB": "Mythic Abilities"
