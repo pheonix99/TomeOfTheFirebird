@@ -353,8 +353,13 @@ namespace TomeOfTheFirebird.New_Content
                     Main.TotFContext.Logger.LogPatch(prog);
 
                     
-                       // FeatureSelectionConfigurator.For(witchSelector).AddToAllFeatures( progression).Configure();
+                        FeatureSelectionConfigurator.For(witchSelector).AddToAllFeatures( prog).Configure();
                         FeatureSelectionConfigurator.For("24afc8be7a964e5a939b2a199ba60682").AddToAllFeatures(prog).Configure();
+
+                    foreach(string s in patronDefine.archetypeSelectorsToAppendTo)
+                    {
+                        FeatureSelectionConfigurator.For(s).AddToAllFeatures(prog).Configure();
+                    }
                     
                 }
                 else

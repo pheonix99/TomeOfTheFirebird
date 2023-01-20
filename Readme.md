@@ -10,6 +10,9 @@ NOW REQUIRES TabletopTweaks Core Module and ModMenu
 
 ## Changelog
 
+### 1.4.4
+Fix for accidentally blocking then new patron selections
+
 ### 1.4.3
 Added Tiefling Alternate Racial Abilities
 
