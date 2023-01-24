@@ -713,6 +713,9 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
             BloodragerPhoenixBaseBuff.AddConditionalBuff(PheonixFireFeature, PheonixFireBuff);
             BloodragerStandardRageBuff.AddConditionalBuff(BloodragerPhoenixBloodline, BloodragerPhoenixBaseBuff);
 
+            if (!Settings.IsTTTBaseEnabled())
+                return;
+
             BloodlineTools.ApplyPrimalistException(HeartOfFireFeature, 4, BloodragerPhoenixBloodline);
             BloodlineTools.ApplyPrimalistException(BlazingVitalityFeature, 8, BloodragerPhoenixBloodline);
             BloodlineTools.ApplyPrimalistException(MoltenWingsFeature, 12, BloodragerPhoenixBloodline);

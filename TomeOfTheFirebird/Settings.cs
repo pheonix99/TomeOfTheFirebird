@@ -176,6 +176,10 @@ namespace TomeOfTheFirebird
             builder.AddToggle(MakeToggle("MovanicDevasWeaponFix", "Movanic Devas Use Correct Weapon", true, "Fixes Movanic Devas to greatswords as per TT rather than longswords wielded in both hands, making their damage quite a bit less bad."));
             builder.AddToggle(MakeToggle("CrusadeMonsterSlayers", "Permanent Upgrade: Ready For Anything", true, "Makes Ready For Anything training decree from one outcome of Crusade Event 54: Monster Slayers permanent rather than a one off 60-day buff."));
             builder.AddToggle(MakeToggle("CrusadeLocalProduction", "Permanent Upgrade: Local Production", true, "Makes Ready For Anything training decree from one outcome of Crusade Event 54: Monster Slayers permanent rather than a one off 60-day buff."));
+
+            builder.AddSubHeader(GetString("Interop.Title"), startExpanded: true);
+            builder.AddToggle(MakeToggle("ThieflingTalentsInterop", "Thiefling Talents", true, "Gives Thieflings better access to rogue talents from other mods."));
+
             ModMenu.ModMenu.AddSettings(builder);
         }
 

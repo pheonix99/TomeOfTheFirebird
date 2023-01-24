@@ -251,7 +251,19 @@
     "ArmorOfThePitSSOnFeature": "d33f714d-2cfd-426a-9279-8ad687ff393a",
     "AotPSSonResistColdFeature": "81e00159-b855-4534-afb7-6f6d8e2ad6ae",
     "AotPSSonResistElectricityFeature": "33bcbccc-2d30-4c58-acee-0a7e816a9e87",
-    "AotPSSonResistFireFeature": "182ad10e-e03a-4871-8a42-181b532cc455"
+    "AotPSSonResistFireFeature": "182ad10e-e03a-4871-8a42-181b532cc455",
+    "AdoptedCat_Ability": "deb5b201-1553-4599-a0d3-22d66788a0f8",
+    "AdoptedCat_Buff": "6dabe0fe-0b82-43f6-bdba-a4e15f1b6be3",
+    "AdoptedCat_Feature": "05cc0a53-7ed2-4993-be5b-2a34ecdc1877",
+    "AdoptedDevilImpAbility": "3917930e-cf57-418d-ad21-cd97db473153",
+    "AdoptedDevilImpBuff": "0cec3970-dd28-4650-8dc3-9ac06ddbd397",
+    "AdoptedDevilImpFeature": "ed5914b3-1a91-4e02-baa5-dff2fac8f6e9",
+    "AdoptedOwlcat_Ability": "669d5a7d-b0b2-4cf3-b6f6-924319849df0",
+    "AdoptedOwlcat_Buff": "094b257c-9a4c-44a4-91fe-7ffe9b236f12",
+    "AdoptedOwlcat_Feature": "46e282a2-3f42-4348-8095-7abb4d96a662",
+    "AdoptedPipefoxAbility": "0009e2c9-d15f-487c-a215-fa29d8482b88",
+    "AdoptedPipefoxBuff": "08d89828-3ac2-4ed6-a891-db601969feca",
+    "AdoptedPipefoxFeature": "8e9fc535-4775-4512-a08a-68962f87a6d1"
 
 
   },

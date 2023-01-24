@@ -18,6 +18,8 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
         private static readonly BlueprintCharacterClass BloodragerClass = BlueprintTools.GetBlueprint<BlueprintCharacterClass>("d77e67a814d686842802c9cfd8ef8499");
         public static void MetamagicSupport(BlueprintProgression bloodline)
         {
+            if (!Settings.IsTTTBaseEnabled())
+                return;
             
             var archetype = BlueprintTool.Get<BlueprintArchetype>("e4142305e74f438c90b9fe9a545a41af");
             int[] featLevels = { 6, 9, 12, 15, 18 };

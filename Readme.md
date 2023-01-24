@@ -10,6 +10,12 @@ NOW REQUIRES TabletopTweaks Core Module and ModMenu
 
 ## Changelog
 
+### 1.4.5
+Cross mod compat patch for Thiefling from Homebrew Archetypes - spreading mod rogue talents around
+Fix for the mod asploding if TTT-Base is not installed
+
+
+
 ### 1.4.4
 Fix for accidentally blocking then new patron selections
 

@@ -88,7 +88,11 @@
     "ProcessTemplates": false,
     "enGB": "Wild Talents"
   },
-
+  {
+    "Key": "TotF.Settings.Interop.Title",
+    "ProcessTemplates": false,
+    "enGB": "Mod Interoperability"
+  },
   {
     "Key": "TotF.Settings.EnableFeature",
     "ProcessTemplates": false,

@@ -140,6 +140,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\TabletopTweaks-Core\TabletopTweaks-Core\bin\Debug\TabletopTweaks-Core.dll</HintPath>
     </Reference>
+    <Reference Include="UniRx">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Pathfinder Second Adventure\Wrath_Data\Managed\UniRx.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Pathfinder Second Adventure\Wrath_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
@@ -164,6 +167,7 @@
     <Compile Include="Helpers\MoreFeatTools.cs" />
     <Compile Include="Helpers\SpellSpecializationTool.cs" />
     <Compile Include="Helpers\TeamworkFeatFactory.cs" />
+    <Compile Include="Modified Content\Archetypes\ThieflingInteroperability.cs" />
     <Compile Include="Modified Content\Archetypes\Purifier.cs" />
     <Compile Include="Modified Content\Archetypes\Witch.cs" />
     <Compile Include="Modified Content\Bloodlines\AbyssalBloodlineModifications.cs" />
@@ -179,6 +183,8 @@
     <Compile Include="Modified Content\ImprovedMultiarchetypeProjct\HomebrewArchetypesCompFix.cs" />
     <Compile Include="Modified Content\ImprovedMultiarchetypeProjct\SpellSlots.cs" />
     <Compile Include="Modified Content\ImprovedMultiarchetypeProjct\WitchPatronUpgrade.cs" />
+    <Compile Include="Modified Content\Items\AdoptPets.cs" />
+    <Compile Include="Modified Content\Items\ItemFeatureSwapFactory.cs" />
     <Compile Include="Modified Content\Items\RadianceUpgrades.cs" />
     <Compile Include="Modified Content\KineticistOverhaul\CreateProperElementalFoci.cs" />
     <Compile Include="Modified Content\KineticistOverhaul\FixProgressionLayoutSillyness.cs" />
@@ -191,6 +197,7 @@
     <Compile Include="New Components\AllLevelsSpellSlotShiftPart.cs" />
     <Compile Include="New Components\ArtifactEnabledWeaponAngelDamageDice.cs" />
     <Compile Include="New Components\ElementalStanceComponent.cs" />
+    <Compile Include="New Components\ItemFeatureSwapPointerComponent.cs" />
     <Compile Include="New Components\Prerequisites\PrerequisitePartyMember.cs" />
     <Compile Include="New Components\Prerequisites\PrerequisiteAbilityFromList1.cs" />
     <Compile Include="New Components\Prerequisites\PrerequisiteArchetypeCantTakeWithX.cs" />
@@ -243,6 +250,8 @@
     <Compile Include="New Content\Feats\KineticLeap.cs" />
     <Compile Include="New Content\Feats\LastwallPhalanx.cs" />
     <Compile Include="New Content\Feats\OverwhelmingDefense.cs" />
+    <Compile Include="New Content\Items\ItemSynthesisElementalRings.cs" />
+    <Compile Include="New Content\ModifySpellLists\CoreGameDeityModifications.cs" />
     <Compile Include="New Content\RacialOptions\Tiefling.cs" />
     <Compile Include="New Content\RagePowers\RageStanceMastery.cs" />
     <Compile Include="New Content\Feats\SwarmStrike.cs" />
@@ -275,6 +284,7 @@
     <Compile Include="New Content\Mercies\ExtraMercies.cs" />
     <Compile Include="New Content\RagePowers\ElementalStance.cs" />
     <Compile Include="New Content\Spells\EarthTremor.cs" />
+    <Compile Include="New Content\Spells\IncendiaryCloud.cs" />
     <Compile Include="New Content\Spells\TODO\AuraOfDoom.cs" />
     <Compile Include="New Content\Spells\BoneFists.cs" />
     <Compile Include="New Content\Spells\TODO\BowSpirit.cs" />
@@ -365,6 +375,7 @@
     <Folder Include="Crusade\" />
     <Folder Include="New Content\MythicFeats\" />
     <Folder Include="New Spells\" />
+    <Folder Include="Performance\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="Deploy" AfterTargets="Build">

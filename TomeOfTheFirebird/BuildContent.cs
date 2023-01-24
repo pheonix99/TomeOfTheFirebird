@@ -237,6 +237,8 @@ namespace TomeOfTheFirebird
                 {
                     MythicKineticDefenses.MakeLater();
                     Kineticist.FixKEEAbilities();
+                    ThieflingInteroperability.AddOtherModRogueTalents();
+
 
                     Main.TotFContext.TerminalWipe();
                 }
