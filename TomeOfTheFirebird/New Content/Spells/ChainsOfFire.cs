@@ -32,10 +32,14 @@ namespace TomeOfTheFirebird.New_Spells
             ChainsMaker.SetEffectOnEnemy(AbilityEffectOnUnit.Harmful);
             ChainsMaker.SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Directional);
             ChainsMaker.SetAvailableMetamagic(Metamagic.Empower, Metamagic.Maximize, Metamagic.Quicken, Metamagic.Bolstered, Metamagic.CompletelyNormal, Metamagic.Persistent, (Metamagic)CustomMetamagic.Burning, (Metamagic)CustomMetamagic.Flaring, (Metamagic)CustomMetamagic.Intensified, (Metamagic)CustomMetamagic.Piercing);
-            
+
             //ChainsMaker.SetIcon(ChainsOfFireSprite);
-     
-            
+
+            if (Settings.IsEnabled("ChainsOfFire"))
+            {
+                ChainsMaker.AddToSpellLists(6, SpellList.Wizard, SpellList.Magus);
+                
+            }
             ChainsMaker.SetSpellDescriptor(SpellDescriptor.Fire);
             //ActionsBuilder chainAct = 
             
@@ -49,12 +53,7 @@ namespace TomeOfTheFirebird.New_Spells
 
 
 
-            if (Settings.IsEnabled("ChainsOfFire"))
-            {
-                made.AddToSpellList(SpellTools.SpellList.WizardSpellList, 6);
-                made.AddToSpellList(SpellTools.SpellList.MagusSpellList, 6);
-                made.AddToSpellSpecialization();
-            }
+            
           
         }
 

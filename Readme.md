@@ -10,6 +10,12 @@ NOW REQUIRES TabletopTweaks Core Module and ModMenu
 
 ## Changelog
 
+### 1.4.6
+Disabling spells works again.
+If Expanded Content is installed and Gloomblind Bolts is disabled, Death Patron will use the Expanded Content version of Gloomblind Bolts
+
+
+
 ### 1.4.5
 Cross mod compat patch for Thiefling from Homebrew Archetypes - spreading mod rogue talents around
 Fix for the mod asploding if TTT-Base is not installed

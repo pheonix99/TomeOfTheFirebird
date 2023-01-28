@@ -36,6 +36,13 @@ namespace TomeOfTheFirebird
             return !IsEnabled(key);
         }
 
+        internal static bool IsExpandedContentEnabled()
+        {
+            return UnityModManager.modEntries.Where(
+                mod => mod.Info.Id.Equals("ExpandedContent") && mod.Enabled && !mod.ErrorOnLoading)
+              .Any();
+        }
+
         internal static bool IsTTTBaseEnabled()
         {
             return UnityModManager.modEntries.Where(
@@ -70,7 +77,7 @@ namespace TomeOfTheFirebird
             builder.AddToggle(MakeToggle("RagePowerElementalStance", "Rage Power: Elemental Stance", true, "Adds barbarian rage power elemental stance to the game. Increases low-level damage from TT to balance with Powerful Stance,"));
             builder.AddToggle(MakeToggle("RagePowerRageStanceMastery", "Rage Power: Stance Mastery", true, "Homebrew: Allows a barbarian to use two rage power stances at once. Requires level 14 in a rage power using class or archetype"));
             builder.AddToggle(MakeToggle("WitchPatronAnimal", "Witch Patron: Animal", true, "Adds the Animal witch patron. Some deviation from tabletop to deal with unimplementable (speak with/charm animals) and unimplemented (antilife shell) spells."));
-            builder.AddToggle(MakeToggle("witchpatrondeath", "Witch Patron: Death", true, "Adds the Death witch patron, focusing on necromantic attack spells. Some deviation from tabletop to account for unimplmentable (speak with dead, rest eternal), unimplemented (suffocate, symbol of death) and just plain bad (power word kill) TT spells. Requires Gloomblind Bolts to be enabled."));
+            builder.AddToggle(MakeToggle("witchpatrondeath", "Witch Patron: Death", true, "Adds the Death witch patron, focusing on necromantic attack spells. Some deviation from tabletop to account for unimplmentable (speak with dead, rest eternal), unimplemented (suffocate, symbol of death) and just plain bad (power word kill) TT spells. \n Requires Gloomblind Bolts to be enabled, or Expanded Content to be installed. Will use TotF Gloomblind preferentially."));
             builder.AddToggle(MakeToggle("WitchPatronDeathL2replace", "Death Patron: Replace Blessing Of Courage And Life", true, "Replaces TT Death level 2 : Blessing Of Courage and Life with Boneshaker to go all in on necromantic attack"));
             builder.AddToggle(MakeToggle("WitchPatronLight", "Witch Patron: Light", true, "Adds the Light witch patron, focusing on light-themed crowd control and damage spells. Some deviation from tabletop to account for lack of detailed lighting system in game making dancing lantern, continual flame, and daylight unimplementable. Also swapped out Sirocco for Chains Of Light because seriously?").IsModificationAllowed(() => Settings.GetDD<EmberPatron>("WitchEmberPatron") != EmberPatron.Light)); 
             builder.AddToggle(MakeToggle("WitchPatronPlague", "Witch Patron: Plague", true, "Adds the Plague witch patron, focusing on different necromantic nastiness. Some deviation from tabletop to account for unimplemented (detect undead, control undead, 16th — create greater undead), and just plain bad (giant vermin) TT spells. Kicks Create Undead up a level to slot in Plague Storm"));

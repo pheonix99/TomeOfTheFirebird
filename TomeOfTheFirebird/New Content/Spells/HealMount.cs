@@ -1,5 +1,6 @@
 ﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
@@ -72,14 +73,15 @@ namespace TomeOfTheFirebird.New_Content.Spells
             BlueprintAbility healmountmade = healMount.Configure();
             healmountcastmaker.AddAbilityEffectStickyTouch(touchDeliveryAbility: healmountmade.AssetGuidThreadSafe);
             healmountcastmaker.AddAbilityDeliverTouch(touchWeapon: "bb337517547de1a4189518d404ec49d4");
-
-            BlueprintAbility castMade = healmountcastmaker.Configure();
-
             if (Settings.IsEnabled("HealMount"))
             {
-                SpellTools.AddToSpellList(castMade, SpellTools.SpellList.PaladinSpellList, 3);
-                castMade.AddToSpellSpecialization();
+                healmountcastmaker.AddToSpellLists(3, SpellList.Paladin);
+
+                
             }
+            BlueprintAbility castMade = healmountcastmaker.Configure();
+
+            
         }
 
     }

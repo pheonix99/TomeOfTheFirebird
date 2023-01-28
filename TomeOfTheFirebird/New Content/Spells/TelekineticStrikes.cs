@@ -1,5 +1,6 @@
 ﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.Enums;
 using Kingmaker.UnitLogic.Abilities;
@@ -63,14 +64,15 @@ namespace TomeOfTheFirebird.New_Spells
             
             TKStrikeBuilderCast.AddAbilityEffectStickyTouch(touchDeliveryAbility: builtTouch.AssetGuidThreadSafe);
             TKStrikeBuilderCast.AddCraftInfoComponent(Kingmaker.Craft.CraftAOE.None, savingThrow: Kingmaker.Craft.CraftSavingThrow.None,spellType: Kingmaker.Craft.CraftSpellType.Buff);
-            BlueprintAbility builtCast = TKStrikeBuilderCast.Configure();
-            
             if (Settings.IsEnabled("TelekineticStrikes"))
             {
-                builtCast.AddToSpellList(SpellTools.SpellList.MagusSpellList, 2);
-                builtCast.AddToSpellList(SpellTools.SpellList.WizardSpellList, 2);
+                TKStrikeBuilderCast.AddToSpellLists(2, SpellList.Magus, SpellList.Wizard);
                 
+
             }
+            BlueprintAbility builtCast = TKStrikeBuilderCast.Configure();
+            
+            
 
         }
         //        Telekinetic Strikes

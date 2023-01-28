@@ -1,5 +1,6 @@
 ﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Conditions.Builder;
 using BlueprintCore.Conditions.Builder.ContextEx;
 using BlueprintCore.Utils;
@@ -27,8 +28,8 @@ namespace TomeOfTheFirebird.New_Spells
         {
             Sprite freezingSphere = AssetLoader.LoadInternal(Main.TotFContext, "Spells", "FreezingSphere.png");
             BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities.AbilityConfigurator BigFreezeBuild = MakerTools.MakeSpell("FreezingSphereBig", "Freezing Sphere: Large Blast", "Freezing sphere creates a frigid globe of cold energy that streaks from your fingertips to the location you select, where it explodes in a 40-foot-radius burst, dealing 1d6 points of cold damage per caster level(maximum 20d6) to each creature in the area.A creature of the water subtype instead takes 1d8 points of cold damage per caster level (maximum 20d8) and is staggered for 1d4 rounds.", freezingSphere, SpellSchool.Evocation, LocalizedStrings.RefHalf, new Kingmaker.Localization.LocalizedString());
-            BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities.AbilityConfigurator SmallFreezeBuild = MakerTools.MakeSpell("FreezingSphereSmall", "Freezing Sphere: Small Blast", "Freezing sphere creates a frigid globe of cold energy that streaks from your fingertips to the location you select, where it explodes in a 20-foot-radius burst, dealing 1d6 points of cold damage per caster level(maximum 20d6) to each creature in the area.A creature of the water subtype instead takes 1d8 points of cold damage per caster level (maximum 20d8) and is staggered for 1d4 rounds.", freezingSphere, SpellSchool.Evocation, LocalizedStrings.RefHalf, new Kingmaker.Localization.LocalizedString());
-            BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities.AbilityConfigurator SelectFreezeBuild = MakerTools.MakeSpell("FreezingSphere", "Freezing Sphere", "Freezing sphere creates a frigid globe of cold energy that streaks from your fingertips to the location you select, where it explodes in a 20 or 40-foot-radius burst, dealing 1d6 points of cold damage per caster level(maximum 20d6) to each creature in the area.A creature of the water subtype instead takes 1d8 points of cold damage per caster level (maximum 20d8) and is staggered for 1d4 rounds.", freezingSphere, SpellSchool.Evocation, LocalizedStrings.RefHalf, new Kingmaker.Localization.LocalizedString());
+            BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities.AbilityConfigurator SmallFreezeBuild = MakerTools.MakeSpell("FreezingSphereSmall", "Freezing Sphere: Small Blast", "Freezing sphere creates a frigid globe of cold energy that streaks from your fingertips to the location you select, where it explodes in a 20-foot-radius burst, dealing 1d6 points of cold damage per caster level(maximum 20d6) to each creature in the area.A creature of the water subtype instead takes 1d8 points of cold damage per caster level (maximum 20d8) and is staggered for 1d4 rounds.", freezingSphere, SpellSchool.Evocation, LocalizedStrings.RefHalf, new Kingmaker.Localization.LocalizedString(), specialization:false);
+            BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities.AbilityConfigurator SelectFreezeBuild = MakerTools.MakeSpell("FreezingSphere", "Freezing Sphere", "Freezing sphere creates a frigid globe of cold energy that streaks from your fingertips to the location you select, where it explodes in a 20 or 40-foot-radius burst, dealing 1d6 points of cold damage per caster level(maximum 20d6) to each creature in the area.A creature of the water subtype instead takes 1d8 points of cold damage per caster level (maximum 20d8) and is staggered for 1d4 rounds.", freezingSphere, SpellSchool.Evocation, LocalizedStrings.RefHalf, new Kingmaker.Localization.LocalizedString(), specialization: false);
 
             BigFreezeBuild.SetSpellDescriptor(SpellDescriptor.Cold);
             SmallFreezeBuild.SetSpellDescriptor(SpellDescriptor.Cold);
@@ -72,14 +73,13 @@ namespace TomeOfTheFirebird.New_Spells
             BlueprintAbility smallbuilt = SmallFreezeBuild.Configure();
 
             SelectFreezeBuild.AddAbilityVariants(new List<Blueprint<BlueprintAbilityReference>>() { bigbuilt.AssetGuidThreadSafe, smallbuilt.AssetGuidThreadSafe });
-            BlueprintAbility built = SelectFreezeBuild.Configure();
             if (Settings.IsEnabled("FreezingSphere"))
             {
-                //built.AddToSpellList(SpellTools.SpellList.FrostSpiritSpellList, 6);
-                built.AddToSpellList(SpellTools.SpellList.WizardSpellList, 6);
-                built.AddToSpellList(SpellTools.SpellList.MagusSpellList, 6);
-                built.AddToSpellSpecialization();
+                SelectFreezeBuild.AddToSpellLists(6, SpellList.Wizard, SpellList.Magus);
+                
             }
+            BlueprintAbility built = SelectFreezeBuild.Configure();
+            
 
 
 

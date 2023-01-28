@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TabletopTweaks.Core.Utilities;
 using TomeOfTheFirebird.Helpers;
+using UnityModManagerNet;
 
 namespace TomeOfTheFirebird.New_Content
 {
@@ -139,7 +140,15 @@ namespace TomeOfTheFirebird.New_Content
                     spells.Add("b7731c2b4fa1c9844a092329177be4c3");
 
                 }
-                spells.Add("GloomblindBolts");
+                if (Settings.IsEnabled("GloomblindBolts"))
+                {
+                    spells.Add("GloomblindBolts");
+                }
+                else
+                {
+                    spells.Add("e28f4633c0a2425d8895adf20cb22f8f");
+                   
+                }
                 spells.Add("f2f1efac32ea2884e84ecaf14657298b");//Boneshatter;
                 spells.Add(("1cde0691195feae45bab5b83ea3f221e"));//Wracking Ray
                 spells.Add(("a89dcbbab8f40e44e920cc60636097cf"));//CircleOfDeath
@@ -152,7 +161,7 @@ namespace TomeOfTheFirebird.New_Content
 
 
                 
-                patronDefines.Add(new PatronDefine("Death", spells, () => { return Settings.IsEnabled("GloomblindBolts"); }));//TODO patch to work with expanded content gloomblind bolts
+                patronDefines.Add(new PatronDefine("Death", spells, () => { return Settings.IsEnabled("GloomblindBolts") || Settings.IsExpandedContentEnabled(); }));//TODO patch to work with expanded content gloomblind bolts
                 
 
             }

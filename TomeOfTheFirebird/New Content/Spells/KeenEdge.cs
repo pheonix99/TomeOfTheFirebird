@@ -39,22 +39,19 @@ namespace TomeOfTheFirebird.New_Spells
 
             maker.AddAbilityVariants( new System.Collections.Generic.List<BlueprintCore.Utils.Blueprint<Kingmaker.Blueprints.BlueprintAbilityReference>>() { mainMaker.Configure().AssetGuidThreadSafe, offhandMaker.Configure().AssetGuidThreadSafe });
 
-
-
-            BlueprintAbility made = maker.Configure();
             if (Settings.IsEnabled("KeenEdge"))
             {
-                made.AddToSpellList(SpellTools.SpellList.BloodragerSpellList, 3);
-                made.AddToSpellList(SpellTools.SpellList.InquisitorSpellList, 3);
-                made.AddToSpellList(SpellTools.SpellList.MagusSpellList, 3);
-                made.AddToSpellList(SpellTools.SpellList.WizardSpellList, 3);
-                made.AddToSpellSpecialization();
+                maker.AddToSpellLists(3, SpellList.Bloodrager, SpellList.Inquisitor, SpellList.Magus, SpellList.Wizard);
+                
             }
+
+            BlueprintAbility made = maker.Configure();
+            
         }
 
         private static AbilityConfigurator MakeHandedVersion(bool main)
         {
-            AbilityConfigurator maker = MakerTools.MakeSpell(main ? "KeenEdgePrimary" : "KeenEdgeSecondary", main ? "Keen Edge (Main Hand)" : "Keen Edge (Off Hand)", desc, keenSprite, Kingmaker.Blueprints.Classes.Spells.SpellSchool.Transmutation, new Kingmaker.Localization.LocalizedString(), LocalizedStrings.TenMinutePerLevelDuration);
+            AbilityConfigurator maker = MakerTools.MakeSpell(main ? "KeenEdgePrimary" : "KeenEdgeSecondary", main ? "Keen Edge (Main Hand)" : "Keen Edge (Off Hand)", desc, keenSprite, Kingmaker.Blueprints.Classes.Spells.SpellSchool.Transmutation, new Kingmaker.Localization.LocalizedString(), LocalizedStrings.TenMinutePerLevelDuration, specialization:false);
             maker.SetRange(AbilityRange.Close).AllowTargeting(false, false, true, true).SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Directional).SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard).SetAvailableMetamagic(Metamagic.Quicken, Metamagic.Extend, Metamagic.Heighten, Metamagic.Reach, Metamagic.CompletelyNormal);
            
    

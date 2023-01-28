@@ -86,15 +86,16 @@ namespace TomeOfTheFirebird.New_Spells
             builder.AddContextRankConfig(new Kingmaker.UnitLogic.Mechanics.Components.ContextRankConfig() {  m_UseMax = true, m_Max = 10, m_Type = Kingmaker.Enums.AbilityRankType.DamageDice });
             builder.AddSpellDescriptorComponent(SpellDescriptor.Good);
             builder.AddCraftInfoComponent(Kingmaker.Craft.CraftAOE.None, savingThrow: Kingmaker.Craft.CraftSavingThrow.Will,spellType:  Kingmaker.Craft.CraftSpellType.Damage);
-            BlueprintAbility result = builder.Configure();
 
             if (Settings.IsEnabled("SpearOfPurity"))
             {
-                result.AddToSpellList(SpellTools.SpellList.ClericSpellList, 2);
-                result.AddToSpellList(SpellTools.SpellList.AngelClericSpelllist, 2);
-                result.AddToSpellSpecialization();
+                builder.AddToSpellLists(2, SpellList.Cleric, SpellList.Angel);
+              
 
             }
+            BlueprintAbility result = builder.Configure();
+
+            
 
 
         }

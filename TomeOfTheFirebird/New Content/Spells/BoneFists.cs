@@ -32,6 +32,11 @@ namespace TomeOfTheFirebird.New_Spells
             BoneFists.SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard);
             BoneFists.SetAvailableMetamagic(Metamagic.Extend, Metamagic.Heighten, Metamagic.CompletelyNormal, Metamagic.Quicken, Metamagic.Reach);
 
+            if (Settings.IsEnabled("BoneFists"))
+            {
+                BoneFists.AddToSpellLists(2, SpellList.Bloodrager, SpellList.Cleric, SpellList.Druid, SpellList.Shaman, SpellList.Hunter, SpellList.Ranger, SpellList.Witch, SpellList.Wizard);
+                
+            }
 
             BoneFists.SetLocalizedSavingThrow(new Kingmaker.Localization.LocalizedString());
             BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs.BuffConfigurator BoneFistsBuff = MakerTools.MakeBuff("BoneFistsBuff", "Bone Fists", "The bones of your joints grow thick and sharp, protruding painfully through the skin at the knuckles, elbows, shoulders, spine, and knees. You gain a +1 bonus to natural armor and a +2 bonus on damage rolls with natural weapons.", BoneFistsSprite);
@@ -57,19 +62,7 @@ namespace TomeOfTheFirebird.New_Spells
             BoneFists.AddAbilityTargetsAround(radius: new Kingmaker.Utility.Feet(15f), spreadSpeed: new Kingmaker.Utility.Feet(11f), targetType: Kingmaker.UnitLogic.Abilities.Components.TargetType.Ally);
             //BoneFists.AddCraftInfoComponent(Kingmaker.Craft.CraftSpellType.Buff, Kingmaker.Craft.CraftSavingThrow.None, Kingmaker.Craft.CraftAOE.AOE);
             bonefists = BoneFists.Configure();
-            if (Settings.IsEnabled("BoneFists"))
-            {
-                bonefists.AddToSpellList(SpellTools.SpellList.BloodragerSpellList, 2);
-                bonefists.AddToSpellList(SpellTools.SpellList.ClericSpellList, 2);
-                bonefists.AddToSpellList(SpellTools.SpellList.DruidSpellList, 2);
-                bonefists.AddToSpellList(SpellTools.SpellList.ShamanSpelllist, 2);
-                bonefists.AddToSpellList(SpellTools.SpellList.HunterSpelllist, 2);
-                bonefists.AddToSpellList(SpellTools.SpellList.RangerSpellList, 2);
-                bonefists.AddToSpellList(SpellTools.SpellList.WitchSpellList, 2);
-                bonefists.AddToSpellList(SpellTools.SpellList.WizardSpellList, 2);
-
-                bonefists.AddToSpellSpecialization();
-            }
+            
 
 
 

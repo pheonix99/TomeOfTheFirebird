@@ -23,12 +23,16 @@ namespace TomeOfTheFirebird.New_Spells
             var icon = flare.Icon;
             var flarefx = flare.GetComponent<AbilitySpawnFx>();
 
-            var burst = MakerTools.MakeSpell("BurstOfRadiance", "Burst Of Radiance", "This spell fills the area with a brilliant flash of shimmering light.Creatures in the area are blinded for 1d4 rounds, or dazzled for 1d4 rounds if they succeed at a Reflex save. Evil creatures in the area of the burst take 1d4 points of damage per caster level (max 5d4), whether they succeed at the Reflex save or not.", icon, Kingmaker.Blueprints.Classes.Spells.SpellSchool.Evocation, LocalizedStrings.ReflexPartial);
-            burst.AddSpellListComponent(2, SpellTools.SpellList.WizardSpellList);
-            burst.AddSpellListComponent(2, SpellTools.SpellList.ClericSpellList);
-            burst.AddSpellListComponent(2, SpellTools.SpellList.DruidSpellList);
-            burst.AddSpellListComponent(2, SpellTools.SpellList.WarpriestSpelllist);
-            burst.AddSpellListComponent(2, SpellTools.SpellList.HunterSpelllist);
+            var burst = MakerTools.MakeSpell("BurstOfRadiance", "Burst Of Radiance", "This spell fills the area with a brilliant flash of shimmering light.Creatures in the area are blinded for 1d4 rounds, or dazzled for 1d4 rounds if they succeed at a Reflex save. Evil creatures in the area of the burst take 1d4 points of damage per caster level (max 5d4), whether they succeed at the Reflex save or not.", icon, Kingmaker.Blueprints.Classes.Spells.SpellSchool.Evocation, LocalizedStrings.ReflexPartial, descriptors: new SpellDescriptor[] { SpellDescriptor.Good ,SpellDescriptor.Blindness } );
+            if (Settings.IsEnabled("BurstOfRadiance"))
+            {
+
+                burst.AddSpellListComponent(2, SpellTools.SpellList.WizardSpellList);
+                burst.AddSpellListComponent(2, SpellTools.SpellList.ClericSpellList);
+                burst.AddSpellListComponent(2, SpellTools.SpellList.DruidSpellList);
+                burst.AddSpellListComponent(2, SpellTools.SpellList.WarpriestSpelllist);
+                burst.AddSpellListComponent(2, SpellTools.SpellList.HunterSpelllist);
+            }
             burst.SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard);
             burst.SetType(AbilityType.Spell);
             burst.SetRange(AbilityRange.Close);
@@ -59,20 +63,11 @@ namespace TomeOfTheFirebird.New_Spells
             burst.AddAbilityTargetsAround(radius: new Kingmaker.Utility.Feet(10f), targetType: Kingmaker.UnitLogic.Abilities.Components.TargetType.Any, spreadSpeed: new Kingmaker.Utility.Feet(10f));
             burst.AddContextRankConfig(ContextRankConfigs.CasterLevel(type: Kingmaker.Enums.AbilityRankType.DamageDice, max: 5));
             burst.AddAbilitySpawnFx(anchor: flarefx.Anchor, delay: flarefx.Delay, prefabLink: flarefx.PrefabLink);
-            burst.SetSpellDescriptor(SpellDescriptor.Good | SpellDescriptor.Blindness);
+           
             burst.AddCraftInfoComponent(aOEType: Kingmaker.Craft.CraftAOE.AOE, savingThrow: Kingmaker.Craft.CraftSavingThrow.Reflex, spellType: Kingmaker.Craft.CraftSpellType.Damage);
             var made = burst.Configure();
 
-            if (Settings.IsEnabled("BurstOfRadiance"))
-            {
-                made.AddToSpellList(SpellTools.SpellList.ClericSpellList, 2);
-                made.AddToSpellList(SpellTools.SpellList.DruidSpellList, 2);
-                made.AddToSpellList(SpellTools.SpellList.WizardSpellList, 2);
-                made.AddToSpellList(SpellTools.SpellList.WarpriestSpelllist, 2);
-                made.AddToSpellList(SpellTools.SpellList.HunterSpelllist, 2);
-               
-                made.AddToSpellSpecialization();
-            }
+            
         }
 
         //        Burst of Radiance

@@ -1,5 +1,6 @@
 ﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Conditions.Builder;
 using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
@@ -25,7 +26,11 @@ namespace TomeOfTheFirebird.New_Content.Spells
             maker.SetRange(Kingmaker.UnitLogic.Abilities.Blueprints.AbilityRange.Personal);
             maker.SetAnimation( UnitAnimationActionCastSpell.CastAnimationStyle.SelfTouch);
             maker.SetAvailableMetamagic(Metamagic.Extend, Metamagic.Heighten, Metamagic.CompletelyNormal, Metamagic.Quicken, Metamagic.Reach);
-
+            if (Settings.IsEnabled("EntropicShield"))
+            {
+                maker.AddToSpellLists(1, SpellList.Cleric);
+                
+            }
             BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs.BuffConfigurator buffMaker = MakerTools.MakeBuff("EntropicShieldBuff", "Entropic Shield", "A magical field appears around you, glowing with a chaotic blast of multicolored hues. This field deflects incoming arrows, rays, and other ranged attacks. Each ranged attack directed at you for which the attacker must make an attack roll has a 20% miss chance (similar to the effects of concealment). Other attacks that simply work at a distance are not affected.", entSprie);
             buffMaker.AddSetAttackerMissChance(conditions: ConditionsBuilder.New(), type: Kingmaker.UnitLogic.Mechanics.Components.SetAttackerMissChance.Type.Ranged, value: new Kingmaker.UnitLogic.Mechanics.ContextValue() { Value = 20 });
             buffMaker.AddToFlags(BlueprintBuff.Flags.IsFromSpell);
@@ -35,11 +40,7 @@ namespace TomeOfTheFirebird.New_Content.Spells
 
             BlueprintAbility build = maker.Configure();
 
-            if (Settings.IsEnabled("EntropicShield"))
-            {
-                SpellTools.AddToSpellList(build, SpellTools.SpellList.ClericSpellList, 1);
-                build.AddToSpellSpecialization();
-            }
+            
         }
 
     }

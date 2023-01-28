@@ -1,6 +1,7 @@
 ﻿
 using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Conditions.Builder;
 using BlueprintCore.Conditions.Builder.ContextEx;
 using BlueprintCore.Utils;
@@ -79,16 +80,14 @@ namespace TomeOfTheFirebird.New_Spells
             Main.TotFContext.Logger.Log("Building Gloomblind");
             gloomblind.AddCraftInfoComponent(Kingmaker.Craft.CraftAOE.None,savingThrow: Kingmaker.Craft.CraftSavingThrow.Reflex,spellType: Kingmaker.Craft.CraftSpellType.Damage);
                 Main.TotFContext.Logger.Log("Built Gloomblind");
-            BlueprintAbility made = gloomblind.Configure();
+
             if (Settings.IsEnabled("GloomblindBolts"))
             {
-                //TODO check bloodrager access
-                made.AddToSpellList(SpellTools.SpellList.BloodragerSpellList, 3);
-                made.AddToSpellList(SpellTools.SpellList.MagusSpellList, 3);
-                made.AddToSpellList(SpellTools.SpellList.WizardSpellList, 3);
-                made.AddToSpellList(SpellTools.SpellList.WitchSpellList, 3);
-                made.AddToSpellSpecialization();
+                gloomblind.AddToSpellLists(3, SpellList.Bloodrager, SpellList.Magus, SpellList.Wizard, SpellList.Witch, SpellList.Lich);
+                
             }
+            BlueprintAbility made = gloomblind.Configure();
+            
            
             
         }
