@@ -1,5 +1,6 @@
 ﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Conditions.Builder;
 using BlueprintCore.Conditions.Builder.ContextEx;
 using BlueprintCore.Utils.Types;
@@ -26,12 +27,8 @@ namespace TomeOfTheFirebird.New_Spells
             var burst = MakerTools.MakeSpell("BurstOfRadiance", "Burst Of Radiance", "This spell fills the area with a brilliant flash of shimmering light.Creatures in the area are blinded for 1d4 rounds, or dazzled for 1d4 rounds if they succeed at a Reflex save. Evil creatures in the area of the burst take 1d4 points of damage per caster level (max 5d4), whether they succeed at the Reflex save or not.", icon, Kingmaker.Blueprints.Classes.Spells.SpellSchool.Evocation, LocalizedStrings.ReflexPartial, descriptors: new SpellDescriptor[] { SpellDescriptor.Good ,SpellDescriptor.Blindness } );
             if (Settings.IsEnabled("BurstOfRadiance"))
             {
-
-                burst.AddSpellListComponent(2, SpellTools.SpellList.WizardSpellList);
-                burst.AddSpellListComponent(2, SpellTools.SpellList.ClericSpellList);
-                burst.AddSpellListComponent(2, SpellTools.SpellList.DruidSpellList);
-                burst.AddSpellListComponent(2, SpellTools.SpellList.WarpriestSpelllist);
-                burst.AddSpellListComponent(2, SpellTools.SpellList.HunterSpelllist);
+                burst.AddToSpellLists(2, SpellList.Wizard, SpellList.Cleric, SpellList.Druid, SpellList.Warpriest, SpellList.Hunter);
+                
             }
             burst.SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard);
             burst.SetType(AbilityType.Spell);

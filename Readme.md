@@ -10,6 +10,14 @@ NOW REQUIRES TabletopTweaks Core Module and ModMenu
 
 ## Changelog
 
+###
+1.4.7
+Burst Of Radiance has been returned to spell lists from the Shadow Realm?
+Price Fixes for some horribly overpriced act 1 items - expect further changes here
+Option to replace Dragonkind 1: Red with Chains Of Fire for Oracle Flames Mystery as proxy for Fire Seeds
+Fixed Owlcat's silly implementation of Bracer's of Armor so various unique bracers don't forget to help vs incorporeal.
+
+
 ### 1.4.6
 Disabling spells works again.
 If Expanded Content is installed and Gloomblind Bolts is disabled, Death Patron will use the Expanded Content version of Gloomblind Bolts

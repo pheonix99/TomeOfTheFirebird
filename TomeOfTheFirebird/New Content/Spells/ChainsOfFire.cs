@@ -1,11 +1,14 @@
 ﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
+using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
+using BlueprintCore.Utils;
 using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
+using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.Visual.Animation.Kingmaker.Actions;
 using TabletopTweaks.Core.Utilities;
@@ -38,7 +41,18 @@ namespace TomeOfTheFirebird.New_Spells
             if (Settings.IsEnabled("ChainsOfFire"))
             {
                 ChainsMaker.AddToSpellLists(6, SpellList.Wizard, SpellList.Magus);
-                
+                if (Settings.IsEnabled("ChainsOfFireFlameMystery"))
+                {
+                    var fotd = BlueprintTool.GetRef<BlueprintAbilityReference>("69bdc2c9678bd0d44bcb2ebe959d028e");
+                    FeatureConfigurator.For("efe346f6fec1ea84d84daa9eefdef204").EditComponents<AddKnownSpell>(x =>
+                    {
+
+                        x.m_Spell = BlueprintTool.GetRef<BlueprintAbilityReference>("ChainsOfFire");
+                    }, y =>
+                    {
+                        return y.m_Spell.Equals(fotd);
+                    });
+                }
             }
             ChainsMaker.SetSpellDescriptor(SpellDescriptor.Fire);
             //ActionsBuilder chainAct = 

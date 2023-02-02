@@ -159,6 +159,8 @@
   <ItemGroup>
     <Compile Include="Bugfixes\Classes\Magus.cs" />
     <Compile Include="Bugfixes\Items\AngelCloak.cs" />
+    <Compile Include="Bugfixes\Items\FixBracersOfArmorEnchants.cs" />
+    <Compile Include="Bugfixes\Items\PriceFixes.cs" />
     <Compile Include="BuildContent.cs" />
     <Compile Include="Bugfixes\Classes\ArcanistFixes.cs" />
     <Compile Include="Bugfixes\Classes\CavalierFixes.cs" />
@@ -167,6 +169,7 @@
     <Compile Include="Helpers\MoreFeatTools.cs" />
     <Compile Include="Helpers\SpellSpecializationTool.cs" />
     <Compile Include="Helpers\TeamworkFeatFactory.cs" />
+    <Compile Include="Modified Content\Archetypes\EldritchScion.cs" />
     <Compile Include="Modified Content\Archetypes\ThieflingInteroperability.cs" />
     <Compile Include="Modified Content\Archetypes\Purifier.cs" />
     <Compile Include="Modified Content\Archetypes\Witch.cs" />
@@ -250,6 +253,7 @@
     <Compile Include="New Content\Feats\KineticLeap.cs" />
     <Compile Include="New Content\Feats\LastwallPhalanx.cs" />
     <Compile Include="New Content\Feats\OverwhelmingDefense.cs" />
+    <Compile Include="New Content\Items\Firebrand.cs" />
     <Compile Include="New Content\Items\ItemSynthesisElementalRings.cs" />
     <Compile Include="New Content\ModifySpellLists\CoreGameDeityModifications.cs" />
     <Compile Include="New Content\RacialOptions\Tiefling.cs" />

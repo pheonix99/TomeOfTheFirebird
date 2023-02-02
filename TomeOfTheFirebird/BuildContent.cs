@@ -81,6 +81,11 @@ namespace TomeOfTheFirebird
                     //New Mythics
                     MythicKineticDefenses.Make();
 
+                    FixBracersOfArmor.Run();
+                    PriceFixes.FixTabletopPrices();
+                    PriceFixes.FixOwlcatPrices();
+
+
                     //Build Class Features
 
                     PurifierLimitedCures.AddPurifierLimitedCures();
@@ -199,8 +204,12 @@ namespace TomeOfTheFirebird
 
                     New_Content.RagePowers.ElementalStance.Finish();
                     New_Content.RagePowers.RageStanceMastery.Finish();
-                    
+                    //EldritchScion.AddSorcBonusFeatsToList();
+
+
                     RootConfigurator.ConfigureDelayedBlueprints();
+
+                    
 
                     //Modified_Content.ImprovedMultiarchetypeProjct.SpellSlots.Execute();                    
                 }
@@ -238,7 +247,7 @@ namespace TomeOfTheFirebird
                     MythicKineticDefenses.MakeLater();
                     Kineticist.FixKEEAbilities();
                     ThieflingInteroperability.AddOtherModRogueTalents();
-
+                    PriceFixes.FixPricesLate();
 
                     Main.TotFContext.TerminalWipe();
                 }

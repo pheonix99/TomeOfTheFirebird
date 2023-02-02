@@ -70,6 +70,7 @@ namespace TomeOfTheFirebird
             builder.AddToggle(MakeToggle("eldritchscionsage", "Eldritch Scion (Sage)", true, "Adds Eldritch Scion version of Sage Sorc"));
 
             builder.AddSubHeader(GetString("ClassFeatures.Title"), startExpanded: true);
+            //builder.AddToggle(MakeToggle("EldritchScionBonusFeats", "Eldritch Scion: Bloodline Bonus Feats", true, "Eldritch Scion (regular and Sage) can also pick from the sorcerer bloodline feat lists for their magus bonus feats"));
             builder.AddToggle(MakeToggle("MercyEnsorcelled", "Mercy: Ensorcelled", true, "Attempt to dispel hostile effects on the target while healing with lay on hands, or dispel buffs while using Lay on Hands offensively."));
             builder.AddToggle(MakeToggle("MercyInjured", "Mercy: Injured", true, "Grant target fast healing 3 for one round per two paladin levels."));
             builder.AddToggle(MakeToggle("internalbuffer", "Kineticist: Internal Buffer", true, "Restores Kineticist Internal Buffer Class Feature"));
@@ -122,6 +123,9 @@ namespace TomeOfTheFirebird
             builder.AddToggle(MakeToggle("CleanupEldritchScion", "Eldritch Scion: Cleanup Progression", true, "Dynamically kills weird add / remove of Arcane Weapon upgrades on Eldritch Scion"));
             builder.AddToggle(MakeToggle("FixOrderOfTheStarCallingChannelingSupport", "Order Of The Star: Add Calling Channeling Support", true, "Order Of The Stars is supposed to grant half class level to Paladin and Cleric channeling progression. It didn't. Now it does."));
             builder.AddToggle(MakeToggle("FixRadianceFinalForm", "Radiance: Fix Final (Holy) Form", true, "The good version of Radiance's final form now properly retains its holy effect"));
+            builder.AddToggle(MakeToggle("FixBracersOfArmor", "Bracers Of Armor: Fix Enchants", true, "Bracers Of Armor's ability to work vs incorporeeal is now implemented on the Bracers Of Armor enchantment, not a seperate sometimes missing enchant"));
+            builder.AddToggle(MakeToggle("FixPricesPaizo", "Fix Prices: Items With Known Tabletop Prices", true, "Certain items with specific tabletop costs are egregiously overpriced. Enable to fix this. \nCurrently Fixed: Boots Of Elvenkind, Bracers Of The Wizard"));
+            builder.AddToggle(MakeToggle("FixPricesOwlbrewEarly", "Fix Prices: Owlbrew Early Game", true, "Many buyable early game unique weapons are substantially overpriced, costing more than a +2 equivalent weapon they're 100% inferior to.\n Currently Fixed: Longbow Of Erastil, Light Hammer Of Righteousness, Roaring Handaxe, Devastating Blow from Above, Acrid sickle, Butcher Of Undead"));
 
             
 
@@ -142,8 +146,10 @@ namespace TomeOfTheFirebird
             builder.AddToggle(MakeToggle("BoneFists", "Bone Fists", true, "Level 2 spell for many classes, gives +1 natural armor (form-type) and +2 natural weapons damage to group."));
             builder.AddToggle(MakeToggle("BurstOfRadiance", "Burst Of Radiance", true, "Level 2 spell for many classes, targets area, blinds on failed save, dazzles on success, deals small damage to evil."));
             builder.AddToggle(MakeToggle("ChainsOfFire", "Chains Of Fire", true, "A fire damage knockoff of chain lightning."));
+            builder.AddToggle(MakeToggle("ChainsOfFireFlameMystery", "Chains Of Fire: Add To Flame Mystery", true, "Replace Dragonkind I: Red with Chains Of Fire for Oracle Flame Mystery level 6"));
             builder.AddToggle(MakeToggle("EntropicShield", "Entropic Shield", true, "Level 1 Cleric/Oracle spell, gives 20% miss chance to incoming ranged attacks"));
             builder.AddToggle(MakeToggle("FireShield", "Fire Shield", true, "Resist Fire/Cold, deal backlash damage of other element."));
+            
             builder.AddToggle(MakeToggle("FreezingSphere", "Freezing Sphere", true, "Level 6 ice spherical AoE attack, has normal and supersized blast modes"));
             builder.AddToggle(MakeToggle("GloomblindBolts", "Gloomblind Bolts", true, "Basically Negative Energy Scorching Ray with a very short duration blind rider. Made it Necromancy unlike TT because it doesn't use Illusion mechanics"));
             builder.AddToggle(MakeToggle("KeenEdge", "Keen Edge", true, "Make your weapons Keen for a while"));
