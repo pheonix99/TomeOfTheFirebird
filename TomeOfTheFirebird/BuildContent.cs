@@ -78,6 +78,8 @@ namespace TomeOfTheFirebird
                     BurnResistance.Make();
                     BreathWeaponFeats.BuildAbilityFocusBreathWeapons();
                     ExtraBurn.Make();
+                    AncestralScorn.Make();
+
                     //New Mythics
                     MythicKineticDefenses.Make();
 

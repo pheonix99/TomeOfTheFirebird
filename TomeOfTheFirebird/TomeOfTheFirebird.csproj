@@ -199,6 +199,10 @@
     <Compile Include="New Components\AllLevelsSpellSlotShift.cs" />
     <Compile Include="New Components\AllLevelsSpellSlotShiftPart.cs" />
     <Compile Include="New Components\ArtifactEnabledWeaponAngelDamageDice.cs" />
+    <Compile Include="New Components\BloodlineMutation\AbstractBloodlineMutationComponent.cs" />
+    <Compile Include="New Components\BloodlineMutation\BloodHavocComponent.cs" />
+    <Compile Include="New Components\BloodlineMutation\BloodlineSpellComponent.cs" />
+    <Compile Include="New Components\BloodlineMutation\UnitPartBloodlineSpellTracker.cs" />
     <Compile Include="New Components\ElementalStanceComponent.cs" />
     <Compile Include="New Components\ItemFeatureSwapPointerComponent.cs" />
     <Compile Include="New Components\Prerequisites\PrerequisitePartyMember.cs" />
@@ -253,6 +257,8 @@
     <Compile Include="New Content\Feats\KineticLeap.cs" />
     <Compile Include="New Content\Feats\LastwallPhalanx.cs" />
     <Compile Include="New Content\Feats\OverwhelmingDefense.cs" />
+    <Compile Include="New Content\Features\BloodHavoc.cs" />
+    <Compile Include="New Content\Features\BloodlineMutations.cs" />
     <Compile Include="New Content\Items\Firebrand.cs" />
     <Compile Include="New Content\Items\ItemSynthesisElementalRings.cs" />
     <Compile Include="New Content\ModifySpellLists\CoreGameDeityModifications.cs" />
@@ -336,6 +342,7 @@
     <Compile Include="New Content\WitchPatrons.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Modified Content\Quests\DawnOfDragons.cs" />
+    <Compile Include="Reference\Classes.cs" />
     <Compile Include="Reference\Guids.cs" />
     <Compile Include="Reference\LocalizedStrings.cs" />
     <Compile Include="Settings.cs" />

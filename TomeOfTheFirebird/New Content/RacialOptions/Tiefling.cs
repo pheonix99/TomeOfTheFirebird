@@ -11,6 +11,7 @@ using Kingmaker.Enums;
 using Kingmaker.Enums.Damage;
 using Kingmaker.RuleSystem.Rules.Damage;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
+using Kingmaker.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics;
 using System;
@@ -95,13 +96,28 @@ namespace TomeOfTheFirebird.New_Content.RacialOptions
                 chomp.AddFacts(facts: new() { noSLA });
                 chomp.SetRanks(1);
                 chomp.Configure();
-                var claw = MakerTools.MakeFeature("ClawTieflingRacialFeature", "Maw or Claw (Claw)", "Some tieflings take on the more bestial aspects of their fiendish ancestors. These tieflings exhibit either powerful, toothy maws or dangerous claws. This tiefling gains two claws that each deal 1d4 points of damage. These attacks are primary natural attacks. This racial trait replaces the spell-like ability racial trait.");
-                claw.AddEmptyHandWeaponOverride(isMonkUnarmedStrike: false, isPermanent: true, weapon: "118fdd03e569a66459ab01a20af6811a");
-                claw.AddSLAReplacer(TeiflingSLAs);
-                claw.AddPrerequisiteNoFeature(feature: noSLA, hideInUI: true);
-                claw.AddFacts(facts: new() { noSLA });
-                claw.SetRanks(1);
-                claw.Configure();
+
+                var icon = BlueprintTool.Get<BlueprintActivatableAbility>("f68af48f9ebf32549b5f9fdc4edfd475").Icon;
+
+                var clawBuff = MakerTools.MakeBuff("ClawTieflingRacialBuff", "Maw or Claw (Claw)", "Some tieflings take on the more bestial aspects of their fiendish ancestors. These tieflings exhibit either powerful, toothy maws or dangerous claws. This tiefling gains two claws that each deal 1d4 points of damage. These attacks are primary natural attacks. This racial trait replaces the spell-like ability racial trait.", icon);
+                clawBuff.AddEmptyHandWeaponOverride(isMonkUnarmedStrike: false, isPermanent: false, weapon: "118fdd03e569a66459ab01a20af6811a");
+                clawBuff.Configure();
+                
+                
+                var clawToggle = MakerTools.MakeToggle("ClawTieflingRacialToggle", "Maw or Claw (Claw)", "Some tieflings take on the more bestial aspects of their fiendish ancestors. These tieflings exhibit either powerful, toothy maws or dangerous claws. This tiefling gains two claws that each deal 1d4 points of damage. These attacks are primary natural attacks. This racial trait replaces the spell-like ability racial trait.", icon);
+                clawToggle.SetBuff("ClawTieflingRacialBuff");
+                clawToggle.SetActivationType(Kingmaker.UnitLogic.ActivatableAbilities.AbilityActivationType.WithUnitCommand);
+                clawToggle.SetDeactivateIfCombatEnded(false).SetOnlyInCombat(false).SetDoNotTurnOffOnRest(true);
+
+
+                clawToggle.Configure();
+                var clawFeature = MakerTools.MakeFeature("ClawTieflingRacialFeature", "Maw or Claw (Claw)", "Some tieflings take on the more bestial aspects of their fiendish ancestors. These tieflings exhibit either powerful, toothy maws or dangerous claws. This tiefling gains two claws that each deal 1d4 points of damage. These attacks are primary natural attacks. This racial trait replaces the spell-like ability racial trait.");
+                clawFeature.AddFacts(new() { "ClawTieflingRacialToggle" });
+                clawFeature.AddSLAReplacer(TeiflingSLAs);
+                clawFeature.AddPrerequisiteNoFeature(feature: noSLA, hideInUI: true);
+                clawFeature.AddFacts(facts: new() { noSLA });
+                clawFeature.SetRanks(1);
+                clawFeature.Configure();
 
                
                 foreach(var v in BlueprintTool.Get<BlueprintFeatureSelection>("c862fd0e4046d2d4d9702dd60474a181").AllFeatures)

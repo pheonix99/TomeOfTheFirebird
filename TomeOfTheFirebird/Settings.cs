@@ -90,6 +90,7 @@ namespace TomeOfTheFirebird
 
             builder.AddSubHeader(GetString("Feats.Title"), startExpanded: true);
             builder.AddToggle(MakeToggle("AbilityFocusBreathWeapons", "Ability Focus Breath Weapons", true, "Increases DC of breath weapon attacks by 2"));
+            builder.AddToggle(MakeToggle("AncestralScorn", "Ancestral Scorn", true, "Tiefling Racial Feat: Sicken or Nauseate fiends on demoralize."));
             builder.AddToggle(MakeToggle("ArmorOfThePit", "Armor Of The Pit", true, "Tiefling Racial Feat: +2 natural armor. +1 and the other two resists with the Scaled Skin racial trait."));
             builder.AddToggle(MakeToggle("BurnResistance", "Burn Resistance", true, "Treat character level as two lower when calculating nonlethal damage from burn"));
             builder.AddToggle(MakeToggle("CoordinatedShot", "Coordinated Shot", true, "Teamwork Feat: +1 to hit if ally engaging target of ranged attack has feat, another if target is flanked by allies"));

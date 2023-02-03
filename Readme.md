@@ -11,6 +11,10 @@ NOW REQUIRES TabletopTweaks Core Module and ModMenu
 ## Changelog
 
 ###
+1.4.8
+Fix for Maw And Claw (Claw) natural weapons vanishing - replacing with toggle as game likes to do
+Added Ancestral Scorn feat
+
 1.4.7
 Burst Of Radiance has been returned to spell lists from the Shadow Realm?
 Price Fixes for some horribly overpriced act 1 items - expect further changes here
@@ -356,6 +360,8 @@ Made rewards from Monster Slayers and Local Production crusade events permanent 
 
 ##Coming Soon:
 
+Bloodline Mutations (Havoc first)
+
 Some Crusade Mode goodies
 
 Earth Tremor spell
@@ -364,11 +370,7 @@ Mountain Witch Patron
 
 Witch Unique Patrons
 
-Compatibility Hack for Expanded Content so Death Patron can be used with the EC version of Gloomblind Bolts if that one is enabled and ToTF version is disabled
-
 Extending Draconic Bloodline claw upgrades to Dragon Mystery abilities if Expanded Content is installed
-
-Improved Multi-Archetyping for Witch archetypes that alter patron selection - you explictly *can* take multiple archetypes that reduce your selection as long as you comply with all the restriction on TT
 
 Seasonal Witch archetype
 
