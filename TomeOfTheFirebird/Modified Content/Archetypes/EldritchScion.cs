@@ -22,7 +22,7 @@ namespace TomeOfTheFirebird.Modified_Content.Archetypes
 
             FeatureSelectionConfigurator.For("66befe7b24c42dd458952e3c47c93563").AddToAllFeatures("3a60f0c0442acfb419b0c03b584e1394").Configure();
             var sorcFeat = FeatureSelectionConfigurator.For("3a60f0c0442acfb419b0c03b584e1394").AddPrerequisiteArchetypeLevel("d078b2ef073f2814c9e338a789d97b73", "45a4607686d96a1498891b3286121780", false, group: Kingmaker.Blueprints.Classes.Prerequisites.Prerequisite.GroupType.Any, level: 1);
-            if (Settings.IsEnabled("EldritchScionSage") && PheonixBloodline.BloodlineRequisiteFeature != null)
+            if (Settings.IsEnabled("EldritchScionSage") && TotFBloodlineTools.BloodlineRequisiteFeature != null)
             {
                 sorcFeat.AddPrerequisiteArchetypeLevel("EldritchScionSageArchetype", "45a4607686d96a1498891b3286121780", false, group: Kingmaker.Blueprints.Classes.Prerequisites.Prerequisite.GroupType.Any, level: 1);
             }

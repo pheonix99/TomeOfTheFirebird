@@ -20,6 +20,11 @@ namespace TomeOfTheFirebird.Bugfixes
 {
     public static class FixExtraHitsOnProcs
     {
+        public static void FixHellfireCharge()
+        {
+            //f88081f3d2ed69c429736051f2fb80ae
+        }
+
         public static void FixFirebrand()
         {
             if (Settings.IsEnabled("FixExtraHitsFirebrand"))
@@ -137,7 +142,7 @@ namespace TomeOfTheFirebird.Bugfixes
                     BonusValue = ContextValues.Constant(0)
                 };
 
-            }).Configure();//Elect strikes before 20
+            }).Configure();//Acid strikes before 20
 
             FeatureConfigurator.For("d37a8f6f5df057a4ea50b2c065288263").RemoveComponents(x => x is AddInitiatorAttackWithWeaponTrigger).AddComponent<ContextDamageValueEnergyDamageDice>(x =>
             {
@@ -149,7 +154,7 @@ namespace TomeOfTheFirebird.Bugfixes
                     BonusValue = ContextValues.Constant(0)
                 };
 
-            }).Configure();//Elect strikes at 20
+            }).Configure();//Acid strikes at 20
 
 
         }

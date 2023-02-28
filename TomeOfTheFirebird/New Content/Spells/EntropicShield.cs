@@ -29,6 +29,7 @@ namespace TomeOfTheFirebird.New_Content.Spells
             if (Settings.IsEnabled("EntropicShield"))
             {
                 maker.AddToSpellLists(1, SpellList.Cleric);
+                maker.AddSpellToPsychic(1);
                 
             }
             BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs.BuffConfigurator buffMaker = MakerTools.MakeBuff("EntropicShieldBuff", "Entropic Shield", "A magical field appears around you, glowing with a chaotic blast of multicolored hues. This field deflects incoming arrows, rays, and other ranged attacks. Each ranged attack directed at you for which the attacker must make an attack roll has a 20% miss chance (similar to the effects of concealment). Other attacks that simply work at a distance are not affected.", entSprie);

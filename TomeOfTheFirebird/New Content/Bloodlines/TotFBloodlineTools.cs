@@ -15,8 +15,24 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
 {
     class TotFBloodlineTools
     {
+        private static BlueprintFeatureReference _BloodlineRequisiteFeature;
+
+        public static BlueprintFeatureReference BloodlineRequisiteFeature
+        {
+            get {
+                if (_BloodlineRequisiteFeature == null) { }
+                {
+                    _BloodlineRequisiteFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("e2cfd3cedf7c40088b25aa82d6db3c77").ToReference<BlueprintFeatureReference>();
+                }
+                return _BloodlineRequisiteFeature;
+            }
+        
+        }
+
+
+
         private static readonly BlueprintCharacterClass BloodragerClass = BlueprintTools.GetBlueprint<BlueprintCharacterClass>("d77e67a814d686842802c9cfd8ef8499");
-        public static void MetamagicSupport(BlueprintProgression bloodline)
+        public static void MetamagicSupport(BlueprintProgression bloodline, BlueprintFeatureSelection extant =  null)
         {
             if (!Settings.IsTTTBaseEnabled())
                 return;
@@ -25,7 +41,7 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
             int[] featLevels = { 6, 9, 12, 15, 18 };
             var metamagicFeats = FeatTools.GetMetamagicFeats();
 
-            BlueprintFeatureSelection MetamagicRagerFeatSelection = null;
+            BlueprintFeatureSelection MetamagicRagerFeatSelection = extant;
             foreach (var levelEntry in bloodline.LevelEntries.Where(entry => featLevels.Contains(entry.Level)))
             {
                 Main.TotFContext.Logger.Log($"Scanning level {levelEntry.Level} in phoenix bloodline");

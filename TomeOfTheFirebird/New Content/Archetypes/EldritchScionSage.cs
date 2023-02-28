@@ -60,11 +60,11 @@ namespace TomeOfTheFirebird.New_Content.Archetypes
             EScionSage.AddToRemoveFeatures(4, "61fc0521e9992624e9c518060bf89c0f");//Spell Recall
             EScionSage.AddToRemoveFeatures(11, "0ef6ec1c2fdfc204fbd3bff9f1609490");//Improved Spell Recall
             var built = EScionSage.Configure();
-            if (PheonixBloodline.BloodlineRequisiteFeature == null || Settings.IsDisabled("EldritchScionSage"))
+            if (TotFBloodlineTools.BloodlineRequisiteFeature == null || Settings.IsDisabled("EldritchScionSage"))
                 return;
             built.AddComponent<PrerequisiteNoFeature>(x =>
             {
-                x.m_Feature = PheonixBloodline.BloodlineRequisiteFeature;
+                x.m_Feature = TotFBloodlineTools.BloodlineRequisiteFeature;
                 x.Group = Prerequisite.GroupType.Any;
             });
 
@@ -92,7 +92,7 @@ namespace TomeOfTheFirebird.New_Content.Archetypes
 
         public static void Link()
         {
-            if (PheonixBloodline.BloodlineRequisiteFeature == null || Settings.IsDisabled("EldritchScionSage"))
+            if (TotFBloodlineTools.BloodlineRequisiteFeature == null || Settings.IsDisabled("EldritchScionSage"))
                 return;
 
 

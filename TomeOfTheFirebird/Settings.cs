@@ -16,6 +16,19 @@ namespace TomeOfTheFirebird
         private const string RootKey = "totf.settings";
         private static readonly string RootStringKey = "TotF.Settings";
 
+        public static bool BloodlineMutationsEnabled()
+        {
+            return IsEnabled("BloodHavoc");
+        }
+
+        public static bool IsMediumMpdEnabled()
+        {
+            return UnityModManager.modEntries.Where(
+               mod => mod.Info.Id.Equals("Medium Class") && mod.Enabled && !mod.ErrorOnLoading)
+             .Any();
+        }
+
+
         private static string GetKey(string partialKey)
         {
             return ($"{RootKey}.{partialKey}").ToLower();
@@ -70,11 +83,15 @@ namespace TomeOfTheFirebird
             builder.AddToggle(MakeToggle("eldritchscionsage", "Eldritch Scion (Sage)", true, "Adds Eldritch Scion version of Sage Sorc"));
 
             builder.AddSubHeader(GetString("ClassFeatures.Title"), startExpanded: true);
+           //builder.AddToggle(MakeToggle("BloodHavoc", "Bloodline Mutation: Blood Havoc", true, "Sorcerer / Bloodrager / Eldritch Scion alternate feature - increase attack spell damage by 1 per dice if spell is bloodline spell or caster has applicable spell focus"));
+            //builder.AddToggle(MakeToggle("BloodlineMutationsForPowers", "Bloodline Mutations for Bloodline Powers", true, "Homebrew: Bloodline Mutations also apply to Sorcerer/Bloodrager activated bloodline powers."));
+            
             //builder.AddToggle(MakeToggle("EldritchScionBonusFeats", "Eldritch Scion: Bloodline Bonus Feats", true, "Eldritch Scion (regular and Sage) can also pick from the sorcerer bloodline feat lists for their magus bonus feats"));
             builder.AddToggle(MakeToggle("MercyEnsorcelled", "Mercy: Ensorcelled", true, "Attempt to dispel hostile effects on the target while healing with lay on hands, or dispel buffs while using Lay on Hands offensively."));
             builder.AddToggle(MakeToggle("MercyInjured", "Mercy: Injured", true, "Grant target fast healing 3 for one round per two paladin levels."));
             builder.AddToggle(MakeToggle("internalbuffer", "Kineticist: Internal Buffer", true, "Restores Kineticist Internal Buffer Class Feature"));
             builder.AddToggle(MakeToggle("phoenixbloodline", "Phoenix Bloodline", true, "Adds Phoenix Bloodline (Bloodrager Only)"));
+          
             builder.AddToggle(MakeToggle("RagePowerElementalStance", "Rage Power: Elemental Stance", true, "Adds barbarian rage power elemental stance to the game. Increases low-level damage from TT to balance with Powerful Stance,"));
             builder.AddToggle(MakeToggle("RagePowerRageStanceMastery", "Rage Power: Stance Mastery", true, "Homebrew: Allows a barbarian to use two rage power stances at once. Requires level 14 in a rage power using class or archetype"));
             builder.AddToggle(MakeToggle("WitchPatronAnimal", "Witch Patron: Animal", true, "Adds the Animal witch patron. Some deviation from tabletop to deal with unimplementable (speak with/charm animals) and unimplemented (antilife shell) spells."));
@@ -139,7 +156,7 @@ namespace TomeOfTheFirebird
 
 
             builder.AddSubHeader(GetString("MythicAbilities.Title"), startExpanded: true);
-            builder.AddToggle(MakeToggle("MythicKineticAegis", "Mythic Kinetic Aegis", true, "(Homebrew) Improves Kineticist Elemental Defenses with Mythic Rank."));
+            builder.AddToggle(MakeToggle("MythicKineticAegis", "Mythic Kinetic Aegis", true, "Homebrew: Improves Kineticist Elemental Defenses with Mythic Rank."));
 
             builder.AddSubHeader(GetString("RacialAbilities.Title"), startExpanded: true);
             builder.AddToggle(MakeToggle("TieflingAlternateFeatures", "Tiefling Alternate Features", true, "Adds Tiefling Alternate Racial Feature Selection"));
@@ -150,6 +167,7 @@ namespace TomeOfTheFirebird
             builder.AddToggle(MakeToggle("ChainsOfFireFlameMystery", "Chains Of Fire: Add To Flame Mystery", true, "Replace Dragonkind I: Red with Chains Of Fire for Oracle Flame Mystery level 6"));
             builder.AddToggle(MakeToggle("EntropicShield", "Entropic Shield", true, "Level 1 Cleric/Oracle spell, gives 20% miss chance to incoming ranged attacks"));
             builder.AddToggle(MakeToggle("FireShield", "Fire Shield", true, "Resist Fire/Cold, deal backlash damage of other element."));
+            builder.AddToggle(MakeToggle("Fly", "Fly", true, "The old standby level 3. Also enables Mass Fly at level 7"));
             
             builder.AddToggle(MakeToggle("FreezingSphere", "Freezing Sphere", true, "Level 6 ice spherical AoE attack, has normal and supersized blast modes"));
             builder.AddToggle(MakeToggle("GloomblindBolts", "Gloomblind Bolts", true, "Basically Negative Energy Scorching Ray with a very short duration blind rider. Made it Necromancy unlike TT because it doesn't use Illusion mechanics"));
@@ -168,10 +186,13 @@ namespace TomeOfTheFirebird
             builder.AddToggle(MakeToggle("ShimmeringMirage", "Shimmering Mirage", true, "Water Wild Talent. Requires Shroud Of Water. Adds 20 percent miss chance as long as shroud of water is up."));
 
             builder.AddSubHeader(GetString("Tweaks.Title"), startExpanded: true);
-            builder.AddToggle(MakeToggle("DragonheirScionArcaneStrikeScaling", "Dragonheir Scion: Arcane Strike Scaling", true, "Arcane Strike scales with DHS plus Dragon Disciple level if that's better than max caster level"));
-            builder.AddToggle(MakeToggle("UnlimitedSorcererBloodlineClaws", "Bloodlines: Unlimited Sorcerer Bloodline Claws", true, "Abyssal and Draconic sorcerer bloodline power claws no longer have a use limit."));
+            
+            builder.AddToggle(MakeToggle("BuffElementalStrikes", "Bloodlines: Buff Bloodrager Elemental Strikes", true, "Homebrew: Makes Bloodrager Elemental Bloodline's Elemental Strikes ability always active during bloodrage from level 1. The level 20 upgrade to be always-on is replaced with a burst effect on critical hits"));
+
             builder.AddToggle(MakeToggle("CombineSorcererDragonClaws", "Bloodlines: Combine Sorcerer Dragon Claws", true, "Combine all sorcerer dragon bloodline claw powers into the same ability, stacking elemental damage from each bloodline."));
-               builder.AddToggle(MakeToggle("DispelsAreBuffSafe", "Dispels Are Buff Safe", true, "Dispel Magic, Greater Dispel Magic, Alchemist Dispelling Bombs and Slayer Dispelling Attacks should no longer dispel buffs on the casters allies or debuffs on enemies."));
+            builder.AddToggle(MakeToggle("UnlimitedSorcererBloodlineClaws", "Bloodlines: Unlimited Sorcerer Bloodline Claws", true, "Abyssal and Draconic sorcerer bloodline power claws no longer have a use limit."));
+            builder.AddToggle(MakeToggle("DragonheirScionArcaneStrikeScaling", "Dragonheir Scion: Arcane Strike Scaling", true, "Arcane Strike scales with DHS plus Dragon Disciple level if that's better than max caster level"));
+            builder.AddToggle(MakeToggle("DispelsAreBuffSafe", "Dispels Are Buff Safe", true, "Dispel Magic, Greater Dispel Magic, Alchemist Dispelling Bombs and Slayer Dispelling Attacks should no longer dispel buffs on the casters allies or debuffs on enemies."));
             builder.AddToggle(MakeToggle("PurifierRestoreEarlyCures", "Purifier: Restore Early Cures", true, "Owlcat Purifier loses its cure spells but gains absolutely nothing relative to stock oracle before level 5. This setting restores CLW/CMW access."));
             builder.AddToggle(MakeToggle("PurifierLevelThreeRevelation", "Purifier: Restore Level Three Revelation", true, "Restores Purifier Level 3 relevation - TT forced pick was not implemented and is unimplementable so pick should be available."));
             builder.AddToggle(MakeToggle("PurifierCelestialArmorTraining", "Purifier: Enhance Celestial Armor Training", true, "Purifier's Celestial Armor unique revelation now grants advanced armor training access. Note: Absolutely Requires Tabletop Tweaks Base."));
@@ -245,6 +266,9 @@ namespace TomeOfTheFirebird
         // Declare a non-generic class which inherits from the generic type
         private class EmberUnityEnumEnum : UISettingsEntityDropdownEnum<EmberPatron>
         { }
+
+        
+
 
         public enum DawnOfDragonsCustomReward
         {

@@ -67,7 +67,7 @@ namespace TomeOfTheFirebird.New_Spells
             if (Settings.IsEnabled("TelekineticStrikes"))
             {
                 TKStrikeBuilderCast.AddToSpellLists(2, SpellList.Magus, SpellList.Wizard);
-                
+                TKStrikeBuilderCast.AddSpellToPsychic(2);
 
             }
             BlueprintAbility builtCast = TKStrikeBuilderCast.Configure();

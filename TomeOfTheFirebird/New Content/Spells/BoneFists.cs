@@ -35,7 +35,7 @@ namespace TomeOfTheFirebird.New_Spells
             if (Settings.IsEnabled("BoneFists"))
             {
                 BoneFists.AddToSpellLists(2, SpellList.Bloodrager, SpellList.Cleric, SpellList.Druid, SpellList.Shaman, SpellList.Hunter, SpellList.Ranger, SpellList.Witch, SpellList.Wizard);
-                
+                BoneFists.AddSpellToPsychic(2);
             }
 
             BoneFists.SetLocalizedSavingThrow(new Kingmaker.Localization.LocalizedString());

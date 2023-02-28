@@ -8,14 +8,23 @@ All homebrew content or divergences from TT will be called out.
 
 NOW REQUIRES TabletopTweaks Core Module and ModMenu
 
+
+
+
 ## Changelog
 
-###
-1.4.8
+### 1.4.9
+2.1 Beta experimental patch. WARNING: Has not been signficantly tested!
+Added Spells: Fly
+Buffed Elemental Bloodline Elemental Strikes - now always-on at level 1, gains burst effect at level 20
+
+
+
+### 1.4.8
 Fix for Maw And Claw (Claw) natural weapons vanishing - replacing with toggle as game likes to do
 Added Ancestral Scorn feat
 
-1.4.7
+### 1.4.7
 Burst Of Radiance has been returned to spell lists from the Shadow Realm?
 Price Fixes for some horribly overpriced act 1 items - expect further changes here
 Option to replace Dragonkind 1: Red with Chains Of Fire for Oracle Flames Mystery as proxy for Fire Seeds
@@ -369,8 +378,6 @@ Earth Tremor spell
 Mountain Witch Patron
 
 Witch Unique Patrons
-
-Extending Draconic Bloodline claw upgrades to Dragon Mystery abilities if Expanded Content is installed
 
 Seasonal Witch archetype
 

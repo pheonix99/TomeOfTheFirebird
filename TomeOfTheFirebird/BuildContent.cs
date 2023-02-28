@@ -25,6 +25,13 @@ using TomeOfTheFirebird.New_Content.WildTalents;
 using TomeOfTheFirebird.Modified_Content.Feats;
 using TomeOfTheFirebird.New_Content.Archetypes;
 using BlueprintCore.Blueprints.Configurators.Root;
+using Kingmaker.Blueprints;
+using Kingmaker.Utility;
+using Kingmaker.Blueprints.Classes;
+using BlueprintCore.Utils;
+using Kingmaker.Blueprints.Classes.Selection;
+using System.Linq;
+using UnityEngine;
 
 namespace TomeOfTheFirebird
 {
@@ -70,6 +77,8 @@ namespace TomeOfTheFirebird
                     EntropicShield.Make();
 
                     BurstOfRadiance.Make();
+
+                    Fly.Make();
 
                     //Build Feats
                     ProdigiousTWF.AddProdigiousTWF();
@@ -127,10 +136,12 @@ namespace TomeOfTheFirebird
                     //FighterCombatBoosts.Setup();
 
                     PheonixBloodline.MakePheonixBloodline();
+                    //BloodlineMutations.Setup();
                    
 
 
                     EldritchScionSage.Make();
+                    //BloodHavoc.Make();
 
                     Modified_Content.Archetypes.Witch.ReturnAccursedPatrons();
                     Modified_Content.Classes.Witch.AllPatronFixes();
@@ -150,12 +161,17 @@ namespace TomeOfTheFirebird
 
                     TomeOfTheFirebird.New_Content.RacialOptions.Tiefling.Make();
                     ArmorOfThePit.Make();
+
+                    
                 }
                 catch (Exception e)
                 {
                     Main.TotFContext.Logger.LogError(e, $"Error caught in early patch");
                 }
             }
+
+             
+           
         }
 
 
@@ -190,6 +206,7 @@ namespace TomeOfTheFirebird
                     FixExtraHitsOnProcs.FixClawsOfSacredBeast();
                     FixExtraHitsOnProcs.FixElementalStrikes();
 
+                    ElementalStrikesUpgrade.Do();
 
                     CavalierFixes.FixOrderAbilityDisplays();
                     CavalierFixes.FixOrderOfTheStarChannelAssistance();
@@ -207,8 +224,7 @@ namespace TomeOfTheFirebird
                     New_Content.RagePowers.ElementalStance.Finish();
                     New_Content.RagePowers.RageStanceMastery.Finish();
                     //EldritchScion.AddSorcBonusFeatsToList();
-
-
+                  
                     RootConfigurator.ConfigureDelayedBlueprints();
 
                     
@@ -232,10 +248,14 @@ namespace TomeOfTheFirebird
                     Main.TotFContext.Logger.LogError(e, $"Error caught in Fighter Combat Boosts");
                 }
             }
+
+
+           
         }
 
         [HarmonyPriority(Priority.Last)]
         [HarmonyPatch(typeof(StartGameLoader), "LoadAllJson")]
+        
         static class StartGameLoader_LoadAllJson
         {
             private static bool Run = false;

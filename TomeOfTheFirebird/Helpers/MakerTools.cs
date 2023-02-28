@@ -183,6 +183,8 @@ namespace TomeOfTheFirebird.Helpers
             return enchant;
         }
 
+        
+
         public static AbilityConfigurator MakeAbility(string systemName, string displayName, string description, Sprite icon, LocalizedString savestring, LocalizedString durationString)
         {
             Main.TotFContext.Logger.Log($"Building New Spell: {systemName}");
@@ -202,7 +204,7 @@ namespace TomeOfTheFirebird.Helpers
             }
 
 
-
+          
             return AbilityConfigurator.New(systemName, guid.ToString()).SetDisplayName(name).SetDescription(desc).SetIcon(icon).SetLocalizedSavingThrow(savestring).SetLocalizedDuration(durationString);
 
 
@@ -231,7 +233,9 @@ namespace TomeOfTheFirebird.Helpers
 
 
 
-            var config = AbilityConfigurator.NewSpell(systemName, guid.ToString(),school, specialization, descriptors).SetDisplayName(name).SetDescription(desc).SetIcon(icon).AddSpellComponent(school).SetLocalizedSavingThrow(savestring);
+            var config = AbilityConfigurator.NewSpell(systemName, guid.ToString(),school, specialization, descriptors).SetDisplayName(name).SetDescription(desc).AddSpellComponent(school).SetLocalizedSavingThrow(savestring);
+            if (icon != null)
+                config.SetIcon(icon);
             if (durationString != null)
                 config.SetLocalizedDuration(durationString);
 
@@ -241,7 +245,7 @@ namespace TomeOfTheFirebird.Helpers
         }
 
 
-        public static ActivatableAbilityConfigurator MakeToggle(string systemName, string displayName, string description, Sprite icon)
+        public static ActivatableAbilityConfigurator MakeToggle(string systemName, string displayName, string description, Sprite icon = null)
         {
             Main.TotFContext.Logger.Log($"Building New Toggle: {systemName}");
             Kingmaker.Blueprints.BlueprintGuid guid = Main.TotFContext.Blueprints.GetGUID(systemName);
@@ -250,8 +254,9 @@ namespace TomeOfTheFirebird.Helpers
 
 
 
-            ActivatableAbilityConfigurator made = ActivatableAbilityConfigurator.New(systemName, guid.ToString()).SetDisplayName(name).SetDescription(desc).SetIcon(icon);
-            
+            ActivatableAbilityConfigurator made = ActivatableAbilityConfigurator.New(systemName, guid.ToString()).SetDisplayName(name).SetDescription(desc);
+            if (icon != null)
+                made.SetIcon(icon);
 
             return made;
         }

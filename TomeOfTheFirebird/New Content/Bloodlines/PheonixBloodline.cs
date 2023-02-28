@@ -29,19 +29,19 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
 {
     static class PheonixBloodline
     {
-        public static BlueprintFeatureReference BloodlineRequisiteFeature;
+     
         public static BlueprintFeatureReference PhoenixBloodlineRequisiteFeature;
         public static void MakePheonixBloodline()
         {
 
-            BloodlineRequisiteFeature = BlueprintTools.GetBlueprint<BlueprintFeature>("e2cfd3cedf7c40088b25aa82d6db3c77").ToReference<BlueprintFeatureReference>();
-            if (BloodlineRequisiteFeature == null)
+            
+            if (TotFBloodlineTools.BloodlineRequisiteFeature == null)
                 return;
             PhoenixBloodlineRequisiteFeature = CreateBloodlineRequisiteFeature();
 
             BlueprintFeatureReference CreateBloodlineRequisiteFeature()
             {
-                var AberrantBloodlineRequisiteFeature = TabletopTweaks.Core.Utilities.Helpers.CreateBlueprint<BlueprintFeature>(Main.TotFContext, "PhoenixBloodlineRequisiteFeature", bp =>
+                var PheonixBloodlineRequisiteFeature = TabletopTweaks.Core.Utilities.Helpers.CreateBlueprint<BlueprintFeature>(Main.TotFContext, "PhoenixBloodlineRequisiteFeature", bp =>
                 {
                     bp.IsClassFeature = true;
                     bp.HideInUI = true;
@@ -50,15 +50,15 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
                     bp.SetName(Main.TotFContext, "Phoenix Bloodline");
                     bp.SetDescription(Main.TotFContext, "Phoenix Bloodline Requisite Feature");
                 });
-                Main.TotFContext.Logger.LogPatch("Created", AberrantBloodlineRequisiteFeature);
-                return AberrantBloodlineRequisiteFeature.ToReference<BlueprintFeatureReference>();
+                Main.TotFContext.Logger.LogPatch("Created", PheonixBloodlineRequisiteFeature);
+                return PheonixBloodlineRequisiteFeature.ToReference<BlueprintFeatureReference>();
             }
 
             MakePhoenixBloodragerBloodline();
         }
         private static void MakePhoenixBloodragerBloodline()
         {
-            if (BloodlineRequisiteFeature == null)
+            if (TotFBloodlineTools.BloodlineRequisiteFeature == null)
                 return;
             var BloodragerStandardRageBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("5eac31e457999334b98f98b60fc73b2f");
             var BloodragerClass = BlueprintTools.GetBlueprint<BlueprintCharacterClass>("d77e67a814d686842802c9cfd8ef8499").ToReference<BlueprintCharacterClassReference>();
@@ -663,7 +663,7 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
                 bp.m_Icon = AssetLoader.LoadInternal(Main.TotFContext, folder: "Abilities", file: "Phoenix_Bloodline.png");
                 bp.HideInUI = false;
                 bp.LevelEntries = new LevelEntry[] {
-                    TabletopTweaks.Core.Utilities.Helpers.CreateLevelEntry(1, BloodragerPhoenixDispellingStrikesDisplay, BloodragerPhoenixDispellingStrikesLevel1, PhoenixBloodlineRequisiteFeature, BloodlineRequisiteFeature),
+                    TabletopTweaks.Core.Utilities.Helpers.CreateLevelEntry(1, BloodragerPhoenixDispellingStrikesDisplay, BloodragerPhoenixDispellingStrikesLevel1, PhoenixBloodlineRequisiteFeature, TotFBloodlineTools.BloodlineRequisiteFeature),
                     TabletopTweaks.Core.Utilities.Helpers.CreateLevelEntry(4, HeartOfFireFeature),
 
                     TabletopTweaks.Core.Utilities.Helpers.CreateLevelEntry(6, BloodragerPhoenixFeatSelectionGreenrager),
@@ -681,7 +681,7 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
                 bp.AddPrerequisite<PrerequisiteNoFeature>(c =>
                 {
                     c.Group = Prerequisite.GroupType.Any;
-                    c.m_Feature = BloodlineRequisiteFeature;
+                    c.m_Feature = TotFBloodlineTools.BloodlineRequisiteFeature;
                 });
                 bp.AddPrerequisite<PrerequisiteFeature>(c =>
                 {
@@ -715,21 +715,68 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
 
             if (!Settings.IsTTTBaseEnabled())
                 return;
+            if (Settings.IsEnabled("PhoenixBloodline"))
+            {
 
-            BloodlineTools.ApplyPrimalistException(HeartOfFireFeature, 4, BloodragerPhoenixBloodline);
-            BloodlineTools.ApplyPrimalistException(BlazingVitalityFeature, 8, BloodragerPhoenixBloodline);
-            BloodlineTools.ApplyPrimalistException(MoltenWingsFeature, 12, BloodragerPhoenixBloodline);
-            BloodlineTools.ApplyPrimalistException(SelfRez, 16, BloodragerPhoenixBloodline);
-            BloodlineTools.ApplyPrimalistException(PheonixFireFeature, 20, BloodragerPhoenixBloodline);
-            ProgressionConfigurator.For(BloodragerClass.Get().Progression).AddToUIGroups(BloodragerPhoenixSpell7, BloodragerPhoenixSpell10, BloodragerPhoenixSpell13, BloodragerPhoenixSpell16).AddToUIGroups(BloodragerPhoenixDispellingStrikesDisplay, MoltenWingsFeature, SelfRez, PheonixFireFeature).Configure();
-            
+                BloodlineTools.ApplyPrimalistException(HeartOfFireFeature, 4, BloodragerPhoenixBloodline);
+                BloodlineTools.ApplyPrimalistException(BlazingVitalityFeature, 8, BloodragerPhoenixBloodline);
+                BloodlineTools.ApplyPrimalistException(MoltenWingsFeature, 12, BloodragerPhoenixBloodline);
+                BloodlineTools.ApplyPrimalistException(SelfRez, 16, BloodragerPhoenixBloodline);
+                BloodlineTools.ApplyPrimalistException(PheonixFireFeature, 20, BloodragerPhoenixBloodline);
+                ProgressionConfigurator.For(BloodragerClass.Get().Progression).AddToUIGroups(BloodragerPhoenixSpell7, BloodragerPhoenixSpell10, BloodragerPhoenixSpell13, BloodragerPhoenixSpell16).AddToUIGroups(BloodragerPhoenixDispellingStrikesDisplay, MoltenWingsFeature, SelfRez, PheonixFireFeature).Configure();
 
-            BloodlineTools.RegisterBloodragerBloodline(BloodragerPhoenixBloodline, BloodragerPhoenixBloodlineWandering);
+
+                BloodlineTools.RegisterBloodragerBloodline(BloodragerPhoenixBloodline, BloodragerPhoenixBloodlineWandering);
+            }
             TotFBloodlineTools.MetamagicSupport(BlueprintTools.GetModBlueprint<BlueprintProgression>(Main.TotFContext, "BloodragerPhoenixBloodline"));
 
 
         }
 
-       
+        private static void MakePhoenixSorcBloodline()
+        {
+            /*
+             * Class Skill: Knowledge (Arcana)
+
+Bonus Spells: color spray (3rd), see invisibility (5th), magic circle against evil (7th), wall of fire (9th), break enchantment (11th), path of the winds (13th), firebrand (15th), prismatic wall (17th), fiery body (19th).
+             */
+
+            //Color spray, see invis are in
+            //MCaE is not in.
+            //It's a protection from evil aura with a summon-blocker effect and duration boost. PROBABLY not worth it given communal + enduring?
+            //Wall of fire has been modded - alternates are fire shield / controlled fireball
+
+            //Break enchant is in
+            //Path of the winds is probably non-implementable?
+            //Firebrand is in
+            //Pris wall is right out - sunburst or fire storm is good replacer
+            //Firey body is in
+            //Bonus feats: Dodge, Elemental Focus (fire), Fast Healer, Improved Initiative, Iron Will, Mobility, Quicken Spell, Skill Focus (Knowledge [arcana]).
+
+            //Bloodline Arcana: When casting any spell that deals fire damage, you can instead heal your targets. The spell deals no damage, and living creatures affected by the spell instead regain a number of hit points equal to half the fire damage the spell would normally deal.
+            //OH GOD HOW TO DO THIS
+            //look at deal damage rule?
+
+            //The Unseen World (Su): At 1st level, you gain detect magic and read magic as spells known. At 5th level, the phoenix’s blood drives you to find and save lost knowledge and magical items. As a swift action, you can automatically identify the properties of a non-cursed magic item you hold; you must still identify a cursed item as normal to correctly identify it as cursed. You can use this ability a number of times equal to your Charisma modifier per day.
+            //Does jackall
+
+            //Immolation (Su): At 3rd level, you gain the ability to surround yourself in fire as a swift action. This fire burns for a number of rounds per day equal to your character level plus your Charisma bonus. These rounds do not have to be consecutive. Any unarmed attacks you make while affected by immolation deal an additional 1d6 points of fire damage, and any creature that ends its turn adjacent to you while you’re affected by immolation also takes 1d6 points of fire damage.
+            //Not bad, make add to natural weapons and add IFF because indiscriminate damage auras suck
+            //Extend to users melee weapons at 20?
+
+            //Vermilion Wings (Su): At 9th level, you gain the ability to grow a pair of phoenix wings from your back as a standard action. The wings grant you a fly speed of 60 feet with good maneuverability. You can dismiss the wings as a free action.
+            //Standard issue flight power
+
+            //Restoring Flames (Sp): At 15th level, you can cast greater restoration once per day as a spell-like ability.
+            //Not terrible
+
+            //Rebirth (Su): At 20th level, the full power of a phoenix erupts from within you if you perish. When you die, you are brought back to life, as true resurrection, after 1 minute. This ability can be used only once every 24 hours, and if you are slain again within this period, your death is permanent.
+
+            //Time delay makes useless, make act like pheonix gift w/o the bomb!
+
+
+
+        }
+
     }
 }

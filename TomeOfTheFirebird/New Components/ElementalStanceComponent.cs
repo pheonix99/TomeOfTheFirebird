@@ -60,7 +60,7 @@ namespace TomeOfTheFirebird.New_Components
 
         public void OnEventAboutToTrigger(RuleDealDamage evt)
         {
-            if (evt.DamageBundle.Weapon.Blueprint.IsMelee)
+            if (evt.DamageBundle.Weapon?.Blueprint?.IsMelee == true)
             {
                 RuleAttackRoll attackRoll = evt.AttackRoll;
                 if (base.Owner == null || attackRoll == null || !attackRoll.IsCriticalConfirmed || attackRoll.FortificationNegatesCriticalHit)
@@ -76,8 +76,8 @@ namespace TomeOfTheFirebird.New_Components
         public void OnEventDidTrigger(RuleCalculateWeaponStats evt)
         {
            
-        }
 
+        }
         public void OnEventDidTrigger(RuleDealDamage evt)
         {
             

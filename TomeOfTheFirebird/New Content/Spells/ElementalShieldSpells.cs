@@ -34,7 +34,8 @@ namespace TomeOfTheFirebird.New_Spells
             if (Settings.IsEnabled("VitrolicMist"))
             {
                 VitrolicMistBuilder.AddToSpellLists(4, SpellList.Alchemist, SpellList.Bloodrager, SpellList.Magus, SpellList.Wizard);
-                
+                VitrolicMistBuilder.AddSpellToSummoner(4);
+
             }
             FireShieldWarmBuilder.SetRange(AbilityRange.Personal).AllowTargeting(friends: true, self: true).SetAnimation(   UnitAnimationActionCastSpell.CastAnimationStyle.Self).SetAvailableMetamagic(Metamagic.Quicken, Metamagic.Extend, Metamagic.Heighten, Metamagic.CompletelyNormal);
           
@@ -91,7 +92,7 @@ namespace TomeOfTheFirebird.New_Spells
             {
                 rootFireShieldBuilder.AddToSpellLists(4, SpellList.Alchemist, SpellList.Bloodrager, SpellList.Magus, SpellList.Wizard, SpellList.SunDomain);
                 rootFireShieldBuilder.AddToSpellLists(5, SpellList.FireDomain);
-
+                rootFireShieldBuilder.AddSpellToSummoner(4);
                 
 
             }

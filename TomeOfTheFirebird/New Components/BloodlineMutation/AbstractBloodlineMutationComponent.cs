@@ -22,9 +22,43 @@ namespace TomeOfTheFirebird.New_Components.BloodlineMutation
 
         private static BlueprintFeatureReference _spellFocus;
 
+        protected static List<BlueprintAbilityReference> m_ElementalScalingAttackPowers;
+
+        protected static List<BlueprintAbilityReference> m_BadScalingAttackPowers;
+
+        protected static List<BlueprintAbilityReference> allattackPowers => m_ElementalScalingAttackPowers.Concat(m_BadScalingAttackPowers).ToList();
+
+        
+
+        public static void LoadElementalAttackPowers(List<string> ids)
+        {
+            if (m_ElementalScalingAttackPowers == null)
+            {
+                m_ElementalScalingAttackPowers = new();
+            }
+            foreach(var id in ids)
+            {
+                var reference = BlueprintTool.GetRef<BlueprintAbilityReference>(id);
+                if (!m_ElementalScalingAttackPowers.Contains(reference))
+                    m_ElementalScalingAttackPowers.Add(reference);
+            }
+        }
+        public static void LoadBadScalingAttackPowers(List<string> ids)
+        {
+            if (m_BadScalingAttackPowers == null)
+            {
+                m_BadScalingAttackPowers = new();
+            }
+            foreach (var id in ids)
+            {
+                var reference = BlueprintTool.GetRef<BlueprintAbilityReference>(id);
+                if (!m_BadScalingAttackPowers.Contains(reference))
+                    m_BadScalingAttackPowers.Add(reference);
+            }
+        }
 
 
-        protected bool AppliesToAbility(AbilityData ability)
+        protected virtual bool AppliesToAbility(AbilityData ability, bool resourceUsing = false)
         {
             if (spellFocuses == null)
             {
@@ -70,10 +104,13 @@ namespace TomeOfTheFirebird.New_Components.BloodlineMutation
                 
 
             }
-            else if (ability.Blueprint.Type == Kingmaker.UnitLogic.Abilities.Blueprints.AbilityType.SpellLike || ability.Blueprint.Type == Kingmaker.UnitLogic.Abilities.Blueprints.AbilityType.Supernatural)
+            else if (ability.Blueprint.Type == Kingmaker.UnitLogic.Abilities.Blueprints.AbilityType.SpellLike || ability.Blueprint.Type == Kingmaker.UnitLogic.Abilities.Blueprints.AbilityType.Supernatural && Settings.IsEnabled("BloodlineMutationsForPowers"))
             {
-                //For bloodline powers when I add those to this
-                return false;
+                if (resourceUsing)
+                    return m_ElementalScalingAttackPowers.Contains(ability.Blueprint.ToReference<BlueprintAbilityReference>());
+                else
+                    return allattackPowers.Contains(ability.Blueprint.ToReference<BlueprintAbilityReference>());
+                
             }
             else
             {

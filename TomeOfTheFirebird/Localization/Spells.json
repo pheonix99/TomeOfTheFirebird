@@ -1,0 +1,39 @@
+﻿[
+  {
+    "Key": "FieryRunes.Name",
+
+    "enGB": "Fiery Runes"
+  },
+  {
+    "Key": "FieryRunes.Desc",
+
+    "enGB": "You charge a ally with a magic rune of fire. \n When the wielder of the weapon successfully strikes a foe in melee with the weapon, the wielder can discharge the rune as a swift action to deal 1d4+1 points of fire damage to the target.This damage isn’t multiplied on a critical hit. If the target has spell resistance, you attempt a caster level check (1d20 + caster level) against that spell resistance when the rune is discharged.If the rune is successfully resisted, the rune is expended and does no damage; otherwise, the rune deals damage normally.\n For every 2 caster levels beyond 3rd the caster possesses, the rune deals an additional 1d4+1 points of fire damage(2d4+2 at caster level 5th, 3d4+3 at 7th, and so on) to a maximum of 5d4+5 points of fire damage at caster level 11th."
+
+    
+  },
+  {
+    "Key": "FieryRuneArray.Name",
+
+    "enGB": "Fiery Rune Array"
+  },
+  {
+    "Key": "FieryRuneArray.Desc",
+
+    "enGB": "You charge a ally with  magic runes of fire. \n When the wielder of the weapon successfully strikes a foe in melee with the weapon, the wielder can discharge a  rune as a swift action to deal 1d4+1 points of fire damage to the target.This damage isn’t multiplied on a critical hit. If the target has spell resistance, you attempt a caster level check (1d20 + caster level) against that spell resistance when the rune is discharged. If the rune is successfully resisted, a rune is expended and does no damage; otherwise, the rune deals damage normally.\n For every 2 caster levels beyond 3rd the caster possesses, the rune deals an additional 1d4+1 points of fire damage(2d4+2 at caster level 5th, 3d4+3 at 7th, and so on) to a maximum of 5d4+5 points of fire damage at caster level 11th.\n The spell creates 1 rune, plus 1 per 5 caster levels, to a maximum of 5 at level 20."
+  },
+
+  {
+    "Key": "Fly.Name",
+    "ProcessTemplates": false,
+    "enGB": "Fly"
+  },
+  {
+    "Key": "Fly.Desc",
+    "ProcessTemplates": false,
+    "enGB": "The subject gains flight, increasing their speed by ten feet, ignoring ground effects, and gaining a +3 dodge bonus to AC against melee attacks"
+  }
+
+
+
+
+]

@@ -1,6 +1,7 @@
 ﻿using Kingmaker.PubSubSystem;
 using Kingmaker.RuleSystem;
 using Kingmaker.RuleSystem.Rules.Damage;
+using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Mechanics;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,12 @@ namespace TomeOfTheFirebird.New_Components.BloodlineMutation
     {
         public void OnEventAboutToTrigger(RuleCalculateDamage evt)
         {
+			
+		
+			
 			MechanicsContext context = evt.Reason.Context;
+
+			
 			if (((context != null) ? context.SourceAbility : null) == null)
 			{
 				return;

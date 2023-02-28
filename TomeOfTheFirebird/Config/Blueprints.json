@@ -266,7 +266,11 @@
     "AdoptedPipefoxFeature": "8e9fc535-4775-4512-a08a-68962f87a6d1",
     "AncestralScorn": "30fb3bc6-c7d4-4609-b68a-bc47f6831f83",
     "ClawTieflingRacialBuff": "f122ff39-1c07-4cf5-b1b3-4b4c5caa8c11",
-    "ClawTieflingRacialToggle": "032a6ce2-8492-41b9-9a48-b0ce6079a2fb"
+    "ClawTieflingRacialToggle": "032a6ce2-8492-41b9-9a48-b0ce6079a2fb",
+    "ElementalStrikesAcidBurstBuff": "db73ded7-381c-40fe-a2ba-5d5995f30345",
+    "ElementalStrikesColdBurstBuff": "c666499d-1fa9-45df-bf10-175b2b3de2c4",
+    "ElementalStrikesElectricityBurstBuff": "9821cbbd-dee1-464a-baa7-002c4786294e",
+    "ElementalStrikesFireBurstBuff": "e66ad7ba-fe84-43db-b9bc-f2f762c13bea"
 
 
   },

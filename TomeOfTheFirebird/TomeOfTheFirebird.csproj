@@ -37,17 +37,14 @@
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
-  <PropertyGroup>
-    <WrathPath Condition=" '$(WrathPath)' == '' ">C:\Program Files (x86)\Steam\steamapps\common\Pathfinder Second Adventure</WrathPath>
-  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="AssemblyPublicizer">
-      <Version>1.0.1</Version>
+      <Version>1.0.2</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="ILRepack.MSBuild.Task" Version="2.0.13" />
-    <PackageReference Include="WW-Blueprint-Core" Version="2.7.7" />
+    <PackageReference Include="WW-Blueprint-Core" Version="2.7.8" />
   </ItemGroup>
   <!-- DLL Merging -->
   <Target Name="ILRepack" AfterTargets="Build">
@@ -138,7 +135,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="TabletopTweaks-Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\TabletopTweaks-Core\TabletopTweaks-Core\bin\Debug\TabletopTweaks-Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Pathfinder Second Adventure\Mods\TabletopTweaks-Core\TabletopTweaks-Core.dll</HintPath>
     </Reference>
     <Reference Include="UniRx">
       <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Pathfinder Second Adventure\Wrath_Data\Managed\UniRx.dll</HintPath>
@@ -157,6 +154,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bugfixes\AI Fixes\WrongDefaultAttack.cs" />
     <Compile Include="Bugfixes\Classes\Magus.cs" />
     <Compile Include="Bugfixes\Items\AngelCloak.cs" />
     <Compile Include="Bugfixes\Items\FixBracersOfArmorEnchants.cs" />
@@ -166,6 +164,7 @@
     <Compile Include="Bugfixes\Classes\CavalierFixes.cs" />
     <Compile Include="Bugfixes\RadianceLevel2Fix.cs" />
     <Compile Include="Helpers\Extensions.cs" />
+    <Compile Include="Helpers\InteropHelpers.cs" />
     <Compile Include="Helpers\MoreFeatTools.cs" />
     <Compile Include="Helpers\SpellSpecializationTool.cs" />
     <Compile Include="Helpers\TeamworkFeatFactory.cs" />
@@ -175,6 +174,7 @@
     <Compile Include="Modified Content\Archetypes\Witch.cs" />
     <Compile Include="Modified Content\Bloodlines\AbyssalBloodlineModifications.cs" />
     <Compile Include="Modified Content\Bloodlines\DraconicBloodlineModifications.cs" />
+    <Compile Include="Modified Content\Bloodlines\ElementalStrikesUpgrade.cs" />
     <Compile Include="Modified Content\Classes\Bloodrager.cs" />
     <Compile Include="Modified Content\Classes\Kineticist.cs" />
     <Compile Include="Modified Content\Classes\Paladin.cs" />
@@ -193,6 +193,7 @@
     <Compile Include="Modified Content\KineticistOverhaul\FixProgressionLayoutSillyness.cs" />
     <Compile Include="Modified Content\KineticistOverhaul\RationalizeElementalPrerequisites.cs" />
     <Compile Include="Modified Content\KineticistOverhaul\SortTalentsByElement.cs" />
+    <Compile Include="Modified Content\Spells\FormOfTheDragon.cs" />
     <Compile Include="Modified Content\WildTalents\FlameShield.cs" />
     <Compile Include="ModLogic\ModContextTomeOfTheFirebird.cs" />
     <Compile Include="New Components\AbilityRestrictionWildTalentCastCapper.cs" />
@@ -203,6 +204,7 @@
     <Compile Include="New Components\BloodlineMutation\BloodHavocComponent.cs" />
     <Compile Include="New Components\BloodlineMutation\BloodlineSpellComponent.cs" />
     <Compile Include="New Components\BloodlineMutation\UnitPartBloodlineSpellTracker.cs" />
+    <Compile Include="New Components\BurstDamageComponent.cs" />
     <Compile Include="New Components\ElementalStanceComponent.cs" />
     <Compile Include="New Components\ItemFeatureSwapPointerComponent.cs" />
     <Compile Include="New Components\Prerequisites\PrerequisitePartyMember.cs" />
@@ -225,6 +227,7 @@
     <Compile Include="New Components\Prerequisites\PrerequisiteClassLevelPerRank.cs" />
     <Compile Include="New Components\Prerequisites\PrerequisiteProperty.cs" />
     <Compile Include="New Components\Prerequisites\PrerequisiteUsesStandardBurn.cs" />
+    <Compile Include="New Components\SpellstrikeAlikeComponent.cs" />
     <Compile Include="New Components\TacticalFeatComponents\CoordinatedShotComponent.cs" />
     <Compile Include="New Components\TacticalFeatComponents\LastwallPhalanxComponent.cs" />
     <Compile Include="New Components\TacticalFeatComponents\SwarmStrikeComponent.cs" />
@@ -237,6 +240,7 @@
     <Compile Include="New Content\Archetypes\KineticLancer.cs" />
     <Compile Include="New Content\Archetypes\SeasonalWitch.cs" />
     <Compile Include="New Content\Bloodlines\PheonixBloodline.cs" />
+    <Compile Include="New Content\Bloodlines\DragonBloodlines.cs" />
     <Compile Include="New Content\Bloodlines\TotFBloodlineTools.cs" />
     <Compile Include="New Content\Feats\Afterburn.cs" />
     <Compile Include="New Content\Feats\AncestralScorn.cs" />
@@ -261,6 +265,7 @@
     <Compile Include="New Content\Features\BloodlineMutations.cs" />
     <Compile Include="New Content\Items\Firebrand.cs" />
     <Compile Include="New Content\Items\ItemSynthesisElementalRings.cs" />
+    <Compile Include="New Content\ModifySpellLists\AzataMythicList.cs" />
     <Compile Include="New Content\ModifySpellLists\CoreGameDeityModifications.cs" />
     <Compile Include="New Content\RacialOptions\Tiefling.cs" />
     <Compile Include="New Content\RagePowers\RageStanceMastery.cs" />
@@ -294,24 +299,22 @@
     <Compile Include="New Content\Mercies\ExtraMercies.cs" />
     <Compile Include="New Content\RagePowers\ElementalStance.cs" />
     <Compile Include="New Content\Spells\EarthTremor.cs" />
+    <Compile Include="New Content\Spells\Fly.cs" />
     <Compile Include="New Content\Spells\IncendiaryCloud.cs" />
     <Compile Include="New Content\Spells\TODO\AuraOfDoom.cs" />
     <Compile Include="New Content\Spells\BoneFists.cs" />
     <Compile Include="New Content\Spells\TODO\BowSpirit.cs" />
     <Compile Include="New Content\Spells\BurstOfRadiance.cs" />
     <Compile Include="New Content\Spells\ChainsOfFire.cs" />
-    <Compile Include="New Content\Spells\TODO\ChillTouch.cs" />
     <Compile Include="New Content\Spells\TODO\CosmicRay.cs" />
     <Compile Include="New Content\Spells\EntropicShield.cs" />
     <Compile Include="New Content\Spells\TODO\ExplodeHead.cs" />
-    <Compile Include="New Content\Spells\TODO\FieryRunes.cs" />
+    <Compile Include="New Content\Spells\FieryRunes.cs" />
     <Compile Include="New Content\Spells\TODO\FiresFriend.cs" />
     <Compile Include="New Content\Spells\TODO\ForcefulStrike.cs" />
     <Compile Include="New Content\Spells\FreezingSphere.cs" />
-    <Compile Include="New Content\Spells\TODO\Frostbite.cs" />
     <Compile Include="New Content\Spells\GloomblindBolts.cs" />
     <Compile Include="New Content\Spells\HealMount.cs" />
-    <Compile Include="New Content\Spells\TODO\IceSlick.cs" />
     <Compile Include="New Content\Spells\KeenEdge.cs" />
     <Compile Include="New Content\Spells\TODO\SavageMaw.cs" />
     <Compile Include="New Content\Spells\TODO\ShadowClaws.cs" />
@@ -363,6 +366,7 @@
     <EmbeddedResource Include="Localization\Settings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
+    <None Include="Localization\Spells.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -370,6 +374,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Spells\BoneFists.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Spells\Fly.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Spells\FreezingSphere.png">
@@ -399,6 +406,7 @@
       <SpellAssets Include="$(OutputPath)\Assets\Spells\FreezingSphere.png" />
       <SpellAssets Include="$(OutputPath)\Assets\Spells\GloomblindBolts.png" />
       <SpellAssets Include="$(OutputPath)\Assets\Spells\SpearOfPurity.png" />
+      <SpellAssets Include="$(OutputPath)\Assets\Spells\Fly.png" />
       <AbilityAssets Include="$(OutputPath)\Assets\Abilities\Phoenix_Bloodline.png" />
     </ItemGroup>
     <Copy SourceFiles="@(Assembly)" DestinationFolder="$(WrathPath)\Mods\$(MSBuildProjectName)" />
@@ -416,6 +424,7 @@
       <SpellAssets Include="$(OutputPath)\Assets\Spells\FreezingSphere.png" />
       <SpellAssets Include="$(OutputPath)\Assets\Spells\GloomblindBolts.png" />
       <SpellAssets Include="$(OutputPath)\Assets\Spells\SpearOfPurity.png" />
+      <SpellAssets Include="$(OutputPath)\Assets\Spells\Fly.png" />
       <AbilityAssets Include="$(OutputPath)\Assets\Abilities\Phoenix_Bloodline.png" />
       <Localization Include="$(OutputPath)\Localization\LocalizationPack.json" />
       <Localization Include="$(OutputPath)\Localization\Settings.json" />
