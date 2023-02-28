@@ -270,7 +270,10 @@
     "ElementalStrikesAcidBurstBuff": "db73ded7-381c-40fe-a2ba-5d5995f30345",
     "ElementalStrikesColdBurstBuff": "c666499d-1fa9-45df-bf10-175b2b3de2c4",
     "ElementalStrikesElectricityBurstBuff": "9821cbbd-dee1-464a-baa7-002c4786294e",
-    "ElementalStrikesFireBurstBuff": "e66ad7ba-fe84-43db-b9bc-f2f762c13bea"
+    "ElementalStrikesFireBurstBuff": "e66ad7ba-fe84-43db-b9bc-f2f762c13bea",
+    "FlyBuff": "b6d76a5d-c8ec-4046-8a2c-7f09e2e7d146",
+    "FlySpell": "bbbd603f-9da4-4838-b8a8-5124aaa6ba40",
+    "FlySpellTouch": "e68a66c1-0ee6-4a7c-82d1-a6562c58263c"
 
 
   },
