@@ -39,7 +39,7 @@ namespace TomeOfTheFirebird.New_Content.WildTalents
             BlueprintBuff lifeBubble = BlueprintTool.Get<BlueprintBuff>("4aa87d3319124a2daf74d80ca5d4595e");
 
             BuffConfigurator patchOnAntiBad = BuffConfigurator.For("BasicAerokinesisBuff");
-            patchOnAntiBad.AddSavingThrowBonusAgainstSpecificSpells(spells: lifeBubble.Components.OfType<AddSpellImmunity>().FirstOrDefault().m_Exceptions.Select(x => (Blueprint<Kingmaker.Blueprints.BlueprintAbilityReference>)x).ToList());
+            patchOnAntiBad.AddSavingThrowBonusAgainstSpecificSpells(spells: lifeBubble.Components.OfType<AddSpellImmunity>().FirstOrDefault().m_Exceptions.Select(x => (Blueprint<Kingmaker.Blueprints.BlueprintAbilityReference>)x).ToList(), value:2);
             patchOnAntiBad.Configure();
 
         }

@@ -37,11 +37,6 @@ namespace TomeOfTheFirebird
 {
     static class BuildContent
     {
-        static BlueprintAbility gloomblind;
-
-
-
-        static BlueprintAbility keenEdge;
         [HarmonyPatch(typeof(BlueprintsCache), "Init")]
         static class BlueprintsCache_Init_Patch
         {
@@ -54,8 +49,13 @@ namespace TomeOfTheFirebird
                 {
                     if (Initialized) return;
                     Initialized = true;
-                    Settings.Make();
+                    
 
+                    LocalizationTool.LoadLocalizationPack("Mods\\TomeOfTheFirebird\\Localization\\Settings.json");
+                    //LocalizationTool.LoadLocalizationPack("Mods\\TomeOfTheFirebird\\Localization\\LocalizationPack.json");
+                    LocalizationTool.LoadLocalizationPack("Mods\\TomeOfTheFirebird\\Localization\\Spells.json");
+                    LocalizationTool.LoadLocalizationPack("Mods\\TomeOfTheFirebird\\Localization\\Bloodlines.json");
+                    Settings.Make();
                     Main.TotFContext.Logger.Log("Building new spells");
 
 

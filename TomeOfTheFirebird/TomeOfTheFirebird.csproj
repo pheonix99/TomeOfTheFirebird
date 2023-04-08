@@ -44,7 +44,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="ILRepack.MSBuild.Task" Version="2.0.13" />
-    <PackageReference Include="WW-Blueprint-Core" Version="2.7.8" />
+    <PackageReference Include="WW-Blueprint-Core" Version="2.8.0" />
   </ItemGroup>
   <!-- DLL Merging -->
   <Target Name="ILRepack" AfterTargets="Build">
@@ -66,6 +66,7 @@
     <Message Text="Publicizing: @(PublicAssembly) into @(RenamedAssembly)" Importance="High" />
     <PublicizeTask InputAssemblies="@(Assemblies)" OutputDir="$(SolutionDir)lib/" />
     <Move SourceFiles="@(PublicAssembly)" DestinationFiles="@(RenamedAssembly)" />
+    <Move SourceFiles="$(SolutionDir)\lib\Assembly-CSharp_public.hash" DestinationFiles="$(SolutionDir)\lib\Assembly-CSharp.hash" />
   </Target>
   <ItemGroup>
     <Reference Include="0Harmony, Version=2.2.1.0, Culture=neutral, processorArchitecture=MSIL">
@@ -227,6 +228,7 @@
     <Compile Include="New Components\Prerequisites\PrerequisiteClassLevelPerRank.cs" />
     <Compile Include="New Components\Prerequisites\PrerequisiteProperty.cs" />
     <Compile Include="New Components\Prerequisites\PrerequisiteUsesStandardBurn.cs" />
+    <Compile Include="New Components\Restriction\RestrictionUnitHasResource.cs" />
     <Compile Include="New Components\SpellstrikeAlikeComponent.cs" />
     <Compile Include="New Components\TacticalFeatComponents\CoordinatedShotComponent.cs" />
     <Compile Include="New Components\TacticalFeatComponents\LastwallPhalanxComponent.cs" />
@@ -366,7 +368,12 @@
     <EmbeddedResource Include="Localization\Settings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
-    <None Include="Localization\Spells.json" />
+    <EmbeddedResource Include="Localization\Spells.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localization\Bloodlines.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -427,6 +434,8 @@
       <SpellAssets Include="$(OutputPath)\Assets\Spells\Fly.png" />
       <AbilityAssets Include="$(OutputPath)\Assets\Abilities\Phoenix_Bloodline.png" />
       <Localization Include="$(OutputPath)\Localization\LocalizationPack.json" />
+      <Localization Include="$(OutputPath)\Localization\Bloodlines.json" />
+      <Localization Include="$(OutputPath)\Localization\Spells.json" />
       <Localization Include="$(OutputPath)\Localization\Settings.json" />
     </ItemGroup>
     <Copy SourceFiles="@(Assembly)" DestinationFolder="$(OutputPath)\$(AssemblyName)" />

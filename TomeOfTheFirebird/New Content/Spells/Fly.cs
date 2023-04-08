@@ -29,6 +29,7 @@ namespace TomeOfTheFirebird.New_Content.Spells
             var buffGUID = Main.TotFContext.Blueprints.GetGUID("FlyBuff");
             var spellGUID = Main.TotFContext.Blueprints.GetGUID("FlySpell");
             var touchGUID = Main.TotFContext.Blueprints.GetGUID("FlySpellTouch");
+            
 
             Sprite flyIcon = AssetLoader.LoadInternal(Main.TotFContext, "Spells", "Fly.png");
             if (Settings.IsEnabled("Fly"))
@@ -36,7 +37,7 @@ namespace TomeOfTheFirebird.New_Content.Spells
                 var buff = BuffConfigurator.New("FlyBuff", buffGUID.ToString());
                 buff.SetDisplayName("Fly.Name");
                 buff.SetDescription("Fly.Desc");
-               buff.SetIcon(flyIcon);
+                buff.SetIcon(flyIcon);
                 buff.AddBuffDescriptorImmunity(descriptor: new Kingmaker.Blueprints.Classes.Spells.SpellDescriptorWrapper(Kingmaker.Blueprints.Classes.Spells.SpellDescriptor.Ground));
                 buff.AddSpellImmunityToSpellDescriptor(descriptor: new Kingmaker.Blueprints.Classes.Spells.SpellDescriptorWrapper(Kingmaker.Blueprints.Classes.Spells.SpellDescriptor.Ground));
                 buff.AddFormationACBonus(bonus: 3);
@@ -46,6 +47,8 @@ namespace TomeOfTheFirebird.New_Content.Spells
 
                 var touch = AbilityConfigurator.NewSpell("FlySpellTouch", touchGUID.ToString(), Kingmaker.Blueprints.Classes.Spells.SpellSchool.Transmutation, false);
                 touch.SetIcon(flyIcon);
+                touch.SetDisplayName("Fly.Name");
+                touch.SetDescription("Fly.Desc");
                 touch.SetLocalizedDuration(Duration.MinutePerLevel);
                 touch.AllowTargeting(friends: true, self:true);
                 touch.SetEffectOnAlly(AbilityEffectOnUnit.Helpful);
@@ -68,7 +71,8 @@ namespace TomeOfTheFirebird.New_Content.Spells
                 spell.SetAnimation(UnitAnimationActionCastSpell.CastAnimationStyle.Touch);
                 spell.SetLocalizedSavingThrow(new Kingmaker.Localization.LocalizedString());
                 spell.SetAvailableMetamagic(Metamagic.Quicken, Metamagic.Heighten, Metamagic.CompletelyNormal, Metamagic.Reach);
-
+                spell.SetDisplayName("Fly.Name");
+                spell.SetDescription("Fly.Desc");
                 spell.AddSpellToMedium(3);
                 spell.AddSpellToSpiritualist(3);
                 spell.AddSpellToSummoner(3);
@@ -79,12 +83,15 @@ namespace TomeOfTheFirebird.New_Content.Spells
 
                 spell.Configure();
 
+
+
                 //TODO MASS FLY - level 7, 30 foot burst of fly, 10 minutes per level
             }
             else
             {
                 AbilityConfigurator.New("FlySpell", spellGUID.ToString()).Configure();
                 AbilityConfigurator.New("FlySpellTouch", touchGUID.ToString()).Configure();
+                
                 BuffConfigurator.New("FlyBuff", buffGUID.ToString()).Configure();
             }
         }

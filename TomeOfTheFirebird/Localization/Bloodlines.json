@@ -1,0 +1,203 @@
+﻿[
+  {
+    "Key": "BloodragerPheonixBloodlineWandering.Name",
+    "ProcessTemplates": false,
+    "enGB": ""
+  },
+  {
+    "Key": "BloodragerPheonixMoltenWings.Description",
+    "ProcessTemplates": true,
+    "enGB": "At 12th level, you spout molten wings during bloodrage"
+  },
+  {
+    "Key":  "BloodragerPheonixMoltenWings.Name",
+    "ProcessTemplates": false,
+    "enGB": "Molten Wings"
+  },
+  {
+    "Key": "BloodragerPhoenixBaseBuff.Name",
+    "ProcessTemplates": false,
+    "enGB": "Phoenix Bloodrage"
+  },
+  {
+    "Key": "BloodragerPhoenixBlazingVitality.Description",
+    "ProcessTemplates": true,
+    "enGB": "When tensions run high and your emotions flare, you let forth waves of restorative energy from within. At 8th level, you emit a 10-foot-radius aura of energizing fire while bloodraging. Any ally that ends their turn within this aura gains a number of temporary hit points equal to your Constitution modifier. These temporary hit points last for 1 minute."
+  },
+  {
+    "Key": "BloodragerPhoenixBlazingVitality.Name",
+    "ProcessTemplates": false,
+    "enGB": "Blazing Vitality"
+  },
+  {
+    "Key": "BloodragerPhoenixBlazingVitalityBuff.Description",
+    "ProcessTemplates": true,
+    "enGB": "When tensions run high and your emotions flare, you let forth waves of restorative energy from within. At 8th level, you emit a 10-foot-radius aura of energizing fire while bloodraging. Any ally that ends their turn within this aura gains a number of temporary hit points equal to your Constitution modifier. These temporary hit points last for 1 minute."
+  },
+  {
+    "Key": "BloodragerPhoenixBlazingVitalityEffectBuff.Description",
+    "ProcessTemplates": true,
+    "enGB": "When tensions run high and your emotions flare, you let forth waves of restorative energy from within. At 8th level, you emit a 10-foot-radius aura of energizing fire while bloodraging. Any ally that ends their turn within this aura gains a number of temporary hit points equal to your Constitution modifier. These temporary hit points last for 1 minute."
+  },
+  {
+    "Key": "BloodragerPhoenixBloodline.Description",
+    "ProcessTemplates": true,
+    "enGB": "One of your ancestors may have witnessed the fiery resurrection of a phoenix or been healed by the grace of this legendary bird. Whatever the case, the flames of the phoenix burn brightly within your soul, filling you with an inextinguishable vitality that can withstand the most harrowing of assaults. .\nWhen you bloodrage, vibrant energy boils forth from beneath your skin, granting you both the soothing warmth to heal a friend’s wounds and the brutal power to burn flesh from bone. Your rage is an awesome and terrible thing to behold, as the raw power of your untamed life force can allow you to pull yourself back from the grasp of death itself.\nCombat Reflexes, Critical Focus, Diehard, Dodge, Endurance, Improved Initiative, <b><color=#703565><link=\"Encyclopedia:Mobility\">Mobility</link></color></b>\nBonus Spells: Burning Hands(7th), Lesser Restoration (10th), Cure Serious Wounds (13th), Fire Shield (16th)."
+  },
+  {
+    "Key": "BloodragerPhoenixBloodline.Name",
+    "ProcessTemplates": false,
+    "enGB": "Phoenix"
+  },
+  {
+    "Key": "BloodragerPhoenixDispellingStrikesDisplay.Description",
+    "ProcessTemplates": true,
+    "enGB": "At 1st level, when you confirm a critical hit against a target, you can also attempt to dispel the target as if you had cast dispel magic as a bloodrager spell and used the targeted dispel function. You can dispel only a single magical effect per use of this ability, and you can use this ability against a particular creature only once per day. At 8th level, you gain a +2 bonus on your dispel check when using this ability. At 20th level, you can attempt to dispel all magical effects on your target when using this ability."
+  },
+  {
+    "Key": "BloodragerPhoenixDispellingStrikesDisplay.Name",
+    "ProcessTemplates": false,
+    "enGB": "Dispelling Strikes"
+  },
+  {
+    "Key": "BloodragerPhoenixDispellingStrikesLevel1.Description",
+    "ProcessTemplates": true,
+    "enGB": "At 1st level, when you confirm a critical hit against a target, you can also attempt to dispel the target as if you had cast dispel magic as a bloodrager spell and used the targeted dispel function. You can dispel only a single magical effect per use of this ability, and you can use this ability against a particular creature only once per day. At 8th level, you gain a +2 bonus on your dispel check when using this ability. At 20th level, you can attempt to dispel all magical effects on your target when using this ability."
+  },
+  {
+    "Key": "BloodragerPhoenixDispellingStrikesLevel1Buff.Description",
+    "ProcessTemplates": true,
+    "enGB": "At 1st level, when you confirm a critical hit against a target, you can also attempt to dispel the target as if you had cast dispel magic as a bloodrager spell and used the targeted dispel function. You can dispel only a single magical effect per use of this ability, and you can use this ability against a particular creature only once per day. At 8th level, you gain a +2 bonus on your dispel check when using this ability. At 20th level, you can attempt to dispel all magical effects on your target when using this ability."
+  },
+  {
+    "Key": "BloodragerPhoenixDispellingStrikesLevel20.Description",
+    "ProcessTemplates": true,
+    "enGB": "At 1st level, when you confirm a critical hit against a target, you can also attempt to dispel the target as if you had cast dispel magic as a bloodrager spell and used the targeted dispel function. You can dispel only a single magical effect per use of this ability, and you can use this ability against a particular creature only once per day. At 8th level, you gain a +2 bonus on your dispel check when using this ability. At 20th level, you can attempt to dispel all magical effects on your target when using this ability."
+
+  },
+  {
+    "Key": "BloodragerPhoenixDispellingStrikesLevel20Buff.Description",
+    "ProcessTemplates": true,
+    "enGB": "At 1st level, when you confirm a critical hit against a target, you can also attempt to dispel the target as if you had cast dispel magic as a bloodrager spell and used the targeted dispel function. You can dispel only a single magical effect per use of this ability, and you can use this ability against a particular creature only once per day. At 8th level, you gain a +2 bonus on your dispel check when using this ability. At 20th level, you can attempt to dispel all magical effects on your target when using this ability."
+  },
+  {
+    "Key": "BloodragerPhoenixDispellingStrikesLevel8.Description",
+    "ProcessTemplates": true,
+    "enGB": "At 1st level, when you confirm a critical hit against a target, you can also attempt to dispel the target as if you had cast dispel magic as a bloodrager spell and used the targeted dispel function. You can dispel only a single magical effect per use of this ability, and you can use this ability against a particular creature only once per day. At 8th level, you gain a +2 bonus on your dispel check when using this ability. At 20th level, you can attempt to dispel all magical effects on your target when using this ability."
+  },
+  {
+    "Key": "BloodragerPhoenixDispellingStrikesLevel8Buff.Description",
+    "ProcessTemplates": true,
+    "enGB": "At 1st level, when you confirm a critical hit against a target, you can also attempt to dispel the target as if you had cast dispel magic as a bloodrager spell and used the targeted dispel function. You can dispel only a single magical effect per use of this ability, and you can use this ability against a particular creature only once per day. At 8th level, you gain a +2 bonus on your dispel check when using this ability. At 20th level, you can attempt to dispel all magical effects on your target when using this ability."
+  },
+  {
+    "Key": "BloodragerPhoenixFeatSelection.Description",
+    "ProcessTemplates": true,
+    "enGB": "Combat Reflexes, Critical Focus, Diehard, Dodge, Endurance, Improved Initiative, Mobility"
+  },
+  {
+    "Key": "BloodragerPhoenixFeatSelection.Name",
+    "ProcessTemplates": false,
+    "enGB": "Bonus Feats"
+  },
+  {
+    "Key": "BloodragerPhoenixFire.Description",
+    "ProcessTemplates": true,
+    "enGB": "The power of the phoenix brings righteous destruction to any who oppose it. At 20th level, while bloodraging, you gain the following effects: your melee attacks deal an additional 2d6 points of fire damage, any enemies within 20 feet of you must succeed at a Reflex save (DC = 10 + 1/2 your bloodrager level + your Constitution modifier) or take 4d6 points of fire damage at the start of their turn, and any creature that attacks you with a natural or non-reach weapon takes 1d6 points of fire damage (no save) with each successful hit."
+  },
+  {
+    "Key": "BloodragerPhoenixFire.Name",
+    "ProcessTemplates": false,
+    "enGB": "Phoenix Fire"
+  },
+  {
+    "Key":  "BloodragerPhoenixFireBuff.Description",
+    "ProcessTemplates": true,
+    "enGB": "The power of the phoenix brings righteous destruction to any who oppose it. At 20th level, while bloodraging, you gain the following effects: your melee attacks deal an additional 2d6 points of fire damage, any enemies within 20 feet of you must succeed at a Reflex save (DC = 10 + 1/2 your bloodrager level + your Constitution modifier) or take 4d6 points of fire damage at the start of their turn, and any creature that attacks you with a natural or non-reach weapon takes 1d6 points of fire damage (no save) with each successful hit."
+  },
+  {
+    "Key":"BloodragerPhoenixHeartOfFire.Description",
+    "ProcessTemplates": true,
+    "enGB": "At 4th level, you gain fire resistance 5. Whenever you are subjected to a magical healing effect from a cure spell, you regain 1 additional hit point per die rolled. At 8th level, your fire resistance increases to 10, and you regain 2 additional hit points per die rolled when you are healed by a cure spell."
+  },
+  {
+    "Key": "BloodragerPhoenixHeartOfFire.Name",
+    "ProcessTemplates": false,
+    "enGB": "Heart Of Fire"
+  },
+  {
+    "Key": "BloodragerPhoenixHeartOfFireBuff.Description",
+    "ProcessTemplates": true,
+    "enGB": "At 4th level, you gain fire resistance 5. Whenever you are subjected to a magical healing effect from a cure spell, you regain 1 additional hit point per die rolled. At 8th level, your fire resistance increases to 10, and you regain 2 additional hit points per die rolled when you are healed by a cure spell."
+  },
+  {
+    "Key":  "BloodragerPhoenixHeartOfFireBuff.Name",
+    "ProcessTemplates": false,
+    "enGB": "HeartOfFire"
+  },
+  {
+    "Key": "BloodragerPhoenixSelfResurrection.Description",
+    "ProcessTemplates": true,
+    "enGB": "From the ashes of your body springs forth new life. At 16th level, once per day when you are reduced below 0 hit points while you are bloodraging, you can call upon the power in your blood to pull yourself back from death. This functions as a breath of life spell cast upon yourself. At 20th level, this instead functions as a heal spell, except that the healing can return you to life as per breath of life, using your bloodrager level as your caster level. Using this ability does not take an action. This ability does not function if your body is completely destroyed by an effect such as disintegrate."
+  },
+  {
+    "Key": "BloodragerPhoenixSelfResurrectionEffectBuff.Description",
+    "ProcessTemplates": true,
+    "enGB": "From the ashes of your body springs forth new life. At 16th level, once per day when you are reduced below 0 hit points while you are bloodraging, you can call upon the power in your blood to pull yourself back from death. This functions as a breath of life spell cast upon yourself. At 20th level, this instead functions as a heal spell, except that the healing can return you to life as per breath of life, using your bloodrager level as your caster level. Using this ability does not take an action. This ability does not function if your body is completely destroyed by an effect such as disintegrate."
+  },
+  {
+    "Key": "BloodragerPhoenixSelfResurrectionEffectBuff.Name",
+    "ProcessTemplates": false,
+    "enGB": "Self-Resurrection"
+  },
+  {
+    "Key": "BloodragerPhoenixSpell10.Description",
+    "ProcessTemplates": true,
+    "enGB": "At 7th, 10th, 13th, and 16th levels, a bloodrager learns an additional spell derived from his bloodline."
+  },
+  {
+    "Key": "BloodragerPhoenixSpell10.Name",
+    "ProcessTemplates": false,
+    "enGB": "Bonus Spell — Lesser Restoration"
+  },
+  {
+    "Key": "BloodragerPhoenixSpell13.Description",
+    "ProcessTemplates": true,
+    "enGB": "At 7th, 10th, 13th, and 16th levels, a bloodrager learns an additional spell derived from his bloodline."
+  },
+  {
+    "Key":  "BloodragerPhoenixSpell13.Name",
+    "ProcessTemplates": false,
+    "enGB": "Bonus Spell — Cure Serious Wounds"
+  },
+  {
+    "Key": "BloodragerPhoenixSpell16.Description",
+    "ProcessTemplates": true,
+    "enGB": "At 7th, 10th, 13th, and 16th levels, a bloodrager learns an additional spell derived from his bloodline."
+  },
+  {
+    "Key": "BloodragerPhoenixSpell16.Name",
+    "ProcessTemplates": false,
+    "enGB": "Bonus Spell — Fire Shield"
+  },
+  {
+    "Key": "BloodragerPhoenixSpell7.Description",
+    "ProcessTemplates": true,
+    "enGB": "At 7th, 10th, 13th, and 16th levels, a bloodrager learns an additional spell derived from his bloodline."
+  },
+  {
+    "Key": "BloodragerPhoenixSpell7.Name",
+    "ProcessTemplates": false,
+    "enGB": "Bonus Spell — Burning Hands"
+  },
+  {
+    "Key": "PhoenixBloodlineRequisiteFeature.Description",
+    "ProcessTemplates": true,
+    "enGB": "Phoenix Bloodline Requisite Feature"
+  },
+  {
+    "Key": "PhoenixBloodlineRequisiteFeature.Name",
+    "ProcessTemplates": false,
+    "enGB": "Phoenix Bloodline"
+  }
+]

@@ -24,6 +24,7 @@ using Kingmaker.Blueprints.Classes.Selection;
 using TabletopTweaks.Core.NewComponents;
 using BlueprintCore.Utils;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 
 namespace TomeOfTheFirebird.New_Content.Bloodlines
 {
@@ -47,10 +48,11 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
                     bp.HideInUI = true;
                     bp.Ranks = 1;
                     bp.HideInCharacterSheetAndLevelUp = true;
-                    bp.SetName(Main.TotFContext, "Phoenix Bloodline");
-                    bp.SetDescription(Main.TotFContext, "Phoenix Bloodline Requisite Feature");
+                   
                 });
+                FeatureConfigurator.For(PheonixBloodlineRequisiteFeature).SetDisplayName("PheonixBloodlineRequisiteFeature.Name").SetDescription("PheonixBloodlineRequisiteFeature.Description").Configure();
                 Main.TotFContext.Logger.LogPatch("Created", PheonixBloodlineRequisiteFeature);
+
                 return PheonixBloodlineRequisiteFeature.ToReference<BlueprintFeatureReference>();
             }
 
@@ -91,16 +93,18 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
 
             var BloodragerPhoenixDispellingStrikesDisplay = CreateBlueprint<BlueprintFeature>(Main.TotFContext, "BloodragerPhoenixDispellingStrikesDisplay", x =>
             {
-                x.SetName(Main.TotFContext, "Dispelling Strikes");
+                //x.SetName(Main.TotFContext, "Dispelling Strikes");
                 x.IsClassFeature = true;
-                x.SetDescription(Main.TotFContext, "At 1st level, when you confirm a critical hit against a target, you can also attempt to dispel the target as if you had cast dispel magic as a bloodrager spell and used the targeted dispel function. You can dispel only a single magical effect per use of this ability, and you can use this ability against a particular creature only once per day. At 8th level, you gain a +2 bonus on your dispel check when using this ability. At 20th level, you can attempt to dispel all magical effects on your target when using this ability.");
+                //x.SetDescription(Main.TotFContext, "At 1st level, when you confirm a critical hit against a target, you can also attempt to dispel the target as if you had cast dispel magic as a bloodrager spell and used the targeted dispel function. You can dispel only a single magical effect per use of this ability, and you can use this ability against a particular creature only once per day. At 8th level, you gain a +2 bonus on your dispel check when using this ability. At 20th level, you can attempt to dispel all magical effects on your target when using this ability.");
             });
+            FeatureConfigurator.For(BloodragerPhoenixDispellingStrikesDisplay).SetDisplayName("BloodragerPhoenixDispellingStrikesDisplay.Name").SetDescription("BloodragerPhoenixDispellingStrikesDisplay.Description").Configure();
+
             Main.TotFContext.Logger.LogPatch("Created", BloodragerPhoenixDispellingStrikesDisplay);
             var BloodragerPhoenixDispellingStrikesLevel1 = CreateBlueprint<BlueprintFeature>(Main.TotFContext, "BloodragerPhoenixDispellingStrikesLevel1", x =>
             {
-                x.SetName(Main.TotFContext, "Dispelling Strikes");
+                //x.SetName(Main.TotFContext, "Dispelling Strikes");
                 x.IsClassFeature = true;
-                x.SetDescription(Main.TotFContext, "At 1st level, when you confirm a critical hit against a target, you can also attempt to dispel the target as if you had cast dispel magic as a bloodrager spell and used the targeted dispel function. You can dispel only a single magical effect per use of this ability, and you can use this ability against a particular creature only once per day. At 8th level, you gain a +2 bonus on your dispel check when using this ability. At 20th level, you can attempt to dispel all magical effects on your target when using this ability.");
+                //x.SetDescription(Main.TotFContext, "At 1st level, when you confirm a critical hit against a target, you can also attempt to dispel the target as if you had cast dispel magic as a bloodrager spell and used the targeted dispel function. You can dispel only a single magical effect per use of this ability, and you can use this ability against a particular creature only once per day. At 8th level, you gain a +2 bonus on your dispel check when using this ability. At 20th level, you can attempt to dispel all magical effects on your target when using this ability.");
                 x.HideInCharacterSheetAndLevelUp = true;
                 x.HideInUI = true;
                 x.AddComponent<PrerequisiteFeature>(x =>
@@ -109,12 +113,13 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
                     x.CheckInProgression = true;
                 });
             });
+            FeatureConfigurator.For(BloodragerPhoenixDispellingStrikesLevel1).SetDisplayName("BloodragerPhoenixDispellingStrikesDisplay.Name").SetDescription("BloodragerPhoenixDispellingStrikesLevel1.Description").Configure();
             Main.TotFContext.Logger.LogPatch("Created", BloodragerPhoenixDispellingStrikesLevel1);
             var BloodragerPhoenixDispellingStrikesBuffLevel1 = CreateBlueprint<BlueprintBuff>(Main.TotFContext, "BloodragerPhoenixDispellingStrikesLevel1Buff", x =>
             {
-                x.SetName(Main.TotFContext, "Dispelling Strikes");
+                //x.SetName(Main.TotFContext, "Dispelling Strikes");
                 x.IsClassFeature = true;
-                x.SetDescription(Main.TotFContext, "At 1st level, when you confirm a critical hit against a target, you can also attempt to dispel the target as if you had cast dispel magic as a bloodrager spell and used the targeted dispel function. You can dispel only a single magical effect per use of this ability, and you can use this ability against a particular creature only once per day. At 8th level, you gain a +2 bonus on your dispel check when using this ability. At 20th level, you can attempt to dispel all magical effects on your target when using this ability.");
+                //x.SetDescription(Main.TotFContext, "At 1st level, when you confirm a critical hit against a target, you can also attempt to dispel the target as if you had cast dispel magic as a bloodrager spell and used the targeted dispel function. You can dispel only a single magical effect per use of this ability, and you can use this ability against a particular creature only once per day. At 8th level, you gain a +2 bonus on your dispel check when using this ability. At 20th level, you can attempt to dispel all magical effects on your target when using this ability.");
                 x.m_Flags = BlueprintBuff.Flags.HiddenInUi;
                 x.AddComponent<AddInitiatorAttackRollTrigger>(y =>
                 {
@@ -144,14 +149,15 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
 
 
             });
+            BuffConfigurator.For(BloodragerPhoenixDispellingStrikesBuffLevel1).SetDisplayName("BloodragerPhoenixDispellingStrikesDisplay.Name").SetDescription("BloodragerPhoenixDispellingStrikesLevel1Buff.Description").Configure();
             Main.TotFContext.Logger.LogPatch("Created", BloodragerPhoenixDispellingStrikesBuffLevel1);
 
 
             var BloodragerPhoenixDispellingStrikesLevel8 = CreateBlueprint<BlueprintFeature>(Main.TotFContext, "BloodragerPhoenixDispellingStrikesLevel8", x =>
             {
-                x.SetName(Main.TotFContext, "Dispelling Strikes");
+                //x.SetName(Main.TotFContext, "Dispelling Strikes");
                 x.IsClassFeature = true;
-                x.SetDescription(Main.TotFContext, "At 1st level, when you confirm a critical hit against a target, you can also attempt to dispel the target as if you had cast dispel magic as a bloodrager spell and used the targeted dispel function. You can dispel only a single magical effect per use of this ability, and you can use this ability against a particular creature only once per day. At 8th level, you gain a +2 bonus on your dispel check when using this ability. At 20th level, you can attempt to dispel all magical effects on your target when using this ability.");
+                //x.SetDescription(Main.TotFContext, "At 1st level, when you confirm a critical hit against a target, you can also attempt to dispel the target as if you had cast dispel magic as a bloodrager spell and used the targeted dispel function. You can dispel only a single magical effect per use of this ability, and you can use this ability against a particular creature only once per day. At 8th level, you gain a +2 bonus on your dispel check when using this ability. At 20th level, you can attempt to dispel all magical effects on your target when using this ability.");
                 x.HideInCharacterSheetAndLevelUp = true;
                 x.HideInUI = true;
                 x.AddComponent<RemoveFeatureOnApply>(x =>
@@ -164,48 +170,38 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
                     x.CheckInProgression = true;
                 });
             });
+            FeatureConfigurator.For(BloodragerPhoenixDispellingStrikesLevel8).SetDisplayName("BloodragerPhoenixDispellingStrikesDisplay.Name").SetDescription("BloodragerPhoenixDispellingStrikesLevel8.Description").Configure();
             Main.TotFContext.Logger.LogPatch("Created", BloodragerPhoenixDispellingStrikesLevel8);
-            var BloodragerPhoenixDispellingStrikesBuffLevel8 = CreateBlueprint<BlueprintBuff>(Main.TotFContext, "BloodragerPhoenixDispellingStrikesLevel8Buff", x =>
+
+            var level8BuffMaker = MakerTools.MakeBuffWithLocalizationTools("BloodragerPhoenixDispellingStrikesLevel8Buff", LocalizationTool.GetString("BloodragerPhoenixDispellingStrikesDisplay.Name"), LocalizationTool.GetString("BloodragerPhoenixDispellingStrikesLevel8Buff.Description"));
+            level8BuffMaker.SetFlags(BlueprintBuff.Flags.HiddenInUi);
+            level8BuffMaker.SetIsClassFeature(true);
+            var level8Act = ActionsBuilder.New().Conditional(ConditionsBuilder.New().HasBuffFromCaster(dispelCooldown), ifFalse: ActionsBuilder.New().DispelMagic(Kingmaker.UnitLogic.Mechanics.Actions.ContextActionDispelMagic.BuffType.FromSpells, Kingmaker.RuleSystem.Rules.RuleDispelMagic.CheckType.CasterLevel, ContextValues.Constant(10), maxCasterLevel: new Kingmaker.UnitLogic.Mechanics.ContextValue()
             {
-                x.SetName(Main.TotFContext, "Dispelling Strikes");
-                x.SetDescription(Main.TotFContext, "At 1st level, when you confirm a critical hit against a target, you can also attempt to dispel the target as if you had cast dispel magic as a bloodrager spell and used the targeted dispel function. You can dispel only a single magical effect per use of this ability, and you can use this ability against a particular creature only once per day. At 8th level, you gain a +2 bonus on your dispel check when using this ability. At 20th level, you can attempt to dispel all magical effects on your target when using this ability.");
-                x.m_Flags = BlueprintBuff.Flags.HiddenInUi;
-                x.IsClassFeature = true;
-                x.AddComponent<AddInitiatorAttackRollTrigger>(y =>
-                {
-                    y.Action = ActionsBuilder.New().Conditional(ConditionsBuilder.New().HasBuffFromCaster(dispelCooldown), ifFalse: ActionsBuilder.New().DispelMagic(Kingmaker.UnitLogic.Mechanics.Actions.ContextActionDispelMagic.BuffType.FromSpells, Kingmaker.RuleSystem.Rules.RuleDispelMagic.CheckType.CasterLevel, ContextValues.Constant(10), maxCasterLevel: new Kingmaker.UnitLogic.Mechanics.ContextValue()
-                    {
-                        ValueType = Kingmaker.UnitLogic.Mechanics.ContextValueType.Rank,
-                        ValueRank = Kingmaker.Enums.AbilityRankType.Default
-                    },
+                ValueType = Kingmaker.UnitLogic.Mechanics.ContextValueType.Rank,
+                ValueRank = Kingmaker.Enums.AbilityRankType.Default
+            },
                     checkBonus: 2,
                     countToRemove: new Kingmaker.UnitLogic.Mechanics.ContextValue()
                     {
                         Value = 1,
                         ValueType = Kingmaker.UnitLogic.Mechanics.ContextValueType.Simple
-                    }, onlyTargetEnemyBuffs: true).ApplyBuff(dispelCooldown, ContextDuration.Fixed(1, Kingmaker.UnitLogic.Mechanics.DurationRate.Days))).Build();
-                });
-                x.AddContextRankConfig(y =>
-                {
+                    }, onlyTargetEnemyBuffs: true).ApplyBuff(dispelCooldown, ContextDuration.Fixed(1, Kingmaker.UnitLogic.Mechanics.DurationRate.Days)));
+            level8BuffMaker.AddInitiatorAttackRollTrigger(action: level8Act, criticalHit: true, onlyHit:true);
+            level8BuffMaker.AddContextRankConfig(ContextRankConfigs.ClassLevel(classes: new string[] { BloodragerClass.deserializedGuid.ToString() }));
 
-                    y.m_Type = Kingmaker.Enums.AbilityRankType.Default;
-                    y.m_BaseValueType = Kingmaker.UnitLogic.Mechanics.Components.ContextRankBaseValueType.CharacterLevel;
-                    y.m_Class = new BlueprintCharacterClassReference[]
-                    {
-                            BloodragerClass
-                    };
-
-                });
+           var BloodragerPhoenixDispellingStrikesBuffLevel8 = level8BuffMaker.Configure();
 
 
-
-            });
+           
+            //BuffConfigurator.For(BloodragerPhoenixDispellingStrikesLevel8).SetDisplayName("BloodragerPhoenixDispellingStrikesDisplay.Name").SetDescription("BloodragerPhoenixDispellingStrikesLevel8Buff.Description").Configure();
             Main.TotFContext.Logger.LogPatch("Created", BloodragerPhoenixDispellingStrikesBuffLevel8);
+            
             var BloodragerPhoenixDispellingStrikesLevel20 = CreateBlueprint<BlueprintFeature>(Main.TotFContext, "BloodragerPhoenixDispellingStrikesLevel20", x =>
             {
-                x.SetName(Main.TotFContext, "Dispelling Strikes");
+                //x.SetName(Main.TotFContext, "Dispelling Strikes");
                 x.IsClassFeature = true;
-                x.SetDescription(Main.TotFContext, "At 1st level, when you confirm a critical hit against a target, you can also attempt to dispel the target as if you had cast dispel magic as a bloodrager spell and used the targeted dispel function. You can dispel only a single magical effect per use of this ability, and you can use this ability against a particular creature only once per day. At 8th level, you gain a +2 bonus on your dispel check when using this ability. At 20th level, you can attempt to dispel all magical effects on your target when using this ability.");
+                //x.SetDescription(Main.TotFContext, "At 1st level, when you confirm a critical hit against a target, you can also attempt to dispel the target as if you had cast dispel magic as a bloodrager spell and used the targeted dispel function. You can dispel only a single magical effect per use of this ability, and you can use this ability against a particular creature only once per day. At 8th level, you gain a +2 bonus on your dispel check when using this ability. At 20th level, you can attempt to dispel all magical effects on your target when using this ability.");
                 x.HideInCharacterSheetAndLevelUp = true;
                 x.HideInUI = true;
                 x.AddComponent<RemoveFeatureOnApply>(x =>
@@ -218,12 +214,14 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
                     x.CheckInProgression = true;
                 });
             });
+            FeatureConfigurator.For(BloodragerPhoenixDispellingStrikesLevel20).SetDisplayName("BloodragerPhoenixDispellingStrikesDisplay.Name").SetDescription("BloodragerPhoenixDispellingStrikesLevel20.Description").Configure();
             Main.TotFContext.Logger.LogPatch("Created", BloodragerPhoenixDispellingStrikesLevel20);
+            
             var BloodragerPhoenixDispellingStrikesBuffLevel20 = CreateBlueprint<BlueprintBuff>(Main.TotFContext, "BloodragerPhoenixDispellingStrikesLevel20Buff", x =>
             {
-                x.SetName(Main.TotFContext, "Dispelling Strikes");
+                //x.SetName(Main.TotFContext, "Dispelling Strikes");
                 x.IsClassFeature = true;
-                x.SetDescription(Main.TotFContext, "At 1st level, when you confirm a critical hit against a target, you can also attempt to dispel the target as if you had cast dispel magic as a bloodrager spell and used the targeted dispel function. You can dispel only a single magical effect per use of this ability, and you can use this ability against a particular creature only once per day. At 8th level, you gain a +2 bonus on your dispel check when using this ability. At 20th level, you can attempt to dispel all magical effects on your target when using this ability.");
+               // x.SetDescription(Main.TotFContext, "At 1st level, when you confirm a critical hit against a target, you can also attempt to dispel the target as if you had cast dispel magic as a bloodrager spell and used the targeted dispel function. You can dispel only a single magical effect per use of this ability, and you can use this ability against a particular creature only once per day. At 8th level, you gain a +2 bonus on your dispel check when using this ability. At 20th level, you can attempt to dispel all magical effects on your target when using this ability.");
                 x.m_Flags = BlueprintBuff.Flags.HiddenInUi;
                 x.AddComponent<AddInitiatorAttackRollTrigger>(y =>
                 {
@@ -250,20 +248,24 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
 
 
             });
+            BuffConfigurator.For(BloodragerPhoenixDispellingStrikesBuffLevel20).SetDisplayName("BloodragerPhoenixDispellingStrikesDisplay.Name").SetDescription("BloodragerPhoenixDispellingStrikesLevel20Buff.Description").Configure();
             Main.TotFContext.Logger.LogPatch("Created", BloodragerPhoenixDispellingStrikesBuffLevel20);
+
             var HeartOfFireFeature = CreateBlueprint<BlueprintFeature>(Main.TotFContext, "BloodragerPhoenixHeartOfFire", x =>
             {
-                x.SetName(Main.TotFContext, "Heart Of Fire");
+                //x.SetName(Main.TotFContext, "Heart Of Fire");
                 x.IsClassFeature = true;
-                x.SetDescription(Main.TotFContext, "At 4th level, you gain fire resistance 5. Whenever you are subjected to a magical healing effect from a cure spell, you regain 1 additional hit point per die rolled. At 8th level, your fire resistance increases to 10, and you regain 2 additional hit points per die rolled when you are healed by a cure spell.");
+                //x.SetDescription(Main.TotFContext, "At 4th level, you gain fire resistance 5. Whenever you are subjected to a magical healing effect from a cure spell, you regain 1 additional hit point per die rolled. At 8th level, your fire resistance increases to 10, and you regain 2 additional hit points per die rolled when you are healed by a cure spell.");
                 x.IsClassFeature = true;
                 x.Ranks = 2;
             });
+            FeatureConfigurator.For(HeartOfFireFeature).SetDisplayName("BloodragerPhoenixHeartOfFire.Name").SetDescription("BloodragerPhoenixHeartOfFire.Description").Configure();
             Main.TotFContext.Logger.LogPatch("Created", HeartOfFireFeature);
+
             var HeartOfFireBuff = CreateBlueprint<BlueprintBuff>(Main.TotFContext, "BloodragerPhoenixHeartOfFireBuff", x =>
             {
-                x.SetName(Main.TotFContext, "HeartOfFire");
-                x.SetDescription(Main.TotFContext, "At 4th level, you gain fire resistance 5. Whenever you are subjected to a magical healing effect from a cure spell, you regain 1 additional hit point per die rolled. At 8th level, your fire resistance increases to 10, and you regain 2 additional hit points per die rolled when you are healed by a cure spell.");
+                //x.SetName(Main.TotFContext, "HeartOfFire");
+                //x.SetDescription(Main.TotFContext, "At 4th level, you gain fire resistance 5. Whenever you are subjected to a magical healing effect from a cure spell, you regain 1 additional hit point per die rolled. At 8th level, your fire resistance increases to 10, and you regain 2 additional hit points per die rolled when you are healed by a cure spell.");
                 x.IsClassFeature = true;
                 x.AddComponent<AddDamageResistanceEnergy>(x =>
                 {
@@ -290,18 +292,24 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
                 });
                 x.m_Flags = BlueprintBuff.Flags.HiddenInUi;
             });
+            BuffConfigurator.For(HeartOfFireBuff).SetDisplayName("BloodragerPhoenixHeartOfFireBuff.Name").SetDescription("BloodragerPhoenixHeartOfFireBuff.Description").Configure();
             Main.TotFContext.Logger.LogPatch("Created", HeartOfFireBuff);
+
+
             var BlazingVitalityFeature = CreateBlueprint<BlueprintFeature>(Main.TotFContext, "BloodragerPhoenixBlazingVitality", x =>
             {
-                x.SetName(Main.TotFContext, "Blazing Vitality");
+                //x.SetName(Main.TotFContext, "Blazing Vitality");
                 x.IsClassFeature = true;
-                x.SetDescription(Main.TotFContext, "When tensions run high and your emotions flare, you let forth waves of restorative energy from within. At 8th level, you emit a 10-foot-radius aura of energizing fire while bloodraging. Any ally that ends their turn within this aura gains a number of temporary hit points equal to your Constitution modifier. These temporary hit points last for 1 minute.");
+                //x.SetDescription(Main.TotFContext, "When tensions run high and your emotions flare, you let forth waves of restorative energy from within. At 8th level, you emit a 10-foot-radius aura of energizing fire while bloodraging. Any ally that ends their turn within this aura gains a number of temporary hit points equal to your Constitution modifier. These temporary hit points last for 1 minute.");
             });
+            FeatureConfigurator.For(BlazingVitalityFeature).SetDisplayName("BloodragerPhoenixBlazingVitality.Name").SetDescription("BloodragerPhoenixBlazingVitality.Description").Configure();
             Main.TotFContext.Logger.LogPatch("Created", BlazingVitalityFeature);
+
+
             var BlazingVitalityEffectBuff = CreateBlueprint<BlueprintBuff>(Main.TotFContext, "BloodragerPhoenixBlazingVitalityEffectBuff", x =>
             {
-                x.SetName(Main.TotFContext, "Blazing Vitality");
-                x.SetDescription(Main.TotFContext, "When tensions run high and your emotions flare, you let forth waves of restorative energy from within. At 8th level, you emit a 10-foot-radius aura of energizing fire while bloodraging. Any ally that ends their turn within this aura gains a number of temporary hit points equal to your Constitution modifier. These temporary hit points last for 1 minute.");
+                //x.SetName(Main.TotFContext, "Blazing Vitality");
+                //x.SetDescription(Main.TotFContext, "When tensions run high and your emotions flare, you let forth waves of restorative energy from within. At 8th level, you emit a 10-foot-radius aura of energizing fire while bloodraging. Any ally that ends their turn within this aura gains a number of temporary hit points equal to your Constitution modifier. These temporary hit points last for 1 minute.");
                 x.Stacking = StackingType.Replace;
                 x.AddComponent<TemporaryHitPointsFromAbilityValue>(x =>
                 {
@@ -319,7 +327,10 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
                 });
 
             });
+            BuffConfigurator.For(BlazingVitalityEffectBuff).SetDisplayName("BloodragerPhoenixBlazingVitalityEffectBuff.Name").SetDescription("BloodragerPhoenixBlazingVitalityEffectBuff.Description").Configure();
             Main.TotFContext.Logger.LogPatch("Created", BlazingVitalityEffectBuff);
+
+
             var BlazingVitalityArea = CreateBlueprint<BlueprintAbilityAreaEffect>(Main.TotFContext, "BloodragerPhoenixBlazingVitalityArea", x =>
             {
                 x.AddComponent<AbilityAreaEffectBuff>(x =>
@@ -341,10 +352,11 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
 
             });
             Main.TotFContext.Logger.LogPatch("Created", BlazingVitalityArea);
+
             var BlazingVitalityBuff = CreateBlueprint<BlueprintBuff>(Main.TotFContext, "BloodragerPhoenixBlazingVitalityBuff", x =>
              {
-                 x.SetName(Main.TotFContext, "Blazing Vitality");
-                 x.SetDescription(Main.TotFContext, "When tensions run high and your emotions flare, you let forth waves of restorative energy from within. At 8th level, you emit a 10-foot-radius aura of energizing fire while bloodraging. Any ally that ends their turn within this aura gains a number of temporary hit points equal to your Constitution modifier. These temporary hit points last for 1 minute.");
+                 //x.SetName(Main.TotFContext, "Blazing Vitality");
+                 //x.SetDescription(Main.TotFContext, "When tensions run high and your emotions flare, you let forth waves of restorative energy from within. At 8th level, you emit a 10-foot-radius aura of energizing fire while bloodraging. Any ally that ends their turn within this aura gains a number of temporary hit points equal to your Constitution modifier. These temporary hit points last for 1 minute.");
                  x.m_Flags = BlueprintBuff.Flags.HiddenInUi;
                  x.IsClassFeature = true;
                  x.AddComponent<AddAreaEffect>(x =>
@@ -353,13 +365,18 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
                  });
 
              });
+            BuffConfigurator.For(BlazingVitalityBuff).SetDisplayName("BloodragerPhoenixBlazingVitalityBuff.Name").SetDescription("BloodragerPhoenixBlazingVitalityBuff.Description").Configure();
             Main.TotFContext.Logger.LogPatch("Created", BlazingVitalityBuff);
+
+
             var MoltenWingsFeature = CreateBlueprint<BlueprintFeature>(Main.TotFContext, "BloodragerPheonixMoltenWings", x =>
             {
-                x.SetName(Main.TotFContext, "Molten Wings");
-                x.SetDescription(Main.TotFContext, "At 12th level, you spout molten wings during bloodrage");
+                //x.SetName(Main.TotFContext, "Molten Wings");
+                //x.SetDescription(Main.TotFContext, "At 12th level, you spout molten wings during bloodrage");
                 x.IsClassFeature = true;
             });
+            FeatureConfigurator.For(MoltenWingsFeature).SetDisplayName("BloodragerPheonixMoltenWings.Name").SetDescription("BloodragerPheonixMoltenWings.Description").Configure();
+
             var CelestialWingsFeature = BlueprintTools.GetBlueprint<BlueprintBuff>("d596694ff285f3f429528547f441b1c0");
 
             var selfRezResource = CreateBlueprint<BlueprintAbilityResource>(Main.TotFContext, "BloodragerPhoenixSelfResurrectionResource", x =>
@@ -374,10 +391,11 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
 
             });
             Main.TotFContext.Logger.LogPatch("Created", selfRezResource);
+
             var SelfRezEffectBuff = CreateBlueprint<BlueprintBuff>(Main.TotFContext, "BloodragerPhoenixSelfResurrectionEffectBuff", x =>
             {
-                x.SetName(Main.TotFContext, "Self-Resurrection");
-                x.SetDescription(Main.TotFContext, "From the ashes of your body springs forth new life. At 16th level, once per day when you are reduced below 0 hit points while you are bloodraging, you can call upon the power in your blood to pull yourself back from death. This functions as a breath of life spell cast upon yourself. At 20th level, this instead functions as a heal spell, except that the healing can return you to life as per breath of life, using your bloodrager level as your caster level. Using this ability does not take an action. This ability does not function if your body is completely destroyed by an effect such as disintegrate.");
+                //x.SetName(Main.TotFContext, "Self-Resurrection");
+                //x.SetDescription(Main.TotFContext, "From the ashes of your body springs forth new life. At 16th level, once per day when you are reduced below 0 hit points while you are bloodraging, you can call upon the power in your blood to pull yourself back from death. This functions as a breath of life spell cast upon yourself. At 20th level, this instead functions as a heal spell, except that the healing can return you to life as per breath of life, using your bloodrager level as your caster level. Using this ability does not take an action. This ability does not function if your body is completely destroyed by an effect such as disintegrate.");
                 x.IsClassFeature = true;
                 x.AddComponent<AddImmortality>();
                 x.AddComponent<AddIncomingDamageTrigger>(x =>
@@ -443,11 +461,13 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
 
                 });
             });
+            BuffConfigurator.For(SelfRezEffectBuff).SetDisplayName("BloodragerPhoenixSelfResurrectionEffectBuff.Name").SetDescription("BloodragerPhoenixSelfResurrectionEffectBuff.Description").Configure();
             Main.TotFContext.Logger.LogPatch("Created", SelfRezEffectBuff);
+
             var SelfRez = CreateBlueprint<BlueprintFeature>(Main.TotFContext, "BloodragerPhoenixSelfResurrection", x =>
             {
-                x.SetName(Main.TotFContext, "Self-Resurrection");
-                x.SetDescription(Main.TotFContext, "From the ashes of your body springs forth new life. At 16th level, once per day when you are reduced below 0 hit points while you are bloodraging, you can call upon the power in your blood to pull yourself back from death. This functions as a breath of life spell cast upon yourself. At 20th level, this instead functions as a heal spell, except that the healing can return you to life as per breath of life, using your bloodrager level as your caster level. Using this ability does not take an action. This ability does not function if your body is completely destroyed by an effect such as disintegrate.");
+                //x.SetName(Main.TotFContext, "Self-Resurrection");
+                //x.SetDescription(Main.TotFContext, "From the ashes of your body springs forth new life. At 16th level, once per day when you are reduced below 0 hit points while you are bloodraging, you can call upon the power in your blood to pull yourself back from death. This functions as a breath of life spell cast upon yourself. At 20th level, this instead functions as a heal spell, except that the healing can return you to life as per breath of life, using your bloodrager level as your caster level. Using this ability does not take an action. This ability does not function if your body is completely destroyed by an effect such as disintegrate.");
                 x.IsClassFeature = true;
                 x.Ranks = 1;
                 x.m_Icon = BlueprintTools.GetBlueprint<BlueprintBuff>("9988e25ec217c0249a28213e7dc0017c").Icon;
@@ -472,7 +492,9 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
                 });
                 x.ReapplyOnLevelUp = false;
             });
+            FeatureConfigurator.For(SelfRez).SetDisplayName("BloodragerPhoenixSelfResurrection.Name").SetDescription("BloodragerPhoenixSelfResurrection.Description").Configure();
             Main.TotFContext.Logger.LogPatch("Created", SelfRez);
+
             var PhoenixFireArea = CreateBlueprint<BlueprintAbilityAreaEffect>(Main.TotFContext, "BloodragerPhoenixFireArea", x =>
             {
                 x.AddComponent<AbilityAreaEffectRunAction>(x =>
@@ -494,18 +516,21 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
                 x.Size = new Kingmaker.Utility.Feet(20);
             });
             Main.TotFContext.Logger.LogPatch("Created", PhoenixFireArea);
+
             var PheonixFireFeature = CreateBlueprint<BlueprintFeature>(Main.TotFContext, "BloodragerPhoenixFire", x =>
             {
-                x.SetName(Main.TotFContext, "Phoenix Fire");
+                //x.SetName(Main.TotFContext, "Phoenix Fire");
                 x.IsClassFeature = true;
-                x.SetDescription(Main.TotFContext, "The power of the phoenix brings righteous destruction to any who oppose it. At 20th level, while bloodraging, you gain the following effects: your melee attacks deal an additional 2d6 points of fire damage, any enemies within 20 feet of you must succeed at a Reflex save (DC = 10 + 1/2 your bloodrager level + your Constitution modifier) or take 4d6 points of fire damage at the start of their turn, and any creature that attacks you with a natural or non-reach weapon takes 1d6 points of fire damage (no save) with each successful hit.");
+                //x.SetDescription(Main.TotFContext, "The power of the phoenix brings righteous destruction to any who oppose it. At 20th level, while bloodraging, you gain the following effects: your melee attacks deal an additional 2d6 points of fire damage, any enemies within 20 feet of you must succeed at a Reflex save (DC = 10 + 1/2 your bloodrager level + your Constitution modifier) or take 4d6 points of fire damage at the start of their turn, and any creature that attacks you with a natural or non-reach weapon takes 1d6 points of fire damage (no save) with each successful hit.");
             });
+            FeatureConfigurator.For(PheonixFireFeature).SetDisplayName("BloodragerPhoenixFire.Name").SetDescription("BloodragerPhoenixFire.Description").Configure();
             Main.TotFContext.Logger.LogPatch("Created", PheonixFireFeature);
+
             var PheonixFireBuff = CreateBlueprint<BlueprintBuff>(Main.TotFContext, "BloodragerPhoenixFireBuff", x =>
             {
-                x.SetName(Main.TotFContext, "Phoenix Fire");
+                //x.SetName(Main.TotFContext, "Phoenix Fire");
                 x.IsClassFeature = true;
-                x.SetDescription(Main.TotFContext, "The power of the phoenix brings righteous destruction to any who oppose it. At 20th level, while bloodraging, you gain the following effects: your melee attacks deal an additional 2d6 points of fire damage, any enemies within 20 feet of you must succeed at a Reflex save (DC = 10 + 1/2 your bloodrager level + your Constitution modifier) or take 4d6 points of fire damage at the start of their turn, and any creature that attacks you with a natural or non-reach weapon takes 1d6 points of fire damage (no save) with each successful hit.");
+                //x.SetDescription(Main.TotFContext, "The power of the phoenix brings righteous destruction to any who oppose it. At 20th level, while bloodraging, you gain the following effects: your melee attacks deal an additional 2d6 points of fire damage, any enemies within 20 feet of you must succeed at a Reflex save (DC = 10 + 1/2 your bloodrager level + your Constitution modifier) or take 4d6 points of fire damage at the start of their turn, and any creature that attacks you with a natural or non-reach weapon takes 1d6 points of fire damage (no save) with each successful hit.");
                 x.AddComponent<AddAdditionalWeaponDamage>(x =>
                 {
                     x.DamageType = new Kingmaker.RuleSystem.Rules.Damage.DamageTypeDescription()
@@ -536,11 +561,13 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
 
                 });
             });
+            BuffConfigurator.For(PheonixFireBuff).SetDisplayName("BloodragerPhoenixFireBuff.Name").SetDescription("BloodragerPhoenixFireBuff.Description").Configure();
             Main.TotFContext.Logger.LogPatch("Created", PheonixFireBuff);
+
             var BloodragerPhoenixFeatSelection = CreateBlueprint<BlueprintFeatureSelection>(Main.TotFContext, "BloodragerPhoenixFeatSelection", bp =>
             {
-                bp.SetName(Main.TotFContext, "Bonus Feats");
-                bp.SetDescription(Main.TotFContext, "Combat Reflexes, Critical Focus, Diehard, Dodge, Endurance, Improved Initiative, Mobility");
+                //bp.SetName(Main.TotFContext, "Bonus Feats");
+                //bp.SetDescription(Main.TotFContext, "Combat Reflexes, Critical Focus, Diehard, Dodge, Endurance, Improved Initiative, Mobility");
                 bp.IsClassFeature = true;
                 bp.Ranks = 1;
                 bp.IsClassFeature = true;
@@ -557,11 +584,14 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
                 };
                 bp.m_AllFeatures = bp.m_Features;
             });
+            FeatureConfigurator.For(BloodragerPhoenixFeatSelection).SetDisplayName("BloodragerPhoenixFeatSelection.Name").SetDescription("BloodragerPhoenixFeatSelection.Description").Configure();
             Main.TotFContext.Logger.LogPatch("Created", BloodragerPhoenixFeatSelection);
+
+
             var BloodragerPhoenixFeatSelectionGreenrager = CreateBlueprint<BlueprintFeatureSelection>(Main.TotFContext, "BloodragerPhoenixFeatSelectionGreenrager", bp =>
             {
-                bp.SetName(BloodragerPhoenixFeatSelection.m_DisplayName);
-                bp.SetDescription(BloodragerPhoenixFeatSelection.m_Description);
+                //bp.SetName(BloodragerPhoenixFeatSelection.m_DisplayName);
+                //bp.SetDescription(BloodragerPhoenixFeatSelection.m_Description);
                 bp.Ranks = 1;
                 bp.IsClassFeature = true;
                 bp.HideNotAvailibleInUI = true;
@@ -575,13 +605,15 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
                     c.m_Archetype = GreenragerArchetype;
                 });
             });
+            FeatureConfigurator.For(BloodragerPhoenixFeatSelectionGreenrager).SetDisplayName("BloodragerPhoenixFeatSelection.Name").SetDescription("BloodragerPhoenixFeatSelection.Description").Configure();
             Main.TotFContext.Logger.LogPatch("Created", BloodragerPhoenixFeatSelectionGreenrager);
+
             //Bloodline Spells
             var BloodragerPhoenixSpell7 = CreateBlueprint<BlueprintFeature>(Main.TotFContext, "BloodragerPhoenixSpell7", bp =>
             {
                 var spell = BurningHands;
-                bp.SetName(Main.TotFContext, $"Bonus Spell — Burning Hands");
-                bp.SetDescription(Main.TotFContext, "At 7th, 10th, 13th, and 16th levels, a bloodrager learns an additional spell derived from his bloodline.");
+                //bp.SetName(Main.TotFContext, $"Bonus Spell — Burning Hands");
+                //bp.SetDescription(Main.TotFContext, "At 7th, 10th, 13th, and 16th levels, a bloodrager learns an additional spell derived from his bloodline.");
                 bp.IsClassFeature = true;
                 bp.AddComponent<AddKnownSpell>(c =>
                 {
@@ -591,12 +623,14 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
                 });
                 bp.m_Icon = spell.Get().Icon;
             });
+            FeatureConfigurator.For(BloodragerPhoenixSpell7).SetDisplayName("BloodragerPhoenixSpell7.Name").SetDescription("BloodragerPhoenixSpell7.Description").Configure();
             Main.TotFContext.Logger.LogPatch("Created", BloodragerPhoenixSpell7);
+
             var BloodragerPhoenixSpell10 = CreateBlueprint<BlueprintFeature>(Main.TotFContext, "BloodragerPhoenixSpell10", bp =>
             {
                 var spell = LesserRestoration;
-                bp.SetName(Main.TotFContext, $"Bonus Spell — Lesser Restoration");
-                bp.SetDescription(Main.TotFContext, "At 7th, 10th, 13th, and 16th levels, a bloodrager learns an additional spell derived from his bloodline.");
+                //bp.SetName(Main.TotFContext, $"Bonus Spell — Lesser Restoration");
+                //bp.SetDescription(Main.TotFContext, "At 7th, 10th, 13th, and 16th levels, a bloodrager learns an additional spell derived from his bloodline.");
                 bp.IsClassFeature = true;
                 bp.AddComponent<AddKnownSpell>(c =>
                 {
@@ -606,13 +640,14 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
                 });
                 bp.m_Icon = spell.Get().Icon;
             });
-
+            FeatureConfigurator.For(BloodragerPhoenixSpell10).SetDisplayName("BloodragerPhoenixSpell10.Name").SetDescription("BloodragerPhoenixSpell10.Description").Configure();
             Main.TotFContext.Logger.LogPatch("Created", BloodragerPhoenixSpell10);
+
             var BloodragerPhoenixSpell13 = CreateBlueprint<BlueprintFeature>(Main.TotFContext, "BloodragerPhoenixSpell13", bp =>
             {
                 var spell = CSW;
-                bp.SetName(Main.TotFContext, $"Bonus Spell — Cure Serious Wounds");
-                bp.SetDescription(Main.TotFContext, "At 7th, 10th, 13th, and 16th levels, a bloodrager learns an additional spell derived from his bloodline.");
+                //bp.SetName(Main.TotFContext, $"Bonus Spell — Cure Serious Wounds");
+               // bp.SetDescription(Main.TotFContext, "At 7th, 10th, 13th, and 16th levels, a bloodrager learns an additional spell derived from his bloodline.");
                 bp.IsClassFeature = true;
                 bp.AddComponent<AddKnownSpell>(c =>
                 {
@@ -622,13 +657,15 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
                 });
                 bp.m_Icon = spell.Get().Icon;
             });
+            FeatureConfigurator.For(BloodragerPhoenixSpell13).SetDisplayName("BloodragerPhoenixSpell13.Name").SetDescription("BloodragerPhoenixSpell13.Description").Configure();
             Main.TotFContext.Logger.LogPatch("Created", BloodragerPhoenixSpell13);
+
             var fourthSpell = Settings.IsEnabled("FireShield") ? FireShield : ControlledFireball;
             var BloodragerPhoenixSpell16 = CreateBlueprint<BlueprintFeature>(Main.TotFContext, "BloodragerPhoenixSpell16", bp =>
             {
                 
-                bp.SetName(Main.TotFContext, $"Bonus Spell — {fourthSpell.Get().Name}");
-                bp.SetDescription(Main.TotFContext, "At 7th, 10th, 13th, and 16th levels, a bloodrager learns an additional spell derived from his bloodline.");
+                //bp.SetName(Main.TotFContext, $"Bonus Spell — {fourthSpell.Get().Name}");
+                //bp.SetDescription(Main.TotFContext, "At 7th, 10th, 13th, and 16th levels, a bloodrager learns an additional spell derived from his bloodline.");
                 bp.IsClassFeature = true;
                 bp.AddComponent<AddKnownSpell>(c =>
                 {
@@ -638,6 +675,7 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
                 });
                 bp.m_Icon = fourthSpell.Get().Icon;
             });
+            FeatureConfigurator.For(BloodragerPhoenixSpell16).SetDisplayName("BloodragerPhoenixSpell16.Name").SetDescription("BloodragerPhoenixSpell16.Description").Configure();
             Main.TotFContext.Logger.LogPatch("Created", BloodragerPhoenixSpell16);
 
             
@@ -645,11 +683,11 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
             //Bloodline Core
             var BloodragerPhoenixBloodline = TabletopTweaks.Core.Utilities.Helpers.CreateBlueprint<BlueprintProgression>(Main.TotFContext, "BloodragerPhoenixBloodline", bp =>
             {
-                bp.SetName(Main.TotFContext, "Phoenix");
-                bp.SetDescription(Main.TotFContext, "One of your ancestors may have witnessed the fiery resurrection of a phoenix or been healed by the grace of this legendary bird. Whatever the case, the flames of the phoenix burn brightly within your soul, filling you with an inextinguishable vitality that can withstand the most harrowing of assaults. .\n"
-                    + "When you bloodrage, vibrant energy boils forth from beneath your skin, granting you both the soothing warmth to heal a friend’s wounds and the brutal power to burn flesh from bone. Your rage is an awesome and terrible thing to behold, as the raw power of your untamed life force can allow you to pull yourself back from the grasp of death itself.\n"
-                    + BloodragerPhoenixFeatSelection.Description
-                    + $"\nBonus Spells: Burning Hands(7th), Lesser Restoration (10th), Cure Serious Wounds (13th), {fourthSpell.Get().Name} (16th).");
+               // bp.SetName(Main.TotFContext, "Phoenix");
+               // bp.SetDescription(Main.TotFContext, "One of your ancestors may have witnessed the fiery resurrection of a phoenix or been healed by the grace of this legendary bird. Whatever the case, the flames of the phoenix burn brightly within your soul, filling you with an inextinguishable vitality that can withstand the most harrowing of assaults. .\n"
+               //     + "When you bloodrage, vibrant energy boils forth from beneath your skin, granting you both the soothing warmth to heal a friend’s wounds and the brutal power to burn flesh from bone. Your rage is an awesome and terrible thing to behold, as the raw power of your untamed life force can allow you to pull yourself back from the grasp of death itself.\n"
+               //     + BloodragerPhoenixFeatSelection.Description
+               //     + $"\nBonus Spells: Burning Hands(7th), Lesser Restoration (10th), Cure Serious Wounds (13th), {fourthSpell.Get().Name} (16th).");
                 bp.IsClassFeature = true;
                 bp.m_Classes = new BlueprintProgression.ClassWithLevel[] {
                     new BlueprintProgression.ClassWithLevel {
@@ -692,17 +730,64 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
                     TabletopTweaks.Core.Utilities.Helpers.CreateUIGroup(BloodragerPhoenixFeatSelection, BloodragerPhoenixFeatSelectionGreenrager)
                     };
             });
+            ProgressionConfigurator.For(BloodragerPhoenixBloodline).SetDisplayName("BloodragerPhoenixBloodline.Name").SetDescription("BloodragerPhoenixBloodline.Description").Configure();
+            var BloodragerPhoenixBloodlineSecond = TabletopTweaks.Core.Utilities.Helpers.CreateBlueprint<BlueprintProgression>(Main.TotFContext, "BloodragerPhoenixSecondBloodline", bp =>
+            {
+         
+                bp.IsClassFeature = true;
+                bp.m_Classes = new BlueprintProgression.ClassWithLevel[] {
+                    new BlueprintProgression.ClassWithLevel {
+                        m_Class = BloodragerClass
+                    }
+                    };
+                bp.Groups = new FeatureGroup[] { FeatureGroup.BloodragerBloodline };
+                bp.Ranks = 1;
+                bp.IsClassFeature = true;
+                bp.GiveFeaturesForPreviousLevels = true;
+                bp.m_Icon = AssetLoader.LoadInternal(Main.TotFContext, folder: "Abilities", file: "Phoenix_Bloodline.png");
+                bp.HideInUI = false;
+                bp.LevelEntries = new LevelEntry[] {
+                    TabletopTweaks.Core.Utilities.Helpers.CreateLevelEntry(1, BloodragerPhoenixDispellingStrikesDisplay, BloodragerPhoenixDispellingStrikesLevel1, PhoenixBloodlineRequisiteFeature, TotFBloodlineTools.BloodlineRequisiteFeature),
+                    TabletopTweaks.Core.Utilities.Helpers.CreateLevelEntry(4, HeartOfFireFeature),
+
+                    TabletopTweaks.Core.Utilities.Helpers.CreateLevelEntry(6, BloodragerPhoenixFeatSelectionGreenrager),
+                    TabletopTweaks.Core.Utilities.Helpers.CreateLevelEntry(7, BloodragerPhoenixSpell7),
+                    TabletopTweaks.Core.Utilities.Helpers.CreateLevelEntry(8,   HeartOfFireFeature, BlazingVitalityFeature, BloodragerPhoenixDispellingStrikesLevel8),
+                    TabletopTweaks.Core.Utilities.Helpers.CreateLevelEntry(9, BloodragerPhoenixFeatSelectionGreenrager),
+                    TabletopTweaks.Core.Utilities.Helpers.CreateLevelEntry(10, BloodragerPhoenixSpell10),
+                    TabletopTweaks.Core.Utilities.Helpers.CreateLevelEntry(12, BloodragerPhoenixFeatSelection, MoltenWingsFeature),
+                    TabletopTweaks.Core.Utilities.Helpers.CreateLevelEntry(13, BloodragerPhoenixSpell13),
+                    TabletopTweaks.Core.Utilities.Helpers.CreateLevelEntry(15, BloodragerPhoenixFeatSelection),
+                    TabletopTweaks.Core.Utilities.Helpers.CreateLevelEntry(16, SelfRez, BloodragerPhoenixSpell16),
+                    TabletopTweaks.Core.Utilities.Helpers.CreateLevelEntry(18, BloodragerPhoenixFeatSelection),
+                    TabletopTweaks.Core.Utilities.Helpers.CreateLevelEntry(20, BloodragerPhoenixDispellingStrikesLevel20, PheonixFireFeature)
+                    };
+                bp.AddPrerequisite<PrerequisiteNoFeature>(c =>
+                {
+                    c.Group = Prerequisite.GroupType.Any;
+                    c.m_Feature = TotFBloodlineTools.BloodlineRequisiteFeature;
+                });
+                bp.AddPrerequisite<PrerequisiteFeature>(c =>
+                {
+                    c.Group = Prerequisite.GroupType.Any;
+                    c.m_Feature = PhoenixBloodlineRequisiteFeature;
+                });
+                bp.UIGroups = new UIGroup[] {
+                    TabletopTweaks.Core.Utilities.Helpers.CreateUIGroup(BloodragerPhoenixFeatSelection, BloodragerPhoenixFeatSelectionGreenrager)
+                    };
+            });
+            ProgressionConfigurator.For(BloodragerPhoenixBloodline).SetDisplayName("BloodragerPhoenixBloodline.Name").SetDescription("BloodragerPhoenixBloodline.Description").Configure();
             var BloodragerPhoenixBloodlineWandering = BloodlineTools.CreateMixedBloodFeature(Main.TotFContext, "BloodragerPheonixBloodlineWandering", BloodragerPhoenixBloodline, bp =>
             {
                 bp.m_Icon = AssetLoader.LoadInternal(Main.TotFContext, folder: "Abilities", file: "Phoenix_Bloodline.png");
             });
             var BloodragerPhoenixBaseBuff = TabletopTweaks.Core.Utilities.Helpers.CreateBlueprint<BlueprintBuff>(Main.TotFContext, "BloodragerPhoenixBaseBuff", bp =>
             {
-                bp.SetName(Main.TotFContext, "Phoenix Bloodrage");
-                bp.SetDescription(Main.TotFContext, "");
+                
                 bp.m_Flags = BlueprintBuff.Flags.HiddenInUi;
                 bp.IsClassFeature = true;
             });
+            BuffConfigurator.For(BloodragerPhoenixBaseBuff).SetDisplayName("BloodragerPhoenixBaseBuff.Name").SetDescription("BloodragerPhoenixBaseBuff.Description").Configure();
 
             BloodragerPhoenixBaseBuff.AddConditionalBuff(BloodragerPhoenixDispellingStrikesLevel1, BloodragerPhoenixDispellingStrikesBuffLevel1);
             BloodragerPhoenixBaseBuff.AddConditionalBuff(BloodragerPhoenixDispellingStrikesLevel8, BloodragerPhoenixDispellingStrikesBuffLevel8);
@@ -718,15 +803,15 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
             if (Settings.IsEnabled("PhoenixBloodline"))
             {
 
-                BloodlineTools.ApplyPrimalistException(HeartOfFireFeature, 4, BloodragerPhoenixBloodline);
-                BloodlineTools.ApplyPrimalistException(BlazingVitalityFeature, 8, BloodragerPhoenixBloodline);
-                BloodlineTools.ApplyPrimalistException(MoltenWingsFeature, 12, BloodragerPhoenixBloodline);
-                BloodlineTools.ApplyPrimalistException(SelfRez, 16, BloodragerPhoenixBloodline);
-                BloodlineTools.ApplyPrimalistException(PheonixFireFeature, 20, BloodragerPhoenixBloodline);
+                BloodlineTools.ApplyPrimalistException(HeartOfFireFeature, 4, BloodragerPhoenixBloodline, BloodragerPhoenixBloodlineSecond);
+                BloodlineTools.ApplyPrimalistException(BlazingVitalityFeature, 8, BloodragerPhoenixBloodline, BloodragerPhoenixBloodlineSecond);
+                BloodlineTools.ApplyPrimalistException(MoltenWingsFeature, 12, BloodragerPhoenixBloodline, BloodragerPhoenixBloodlineSecond);
+                BloodlineTools.ApplyPrimalistException(SelfRez, 16, BloodragerPhoenixBloodline, BloodragerPhoenixBloodlineSecond);
+                BloodlineTools.ApplyPrimalistException(PheonixFireFeature, 20, BloodragerPhoenixBloodline, BloodragerPhoenixBloodlineSecond);
                 ProgressionConfigurator.For(BloodragerClass.Get().Progression).AddToUIGroups(BloodragerPhoenixSpell7, BloodragerPhoenixSpell10, BloodragerPhoenixSpell13, BloodragerPhoenixSpell16).AddToUIGroups(BloodragerPhoenixDispellingStrikesDisplay, MoltenWingsFeature, SelfRez, PheonixFireFeature).Configure();
 
 
-                BloodlineTools.RegisterBloodragerBloodline(BloodragerPhoenixBloodline, BloodragerPhoenixBloodlineWandering);
+                BloodlineTools.RegisterBloodragerBloodline(BloodragerPhoenixBloodline, BloodragerPhoenixBloodlineSecond, BloodragerPhoenixBloodlineWandering);
             }
             TotFBloodlineTools.MetamagicSupport(BlueprintTools.GetModBlueprint<BlueprintProgression>(Main.TotFContext, "BloodragerPhoenixBloodline"));
 

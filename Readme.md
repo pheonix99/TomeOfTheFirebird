@@ -13,6 +13,14 @@ NOW REQUIRES TabletopTweaks Core Module and ModMenu
 
 ## Changelog
 
+### 1.4.10
+
+Official 2.1.2 release - Don't thing this will work with 2.1.0 or 2.1.1
+Fix for fly localization
+Fix for everything breaking because of Owlcat changing Lethal Stance implementation when I was cloning it.
+Fix for Kineticist Internal Buffer keeping on working when you run out of charges - KNOWN ISSUE, TOGGLE STAYS ACTIVE WHEN OUT OF RESOURCES
+
+
 ### 1.4.9
 2.1 Beta experimental patch. WARNING: Has not been signficantly tested!
 Added Spells: Fly

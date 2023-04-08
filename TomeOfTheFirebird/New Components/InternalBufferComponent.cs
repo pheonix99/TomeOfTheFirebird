@@ -7,6 +7,7 @@ using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.Class.Kineticist;
 using Kingmaker.UnitLogic.Mechanics.Components;
+using TomeOfTheFirebird.Modified_Content.Classes;
 
 namespace TomeOfTheFirebird.New_Components
 {
@@ -14,21 +15,33 @@ namespace TomeOfTheFirebird.New_Components
     class InternalBufferComponent : UnitFactComponentDelegate, IKineticistCalculateAbilityCostHandler, IGlobalSubscriber, ISubscriber, IKineticistAcceptBurnHandler, IUnitSubscriber
     {
         public int value = 1;
-        public ActionList actions;
+     
+        public BlueprintAbilityResourceReference resource;
+        
         public void HandleKineticistAcceptBurn(UnitPartKineticist kineticist, int burn, AbilityData ability)
         {
+            if (!kineticist.Owner.Resources.HasEnoughResource(resource.Get(), value))
+                return;
+            kineticist.Owner.Resources.Spend(resource.Get(), value);
             //Main.TotFContext.Logger.Log("Calling InternalBufferComponent.HandleKineticistAcceptBurn");
-            if (actions != null)
-            {
-                (this.Fact as IFactContextOwner)?.RunActionInContext(this.actions, kineticist.Owner.Unit);
-            }
+            
         }
 
         public void HandleKineticistCalculateAbilityCost(UnitDescriptor caster, BlueprintAbility abilityBlueprint, ref KineticistAbilityBurnCost cost)
         {
             if (!caster.Equals(this.Owner.Descriptor))
                 return;
-            int earlycost = cost.Total;
+            if (!caster.Resources.HasEnoughResource(resource.Get(), value))
+            {
+                
+
+                return;
+            }
+                
+           
+             
+            
+           
           
 
             AbilityKineticist burn_cost = abilityBlueprint.GetComponent<AbilityKineticist>();

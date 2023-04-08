@@ -100,8 +100,6 @@ namespace TomeOfTheFirebird.Modified_Content.Bloodlines
             string t1DragonClawsGUID = "8700c7fd098671b438f51d11568c2c94";
             BlueprintItemWeapon t1claws = BlueprintTools.GetBlueprint<BlueprintItemWeapon>(t1DragonClawsGUID);
 
-            bool hideclawFeatures = false;
-
             BlueprintCore.Blueprints.CustomConfigurators.Classes.FeatureConfigurator t1Feature = MakerTools.MakeFeature("DragonClaws1d4DamageFeature", clawsDisplayName, clawsDesc, false, t1claws.Icon);
             t1Feature.AddAbilityResources(restoreAmount: true, resource: "5be91334e3de5aa458ade509cc16daff");
 

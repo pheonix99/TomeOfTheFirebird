@@ -192,8 +192,8 @@ namespace TomeOfTheFirebird.New_Spells
                 MakerTools.MakeBuff("FieryRunesAllowBuff", "FieryRunesAllowBuff", "").Configure();
                 MakerTools.MakeToggle("FieryRunesToggle", LocalizationTool.GetString("FieryRunes.Name"), LocalizationTool.GetString("FieryRunes.Desc")).Configure();
 
-                MakerTools.MakeBuff("FieryRunesBuff", LocalizationTool.GetString("FieryRunes.Name"), LocalizationTool.GetString("FieryRunes.Desc"), evocIcon).Configure(); 
-                MakerTools.MakeBuff("FieryRuneArrayBuff", LocalizationTool.GetString("FieryRuneArray.Name"), LocalizationTool.GetString("FieryRuneArray.Desc"), evocIcon).Configure();
+                MakerTools.MakeBuffWithLocalizationTools("FieryRunesBuff", LocalizationTool.GetString("FieryRunes.Name"), LocalizationTool.GetString("FieryRunes.Desc"), evocIcon).Configure(); 
+                MakerTools.MakeBuffWithLocalizationTools("FieryRuneArrayBuff", LocalizationTool.GetString("FieryRuneArray.Name"), LocalizationTool.GetString("FieryRuneArray.Desc"), evocIcon).Configure();
 
                 
                 AbilityConfigurator.New("FieryRunesTouch", Main.TotFContext.Blueprints.GetGUID("FieryRunesTouch").ToString()).Configure();

@@ -6,6 +6,7 @@ using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Conditions.Builder;
 using BlueprintCore.Conditions.Builder.ContextEx;
 using BlueprintCore.Utils;
+using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Prerequisites;
@@ -141,13 +142,9 @@ namespace TomeOfTheFirebird.New_Content.RagePowers
                 var editSelector = selector.Get();
                 foreach (var v in effectBuffs)
                 {
-                    v.Get().AddContextRankConfig(x =>
-                    {
-                        x.m_BaseValueType = lethalConfig.m_BaseValueType;
-                        x.m_Class = lethalConfig.m_Class;
-                        x.Archetype = lethalConfig.Archetype;
-                        x.m_AdditionalArchetypes = lethalConfig.m_AdditionalArchetypes;
-                    });
+                    BuffConfigurator.For(v).AddContextRankConfig(ContextRankConfigs.CustomProperty("6a8e9d4b8ba547f5819354a05dd2a291")).Configure();
+                    
+                    Main.TotFContext.Logger.LogPatch("Appended Elemental Stance onto: ", v.Get());
                 }
                 var deadlyFeature = BlueprintTool.Get<BlueprintFeature>("c841ffa13d39ce442a408f57feb3cb8e");
                 foreach (var comp in deadlyFeature.Components)

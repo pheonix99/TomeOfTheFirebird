@@ -292,7 +292,7 @@ namespace TomeOfTheFirebird.Helpers
             return new ContextDurationValue() { m_IsExtendable = extendable, Rate = duration, BonusValue = new ContextValue() { ValueType = Kingmaker.UnitLogic.Mechanics.ContextValueType.Rank }, DiceType = Kingmaker.RuleSystem.DiceType.One, DiceCountValue = new ContextValue() };
         }
 
-        public static BuffConfigurator MakeBuff(string systemName, LocalizedString displayName, LocalizedString description, Sprite icon = null)
+        public static BuffConfigurator MakeBuffWithLocalizationTools(string systemName, LocalizedString displayName, LocalizedString description, Sprite icon = null)
         {
             Main.TotFContext.Logger.Log($"Building New Buff: {systemName}");
             Kingmaker.Blueprints.BlueprintGuid guid = Main.TotFContext.Blueprints.GetGUID(systemName);
