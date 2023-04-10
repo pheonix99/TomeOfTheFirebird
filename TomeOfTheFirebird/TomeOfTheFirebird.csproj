@@ -263,6 +263,7 @@
     <Compile Include="New Content\Feats\KineticLeap.cs" />
     <Compile Include="New Content\Feats\LastwallPhalanx.cs" />
     <Compile Include="New Content\Feats\OverwhelmingDefense.cs" />
+    <Compile Include="New Content\Feats\TwinSpell.cs" />
     <Compile Include="New Content\Features\BloodHavoc.cs" />
     <Compile Include="New Content\Features\BloodlineMutations.cs" />
     <Compile Include="New Content\Items\Firebrand.cs" />

@@ -13,6 +13,10 @@ NOW REQUIRES TabletopTweaks Core Module and ModMenu
 
 ## Changelog
 
+### 1.4.11
+Hotfix for localization issue with Phoenix Bloodrager Bloodline
+
+
 ### 1.4.10
 
 Official 2.1.2 release - Don't thing this will work with 2.1.0 or 2.1.1

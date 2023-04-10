@@ -762,21 +762,15 @@ namespace TomeOfTheFirebird.New_Content.Bloodlines
                     TabletopTweaks.Core.Utilities.Helpers.CreateLevelEntry(18, BloodragerPhoenixFeatSelection),
                     TabletopTweaks.Core.Utilities.Helpers.CreateLevelEntry(20, BloodragerPhoenixDispellingStrikesLevel20, PheonixFireFeature)
                     };
-                bp.AddPrerequisite<PrerequisiteNoFeature>(c =>
-                {
+                bp.AddPrerequisite<PrerequisiteNoFeature>(c => {
                     c.Group = Prerequisite.GroupType.Any;
-                    c.m_Feature = TotFBloodlineTools.BloodlineRequisiteFeature;
-                });
-                bp.AddPrerequisite<PrerequisiteFeature>(c =>
-                {
-                    c.Group = Prerequisite.GroupType.Any;
-                    c.m_Feature = PhoenixBloodlineRequisiteFeature;
+                    c.m_Feature = BloodragerPhoenixBloodline.ToReference<BlueprintFeatureReference>();
                 });
                 bp.UIGroups = new UIGroup[] {
                     TabletopTweaks.Core.Utilities.Helpers.CreateUIGroup(BloodragerPhoenixFeatSelection, BloodragerPhoenixFeatSelectionGreenrager)
                     };
             });
-            ProgressionConfigurator.For(BloodragerPhoenixBloodline).SetDisplayName("BloodragerPhoenixBloodline.Name").SetDescription("BloodragerPhoenixBloodline.Description").Configure();
+            ProgressionConfigurator.For(BloodragerPhoenixBloodlineSecond).SetDisplayName("BloodragerPhoenixBloodline.Name").SetDescription("BloodragerPhoenixBloodline.Description").Configure();
             var BloodragerPhoenixBloodlineWandering = BloodlineTools.CreateMixedBloodFeature(Main.TotFContext, "BloodragerPheonixBloodlineWandering", BloodragerPhoenixBloodline, bp =>
             {
                 bp.m_Icon = AssetLoader.LoadInternal(Main.TotFContext, folder: "Abilities", file: "Phoenix_Bloodline.png");
