@@ -99,7 +99,7 @@ namespace TomeOfTheFirebird
             builder.AddToggle(MakeToggle("witchpatrondeath", "Witch Patron: Death", true, "Adds the Death witch patron, focusing on necromantic attack spells. Some deviation from tabletop to account for unimplmentable (speak with dead, rest eternal), unimplemented (suffocate, symbol of death) and just plain bad (power word kill) TT spells. \n Requires Gloomblind Bolts to be enabled, or Expanded Content to be installed. Will use TotF Gloomblind preferentially."));
             builder.AddToggle(MakeToggle("WitchPatronDeathL2replace", "Death Patron: Replace Blessing Of Courage And Life", true, "Replaces TT Death level 2 : Blessing Of Courage and Life with Boneshaker to go all in on necromantic attack"));
             builder.AddToggle(MakeToggle("WitchPatronLight", "Witch Patron: Light", true, "Adds the Light witch patron, focusing on light-themed crowd control and damage spells. Some deviation from tabletop to account for lack of detailed lighting system in game making dancing lantern, continual flame, and daylight unimplementable. Also swapped out Sirocco for Chains Of Light because seriously?").IsModificationAllowed(() => Settings.GetDD<EmberPatron>("WitchEmberPatron") != EmberPatron.Light));
-            builder.AddToggle(MakeToggle("WitchPatronPlague", "Witch Patron: Plague", true, "Adds the Plague witch patron, focusing on different necromantic nastiness. Some deviation from tabletop to account for unimplemented (detect undead, control undead, 16th — create greater undead), and just plain bad (giant vermin) TT spells. Kicks Create Undead up a level to slot in Plague Storm"));
+            builder.AddToggle(MakeToggle("WitchPatronPlague", "Witch Patron: Plague", true, "Adds the Plague witch patron, focusing on different necromantic nastiness. Some deviation from tabletop to account for unimplemented (detect undead, control undead, create greater undead), and just plain bad (giant vermin) TT spells. Kicks Create Undead up a level to slot in Plague Storm"));
             builder.AddToggle(MakeToggle("PlaguePerniciousPoison", "Plague Patron: Replace Command Undead with Pernicious Poison", false, "Follow Call Of The Wild's lead and swap Command Undead for Pernicious Poison on the Plague patron"));
             builder.AddToggle(MakeToggle("WitchPatronProtection", "Witch Patron: Protection", true, "Adds the Protection witch patron, focusing on defense spells. Some deviation from tabletop to account for most of the list being unimplemented, using CoTW list instead."));
             builder.AddToggle(MakeToggle("WinterWitchPatronProgression", "Winter Witch Progresses Patron", true, "If you have two witch patrons ex from TTT-Base Second patron, winter witch will progress both."));
@@ -125,7 +125,7 @@ namespace TomeOfTheFirebird
 
             builder.AddSubHeader(GetString("Fixes.Title"), startExpanded: true);
 
-            builder.AddToggle(MakeToggle("FixHolyWaterJet", "Arcanist: Fix Holy Water Jet", true, "Holy Water Jet has correct prereqs - no more mythic path requirement"));
+          
 
             builder.AddToggle(MakeToggle("FixAngelArtifactCloak", "Bound Of Possibility: Fix Angel Version", true, "The Angel version of Bound Of Possibility now properly applies to weapon attacks - they partially fixed in EE"));
             builder.AddToggle(MakeToggle("FixBloodragerSpellIcons", "Bloodrager: Fix Bloodline Spell Icons", true, "Gives Bloodline Spell features the icon of the spell."));
@@ -140,6 +140,7 @@ namespace TomeOfTheFirebird
 
 
             builder.AddToggle(MakeToggle("CleanupEldritchScion", "Eldritch Scion: Cleanup Progression", true, "Dynamically kills weird add / remove of Arcane Weapon upgrades on Eldritch Scion"));
+            builder.AddToggle(MakeLocalizedToggle("BloodKineticBlade", true));
             builder.AddToggle(MakeToggle("FixOrderOfTheStarCallingChannelingSupport", "Order Of The Star: Add Calling Channeling Support", true, "Order Of The Stars is supposed to grant half class level to Paladin and Cleric channeling progression. It didn't. Now it does."));
             builder.AddToggle(MakeToggle("FixRadianceFinalForm", "Radiance: Fix Final (Holy) Form", true, "The good version of Radiance's final form now properly retains its holy effect"));
             builder.AddToggle(MakeToggle("FixBracersOfArmor", "Bracers Of Armor: Fix Enchants", true, "Bracers Of Armor's ability to work vs incorporeeal is now implemented on the Bracers Of Armor enchantment, not a seperate sometimes missing enchant"));
@@ -187,7 +188,7 @@ namespace TomeOfTheFirebird
             builder.AddToggle(MakeToggle("ShimmeringMirage", "Shimmering Mirage", true, "Water Wild Talent. Requires Shroud Of Water. Adds 20 percent miss chance as long as shroud of water is up."));
 
             builder.AddSubHeader(GetString("Tweaks.Title"), startExpanded: true);
-
+            builder.AddToggle(MakeLocalizedToggle("AddDeitySpecificSpells", true));
             builder.AddToggle(MakeToggle("BuffElementalStrikes", "Bloodlines: Buff Bloodrager Elemental Strikes", true, "Homebrew: Makes Bloodrager Elemental Bloodline's Elemental Strikes ability always active during bloodrage from level 1. The level 20 upgrade to be always-on is replaced with a burst effect on critical hits"));
 
             builder.AddToggle(MakeToggle("CombineSorcererDragonClaws", "Bloodlines: Combine Sorcerer Dragon Claws", true, "Combine all sorcerer dragon bloodline claw powers into the same ability, stacking elemental damage from each bloodline."));

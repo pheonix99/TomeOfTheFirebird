@@ -1,5 +1,6 @@
 ﻿using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Utils;
+using Kingmaker.Armies.Blueprints;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.EntitySystem.Entities;
@@ -18,22 +19,28 @@ using System.Threading.Tasks;
 using System.Web;
 using TabletopTweaks.Core.Utilities;
 using TomeOfTheFirebird.Helpers;
+using TomeOfTheFirebird.New_Components;
 using static TabletopTweaks.Core.MechanicsChanges.MetamagicExtention;
 
 namespace TomeOfTheFirebird.New_Content.Feats
 {
-    /*
+    
     static class TwinSpell
     {
         public static void AddTwinSpell()
         {
-            var TwinSpellConfig = MakerTools.MakeFeature("TwinSpellFeat", LocalizationTool.GetString("TwinSpell.Name"), LocalizationTool.GetString("TwinSpell.Desc"));
+            //var icon = BlueprintTool.Get<BlueprintLeaderSkill>("c89ae5f2f37f4a37ae76938010bab8f3").Icon;
+            var icon = AssetLoader.LoadInternal(Main.TotFContext, "Abilities", "TwinSpell.png");
+            var TwinSpellConfig = MakerTools.MakeFeature("TwinSpellFeat", LocalizationTool.GetString("TwinSpell.Name"), LocalizationTool.GetString("TwinSpell.Desc"), icon: icon);
+            
             if (Settings.IsEnabled("TwinSpell"))
             {
                 TwinSpellConfig.AddToGroups(FeatureGroup.Feat, FeatureGroup.WizardFeat);
+               
                 TwinSpellConfig.AddComponent<AddMetamagicFeat>(x => x.Metamagic = (Metamagic)TabletopTweaks.Core.MechanicsChanges.MetamagicExtention.CustomMetamagic.Twin);
                 TwinSpellConfig.AddFeatureTagsComponent(Kingmaker.Blueprints.Classes.Selection.FeatureTag.Magic | Kingmaker.Blueprints.Classes.Selection.FeatureTag.Metamagic);
                 TwinSpellConfig.AddPrerequisiteStatValue(Kingmaker.EntitySystem.Stats.StatType.Intelligence, 3);
+                TwinSpellConfig.AddComponent<AttachTwinSpellUnitPart>();
                 TwinSpellConfig.AddRecommendationRequiresSpellbook();
             }
             var TwinSpell = TwinSpellConfig.Configure();
@@ -43,11 +50,12 @@ namespace TomeOfTheFirebird.New_Content.Feats
                     context: Main.TotFContext,
                     metamagic: (Metamagic)TabletopTweaks.Core.MechanicsChanges.MetamagicExtention.CustomMetamagic.Twin,
                     name: "Twin",
-                    icon: null,
+                    icon: icon,
                     defaultCost: 4,
                     favoriteMetamagic: null,
                     metamagicMechanics: TwinSpellMechanics.Instance,
                     metamagicFeat: TwinSpell);
+
             }
         }
 
@@ -61,7 +69,8 @@ namespace TomeOfTheFirebird.New_Content.Feats
             var spells = SpellTools.GetAllSpells();
             foreach (var spell in spells)
             {
-                bool validTwin = !spell.GetComponent<AbilityEffectStickyTouch>();
+                //bool validTwin = !spell.GetComponent<AbilityEffectStickyTouch>();
+                bool validTwin = true;
                 if (validTwin)
                 {
                     if (!spell.AvailableMetamagic.HasMetamagic((Metamagic)CustomMetamagic.Twin))
@@ -74,23 +83,27 @@ namespace TomeOfTheFirebird.New_Content.Feats
         }
 
 
-        private class TwinSpellMechanics : IRulebookHandler<RuleCastSpell>, ISubscriber
+        private class TwinSpellMechanics : IAfterRulebookEventTriggerHandler<RuleCastSpell>, IGlobalSubscriber, ISubscriber
         {
 
             public static TwinSpellMechanics Instance = new();
 
-            public void OnEventAboutToTrigger(RuleCastSpell evt)
+            public void OnAfterRulebookEventTrigger(RuleCastSpell evt)
             {
-
+               
+                //ActualTwinSpell(evt);
             }
 
-            public void OnEventDidTrigger(RuleCastSpell evt)
-            {
-                var isSolidShadows = evt.Context?.HasMetamagic((Metamagic)CustomMetamagic.Twin) ?? false;
-                if (!isSolidShadows)
-                    return;
+            
 
-                if (evt.IsDuplicateSpellApplied || !evt.Success || evt.Spell.Blueprint.Type != AbilityType.Spell || (evt.Spell.Range == AbilityRange.Touch && evt.Spell.Blueprint.GetComponent<AbilityEffectStickyTouch>() != null))
+            private void ActualTwinSpell(RuleCastSpell evt)
+            {
+               
+                var isTwinSpell = evt.Context?.HasMetamagic((Metamagic)CustomMetamagic.Twin) ?? false;
+                if (!isTwinSpell)
+                    return;
+                
+                if (evt.IsDuplicateSpellApplied || !evt.Success ||evt.SpellTarget == null || (evt.Spell.Range == AbilityRange.Touch && evt.Spell.Blueprint.GetComponent<AbilityEffectStickyTouch>() != null))
                 {
                     return;
                 }
@@ -103,5 +116,5 @@ namespace TomeOfTheFirebird.New_Content.Feats
             }
         }
     }
-    */
+    
 }

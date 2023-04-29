@@ -32,6 +32,8 @@ using BlueprintCore.Utils;
 using Kingmaker.Blueprints.Classes.Selection;
 using System.Linq;
 using UnityEngine;
+using TomeOfTheFirebird.New_Components;
+using TomeOfTheFirebird.New_Content.ModifySpellLists;
 
 namespace TomeOfTheFirebird
 {
@@ -55,13 +57,15 @@ namespace TomeOfTheFirebird
                     //LocalizationTool.LoadLocalizationPack("Mods\\TomeOfTheFirebird\\Localization\\LocalizationPack.json");
                     LocalizationTool.LoadLocalizationPack("Mods\\TomeOfTheFirebird\\Localization\\Spells.json");
                     LocalizationTool.LoadLocalizationPack("Mods\\TomeOfTheFirebird\\Localization\\Bloodlines.json");
+                    LocalizationTool.LoadLocalizationPack("Mods\\TomeOfTheFirebird\\Localization\\Feats.json");
+                    LocalizationTool.LoadLocalizationPack("Mods\\TomeOfTheFirebird\\Localization\\Kineticist.json");
                     Settings.Make();
                     Main.TotFContext.Logger.Log("Building new spells");
 
 
                     //Early class fixes
 
-                    ArcanistFixes.DoFixes();
+                   
 
                     //build spells
                     ChainsOfFire.BuildSpell();
@@ -88,6 +92,8 @@ namespace TomeOfTheFirebird
                     BreathWeaponFeats.BuildAbilityFocusBreathWeapons();
                     ExtraBurn.Make();
                     AncestralScorn.Make();
+                    TwinSpell.AddTwinSpell();
+
 
                     //New Mythics
                     MythicKineticDefenses.Make();
@@ -105,6 +111,7 @@ namespace TomeOfTheFirebird
                     ExtraMercies.Build();
                     WitchPatrons.Make();
                     KineticistInternalBuffer.Make();
+                    KineticistDoubleMetakinesis.Build();
 
                     //Goes after buffer because uses
 
@@ -195,11 +202,11 @@ namespace TomeOfTheFirebird
 
 
 
-
+                    CoreGameDeityModifications.Append();
 
                     AddItemsToShop.Add();
                     Purifier.PatchPurifier();
-                    Kineticist.PatchKineticist();
+                    Kineticist.PatchKineticistLate();
 
                     FixExtraHitsOnProcs.FixFirebrand();
                     FixExtraHitsOnProcs.FixRandomWeaponsRiders();
@@ -225,6 +232,8 @@ namespace TomeOfTheFirebird
                     New_Content.RagePowers.RageStanceMastery.Finish();
                     //EldritchScion.AddSorcBonusFeatsToList();
                   
+                    TwinSpell.UpdateSpells();
+
                     RootConfigurator.ConfigureDelayedBlueprints();
 
                     
@@ -268,19 +277,42 @@ namespace TomeOfTheFirebird
                 {
                     MythicKineticDefenses.MakeLater();
                     Kineticist.FixKEEAbilities();
-                    ThieflingInteroperability.AddOtherModRogueTalents();
-                    PriceFixes.FixPricesLate();
 
-                    Main.TotFContext.TerminalWipe();
+                    Kineticist.PatchKinecicistLast();
+
+                   
                 }
                 catch (Exception e)
                 {
 
-                    Main.TotFContext.Logger.LogError(e, $"Error caught in KineticistExpandedElements integration");
+                    Main.TotFContext.Logger.LogError(e, $"Error caught in Kineticist Elements Expanded integration");
                 }
-                
-                
-
+                try
+                {
+                    KineticistDoubleMetakinesis.LoadBlasts();
+                }
+                catch(Exception e)
+                {
+                    Main.TotFContext.Logger.LogError(e, $"Error caught in Metakinesis (Double) patching");
+                }
+                try
+                {
+                    ThieflingInteroperability.AddOtherModRogueTalents();
+                }
+                catch (Exception e)
+                {
+                    Main.TotFContext.Logger.LogError(e, $"Error caught in HomebrewArchetypes integration");
+                }
+                try
+                {
+                    PriceFixes.FixPricesLate();
+                   
+                    Main.TotFContext.TerminalWipe();
+                }
+                catch (Exception e)
+                {
+                    Main.TotFContext.Logger.LogError(e, $"Error caught in super late patch");
+                }
             }
 
         }

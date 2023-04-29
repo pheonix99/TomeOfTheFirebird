@@ -161,7 +161,6 @@
     <Compile Include="Bugfixes\Items\FixBracersOfArmorEnchants.cs" />
     <Compile Include="Bugfixes\Items\PriceFixes.cs" />
     <Compile Include="BuildContent.cs" />
-    <Compile Include="Bugfixes\Classes\ArcanistFixes.cs" />
     <Compile Include="Bugfixes\Classes\CavalierFixes.cs" />
     <Compile Include="Bugfixes\RadianceLevel2Fix.cs" />
     <Compile Include="Helpers\Extensions.cs" />
@@ -201,6 +200,7 @@
     <Compile Include="New Components\AllLevelsSpellSlotShift.cs" />
     <Compile Include="New Components\AllLevelsSpellSlotShiftPart.cs" />
     <Compile Include="New Components\ArtifactEnabledWeaponAngelDamageDice.cs" />
+    <Compile Include="New Components\AttachTwinSpellUnitPart.cs" />
     <Compile Include="New Components\BloodlineMutation\AbstractBloodlineMutationComponent.cs" />
     <Compile Include="New Components\BloodlineMutation\BloodHavocComponent.cs" />
     <Compile Include="New Components\BloodlineMutation\BloodlineSpellComponent.cs" />
@@ -233,6 +233,7 @@
     <Compile Include="New Components\TacticalFeatComponents\CoordinatedShotComponent.cs" />
     <Compile Include="New Components\TacticalFeatComponents\LastwallPhalanxComponent.cs" />
     <Compile Include="New Components\TacticalFeatComponents\SwarmStrikeComponent.cs" />
+    <Compile Include="New Components\UnitPartDoTwinSpell.cs" />
     <Compile Include="New Content\Archetypes\BanishingWarden.cs" />
     <Compile Include="New Content\Archetypes\Beastmorph.cs" />
     <Compile Include="New Content\Archetypes\CinderAdept.cs" />
@@ -306,6 +307,7 @@
     <Compile Include="New Content\Spells\IncendiaryCloud.cs" />
     <Compile Include="New Content\Spells\TODO\AuraOfDoom.cs" />
     <Compile Include="New Content\Spells\BoneFists.cs" />
+    <Compile Include="New Content\Spells\TODO\BeaconOfLuck.cs" />
     <Compile Include="New Content\Spells\TODO\BowSpirit.cs" />
     <Compile Include="New Content\Spells\BurstOfRadiance.cs" />
     <Compile Include="New Content\Spells\ChainsOfFire.cs" />
@@ -319,6 +321,7 @@
     <Compile Include="New Content\Spells\GloomblindBolts.cs" />
     <Compile Include="New Content\Spells\HealMount.cs" />
     <Compile Include="New Content\Spells\KeenEdge.cs" />
+    <Compile Include="New Content\Spells\TODO\InheritorsSmite.cs" />
     <Compile Include="New Content\Spells\TODO\SavageMaw.cs" />
     <Compile Include="New Content\Spells\TODO\ShadowClaws.cs" />
     <Compile Include="New Content\Spells\TODO\ShockingImage.cs" />
@@ -375,10 +378,19 @@
     <EmbeddedResource Include="Localization\Bloodlines.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Localization\Feats.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localization\Kineticist.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Abilities\Phoenix_Bloodline.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Abilities\TwinSpell.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Spells\BoneFists.png">
@@ -410,12 +422,17 @@
       <ModConfig Include="$(OutputPath)\Info.json" />
       <Localization Include="$(OutputPath)\Localization\LocalizationPack.json" />
       <Localization Include="$(OutputPath)\Localization\Settings.json" />
+      <Localization Include="$(OutputPath)\Localization\Bloodlines.json" />
+      <Localization Include="$(OutputPath)\Localization\Feats.json" />
+      <Localization Include="$(OutputPath)\Localization\Kineticist.json" />
+      <Localization Include="$(OutputPath)\Localization\Spells.json" />
       <SpellAssets Include="$(OutputPath)\Assets\Spells\BoneFists.png" />
       <SpellAssets Include="$(OutputPath)\Assets\Spells\FreezingSphere.png" />
       <SpellAssets Include="$(OutputPath)\Assets\Spells\GloomblindBolts.png" />
       <SpellAssets Include="$(OutputPath)\Assets\Spells\SpearOfPurity.png" />
       <SpellAssets Include="$(OutputPath)\Assets\Spells\Fly.png" />
       <AbilityAssets Include="$(OutputPath)\Assets\Abilities\Phoenix_Bloodline.png" />
+      <AbilityAssets Include="$(OutputPath)\Assets\Abilities\TwinSpell.png" />
     </ItemGroup>
     <Copy SourceFiles="@(Assembly)" DestinationFolder="$(WrathPath)\Mods\$(MSBuildProjectName)" />
     <Copy SourceFiles="@(ModConfig)" DestinationFolder="$(WrathPath)\Mods\$(MSBuildProjectName)" />
@@ -434,8 +451,11 @@
       <SpellAssets Include="$(OutputPath)\Assets\Spells\SpearOfPurity.png" />
       <SpellAssets Include="$(OutputPath)\Assets\Spells\Fly.png" />
       <AbilityAssets Include="$(OutputPath)\Assets\Abilities\Phoenix_Bloodline.png" />
+      <AbilityAssets Include="$(OutputPath)\Assets\Abilities\TwinSpell.png" />
       <Localization Include="$(OutputPath)\Localization\LocalizationPack.json" />
       <Localization Include="$(OutputPath)\Localization\Bloodlines.json" />
+      <Localization Include="$(OutputPath)\Localization\Feats.json" />
+      <Localization Include="$(OutputPath)\Localization\Kineticist.json" />
       <Localization Include="$(OutputPath)\Localization\Spells.json" />
       <Localization Include="$(OutputPath)\Localization\Settings.json" />
     </ItemGroup>

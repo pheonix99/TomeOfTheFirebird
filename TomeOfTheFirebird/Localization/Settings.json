@@ -108,6 +108,31 @@
     "Key": "TotF.Settings.TwinSpell.Desc",
     "ProcessTemplates": false,
     "enGB": "Adds Twin Spell Metamagic, which increases the spell level by four to cast it twice."
+  },
+  {
+    "Key": "TotF.Settings.BloodKineticBlade.Name",
+    "ProcessTemplates": false,
+    "enGB": "Kineticist Fix: Restore Blood Kinetic Blade"
+  },
+  {
+    "Key": "TotF.Settings.BloodKineticBlade.Desc",
+    "ProcessTemplates": false,
+    "enGB": "Enables use of Kinetic Blade with Blood Kineticist Blood Blast."
+  },
+  {
+    "Key": "Blank",
+    "ProcessTemplates": false,
+    "enGB": "You shouldn't see this!."
+  },
+  {
+    "Key": "TotF.Settings.AddDeitySpecificSpells.Name",
+    "ProcessTemplates": false,
+    "enGB": "Add Deity Specific Spell Access"
+  },
+  {
+    "Key": "TotF.Settings.AddDeitySpecificSpells.Desc",
+    "ProcessTemplates": false,
+    "enGB": "Enables the unique spell rules for various deities. Currently only works with base game dieties and spells for cleric/warpriest/paladin/ranger."
   }
 
 ]

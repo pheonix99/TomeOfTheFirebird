@@ -106,7 +106,8 @@ namespace TomeOfTheFirebird.Helpers
             Kingmaker.Blueprints.BlueprintGuid guid = Main.TotFContext.Blueprints.GetGUID(systemName);
             Main.TotFContext.Logger.Log($"Guid for {systemName} is {guid.ToString()}");
             FeatureConfigurator res = FeatureConfigurator.New(systemName, guid.ToString());
-        
+            res.SetDisplayName(displayName);
+            res.SetDescription(description);
             return FeatureGuts(res, hide, icon);
         }
 

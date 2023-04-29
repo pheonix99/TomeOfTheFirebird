@@ -13,6 +13,14 @@ NOW REQUIRES TabletopTweaks Core Module and ModMenu
 
 ## Changelog
 
+### 1.4.12
+
+Twin Spell Metamagic Feat
+Double Metakinesis Kineticist Class Feature
+Deity Specific Cleric/Ranger/Druid/Paladin/Warpriest spell access implemented.
+Owlcat fixed the mythic path requirement on Holy Water Jet, removed that function.
+Blood Kinetic Blade exists now
+
 ### 1.4.11
 Hotfix for localization issue with Phoenix Bloodrager Bloodline
 
@@ -381,26 +389,22 @@ Made rewards from Monster Slayers and Local Production crusade events permanent 
 
 ##Coming Soon:
 
-Bloodline Mutations (Havoc first)
+Internal Buffer will be more elegant.
 
-Some Crusade Mode goodies
+Bloodline Mutations (Havoc first)
 
 Earth Tremor spell
 
 Mountain Witch Patron
 
-Witch Unique Patrons
-
-Seasonal Witch archetype
-
 Banishing Warden Paladin Archetype
 
-Something for characters who get wings from multiple sources (bloodlines, mythic paths)
+Twin Metamagic Rods
 
-Goodies for Aivu
+Kinetic Lancer Kineticist Archetype
 
-Overhaul Discordant Song and Hat Of Heartening Song to work through the auras directly, not their own buffs, so range modification effects them
+Basic Elemental Kinesis Utility Talents
 
-Phoenix Sorcerer Bloodline? Maybe?
+Flumefire Rage feat
 
 

@@ -274,7 +274,15 @@
     "FlyBuff": "b6d76a5d-c8ec-4046-8a2c-7f09e2e7d146",
     "FlySpell": "bbbd603f-9da4-4838-b8a8-5124aaa6ba40",
     "FlySpellTouch": "e68a66c1-0ee6-4a7c-82d1-a6562c58263c",
-    "BloodragerPhoenixSecondBloodline": "6d9fe5a3-d0eb-4e6e-ba6c-827e1d0f74bf"
+    "BloodragerPhoenixSecondBloodline": "6d9fe5a3-d0eb-4e6e-ba6c-827e1d0f74bf",
+    "TOTF_BloodKineticBladeFeature": "2a2d8892-c5f6-4e23-ba78-4e725bfeed83",
+    "TwinSpellFeat": "ac741a9d-35fc-4958-975d-7b38cdf1177d",
+    "MetakinesisDoubleAbility": "30155b8d-5786-4849-9b5e-499d54b6c28c",
+    "MetakinesisDoubleBuff": "8dc2f563-c3b2-4300-beb0-00362ba03457",
+    "MetakinesisDoubleCheaperAbility": "e37c47f4-2f88-4ff4-859d-430e7cb9c44b",
+    "MetakinesisDoubleCheaperBuff": "187e1cb4-6252-4216-a0cb-2d8cb42a8e42",
+    "MetakinesisDoubleFeature": "05582d62-e705-484f-a760-0981f6f6fb4b",
+    "MetakinesisMasterDouble": "52661f4d-0add-48b2-be74-d627808679f5"
 
 
   },

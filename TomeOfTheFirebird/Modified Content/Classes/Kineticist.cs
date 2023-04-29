@@ -3,14 +3,17 @@ using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
+using Kingmaker.Blueprints.Items.Weapons;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Abilities.Components;
+using Kingmaker.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.Class.Kineticist;
 using Kingmaker.UnitLogic.Mechanics.Actions;
 using System.Collections.Generic;
 using System.Linq;
 using TabletopTweaks.Core.NewComponents;
 using TabletopTweaks.Core.Utilities;
+using TomeOfTheFirebird.Helpers;
 using TomeOfTheFirebird.New_Components;
 using UnityModManagerNet;
 
@@ -18,11 +21,11 @@ namespace TomeOfTheFirebird.Modified_Content.Classes
 {
     class Kineticist
     {
-        public static void PatchKineticist()
+        public static void PatchKineticistLate()
         {
 
             AddInternalBuffer();
-          
+            
             
 
             FixElementalDefenseAbility("25fc1cc07ea34f94eb6fbbce473767b4", "bbba1600582cf8446bb515a33bd89af8");//EnvelopingWInds
@@ -33,6 +36,7 @@ namespace TomeOfTheFirebird.Modified_Content.Classes
             MakeAbilityRequireNotAlreadyActive("41281aa38b6b27f4fa3a05c97cc01783");//AerialEvasion 
             return;
 
+            
 
             void AddInternalBuffer()
             {
@@ -60,6 +64,40 @@ namespace TomeOfTheFirebird.Modified_Content.Classes
                 ArchetypeConfigurator.For(overwhelmingSoul).AddToRemoveFeatures(6, buffer).AddToRemoveFeatures(11, bufferEU).AddToRemoveFeatures(16, bufferEU).Configure();
             }
             
+        }
+
+        public static void PatchKinecicistLast()
+        {
+            CreateBloodBlade();
+            void CreateBloodBlade()
+            {
+                BlueprintItemWeapon BloodKineticBladeWeapon = BlueprintTool.Get<BlueprintItemWeapon>("92f9a719ffd652947ab37363266cc0a6");
+                BlueprintAbility bloodBlastBase = BlueprintTool.Get<BlueprintAbility>("ba2113cfed0c2c14b93c20e7625a4c74");
+                BlueprintFeature kineticBladeINfusion = BlueprintTool.Get<BlueprintFeature>("9ff81732daddb174aa8138ad1297c787");
+
+
+                BlueprintAbility BloodKineticBladeBlastBurn = BlueprintTool.Get<BlueprintAbility>("15278f2a9a5eaa441a261ec033b60b57");
+                BlueprintActivatableAbility KinetidBladeBloodBlastAbilty = BlueprintTool.Get<BlueprintActivatableAbility>("98f0da4bf25a34a4caffa6b8a2d33ef6");
+
+                FeatureConfigurator BloodKineticBladeFeatureConfig = MakerTools.MakeFeature("TOTF_BloodKineticBladeFeature", LocalizationTool.GetString("BloodKineticBladeSystem.Name"), LocalizationTool.GetString("Blank"), icon: BloodKineticBladeWeapon.Icon);
+                BloodKineticBladeFeatureConfig.SetHideInUI(true);
+                BloodKineticBladeFeatureConfig.SetIsClassFeature(true);
+                BloodKineticBladeFeatureConfig.SetHideInCharacterSheetAndLevelUp(true);
+                if (Settings.IsEnabled("BloodKineticBlade"))
+                {
+                    BloodKineticBladeFeatureConfig.AddFeatureIfHasFact(checkedFact: BloodKineticBladeBlastBurn, feature: BloodKineticBladeBlastBurn, not: true);
+                    BloodKineticBladeFeatureConfig.AddFeatureIfHasFact(checkedFact: KinetidBladeBloodBlastAbilty, feature: KinetidBladeBloodBlastAbilty, not: true);
+
+                }
+
+
+                var BloodKineticBladeFeature = BloodKineticBladeFeatureConfig.Configure();
+                if (Settings.IsEnabled("BloodKineticBlade"))
+                {
+                    FeatureConfigurator.For(kineticBladeINfusion).AddFeatureIfHasFact(checkedFact: bloodBlastBase, feature: BloodKineticBladeFeature).Configure();
+                    Main.TotFContext.Logger.LogPatch("Built and added", BloodKineticBladeFeature);
+                }
+            }
         }
 
         private static void MakeAbilityRequireNotAlreadyActive(string abilityGuid)
