@@ -6,6 +6,7 @@ using BlueprintCore.Utils;
 using HarmonyLib;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
+using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.Blueprints.Items.Ecnchantments;
 using Kingmaker.Blueprints.Items.Weapons;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
@@ -14,6 +15,7 @@ using Kingmaker.UnitLogic.Abilities.Components.CasterCheckers;
 using Kingmaker.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.Class.Kineticist;
 using Kingmaker.UnitLogic.Mechanics.Actions;
+using Kingmaker.UnitLogic.Mechanics.Components;
 using System.Collections.Generic;
 using System.Linq;
 using TabletopTweaks.Core.NewComponents;
@@ -80,7 +82,7 @@ namespace TomeOfTheFirebird.Modified_Content.Classes
                 BlueprintAbility bloodBlastBase = BlueprintTool.Get<BlueprintAbility>("ba2113cfed0c2c14b93c20e7625a4c74");
                 BlueprintFeature kineticBladeINfusion = BlueprintTool.Get<BlueprintFeature>("9ff81732daddb174aa8138ad1297c787");
 
-
+                
                 BlueprintAbility BloodKineticBladeBlastBurn = BlueprintTool.Get<BlueprintAbility>("15278f2a9a5eaa441a261ec033b60b57");
                 BlueprintActivatableAbility KinetidBladeBloodBlastAbilty = BlueprintTool.Get<BlueprintActivatableAbility>("98f0da4bf25a34a4caffa6b8a2d33ef6");
 
@@ -88,11 +90,19 @@ namespace TomeOfTheFirebird.Modified_Content.Classes
                 BloodKineticBladeFeatureConfig.SetHideInUI(true);
                 BloodKineticBladeFeatureConfig.SetIsClassFeature(true);
                 BloodKineticBladeFeatureConfig.SetHideInCharacterSheetAndLevelUp(true);
-                if (Settings.IsEnabled("BloodKineticBlade"))
+                if (false)
+                //if (Settings.IsEnabled("BloodKineticBlade"))
                 {
                     BloodKineticBladeFeatureConfig.AddFeatureIfHasFact(checkedFact: BloodKineticBladeBlastBurn, feature: BloodKineticBladeBlastBurn, not: true);
                     BloodKineticBladeFeatureConfig.AddFeatureIfHasFact(checkedFact: KinetidBladeBloodBlastAbilty, feature: KinetidBladeBloodBlastAbilty, not: true);
+                    AbilityConfigurator.For("0a386b1c2b4ae9b4f81ddf4557155810").RemoveComponents(x => x is SpellDescriptorComponent).EditComponent<AbilityKineticist>(x =>
+                    {
+                        x.BlastBurnCost = 2;
+                        x.CachedDamageInfo.Remove(x.CachedDamageInfo.First(x => x.Type.Type == Kingmaker.RuleSystem.Rules.Damage.DamageType.Energy));
+                        var chached = x.CachedDamageInfo.First(x => (x.Type.Type == Kingmaker.RuleSystem.Rules.Damage.DamageType.Physical));
+                        chached.Half = false;
 
+                    }).AddAbilityDeliverProjectile(needAttackRoll:true, projectiles: new List<Blueprint<BlueprintProjectileReference>>() { "06e268d6a2b5a3a438c2dd52d68bfef6" }, type: AbilityProjectileType.Simple, isHandOfTheApprentice: false, length: new Kingmaker.Utility.Feet(0f), lineWidth: new Kingmaker.Utility.Feet(5f), weapon: "65951e1195848844b8ab8f46d942f6e8", replaceAttackRollBonusStat: false, useMaxProjectilesCount: false, delayBetweenProjectiles: 0f, maxProjectilesCountRank: Kingmaker.Enums.AbilityRankType.Default).Configure();
                 }
                 BlueprintFeature BloodKineticBladeFeature = BloodKineticBladeFeatureConfig.Configure();
 
@@ -100,12 +110,20 @@ namespace TomeOfTheFirebird.Modified_Content.Classes
 
                
 
-                WeaponEnchantmentConfigurator.For("f2e21757f4b5b2541861cf59f3249a48").SetWeaponFxPrefab(waterblade.WeaponFxPrefab).SetEnchantName("BloodBladeEnchant.Name").Configure();
+               
 
-                ItemWeaponConfigurator.For("92f9a719ffd652947ab37363266cc0a6").SetDisplayNameText(BlueprintTool.Get<BlueprintAbility>("ab6e3f470fba2d349b7b7ef0990b5476").m_DisplayName).Configure();
-
-                if (Settings.IsEnabled("BloodKineticBlade"))
+                if (false)
+                //if (Settings.IsEnabled("BloodKineticBlade"))
                 {
+                    WeaponEnchantmentConfigurator.For("f2e21757f4b5b2541861cf59f3249a48").SetWeaponFxPrefab(waterblade.WeaponFxPrefab).SetEnchantName("BloodBladeEnchant.Name").EditComponent<ContextCalculateSharedValue>(x =>
+                    {
+                        x.Value.DiceCountValue.ValueRank = Kingmaker.Enums.AbilityRankType.DamageDice;
+                        x.Value.BonusValue.ValueRank = Kingmaker.Enums.AbilityRankType.DamageBonus;
+
+                    }).Configure();
+
+                    ItemWeaponConfigurator.For("92f9a719ffd652947ab37363266cc0a6").SetDisplayNameText(BlueprintTool.Get<BlueprintAbility>("ab6e3f470fba2d349b7b7ef0990b5476").m_DisplayName).Configure();
+                    
                     FeatureConfigurator.For(kineticBladeINfusion).AddFeatureIfHasFact(checkedFact: bloodBlastBase, feature: BloodKineticBladeFeature).SetReapplyOnLevelUp().Configure();
                     AbilityConfigurator.For("80f10dc9181a0f64f97a9f7ac9f47d65").EditComponent<AbilityCasterHasFacts>(x =>
                     {

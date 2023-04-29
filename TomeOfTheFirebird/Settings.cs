@@ -140,7 +140,7 @@ namespace TomeOfTheFirebird
 
 
             builder.AddToggle(MakeToggle("CleanupEldritchScion", "Eldritch Scion: Cleanup Progression", true, "Dynamically kills weird add / remove of Arcane Weapon upgrades on Eldritch Scion"));
-            builder.AddToggle(MakeLocalizedToggle("BloodKineticBlade", true));
+            //builder.AddToggle(MakeLocalizedToggle("BloodKineticBlade", true));
             builder.AddToggle(MakeToggle("FixOrderOfTheStarCallingChannelingSupport", "Order Of The Star: Add Calling Channeling Support", true, "Order Of The Stars is supposed to grant half class level to Paladin and Cleric channeling progression. It didn't. Now it does."));
             builder.AddToggle(MakeToggle("FixRadianceFinalForm", "Radiance: Fix Final (Holy) Form", true, "The good version of Radiance's final form now properly retains its holy effect"));
             builder.AddToggle(MakeToggle("FixBracersOfArmor", "Bracers Of Armor: Fix Enchants", true, "Bracers Of Armor's ability to work vs incorporeeal is now implemented on the Bracers Of Armor enchantment, not a seperate sometimes missing enchant"));

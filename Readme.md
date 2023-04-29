@@ -13,6 +13,13 @@ NOW REQUIRES TabletopTweaks Core Module and ModMenu
 
 ## Changelog
 
+### 1.4.13
+
+Fixed compatibility issue with Expanded Content.
+
+Disabled Blood Kinetic Blade fix because I cannot figure out how to get the ability to deal damage
+
+
 ### 1.4.12
 
 Twin Spell Metamagic Feat
