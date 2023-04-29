@@ -1,17 +1,17 @@
 ﻿[
   {
     "Key": "BloodKineticBladeSystem.Name",
-
+    "ProcessTemplates": false,
     "enGB": "Blood Kinetic Blade"
   },
   {
     "Key": "MetakinesisDouble.Name",
-
+    "ProcessTemplates": false,
     "enGB": "Metakinesis - Double"
   },
   {
     "Key": "BloodBladeEnchant.Name",
-
+    "ProcessTemplates": false,
     "enGB": "Blood Blast - Kinetic Blade"
   },
   {
@@ -20,7 +20,7 @@
   },
   {
     "Key": "MetakinesisDoubleExpert.Name",
-
+    "ProcessTemplates": false,
     "enGB": "Metakinesis Expert - Double"
   },
   {

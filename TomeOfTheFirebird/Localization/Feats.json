@@ -1,12 +1,12 @@
 ﻿[
   {
     "Key": "TwinSpell.Name",
-
+    "ProcessTemplates": false,
     "enGB": "Metamagic (Twin Spell)"
   },
   {
     "Key": "TwinSpell.Desc",
-
+    "ProcessTemplates": false,
     "enGB": "You can modify a spell to strike twice.\nBenefit: The spell takes effect twice in the same area or on the same target simultaneously. Any variable characteristics or decisions you would make about the spell (including target and area), are applied to both spells, with affected creatures receiving all the effects of each spell individually (including getting two saving throws if applicable). A spell whose effects wouldn't stack if it was cast twice under normal circumstances will create redundant effects if successfully twinned. Note that \nLevel Increase: +4.\nMany (but not all) buff and debuff spells will not benefit from being twinned, even at the level of needing to be dispelled twice, because of implementation details. "
 
 
