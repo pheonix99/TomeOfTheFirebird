@@ -16,9 +16,13 @@ NOW REQUIRES TabletopTweaks Core Module and ModMenu
 ### 1.4.12
 
 Twin Spell Metamagic Feat
+
 Double Metakinesis Kineticist Class Feature
+
 Deity Specific Cleric/Ranger/Druid/Paladin/Warpriest spell access implemented.
+
 Owlcat fixed the mythic path requirement on Holy Water Jet, removed that function.
+
 Blood Kinetic Blade exists now
 
 ### 1.4.11
