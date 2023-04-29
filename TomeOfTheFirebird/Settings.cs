@@ -29,6 +29,10 @@ namespace TomeOfTheFirebird
              .Any();
         }
 
+        public static bool EnableJumpContent()
+        {
+            return Settings.IsEnabled("")
+        }
 
         private static string GetKey(string partialKey)
         {
@@ -82,7 +86,7 @@ namespace TomeOfTheFirebird
 
             builder.AddSubHeader(GetString("Archetypes.Title"), startExpanded: true);
             builder.AddToggle(MakeLocalizedToggle("EldritchScionSage",  true));
-
+            builder.AddToggle(MakeLocalizedToggle("KineticLancerSetting", true));
             builder.AddSubHeader(GetString("ClassFeatures.Title"), startExpanded: true);
             //builder.AddToggle(MakeToggle("BloodHavoc", "Bloodline Mutation: Blood Havoc", true, "Sorcerer / Bloodrager / Eldritch Scion alternate feature - increase attack spell damage by 1 per dice if spell is bloodline spell or caster has applicable spell focus"));
             //builder.AddToggle(MakeToggle("BloodlineMutationsForPowers", "Bloodline Mutations for Bloodline Powers", true, "Homebrew: Bloodline Mutations also apply to Sorcerer/Bloodrager activated bloodline powers."));
@@ -117,7 +121,7 @@ namespace TomeOfTheFirebird
             builder.AddToggle(MakeToggle("ExtraBurn", "Extra Burn", true, "Increase max burn by two"));
             builder.AddToggle(MakeToggle("ExtendedBuffer", "Extended Buffer", true, "Increase internal buffer size by one"));
             builder.AddToggle(MakeToggle("LastwallPhalanx", "Lastwall Phalanx", true, "Teamwork Feat: Sacred bonus to AC and saves vs evil when adjacent to allies with feat."));
-
+            
             builder.AddToggle(MakeToggle("ProdigiousTWF", "Prodigious Two Weapon Fighting", true, "Use Strength For TWF Prerequisites, Ignore Heavy Offhand Weapon Penalty"));
             builder.AddToggle(MakeToggle("SunderingStrike", "Sundering Strike", true, "Perform Sunder Armor on critical hit"));
             builder.AddToggle(MakeToggle("SwarmStrike", "Swarm Strike", true, "Teamwork Feat: +1 to hit on AoO, +1 per flanking ally with feat"));

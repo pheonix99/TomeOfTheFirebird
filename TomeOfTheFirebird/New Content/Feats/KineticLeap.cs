@@ -1,7 +1,22 @@
-﻿namespace TomeOfTheFirebird.New_Content.Feats
+﻿using BlueprintCore.Utils;
+using TomeOfTheFirebird.Helpers;
+
+namespace TomeOfTheFirebird.New_Content.Feats
 {
     class KineticLeap
     {
+        public static void Make()
+        {
+            var config = MakerTools.MakeFeature("KineticLeapFeature", LocalizationTool.GetString("KineticLeap.Name"), LocalizationTool.GetString("KineticLeap.Desc"));
+            if (Settings.EnableJumpContent())
+            {
+
+            }
+
+
+            config.Configure();
+        }
+
         /*
          *  Kinetic Leap
 Source Occult Adventures pg. 136

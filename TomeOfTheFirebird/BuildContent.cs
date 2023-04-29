@@ -94,8 +94,8 @@ namespace TomeOfTheFirebird
                     ExtraBurn.Make();
                     AncestralScorn.Make();
                     TwinSpell.AddTwinSpell();
-
-
+                    KineticLeap.Make();
+                    AirsLeap.Make();
                     //New Mythics
                     MythicKineticDefenses.Make();
 
@@ -169,7 +169,7 @@ namespace TomeOfTheFirebird
 
                     TomeOfTheFirebird.New_Content.RacialOptions.Tiefling.Make();
                     ArmorOfThePit.Make();
-
+                    KineticLancer.Build();
                     
                 }
                 catch (Exception e)

@@ -1,7 +1,21 @@
-﻿namespace TomeOfTheFirebird.New_Content.WildTalents
+﻿using BlueprintCore.Utils;
+using TomeOfTheFirebird.Helpers;
+
+namespace TomeOfTheFirebird.New_Content.WildTalents
 {
     class AirsLeap
     {
+        public static void Make()
+        {
+            var config = MakerTools.MakeFeature("AirsLeapFeature", LocalizationTool.GetString("AirsLeap.Name"), LocalizationTool.GetString("AirsLeap.Desc"));
+            if (Settings.EnableJumpContent())
+            {
+
+            }
+
+
+            config.Configure();
+        }
         /*
          *  [PFS Legal] Air's Leap
 Source Occult Adventures pg. 23

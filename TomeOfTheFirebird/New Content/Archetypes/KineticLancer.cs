@@ -1,4 +1,12 @@
-﻿namespace TomeOfTheFirebird.New_Content.Archetypes
+﻿using BlueprintCore.Blueprints.CustomConfigurators.Classes;
+using BlueprintCore.Utils;
+using Kingmaker.Blueprints;
+using Kingmaker.Blueprints.Classes;
+using System;
+using TabletopTweaks.Core.Utilities;
+using TomeOfTheFirebird.Helpers;
+
+namespace TomeOfTheFirebird.New_Content.Archetypes
 {
     /*
      * 
@@ -52,5 +60,119 @@ This ability replaces metakinesis (twice).
      */
     class KineticLancer
     {
+        public static void Build()
+        {
+            var guid = Main.TotFContext.Blueprints.GetGUID("KineticLancerArchetype");
+
+            var lancer = ArchetypeConfigurator.New("KineticLancerArchetype", guid.ToString(), "42a455d9ec1ad924d889272429eb8391");
+            lancer.SetLocalizedName("KineticLancer.Name");
+            lancer.SetLocalizedDescription("KineticLancer.Desc");
+            lancer.AddToRemoveFeatures(1, "58d6f8e9eea63f6418b107ce64f315ea");//Infusion
+            //Add Removal Of Basic Kinesis Here!
+            lancer.AddToAddFeatures(1, EnergyPounce());
+            lancer.AddToAddFeatures(1, DragoonDive());
+            lancer.AddToRemoveFeatures(1, "71f526b1d4b50b94582b0b9cbe12b0e0");//Gather Power
+            lancer.AddToRemoveFeatures(2, "5c883ae0cd6d7d5448b7a420f51f8459");//Wild Talent
+            lancer.AddToAddFeatures(2, DragoonLeap());
+            lancer.AddToRemoveFeatures(8, "5c883ae0cd6d7d5448b7a420f51f8459");//Wild Talent
+            lancer.AddToAddFeatures(8, DragoonFrenzy());
+            lancer.AddToRemoveFeatures(9, "0306bc7c6930a5c4b879c7dea78208c2");//Maximize
+            lancer.AddToAddFeatures(9, ImpalingCrash());
+            lancer.AddToRemoveFeatures(11, "5a13756fb4be25f46951bc3f16448276");//Supercharge
+            lancer.AddToAddFeatures(11, ImpossibleLeap());
+            lancer.AddToRemoveFeatures(13, "58d6f8e9eea63f6418b107ce64f315ea");//Infusion
+            lancer.AddToAddFeatures(13, FuriousDragoon());
+            lancer.AddToRemoveFeatures(17, "MetakinesisDoubleFeature");
+            lancer.AddToAddFeatures(13, BrutalDragoon());
+
+        }
+
+        private static BlueprintFeature FuriousDragoon()
+        {
+            var config = MakerTools.MakeFeature("FuriousDragoonFeature", LocalizationTool.GetString("FuriousDragoon.Name"), LocalizationTool.GetString("FuriousDragoon.Desc"), hide: false);
+
+
+
+
+
+            return config.Configure();
+        }
+
+        private static BlueprintFeature BrutalDragoon()
+        {
+            var config = MakerTools.MakeFeature("BrutalDragoonFeature", LocalizationTool.GetString("BrutalDragoon.Name"), LocalizationTool.GetString("BrutalDragoon.Desc"), hide: false);
+
+
+
+
+
+            return config.Configure();
+        }
+        private static BlueprintFeature ImpossibleLeap()
+        {
+            var config = MakerTools.MakeFeature("ImpossibleLeapFeature", LocalizationTool.GetString("ImpossibleLeap.Name"), LocalizationTool.GetString("ImpossibleLeap.Desc"), hide: false);
+
+
+
+
+
+            return config.Configure();
+        }
+
+        private static BlueprintFeature DragoonFrenzy()
+        {
+            var config = MakerTools.MakeFeature("DragoonFrenzyFeature", LocalizationTool.GetString("DragoonFrenzy.Name"), LocalizationTool.GetString("DragoonFrenzy.Desc"), hide: false);
+
+
+
+
+
+            return config.Configure();
+        }
+
+        private static BlueprintFeature EnergyPounce()
+        {
+            var config = MakerTools.MakeFeature("EnergyPounceFeature", LocalizationTool.GetString("EnergyPounce.Name"), LocalizationTool.GetString("EnergyPounce.Desc"), hide: false);
+            config.AddFacts(facts: new() { "9ff81732daddb174aa8138ad1297c787" });//Kinetic Blade
+
+
+
+
+            return config.Configure();
+
+
+        }
+
+        private static BlueprintFeature DragoonDive()
+        {
+            var config = MakerTools.MakeFeature("DragoonDiveFeature", LocalizationTool.GetString("DragoonDive.Name"), LocalizationTool.GetString("DragoonDive.Desc"), hide: false);
+            
+
+
+
+
+            return config.Configure();
+        }
+        private static BlueprintFeature DragoonLeap()
+        {
+            var config = MakerTools.MakeFeature("DragoonLeapFeature", LocalizationTool.GetString("DragoonLeap.Name"), LocalizationTool.GetString("DragoonLeap.Desc"), hide: false);
+
+
+
+
+
+            return config.Configure();
+        }
+
+        private static BlueprintFeature ImpalingCrash()
+        {
+            var config = MakerTools.MakeFeature("ImpalingCrashFeature", LocalizationTool.GetString("ImpalingCrash.Name"), LocalizationTool.GetString("ImpalingCrash.Desc"), hide: false);
+
+
+
+
+
+            return config.Configure();
+        }
     }
 }

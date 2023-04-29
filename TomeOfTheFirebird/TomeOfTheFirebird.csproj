@@ -234,6 +234,7 @@
     <Compile Include="New Components\TacticalFeatComponents\LastwallPhalanxComponent.cs" />
     <Compile Include="New Components\TacticalFeatComponents\SwarmStrikeComponent.cs" />
     <Compile Include="New Components\UnitPartDoTwinSpell.cs" />
+    <Compile Include="New Components\UnitPartJump.cs" />
     <Compile Include="New Content\Archetypes\BanishingWarden.cs" />
     <Compile Include="New Content\Archetypes\Beastmorph.cs" />
     <Compile Include="New Content\Archetypes\CinderAdept.cs" />
