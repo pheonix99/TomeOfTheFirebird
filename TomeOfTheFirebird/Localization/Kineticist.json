@@ -10,6 +10,11 @@
     "enGB": "Metakinesis - Double"
   },
   {
+    "Key": "BloodBladeEnchant.Name",
+
+    "enGB": "Blood Blast - Kinetic Blade"
+  },
+  {
     "Key": "MetakinesisDouble.Desc",
     "enGB": "At 17th level, by accepting 4 points of burn, the kineticist can use her kinetic blast twice with the same standard action, or swift action if she also uses metakinesis to quicken the blast. When she uses a double kinetic blast, all modifications, such as metakinesis and infusions, apply to both of the blasts, but the kineticist needs to pay the burn cost only once."
   },

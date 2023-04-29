@@ -50,7 +50,7 @@ namespace TomeOfTheFirebird.New_Content.ModifySpellLists
                 return;
 
             //AbilityConfigurator.For("97b991256e43bb140b263c326f690ce2").AddSpellListComponent(3, "8443ce803d2d31347897a3d85cc32f53").AddSpellListComponent(3, "57c894665b7895c499b3dce058c284b3").Configure();//Rage
-            var CalistriaConfig = FeatureConfigurator.For("c7531715a3f046d4da129619be63f44c");
+            var CalistriaConfig = FeatureConfigurator.For("c7531715a3f046d4da129619be63f44c").SkipAddToSelections();
             CalistriaConfig.AddKnownClericSpell( spell: "RageSpell", spellLevel: 3);
             CalistriaConfig.AddInquisitorSpell( spell: "RageSpell", spellLevel: 3);
             
@@ -58,7 +58,7 @@ namespace TomeOfTheFirebird.New_Content.ModifySpellLists
 
             CalistriaConfig.Configure();//Calistria
 
-            var DeskariConfig = FeatureConfigurator.For("ddf913858bdf43b4da3b731e082fbcc0");
+            var DeskariConfig = FeatureConfigurator.For("ddf913858bdf43b4da3b731e082fbcc0").SkipAddToSelections();
             DeskariConfig.AddKnownClericSpell("CreatePitSpell", 3);
            
             
@@ -67,7 +67,7 @@ namespace TomeOfTheFirebird.New_Content.ModifySpellLists
 
             DeskariConfig.Configure();
 
-            var GorumConfig = FeatureConfigurator.For("8f49a5d8528a82c44b8c117a89f6b68c");
+            var GorumConfig = FeatureConfigurator.For("8f49a5d8528a82c44b8c117a89f6b68c").SkipAddToSelections();
 
             GorumConfig.AddKnownClericSpell(spell: "LeadBladesSpell", 3);
             GorumConfig.AddInquisitorSpell(spell: "LeadBladesSpell", 3);
@@ -79,16 +79,16 @@ namespace TomeOfTheFirebird.New_Content.ModifySpellLists
 
             GorumConfig.Configure();
 
-            var GyronnaConfig = FeatureConfigurator.For("8b535b6842e063d48a571a042c3c6e8f");
+            var GyronnaConfig = FeatureConfigurator.For("8b535b6842e063d48a571a042c3c6e8f").SkipAddToSelections();
             GyronnaConfig.AddKnownClericSpell("EyebiteSpell", 6);
 
             GyronnaConfig.Configure();
 
-            var GroetusConfig = FeatureConfigurator.For("c3e4d5681906d5246ab8b0637b98cbfe");
+            var GroetusConfig = FeatureConfigurator.For("c3e4d5681906d5246ab8b0637b98cbfe").SkipAddToSelections();
             GroetusConfig.AddKnownClericSpell("FearSpell", 4);
             GroetusConfig.Configure();
 
-            var IroriConfig = FeatureConfigurator.For("23a77a5985de08349820429ce1b5a234");
+            var IroriConfig = FeatureConfigurator.For("23a77a5985de08349820429ce1b5a234").SkipAddToSelections();
             IroriConfig.AddKnownClericSpell("StoneFistSpell", 1);
             IroriConfig.AddInquisitorSpell("StoneFistSpell", 1);
 
@@ -100,7 +100,7 @@ namespace TomeOfTheFirebird.New_Content.ModifySpellLists
 
             IroriConfig.Configure();
 
-            var IomedaeFeature = FeatureConfigurator.For("88d5da04361b16746bf5b65795e0c38c");
+            var IomedaeFeature = FeatureConfigurator.For("88d5da04361b16746bf5b65795e0c38c").SkipAddToSelections();
             IomedaeFeature.AddKnownClericSpell("HolySwordSpell", 8);
             IomedaeFeature.AddInquisitorSpell("HolySwordSpell", 6);
 
@@ -108,41 +108,41 @@ namespace TomeOfTheFirebird.New_Content.ModifySpellLists
             IomedaeFeature.AddKnownSpell(characterClass: "PaladinClass", spell: "GoodHopeSpell",spellLevel: 3);
             IomedaeFeature.Configure();
 
-            var LamashtuConfig = FeatureConfigurator.For("f86bc8fbf13221f4f9041608a1fb8585");
+            var LamashtuConfig = FeatureConfigurator.For("f86bc8fbf13221f4f9041608a1fb8585").SkipAddToSelections();
             LamashtuConfig.AddKnownClericSpell("BalefulPolymorphSpell", 5);
             LamashtuConfig.AddKnownSpell(characterClass: "DruidClass", spell: "f86bc8fbf13221f4f9041608a1fb8585", spellLevel: 5);
 
             LamashtuConfig.Configure();
 
-            var NethysConfig = FeatureConfigurator.For("6262cfce7c31626458325ca0909de997");
+            var NethysConfig = FeatureConfigurator.For("6262cfce7c31626458325ca0909de997").SkipAddToSelections();
             NethysConfig.AddKnownClericSpell("FoxsCunningSpell", 2);
             NethysConfig.Configure();
 
-            var NoroConfig = FeatureConfigurator.For("805b6bdc8c96f4749afc687a003f9628");
+            var NoroConfig = FeatureConfigurator.For("805b6bdc8c96f4749afc687a003f9628").SkipAddToSelections();
             NoroConfig.AddKnownClericSpell("PerniciousPoisonSpell", 2);
             NoroConfig.AddKnownClericSpell("CircleOfDeathSpell", 6);
             NoroConfig.Configure();
 
-            var PharasmaConfig = FeatureConfigurator.For("458750bc214ab2e44abdeae404ab22e9");
+            var PharasmaConfig = FeatureConfigurator.For("458750bc214ab2e44abdeae404ab22e9").SkipAddToSelections();
             PharasmaConfig.AddKnownClericSpell("FalseLifeSpell", 2);
             PharasmaConfig.AddInquisitorSpell("FalseLifeSpell", 2);
             PharasmaConfig.AddOracleSpell("FalseLifeSpell", 2);
             PharasmaConfig.Configure();
 
-            var RovuConfig = FeatureConfigurator.For("04bc2b62273ab744092d992ed72bff41");
+            var RovuConfig = FeatureConfigurator.For("04bc2b62273ab744092d992ed72bff41").SkipAddToSelections();
             RovuConfig.AddKnownClericSpell("BalefulPolymorphSpell", 4);
             RovuConfig.AddInquisitorSpell("BalefulPolymorphSpell", 4);
             RovuConfig.AddKnownSpell(characterClass: "DruidClass", spell: "BalefulPolymorphSpell", spellLevel: 4);
 
             RovuConfig.Configure();
 
-            var SheylenConfig = FeatureConfigurator.For("b382afa31e4287644b77a8b30ed4aa0b");
+            var SheylenConfig = FeatureConfigurator.For("b382afa31e4287644b77a8b30ed4aa0b").SkipAddToSelections();
             SheylenConfig.AddKnownClericSpell("GoodHopeSpell", 4);
             SheylenConfig.AddInquisitorSpell("GoodHopeSpell", 4);
             SheylenConfig.AddKnownSpell(characterClass: "PaladinClass", spell: "GoodHopeSpell", spellLevel: 4);
             SheylenConfig.Configure();
 
-            var SaraeConfig = FeatureConfigurator.For("c1c4f7f64842e7e48849e5e67be11a1b");
+            var SaraeConfig = FeatureConfigurator.For("c1c4f7f64842e7e48849e5e67be11a1b").SkipAddToSelections();
             SaraeConfig.AddKnownClericSpell("SunbeamSpell", 7);
             SaraeConfig.AddInquisitorSpell("SunbeamSpell", 5);
             SaraeConfig.AddKnownSpell(characterClass: "PaladinClass", spell: "SunbeamSpell", spellLevel: 4);

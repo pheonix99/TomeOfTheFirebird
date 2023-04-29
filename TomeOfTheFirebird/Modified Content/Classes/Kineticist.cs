@@ -1,11 +1,16 @@
-﻿using BlueprintCore.Blueprints.CustomConfigurators.Classes;
+﻿using BlueprintCore.Blueprints.Configurators.Items.Ecnchantments;
+using BlueprintCore.Blueprints.Configurators.Items.Weapons;
+using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Utils;
+using HarmonyLib;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
+using Kingmaker.Blueprints.Items.Ecnchantments;
 using Kingmaker.Blueprints.Items.Weapons;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Abilities.Components;
+using Kingmaker.UnitLogic.Abilities.Components.CasterCheckers;
 using Kingmaker.UnitLogic.ActivatableAbilities;
 using Kingmaker.UnitLogic.Class.Kineticist;
 using Kingmaker.UnitLogic.Mechanics.Actions;
@@ -89,12 +94,23 @@ namespace TomeOfTheFirebird.Modified_Content.Classes
                     BloodKineticBladeFeatureConfig.AddFeatureIfHasFact(checkedFact: KinetidBladeBloodBlastAbilty, feature: KinetidBladeBloodBlastAbilty, not: true);
 
                 }
+                BlueprintFeature BloodKineticBladeFeature = BloodKineticBladeFeatureConfig.Configure();
 
+                BlueprintWeaponEnchantment waterblade = BlueprintTool.Get<BlueprintWeaponEnchantment>("d3f4abb0b4c10094ba61833e2b730b4f");
 
-                var BloodKineticBladeFeature = BloodKineticBladeFeatureConfig.Configure();
+               
+
+                WeaponEnchantmentConfigurator.For("f2e21757f4b5b2541861cf59f3249a48").SetWeaponFxPrefab(waterblade.WeaponFxPrefab).SetEnchantName("BloodBladeEnchant.Name").Configure();
+
+                ItemWeaponConfigurator.For("92f9a719ffd652947ab37363266cc0a6").SetDisplayNameText(BlueprintTool.Get<BlueprintAbility>("ab6e3f470fba2d349b7b7ef0990b5476").m_DisplayName).Configure();
+
                 if (Settings.IsEnabled("BloodKineticBlade"))
                 {
-                    FeatureConfigurator.For(kineticBladeINfusion).AddFeatureIfHasFact(checkedFact: bloodBlastBase, feature: BloodKineticBladeFeature).Configure();
+                    FeatureConfigurator.For(kineticBladeINfusion).AddFeatureIfHasFact(checkedFact: bloodBlastBase, feature: BloodKineticBladeFeature).SetReapplyOnLevelUp().Configure();
+                    AbilityConfigurator.For("80f10dc9181a0f64f97a9f7ac9f47d65").EditComponent<AbilityCasterHasFacts>(x =>
+                    {
+                        x.m_Facts = x.m_Facts.AddItem<BlueprintUnitFactReference>(BlueprintTool.GetRef<BlueprintUnitFactReference>("badb94b7adfc5eb40bf85eb14085142c")).ToArray();
+                    });
                     Main.TotFContext.Logger.LogPatch("Built and added", BloodKineticBladeFeature);
                 }
             }
