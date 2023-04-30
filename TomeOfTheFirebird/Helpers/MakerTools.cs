@@ -99,6 +99,17 @@ namespace TomeOfTheFirebird.Helpers
             return featureConfigurator;
         }
 
+        public static AbilityConfigurator MakeLocalizedAbility(string sysName, string displayName, string description, Sprite icon = null)
+        {
+            var result = AbilityConfigurator.New(sysName, Main.TotFContext.Blueprints.GetGUID(sysName).ToString()).SetDisplayName(displayName).SetDescription(description);
+
+            if (icon != null)
+                result.SetIcon(icon);
+
+            return result;
+
+        }
+
         public static FeatureConfigurator MakeFeature(string systemName, LocalizedString displayName, LocalizedString description, bool hide = false, Sprite icon = null)
         {
             Main.TotFContext.Logger.Log($"Building New Feature: {systemName}");

@@ -1,10 +1,16 @@
 ﻿using BlueprintCore.Blueprints.CustomConfigurators.Classes;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Utils;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
+using Kingmaker.UnitLogic.Abilities.Blueprints;
+using Kingmaker.UnitLogic.Abilities.Components;
+using Kingmaker.UnitLogic.Abilities.Components.CasterCheckers;
 using System;
+using System.Linq;
 using TabletopTweaks.Core.Utilities;
 using TomeOfTheFirebird.Helpers;
+using TomeOfTheFirebird.New_Components;
 
 namespace TomeOfTheFirebird.New_Content.Archetypes
 {
@@ -127,7 +133,14 @@ This ability replaces metakinesis (twice).
 
 
 
-            return config.Configure();
+            var finished = config.Configure();
+
+            AbilityConfigurator.For("DragoonDiveAbility").EditComponent<AbilityDragoonDive>(x =>
+            {
+                x.m_PounceFeature = finished.ToReference<BlueprintFeatureReference>();
+            });
+
+            return finished;
         }
 
         private static BlueprintFeature EnergyPounce()
@@ -135,7 +148,9 @@ This ability replaces metakinesis (twice).
             var config = MakerTools.MakeFeature("EnergyPounceFeature", LocalizationTool.GetString("EnergyPounce.Name"), LocalizationTool.GetString("EnergyPounce.Desc"), hide: false);
             config.AddFacts(facts: new() { "9ff81732daddb174aa8138ad1297c787" });//Kinetic Blade
 
-
+            
+            
+           
 
 
             return config.Configure();
@@ -146,9 +161,20 @@ This ability replaces metakinesis (twice).
         private static BlueprintFeature DragoonDive()
         {
             var config = MakerTools.MakeFeature("DragoonDiveFeature", LocalizationTool.GetString("DragoonDive.Name"), LocalizationTool.GetString("DragoonDive.Desc"), hide: false);
-            
 
 
+            var griffinAttack = BlueprintTool.Get<BlueprintAbility>("4af0f63ebf3f4eb08dade5a8709ff5a5");
+            var griffinAttackComp = griffinAttack.GetComponent<AbilityGriffinAttack>();
+
+            var abilityconfig = MakerTools.MakeLocalizedAbility("DragoonDiveAbility", "DragoonDiveAbility.Name", "DragoonDiveAbility.Desc");
+            abilityconfig.AddAbilityIsFullRoundInTurnBased(fullRoundIfTurnBased:true);
+            abilityconfig.AddAbilityRequirementCanMove();
+            abilityconfig.AddComponent<AbilityDragoonDive>(x =>
+            {
+                x.LandingAnimation = griffinAttackComp.LandingAnimation;
+                x.TakeOffAnimation = griffinAttackComp.TakeOffAnimation;
+            });
+            abilityconfig.AddAbilityCasterInCombat();
 
 
             return config.Configure();
@@ -173,6 +199,18 @@ This ability replaces metakinesis (twice).
 
 
             return config.Configure();
+        }
+
+        public static void FinalPass()
+        {
+            DiveInterop();
+        }
+
+        private static void DiveInterop()
+        {
+            var blades = new System.Collections.Generic.List<Blueprint<BlueprintUnitFactReference>>(BlueprintTool.Get<BlueprintAbility>("80f10dc9181a0f64f97a9f7ac9f47d65").GetComponent<AbilityCasterHasFacts>().m_Facts.Select(x => (Blueprint<BlueprintUnitFactReference>)x));
+
+            AbilityConfigurator.For("DragoonDiveAbility").AddAbilityCasterHasFacts(facts: blades, needsAll: false).Configure();
         }
     }
 }

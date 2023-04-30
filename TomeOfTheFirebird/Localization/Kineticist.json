@@ -26,7 +26,45 @@
   {
     "Key": "MetakinesisDoubleExpert.Desc",
     "enGB": "Metakinesis - Double now only costs 3 points of burn."
-  }
+  },
+  {
+    "Key": "KineticLancer.Name",
 
+    "enGB": "Kinetic Lancer"
+  },
+  {
+    "Key": "KineticLancer.Desc",
+
+    "enGB": "Masters of the sky, kinetic lancers have mastered the ancient art of combat practiced by the dragoons of old, blessed by the wind itself and given power to nearly fly for short periods of time. Untethered by the ground, these warriors can make impressive aerial strikes that would be impossible for their lesser kin. They were the elite forces of the Ghadabi cavalry forces, and may still yet exist in that capacity in some isolated oasis."
+  },
+  {
+    "Key": "EnergyPounce.Name",
+    "ProcessTemplates": false,
+    "enGB": "Energy Pounce"
+  },
+  {
+    "Key": "EnergyPounce.Desc",
+    "enGB": "At 1st level, a kinetic lancer gains Kinetic Leap as a bonus feat, ignoring its prerequisites, as well as the kinetic blade infusion. Whenever the kinetic lancer accepts burn with their Kinetic Leap feat, they also reduce the burn cost of the kinetic blade infusion as well as any infusion for which it is a prerequisite by 1 until their burn is removed. All movement during a round in which the kinetic lancer has used the Kinetic Leap feat does not provoke attacks of opportunity, and a kinetic lancer does not take falling damage from falling from any height.\nThis ability replaces the basic utility wild talent and 1st level infusion."
+  },
+  {
+    "Key": "DragoonDive.Name",
+
+    "enGB": "Dragoon Dive"
+  },
+  {
+    "Key": "DragoonDive.Desc",
+    "enGB": "As a full round action, a kinetic lancer can use their Kinetic Leap feat to leap into the air, making an attack with the kinetic blade infusion or any infusion for which it is a prerequisite at the end of their movement (including vital blade), reducing the burn cost of the blast by 1. This is treated as a charge for the purposes of bonuses and penalties. At 11th level, they instead reduce the burn cost of the blast by 2.\nThis ability replaces gather power."
+
+
+  },
+  {
+    "Key": "DragoonLeap.Name",
+    "ProcessTemplates": false,
+    "enGB": "Dragoon Leap"
+  },
+  {
+    "Key": "DragoonLeap.Desc",
+    "enGB": "At 2nd level, a kinetic lancer gains the air’s leap utility wild talent, regardless of their element. They also ignore their base land speed for determining if their jumping distance exceeds their base land speed while using the Kinetic Leap feat, allowing them to leap as far as their Acrobatics check would allow. If the kinetic lancer already possesses air’s leap, they can select another utility wild talent for which they qualify.\nThis ability replaces the 2nd level utility wild talent.."
+  }
 
 ]

@@ -8,12 +8,13 @@ namespace TomeOfTheFirebird.New_Content.Feats
         public static void Make()
         {
             var config = MakerTools.MakeFeature("KineticLeapFeature", LocalizationTool.GetString("KineticLeap.Name"), LocalizationTool.GetString("KineticLeap.Desc"));
+            var baseFeatureConfig = MakerTools.MakeLocalizedAbility("KineticLeapBaseAbility", "KineticLeap.Name", "KineticLeapBaseAbility.Desc");
             if (Settings.EnableJumpContent())
             {
 
             }
 
-
+            baseFeatureConfig.Configure();
             config.Configure();
         }
 
