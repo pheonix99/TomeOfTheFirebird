@@ -1,12 +1,18 @@
-﻿using BlueprintCore.Blueprints.CustomConfigurators.Classes;
+﻿using BlueprintCore.Actions.Builder;
+using BlueprintCore.Actions.Builder.ContextEx;
+using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
+using BlueprintCore.Conditions.Builder;
+using BlueprintCore.Conditions.Builder.ContextEx;
 using BlueprintCore.Utils;
+using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Abilities.Components;
 using Kingmaker.UnitLogic.Abilities.Components.CasterCheckers;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using TabletopTweaks.Core.Utilities;
 using TomeOfTheFirebird.Helpers;
@@ -146,21 +152,28 @@ This ability replaces metakinesis (twice).
         private static BlueprintFeature EnergyPounce()
         {
             var config = MakerTools.MakeFeature("EnergyPounceFeature", LocalizationTool.GetString("EnergyPounce.Name"), LocalizationTool.GetString("EnergyPounce.Desc"), hide: false);
-            config.AddFacts(facts: new() { "9ff81732daddb174aa8138ad1297c787" });//Kinetic Blade
-
+            config.AddFacts(facts: new() { "9ff81732daddb174aa8138ad1297c787", "KineticLeapFeature" });//Kinetic Blade
+            
             
             
            
 
 
-            return config.Configure();
+            var finished = config.Configure();
+                
 
 
+            return finished;
         }
 
         private static BlueprintFeature DragoonDive()
         {
             var config = MakerTools.MakeFeature("DragoonDiveFeature", LocalizationTool.GetString("DragoonDive.Name"), LocalizationTool.GetString("DragoonDive.Desc"), hide: false);
+
+            ActionsBuilder gatherWhenDiving = ActionsBuilder.New().Conditional(conditions: ConditionsBuilder.New().CharacterClass(checkCaster: true, clazz: "42a455d9ec1ad924d889272429eb8391", 11), ifTrue: ActionsBuilder.New().ApplyBuff(buff: "3a2bfdc8bf74c5c4aafb97591f6e4282", durationValue: ContextDuration.Fixed(1), toCaster:true), ifFalse: ActionsBuilder.New().ApplyBuff(buff: "e6b8b31e1f8c524458dc62e8a763cfb1", durationValue: ContextDuration.Fixed(1), toCaster: true));
+
+            config.AddAbilityUseTrigger(abilities: new List<Blueprint<BlueprintAbilityReference>>() { "DragoonDiveAbility" }, action: gatherWhenDiving, actionsOnAllTargets: false, forOneSpell: true, type: AbilityType.Spell, range: AbilityRange.Touch);
+
 
 
             var griffinAttack = BlueprintTool.Get<BlueprintAbility>("4af0f63ebf3f4eb08dade5a8709ff5a5");
@@ -176,7 +189,7 @@ This ability replaces metakinesis (twice).
             });
             abilityconfig.AddAbilityCasterInCombat();
 
-
+            abilityconfig.Configure();
             return config.Configure();
         }
         private static BlueprintFeature DragoonLeap()
@@ -203,10 +216,10 @@ This ability replaces metakinesis (twice).
 
         public static void FinalPass()
         {
-            DiveInterop();
+            BladeCollectionInterop();
         }
 
-        private static void DiveInterop()
+        private static void BladeCollectionInterop()
         {
             var blades = new System.Collections.Generic.List<Blueprint<BlueprintUnitFactReference>>(BlueprintTool.Get<BlueprintAbility>("80f10dc9181a0f64f97a9f7ac9f47d65").GetComponent<AbilityCasterHasFacts>().m_Facts.Select(x => (Blueprint<BlueprintUnitFactReference>)x));
 

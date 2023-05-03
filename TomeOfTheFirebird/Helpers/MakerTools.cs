@@ -326,6 +326,28 @@ namespace TomeOfTheFirebird.Helpers
 
             return buff;
         }
+        public static BuffConfigurator MakeLocalizedBuff(string systemName, string displayName, string description, Sprite icon = null)
+        {
+            Main.TotFContext.Logger.Log($"Building New Buff: {systemName}");
+            Kingmaker.Blueprints.BlueprintGuid guid = Main.TotFContext.Blueprints.GetGUID(systemName);
+        
+
+
+            BuffConfigurator buff = BuffConfigurator.New(systemName, guid.ToString()).SetDisplayName(displayName).SetDescription(description);
+            buff.SetFxOnStart(new Kingmaker.ResourceLinks.PrefabLink());
+            buff.SetFxOnRemove(new Kingmaker.ResourceLinks.PrefabLink());
+            if (icon != null)
+            {
+                buff.SetIcon(icon);
+
+            }
+            else
+            {
+                buff.AddToFlags(BlueprintBuff.Flags.HiddenInUi);
+            }
+
+            return buff;
+        }
 
         public static BuffConfigurator MakeBuff(string systemName, string displayName, string description, Sprite icon = null)
         {

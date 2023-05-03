@@ -1,20 +1,39 @@
-﻿using BlueprintCore.Utils;
+﻿using BlueprintCore.Blueprints.CustomConfigurators.Classes;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
+using BlueprintCore.Utils;
 using TomeOfTheFirebird.Helpers;
+using TomeOfTheFirebird.New_Components;
 
 namespace TomeOfTheFirebird.New_Content.Feats
 {
     class KineticLeap
     {
+        private static bool IsEnabled()
+        {
+            return Settings.EnableJumpContent();
+        }
+
         public static void Make()
         {
-            var config = MakerTools.MakeFeature("KineticLeapFeature", LocalizationTool.GetString("KineticLeap.Name"), LocalizationTool.GetString("KineticLeap.Desc"));
-            var baseFeatureConfig = MakerTools.MakeLocalizedAbility("KineticLeapBaseAbility", "KineticLeap.Name", "KineticLeapBaseAbility.Desc");
-            if (Settings.EnableJumpContent())
+            FeatureConfigurator config = MakerTools.MakeFeature("KineticLeapFeature", LocalizationTool.GetString("KineticLeap.Name"), LocalizationTool.GetString("KineticLeap.Desc"));
+            AbilityConfigurator baseAbilityConfig = MakerTools.MakeLocalizedAbility("KineticLeapBaseAbility", "KineticLeap.Name", "KineticLeapBaseAbility.Desc");
+            AbilityConfigurator commitAbilityConfig = MakerTools.MakeLocalizedAbility("KineticLeapCommitBurnAbility", "KineticLeapCommitBurnAbility.Name", "KineticLeapCommitBurnAbility.Desc");
+            BuffConfigurator commitBuffConfig = MakerTools.MakeLocalizedBuff("KineticLeapCommitBurnBuff", "KineticLeapCommitBurnAbility.Name", "KineticLeapCommitBurnAbility.Desc");//TODO GET ICON
+            if (IsEnabled())
             {
-
+                config.AddPrerequisiteFeature("93efbde2764b5504e98e6824cab3d27c");
+                config.AddPrerequisiteStatValue(Kingmaker.EntitySystem.Stats.StatType.SkillMobility, 3);
+                config.AddFacts(facts: new() { "KineticLeapBaseAbility" });
+                baseAbilityConfig.AddAbilityVariants(new System.Collections.Generic.List<Blueprint<Kingmaker.Blueprints.BlueprintAbilityReference>>() { "KineticLeapCommitBurnAbility" });
+                commitAbilityConfig.AddAbilityCasterHasNoFacts(facts: new() { "KineticLeapCommitBurnBuff" });
+                
+                
             }
 
-            baseFeatureConfig.Configure();
+            commitBuffConfig.Configure();
+            commitAbilityConfig.Configure();
+            baseAbilityConfig.Configure();
             config.Configure();
         }
 

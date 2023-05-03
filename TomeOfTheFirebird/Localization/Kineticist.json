@@ -65,6 +65,73 @@
   {
     "Key": "DragoonLeap.Desc",
     "enGB": "At 2nd level, a kinetic lancer gains the air’s leap utility wild talent, regardless of their element. They also ignore their base land speed for determining if their jumping distance exceeds their base land speed while using the Kinetic Leap feat, allowing them to leap as far as their Acrobatics check would allow. If the kinetic lancer already possesses air’s leap, they can select another utility wild talent for which they qualify.\nThis ability replaces the 2nd level utility wild talent.."
+  },
+  {
+    "Key": "DragoonFrenzy.Name",
+    "ProcessTemplates": false,
+    "enGB": "Dragoon Frenzy"
+  },
+  {
+    "Key": "DragoonFrenzy.Desc",
+    "enGB": "At 8th level, a kinetic lancer can make a full-attack with the kinetic blade infusion or any other infusion for which it is a prerequisite while using the dragoon dive class feature.\nThis ability replaces the 8th level utility wild talent."
+  },
+  {
+    "Key": "ImpalingCrash.Name",
+    "ProcessTemplates": false,
+    "enGB": "Impaling Crash"
+  },
+  {
+    "Key": "Impaling Crash.Desc",
+    "enGB": "At 9th level, by accepting 1 point of burn when they use their dragoon dive class feature, they can impale their foe with their kinetic blast upon making a successful attack, leaving it inside of the creature for a number of rounds equal to their Constitution modifier. Each round the creature is impaled by this weapon, they take damage equal to the minimum damage of the kinetic blast (substance infusions do not apply to this damage), although elemental overflow damage is not applied to this damage. The creature can spend a standard action to make a Strength check (DC equal to 10 + twice the kinetic lancer’s Constitution modifier) to remove it.\nThis ability replaces metakinesis (maximize)."
+  },
+  {
+    "Key": "ImpossibleLeap.Name",
+    "ProcessTemplates": false,
+    "enGB": "Impossible Leap"
+  },
+  {
+    "Key": "ImpossibleLeap.Desc",
+    "enGB": "The modder is still trying to figure out a homebrew replacement for this ability, as Air's Leap's upgrade may be removed due to IE-alike range compression.\nThis ability replaces supercharge (but see Dragoon Dive's upgrade at level 11)."
+  },
+  {
+    "Key": "FuriousDragoon.Name",
+    "ProcessTemplates": false,
+    "enGB": "Furious Dragoon"
+  },
+  {
+    "Key": "FuriousDragoon.Desc",
+    "enGB": " At 13th level, by accepting 2 points of burn when they use their dragoon dive class feature, they can make an additional attack with their kinetic blade or an infusion for which it is a prerequisite.\nThis ability replaces the 13th level infusion."
+  },
+  {
+    "Key": "FuriousDragoon.Name",
+    "ProcessTemplates": false,
+    "enGB": "Furious Dragoon"
+  },
+  {
+    "Key": "BrutalDragoon.Desc",
+    "enGB": " At 17th level, whenever a kinetic lancer uses the dragoon dive class feature, they deal 1 additional damage for each damage die their kinetic blast deals and increase the DC of any substance infusion applied to it by +2.\nThis ability replaces metakinesis (twice)."
+  },
+  {
+    "Key": "KineticLeap.Name",
+    "ProcessTemplates": false,
+    "enGB": "Kinetic Leap"
+  },
+  {
+    "Key": "KineticLeap.Desc",
+    "enGB": "Kinetic energy propels you when you jump.\nBenefit: Once per day as a swift action, you can conjure a burst of energy from your kinetic blast to help you jump a long distance, adding a +10 bonus on your Acrobatics check to jump; if you have at least 10 ranks in Acrobatics, the bonus increases to +20. By accepting 1 point of burn, you can use this ability at will until your burn is removed."
+  },
+  {
+    "Key": "KineticLeapBaseAbility.Desc",
+    "enGB": "Once per day as a swift action, you can conjure a burst of energy from your kinetic blast to help you jump a long distance, adding a +10 bonus on your Acrobatics check to jump; if you have at least 10 ranks in Acrobatics, the bonus increases to +20. By accepting 1 point of burn, you can use this ability at will until your burn is removed."
+  },
+  {
+    "Key": "KineticLeapCommitBurnAbility.Name",
+    "ProcessTemplates": false,
+    "enGB": "Kinetic Leap - Unlimited Uses"
+  },
+  {
+    "Key": "KineticLeapCommitBurnAbility.Desc",
+    "enGB": "By accepting 1 point of burn, you can use Kinetic Leap at will until your burn is removed.\nSpecial: Kinetic Lancers gain a 1 burn discount to Kinetic Blade and derivatives while this is in effect"
   }
 
 ]
