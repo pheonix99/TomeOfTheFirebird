@@ -13,6 +13,11 @@ NOW REQUIRES TabletopTweaks Core Module and ModMenu
 
 ## Changelog
 
+###
+
+Added Mass Fly
+
+
 ### 1.4.13
 
 Fixed compatibility issue with Expanded Content.
@@ -399,6 +404,8 @@ Made rewards from Monster Slayers and Local Production crusade events permanent 
 
 
 ##Coming Soon:
+
+Over
 
 Internal Buffer will be more elegant.
 
