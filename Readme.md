@@ -17,7 +17,9 @@ NOW REQUIRES TabletopTweaks Core Module and ModMenu
 
 Added Mass Fly
 
-Adjusted 
+Adjusted Chains Of Fire to fix reported issue with Bloodline Arcana bonuses.
+
+Brought firebrand fix back online for anyone who might be using mine not Vek's.
 
 
 ### 1.4.13
