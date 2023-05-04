@@ -88,7 +88,7 @@ namespace TomeOfTheFirebird.New_Content.Spells
 
                 var massSpell = AbilityConfigurator.NewSpell("MassFlySpell", massSpellGUID.ToString(), Kingmaker.Blueprints.Classes.Spells.SpellSchool.Transmutation, true);
                 massSpell.SetIcon(flyIcon);
-                massSpell.AddToSpellLists(3, SpellList.Alchemist, SpellList.Wizard, SpellList.Bloodrager, SpellList.Magus, SpellList.Shaman, SpellList.Witch);
+              
                 massSpell.SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard);
                 massSpell.SetLocalizedDuration(Duration.MinutePerLevel);
                 massSpell.AllowTargeting(self: true);
