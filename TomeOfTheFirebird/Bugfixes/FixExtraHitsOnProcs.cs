@@ -31,11 +31,11 @@ namespace TomeOfTheFirebird.Bugfixes
             {
                 Main.TotFContext.Logger.Log("Fixing Firebrand");
                 BlueprintBuff firebrandBuff = BlueprintTools.GetBlueprint<BlueprintBuff>("c6cc1c5356db4674dbd2be20ea205c86");
-                if (firebrandBuff.Components.OfType<AddInitiatorAttackWithWeaponTrigger>().Any())
+                if (firebrandBuff.Components.OfType<AdditionalDiceOnAttack>().Any())
                 {
                     Main.TotFContext.Logger.Log("Removing base weapon damage effect");
                     //firebrandBuff.Components.Remove(x => x is AddInitiatorAttackWithWeaponTrigger);
-                    BuffConfigurator editer = BuffConfigurator.For(firebrandBuff.AssetGuidThreadSafe).RemoveComponents(x => x is AddInitiatorAttackWithWeaponTrigger);
+                    BuffConfigurator editer = BuffConfigurator.For(firebrandBuff.AssetGuidThreadSafe).RemoveComponents(x => x is AdditionalDiceOnAttack);
                     editer.AddComponent(new ContextWeaponCategoryExtraDamageDice()
                     {
                         ToAllAttacks = true,

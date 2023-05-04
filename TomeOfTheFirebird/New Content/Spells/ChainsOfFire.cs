@@ -28,7 +28,7 @@ namespace TomeOfTheFirebird.New_Spells
             Sprite ChainsOfFireSprite = FireSnake.Icon;
             BlueprintProjectile ScorchingRayBeam = BlueprintTools.GetBlueprint<BlueprintProjectile>("8cc159ce94d29fe46a94b80ce549161f");
             
-            AbilityConfigurator ChainsMaker = MakerTools.MakeSpell("ChainsOfFire", "Chains Of Fire", $"This spell functions like chain lightning, except as noted above, and the spell deals fire damage instead of electricity damage. \n \nChain Lightning: {ChainLightning.Description}", ChainsOfFireSprite, SpellSchool.Evocation, LocalizedStrings.RefHalf, new Kingmaker.Localization.LocalizedString());
+            AbilityConfigurator ChainsMaker = MakerTools.MakeSpell("ChainsOfFire", "Chains Of Fire", $"This spell functions like chain lightning, except as noted above, and the spell deals fire damage instead of electricity damage. \n \nChain Lightning: {ChainLightning.Description}", ChainsOfFireSprite, SpellSchool.Evocation, LocalizedStrings.RefHalf, new Kingmaker.Localization.LocalizedString(), true, SpellDescriptor.Fire);
             ChainsMaker.SetRange(AbilityRange.Medium);
             ChainsMaker.AllowTargeting(enemies: true);
             ChainsMaker.SetSpellResistance(true);
@@ -54,8 +54,7 @@ namespace TomeOfTheFirebird.New_Spells
                     });
                 }
             }
-            ChainsMaker.SetSpellDescriptor(SpellDescriptor.Fire);
-            //ActionsBuilder chainAct = 
+            
             
             ChainsMaker.AddAbilityEffectRunAction(ActionsBuilder.New().DealDamage(new Kingmaker.RuleSystem.Rules.Damage.DamageTypeDescription() { Energy = Kingmaker.Enums.Damage.DamageEnergyType.Fire, Type = Kingmaker.RuleSystem.Rules.Damage.DamageType.Energy }, new ContextDiceValue() { DiceType = Kingmaker.RuleSystem.DiceType.D6, DiceCountValue = new Kingmaker.UnitLogic.Mechanics.ContextValue() { ValueType = ContextValueType.Rank }, BonusValue = new Kingmaker.UnitLogic.Mechanics.ContextValue() { ValueType = ContextValueType.Shared } }, halfIfSaved: true, isAoE: true),savingThrowType: Kingmaker.EntitySystem.Stats.SavingThrowType.Reflex);
 

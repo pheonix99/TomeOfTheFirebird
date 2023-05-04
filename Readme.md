@@ -13,9 +13,11 @@ NOW REQUIRES TabletopTweaks Core Module and ModMenu
 
 ## Changelog
 
-###
+### 1.4.14
 
 Added Mass Fly
+
+Adjusted 
 
 
 ### 1.4.13
