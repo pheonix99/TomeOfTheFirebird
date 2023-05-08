@@ -384,6 +384,10 @@
     <EmbeddedResource Include="Localization\Kineticist.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
+
+    <EmbeddedResource Include="Localization\ClassesAndArchetypes.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -425,6 +429,7 @@
       <Localization Include="$(OutputPath)\Localization\Bloodlines.json" />
       <Localization Include="$(OutputPath)\Localization\Feats.json" />
       <Localization Include="$(OutputPath)\Localization\Kineticist.json" />
+      <Localization Include="$(OutputPath)\Localization\ClassesAndArchetypes.json" />
       <Localization Include="$(OutputPath)\Localization\Spells.json" />
       <SpellAssets Include="$(OutputPath)\Assets\Spells\BoneFists.png" />
       <SpellAssets Include="$(OutputPath)\Assets\Spells\FreezingSphere.png" />
@@ -456,6 +461,7 @@
       <Localization Include="$(OutputPath)\Localization\Bloodlines.json" />
       <Localization Include="$(OutputPath)\Localization\Feats.json" />
       <Localization Include="$(OutputPath)\Localization\Kineticist.json" />
+      <Localization Include="$(OutputPath)\Localization\ClassesAndArchetypes.json" />
       <Localization Include="$(OutputPath)\Localization\Spells.json" />
       <Localization Include="$(OutputPath)\Localization\Settings.json" />
     </ItemGroup>

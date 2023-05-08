@@ -133,6 +133,16 @@
     "Key": "TotF.Settings.AddDeitySpecificSpells.Desc",
     "ProcessTemplates": false,
     "enGB": "Enables the unique spell rules for various deities. Currently only works with base game dieties and spells for cleric/warpriest/paladin/ranger."
+  },
+  {
+    "Key": "TotF.Settings.EldritchScionSage.Name",
+    "ProcessTemplates": false,
+    "enGB": "Eldritch Scion (Sage)"
+  },
+  {
+    "Key": "TotF.Settings.EldritchScionSage.Desc",
+    "ProcessTemplates": false,
+    "enGB": "Adds Eldritch Scion version of Sage Sorc."
   }
 
 ]

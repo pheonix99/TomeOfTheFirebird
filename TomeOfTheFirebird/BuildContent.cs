@@ -54,6 +54,7 @@ namespace TomeOfTheFirebird
                     
 
                     LocalizationTool.LoadLocalizationPack("Mods\\TomeOfTheFirebird\\Localization\\Settings.json");
+                    LocalizationTool.LoadLocalizationPack("Mods\\TomeOfTheFirebird\\Localization\\ClassesAndArchetypes.json");
                     //LocalizationTool.LoadLocalizationPack("Mods\\TomeOfTheFirebird\\Localization\\LocalizationPack.json");
                     LocalizationTool.LoadLocalizationPack("Mods\\TomeOfTheFirebird\\Localization\\Spells.json");
                     LocalizationTool.LoadLocalizationPack("Mods\\TomeOfTheFirebird\\Localization\\Bloodlines.json");

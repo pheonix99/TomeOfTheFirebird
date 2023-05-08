@@ -44,8 +44,8 @@ namespace TomeOfTheFirebird.New_Content.Archetypes
             var sysname = "EldritchScionSageArchetype";
             var bp = Main.TotFContext.Blueprints.GetGUID(sysname);
             var EScionSage = ArchetypeConfigurator.New(sysname, bp.ToString());
-            EScionSage.SetLocalizedName(LocalizationTool.CreateString(sysname + ".Name", "Eldritch Scion (Sage)"));
-            EScionSage.SetLocalizedDescription(LocalizationTool.CreateString(sysname + ".Desc", "Unlike typical magi, sage eldritch scions do not only study tomes of magic or spend time learning to combine martial and magical {g|Encyclopedia:Skills}skills{/g}. Rather, their magic comes from the knowledge and traditions that your bloodline accumulated through the generations, not just from force of personality. You use your {g|Encyclopedia:Intelligence}Intelligence{/g} to determine the effectiveness of your spells and magus class features like a normal magus, and to determine the effects of bloodline powers like a sage sorcerer."));
+            EScionSage.SetLocalizedName(sysname + ".Name");
+            EScionSage.SetLocalizedDescription(sysname + ".Desc");
             EScionSage.SetReplaceSpellbook(spellbook);
             EScionSage.SetBuildChanging(true);
             EScionSage.SetParentClass(magus);
@@ -125,7 +125,7 @@ namespace TomeOfTheFirebird.New_Content.Archetypes
                             }
                         }
 
-                    }).Configure();
+                    }).AddToArchetypes("EldritchScionSageArchetype").Configure();
                 }
             }
         }

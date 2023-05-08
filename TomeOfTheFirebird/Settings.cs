@@ -81,7 +81,7 @@ namespace TomeOfTheFirebird
 
 
             builder.AddSubHeader(GetString("Archetypes.Title"), startExpanded: true);
-            builder.AddToggle(MakeToggle("eldritchscionsage", "Eldritch Scion (Sage)", true, "Adds Eldritch Scion version of Sage Sorc"));
+            builder.AddToggle(MakeLocalizedToggle("EldritchScionSage",  true));
 
             builder.AddSubHeader(GetString("ClassFeatures.Title"), startExpanded: true);
             //builder.AddToggle(MakeToggle("BloodHavoc", "Bloodline Mutation: Blood Havoc", true, "Sorcerer / Bloodrager / Eldritch Scion alternate feature - increase attack spell damage by 1 per dice if spell is bloodline spell or caster has applicable spell focus"));
