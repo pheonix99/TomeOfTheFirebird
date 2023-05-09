@@ -22,7 +22,7 @@ namespace TomeOfTheFirebird
             return IsEnabled("BloodHavoc");
         }
 
-        public static bool IsMediumMpdEnabled()
+        public static bool IsMediumModEnabled()
         {
             return UnityModManager.modEntries.Where(
                mod => mod.Info.Id.Equals("Medium Class") && mod.Enabled && !mod.ErrorOnLoading)

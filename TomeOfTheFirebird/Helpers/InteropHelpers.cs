@@ -12,7 +12,7 @@ namespace TomeOfTheFirebird.Helpers
     {
         public static AbilityConfigurator AddSpellToMedium(this AbilityConfigurator spell, int level)
         {
-            if (Settings.IsMediumMpdEnabled())
+            if (Settings.IsMediumModEnabled())
             {
                 spell.AddToSpellList(level, "ff3e034659b64d21ac57dc0d9e893bdb", true);
             }

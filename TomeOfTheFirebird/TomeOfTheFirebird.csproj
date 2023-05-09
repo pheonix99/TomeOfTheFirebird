@@ -384,7 +384,6 @@
     <EmbeddedResource Include="Localization\Kineticist.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
-
     <EmbeddedResource Include="Localization\ClassesAndArchetypes.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>

@@ -41,6 +41,26 @@
     "Key": "MassFly.Desc",
     "ProcessTemplates": false,
     "enGB": "The party gains flight, increasing their speed by ten feet, ignoring ground effects, and gaining a +3 dodge bonus to AC against melee attacks"
+  },
+  {
+    "Key": "IncendiaryCloud.Name",
+    "ProcessTemplates": false,
+    "enGB": "Incendiary Cloud"
+  },
+  {
+    "Key": "IncendiaryCloud.Desc",
+    "ProcessTemplates": false,
+    "enGB": "An incendiary cloud spell creates a cloud of roiling smoke shot through with white-hot embers. The smoke obscures all sight as a fog cloud does. In addition, the white-hot embers within the cloud deal 6d6 points of fire damage to everything within the cloud on your turn each round. \nAs with a cloudkill spell, the smoke moves away from you at 10 feet per round. Figure out the smoke’s new spread each round based on its new point of origin, which is 10 feet farther away from where you were when you cast the spell.\nAs with fog cloud, wind disperses the smoke, and the spell can’t be cast underwater."
+  },
+  {
+    "Key": "FogCloudConcealment.Name",
+    "ProcessTemplates": false,
+    "enGB": "Shrouded In Fog"
+  },
+  {
+    "Key": "FogCloudConcealment.Desc",
+    "ProcessTemplates": false,
+    "enGB": "The fog around you obscures all sight, including darkvision, beyond 5 feet. A creature 5 feet away has concealment (attacks have a 20% miss chance). Creatures farther away have total concealment (50% miss chance, and the attacker cannot use sight to locate the target)."
   }
 
 
