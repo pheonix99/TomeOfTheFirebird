@@ -143,6 +143,16 @@
     "Key": "TotF.Settings.EldritchScionSage.Desc",
     "ProcessTemplates": false,
     "enGB": "Adds Eldritch Scion version of Sage Sorc."
+  },
+  {
+    "Key": "TotF.Settings.KineticLancerSetting.Name",
+    "ProcessTemplates": false,
+    "enGB": "Kinetic Lancer"
+  },
+  {
+    "Key": "TotF.Settings.KineticLancerSetting.Desc",
+    "ProcessTemplates": false,
+    "enGB": "Adds Kinetic Lancer, a melee kineticist archetype specialising in jump attacks. If you've ever played Final Fantasy ... it's a Dragoon."
   }
 
 ]

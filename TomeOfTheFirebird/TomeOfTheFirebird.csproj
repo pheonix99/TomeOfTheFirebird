@@ -395,6 +395,12 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Abilities\DragoonDiveAbility.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Abilities\JumpAbility.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Abilities\Phoenix_Bloodline.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -442,6 +448,8 @@
       <SpellAssets Include="$(OutputPath)\Assets\Spells\Fly.png" />
       <AbilityAssets Include="$(OutputPath)\Assets\Abilities\Phoenix_Bloodline.png" />
       <AbilityAssets Include="$(OutputPath)\Assets\Abilities\TwinSpell.png" />
+      <AbilityAssets Include="$(OutputPath)\Assets\Abilities\JumpAbility.png" />
+      <AbilityAssets Include="$(OutputPath)\Assets\Abilities\DragoonDiveAbility.png" />
     </ItemGroup>
     <Copy SourceFiles="@(Assembly)" DestinationFolder="$(WrathPath)\Mods\$(MSBuildProjectName)" />
     <Copy SourceFiles="@(ModConfig)" DestinationFolder="$(WrathPath)\Mods\$(MSBuildProjectName)" />
@@ -461,6 +469,8 @@
       <SpellAssets Include="$(OutputPath)\Assets\Spells\Fly.png" />
       <AbilityAssets Include="$(OutputPath)\Assets\Abilities\Phoenix_Bloodline.png" />
       <AbilityAssets Include="$(OutputPath)\Assets\Abilities\TwinSpell.png" />
+      <AbilityAssets Include="$(OutputPath)\Assets\Abilities\JumpAbility.png" />
+      <AbilityAssets Include="$(OutputPath)\Assets\Abilities\DragoonDiveAbility.png" />
       <Localization Include="$(OutputPath)\Localization\LocalizationPack.json" />
       <Localization Include="$(OutputPath)\Localization\Bloodlines.json" />
       <Localization Include="$(OutputPath)\Localization\Feats.json" />

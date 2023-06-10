@@ -130,9 +130,7 @@ You can move up to 5 pounds per kineticist level of rocks, loose earth, sand, cl
             foreach (string x in KineticistHelpers.SecondaryEarthFocuses)
                 list.Add(x);
             geoConfig.AddPrerequisiteFeaturesFromList(features: list, amount: 1);
-            //geoConfig.AddFacts(facts: new List<Blueprint<Kingmaker.Blueprints.BlueprintUnitFactReference>>() { aeroAbility });
-
-            //Not sure what to do with this bar feat tax for Advanced Kinesis?
+            //Ranged single target trip - slick but no aoe or persist
 
             Kingmaker.Blueprints.Classes.BlueprintFeature geo = geoConfig.Configure();
         }

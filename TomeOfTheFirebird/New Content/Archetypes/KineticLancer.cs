@@ -2,21 +2,26 @@
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Conditions.Builder;
 using BlueprintCore.Conditions.Builder.ContextEx;
 using BlueprintCore.Utils;
 using BlueprintCore.Utils.Types;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
+using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Abilities.Components;
 using Kingmaker.UnitLogic.Abilities.Components.CasterCheckers;
+using Kingmaker.UnitLogic.ActivatableAbilities;
+using Kingmaker.UnitLogic.Class.Kineticist;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using TabletopTweaks.Core.Utilities;
 using TomeOfTheFirebird.Helpers;
 using TomeOfTheFirebird.New_Components;
+using UnityEngine;
 
 namespace TomeOfTheFirebird.New_Content.Archetypes
 {
@@ -72,32 +77,54 @@ This ability replaces metakinesis (twice).
      */
     class KineticLancer
     {
+        private static Sprite dragoonDive;
+        private static bool IsEnabled()
+        {
+            return Settings.IsEnabled("KineticLancerSetting");
+        }
+
         public static void Build()
         {
             var guid = Main.TotFContext.Blueprints.GetGUID("KineticLancerArchetype");
+            dragoonDive = AssetLoader.LoadInternal(Main.TotFContext, "Abilities", "DragoonDiveAbility.png");
 
             var lancer = ArchetypeConfigurator.New("KineticLancerArchetype", guid.ToString(), "42a455d9ec1ad924d889272429eb8391");
+            EnergyPounce();
+            DragoonDive();
+            DragoonLeap();
+            DragoonFrenzy();
+            ImpalingCrash();
+            ImpossibleLeap();
+            FuriousDragoon();
+            BrutalDragoon();
             lancer.SetLocalizedName("KineticLancer.Name");
             lancer.SetLocalizedDescription("KineticLancer.Desc");
-            lancer.AddToRemoveFeatures(1, "58d6f8e9eea63f6418b107ce64f315ea");//Infusion
-            //Add Removal Of Basic Kinesis Here!
-            lancer.AddToAddFeatures(1, EnergyPounce());
-            lancer.AddToAddFeatures(1, DragoonDive());
-            lancer.AddToRemoveFeatures(1, "71f526b1d4b50b94582b0b9cbe12b0e0");//Gather Power
-            lancer.AddToRemoveFeatures(2, "5c883ae0cd6d7d5448b7a420f51f8459");//Wild Talent
-            lancer.AddToAddFeatures(2, DragoonLeap());
-            lancer.AddToRemoveFeatures(8, "5c883ae0cd6d7d5448b7a420f51f8459");//Wild Talent
-            lancer.AddToAddFeatures(8, DragoonFrenzy());
-            lancer.AddToRemoveFeatures(9, "0306bc7c6930a5c4b879c7dea78208c2");//Maximize
-            lancer.AddToAddFeatures(9, ImpalingCrash());
-            lancer.AddToRemoveFeatures(11, "5a13756fb4be25f46951bc3f16448276");//Supercharge
-            lancer.AddToAddFeatures(11, ImpossibleLeap());
-            lancer.AddToRemoveFeatures(13, "58d6f8e9eea63f6418b107ce64f315ea");//Infusion
-            lancer.AddToAddFeatures(13, FuriousDragoon());
-            lancer.AddToRemoveFeatures(17, "MetakinesisDoubleFeature");
-            lancer.AddToAddFeatures(13, BrutalDragoon());
+            if (IsEnabled())
+            {
 
+                lancer.AddToRemoveFeatures(1, "58d6f8e9eea63f6418b107ce64f315ea");//Infusion
+                                                                                  //Add Removal Of Basic Kinesis Here!
+                lancer.AddToAddFeatures(1, "EnergyPounceFeature");
+
+                lancer.AddToAddFeatures(1, "DragoonDiveFeature");
+                //lancer.AddToRemoveFeatures(1, "71f526b1d4b50b94582b0b9cbe12b0e0");//Gather Power
+                lancer.AddToRemoveFeatures(2, "5c883ae0cd6d7d5448b7a420f51f8459");//Wild Talent
+                lancer.AddToAddFeatures(2, "DragoonLeapFeature");
+                lancer.AddToRemoveFeatures(8, "5c883ae0cd6d7d5448b7a420f51f8459");//Wild Talent
+                lancer.AddToAddFeatures(8, "DragoonFrenzyFeature");
+                lancer.AddToRemoveFeatures(9, "0306bc7c6930a5c4b879c7dea78208c2");//Maximize
+                lancer.AddToAddFeatures(9, "ImpalingCrashFeature");
+                lancer.AddToRemoveFeatures(11, "5a13756fb4be25f46951bc3f16448276");//Supercharge
+                lancer.AddToAddFeatures(11, "ImpossibleLeapFeature");
+                lancer.AddToRemoveFeatures(13, "58d6f8e9eea63f6418b107ce64f315ea");//Infusion
+                lancer.AddToAddFeatures(13, "FuriousDragoonFeature");
+                lancer.AddToRemoveFeatures(17, "MetakinesisDoubleFeature");
+                lancer.AddToAddFeatures(17, "BrutalDragoonFeature");
+                ProgressionConfigurator.For("b79e92dd495edd64e90fb483c504b8df").AddToUIGroups("DragoonDiveFeature", "DragoonFrenzyFeature", "ImpalingCrashFeature", "FuriousDragoonFeature", "BrutalDragoonFeature").AddToUIGroups("EnergyPounceFeature", "DragoonLeapFeature", "ImpossibleLeapFeature").Configure();
+            }
+            lancer.Configure();
         }
+
 
         private static BlueprintFeature FuriousDragoon()
         {
@@ -114,7 +141,10 @@ This ability replaces metakinesis (twice).
         {
             var config = MakerTools.MakeFeature("BrutalDragoonFeature", LocalizationTool.GetString("BrutalDragoon.Name"), LocalizationTool.GetString("BrutalDragoon.Desc"), hide: false);
 
+            if (IsEnabled())
+            {
 
+            }
 
 
 
@@ -124,7 +154,10 @@ This ability replaces metakinesis (twice).
         {
             var config = MakerTools.MakeFeature("ImpossibleLeapFeature", LocalizationTool.GetString("ImpossibleLeap.Name"), LocalizationTool.GetString("ImpossibleLeap.Desc"), hide: false);
 
+            if (IsEnabled())
+            {
 
+            }
 
 
 
@@ -135,16 +168,23 @@ This ability replaces metakinesis (twice).
         {
             var config = MakerTools.MakeFeature("DragoonFrenzyFeature", LocalizationTool.GetString("DragoonFrenzy.Name"), LocalizationTool.GetString("DragoonFrenzy.Desc"), hide: false);
 
+            if (IsEnabled())
+            {
 
+            }
 
 
 
             var finished = config.Configure();
-
-            AbilityConfigurator.For("DragoonDiveAbility").EditComponent<AbilityDragoonDive>(x =>
+            if (IsEnabled())
             {
-                x.m_PounceFeature = finished.ToReference<BlueprintFeatureReference>();
-            });
+                AbilityConfigurator.For("DragoonDiveAbility").EditComponent<AbilityDragoonDive>(x =>
+                {
+                    x.m_PounceFeature = finished.ToReference<BlueprintFeatureReference>();
+                });
+            }
+
+            
 
             return finished;
         }
@@ -152,11 +192,14 @@ This ability replaces metakinesis (twice).
         private static BlueprintFeature EnergyPounce()
         {
             var config = MakerTools.MakeFeature("EnergyPounceFeature", LocalizationTool.GetString("EnergyPounce.Name"), LocalizationTool.GetString("EnergyPounce.Desc"), hide: false);
-            config.AddFacts(facts: new() { "9ff81732daddb174aa8138ad1297c787", "KineticLeapFeature" });//Kinetic Blade
-            
-            
-            
            
+
+
+            if (IsEnabled())
+            {
+                config.AddFacts(facts: new() { "9ff81732daddb174aa8138ad1297c787", "KineticLeapFeature" });//Kinetic Blade
+            }
+
 
 
             var finished = config.Configure();
@@ -169,25 +212,40 @@ This ability replaces metakinesis (twice).
         private static BlueprintFeature DragoonDive()
         {
             var config = MakerTools.MakeFeature("DragoonDiveFeature", LocalizationTool.GetString("DragoonDive.Name"), LocalizationTool.GetString("DragoonDive.Desc"), hide: false);
-
-            ActionsBuilder gatherWhenDiving = ActionsBuilder.New().Conditional(conditions: ConditionsBuilder.New().CharacterClass(checkCaster: true, clazz: "42a455d9ec1ad924d889272429eb8391", 11), ifTrue: ActionsBuilder.New().ApplyBuff(buff: "3a2bfdc8bf74c5c4aafb97591f6e4282", durationValue: ContextDuration.Fixed(1), toCaster:true), ifFalse: ActionsBuilder.New().ApplyBuff(buff: "e6b8b31e1f8c524458dc62e8a763cfb1", durationValue: ContextDuration.Fixed(1), toCaster: true));
-
-            config.AddAbilityUseTrigger(abilities: new List<Blueprint<BlueprintAbilityReference>>() { "DragoonDiveAbility" }, action: gatherWhenDiving, actionsOnAllTargets: false, forOneSpell: true, type: AbilityType.Spell, range: AbilityRange.Touch);
-
-
-
-            var griffinAttack = BlueprintTool.Get<BlueprintAbility>("4af0f63ebf3f4eb08dade5a8709ff5a5");
-            var griffinAttackComp = griffinAttack.GetComponent<AbilityGriffinAttack>();
-
-            var abilityconfig = MakerTools.MakeLocalizedAbility("DragoonDiveAbility", "DragoonDiveAbility.Name", "DragoonDiveAbility.Desc");
-            abilityconfig.AddAbilityIsFullRoundInTurnBased(fullRoundIfTurnBased:true);
-            abilityconfig.AddAbilityRequirementCanMove();
-            abilityconfig.AddComponent<AbilityDragoonDive>(x =>
+            var abilityconfig = MakerTools.MakeLocalizedAbility("DragoonDiveAbility", "DragoonDive.Name", "DragoonDive.Desc");
+            if (IsEnabled())
             {
-                x.LandingAnimation = griffinAttackComp.LandingAnimation;
-                x.TakeOffAnimation = griffinAttackComp.TakeOffAnimation;
-            });
-            abilityconfig.AddAbilityCasterInCombat();
+                //ActionsBuilder gatherWhenDiving = ActionsBuilder.New().Conditional(conditions: ConditionsBuilder.New().CharacterClass(checkCaster: true, clazz: "42a455d9ec1ad924d889272429eb8391", 11), ifTrue: ActionsBuilder.New().ApplyBuff(buff: "3a2bfdc8bf74c5c4aafb97591f6e4282", durationValue: ContextDuration.Fixed(1), toCaster: true), ifFalse: ActionsBuilder.New().ApplyBuff(buff: "e6b8b31e1f8c524458dc62e8a763cfb1", durationValue: ContextDuration.Fixed(1), toCaster: true));
+
+                //config.AddAbilityUseTrigger(abilities: new List<Blueprint<BlueprintAbilityReference>>() { "DragoonDiveAbility" }, action: gatherWhenDiving, actionsOnAllTargets: false, forOneSpell: true, type: AbilityType.Spell, range: AbilityRange.Personal);
+                config.SetIcon(dragoonDive);
+
+
+                var griffinAttack = BlueprintTool.Get<BlueprintAbility>("4af0f63ebf3f4eb08dade5a8709ff5a5");
+                var griffinAttackComp = griffinAttack.GetComponent<AbilityGriffinAttack>();
+
+                abilityconfig.SetIcon(dragoonDive);
+                abilityconfig.AddAbilityIsFullRoundInTurnBased(fullRoundIfTurnBased: true);
+                abilityconfig.AddAbilityRequirementCanMove();
+                abilityconfig.SetType(AbilityType.Physical);
+                abilityconfig.SetRange(AbilityRange.DoubleMove);
+                abilityconfig.SetCanTargetPoint(false);
+                abilityconfig.SetCanTargetEnemies(true);
+                abilityconfig.SetCanTargetFriends(false);
+                abilityconfig.SetCanTargetSelf(false);
+                abilityconfig.SetShouldTurnToTarget(true);
+                abilityconfig.SetSpellResistance(false);
+                abilityconfig.SetEffectOnEnemy(AbilityEffectOnUnit.Harmful);
+                abilityconfig.SetAnimation(Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle.Omni);
+                abilityconfig.AddComponent<AbilityDragoonDive>(x =>
+                {
+                    x.LandingAnimation = griffinAttackComp.LandingAnimation;
+                    x.TakeOffAnimation = griffinAttackComp.TakeOffAnimation;
+                });
+                abilityconfig.AddAbilityCasterInCombat();
+                config.AddFacts(facts: new() { "DragoonDiveAbility" });
+            }
+            
 
             abilityconfig.Configure();
             return config.Configure();
@@ -196,7 +254,10 @@ This ability replaces metakinesis (twice).
         {
             var config = MakerTools.MakeFeature("DragoonLeapFeature", LocalizationTool.GetString("DragoonLeap.Name"), LocalizationTool.GetString("DragoonLeap.Desc"), hide: false);
 
+            if (IsEnabled())
+            {
 
+            }
 
 
 
@@ -209,21 +270,45 @@ This ability replaces metakinesis (twice).
 
 
 
+            if (IsEnabled())
+            {
 
+            }
 
             return config.Configure();
         }
 
         public static void FinalPass()
         {
-            BladeCollectionInterop();
+            if (IsEnabled())
+            { 
+                BladeCollectionInterop();
+            }
         }
 
         private static void BladeCollectionInterop()
         {
-            var blades = new System.Collections.Generic.List<Blueprint<BlueprintUnitFactReference>>(BlueprintTool.Get<BlueprintAbility>("80f10dc9181a0f64f97a9f7ac9f47d65").GetComponent<AbilityCasterHasFacts>().m_Facts.Select(x => (Blueprint<BlueprintUnitFactReference>)x));
+            var bladesBuffs = new System.Collections.Generic.List<Blueprint<BlueprintUnitFactReference>>(BlueprintTool.Get<BlueprintAbility>("80f10dc9181a0f64f97a9f7ac9f47d65").GetComponent<AbilityCasterHasFacts>().m_Facts.Select(x => (Blueprint<BlueprintUnitFactReference>)x));
+            var bladeBurns =  new System.Collections.Generic.List<Blueprint<BlueprintAbilityReference>>();
+            var bladeDMGs =  new System.Collections.Generic.List<Blueprint<BlueprintAbilityReference>>();
+            foreach( var v in BlueprintTool.Get<BlueprintFeature>("9ff81732daddb174aa8138ad1297c787").GetComponents<AddFeatureIfHasFact>().Select(x=>x.m_Feature))
+            {
+               var blastBurnAbilityAdd =  v.Get().GetComponent<AddFeatureIfHasFact>(x => x.m_Feature.Get() is BlueprintAbility);
+                var blastBurnAbility = blastBurnAbilityAdd.Feature as BlueprintAbility;
+                /*var bladeToggleAdd = v.Get().GetComponent<AddFeatureIfHasFact>(x => x.m_Feature.Get() is BlueprintActivatableAbility);
+                var bladeToggle = bladeToggleAdd.Feature as BlueprintActivatableAbility;
+                var bladeBuff = bladeToggle.Buff;
+                var blade = bladeToggle.GetComponent<AddKineticistBlade>().Blade;
+                var dmg = blade.GetComponent<WeaponKineticBlade>().Blast;
+                Main.TotFContext.Logger.Log($"Added {blastBurnAbility.name} to blast burn list");*/
+                bladeBurns.Add(blastBurnAbility);
+                //bladeDMGs.Add(dmg);
+                
+            }
+         
+            AbilityConfigurator.For("DragoonDiveAbility").AddAbilityCasterHasFacts(facts: bladesBuffs, needsAll: false).Configure();
 
-            AbilityConfigurator.For("DragoonDiveAbility").AddAbilityCasterHasFacts(facts: blades, needsAll: false).Configure();
+            //BuffConfigurator.For("KineticLeapCommitBurnBuff").AddKineticistBurnModifier(appliableTo: bladeBurns, burnType: Kingmaker.UnitLogic.Class.Kineticist.KineticistBurnType.Infusion, useContextValue: false, burnValue: 1).Configure();
         }
     }
 }

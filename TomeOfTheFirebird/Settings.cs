@@ -31,7 +31,7 @@ namespace TomeOfTheFirebird
 
         public static bool EnableJumpContent()
         {
-            return Settings.IsEnabled("")
+            return Settings.IsEnabled("KineticLancerSetting");
         }
 
         private static string GetKey(string partialKey)

@@ -1,7 +1,11 @@
-﻿using BlueprintCore.Blueprints.CustomConfigurators.Classes;
+﻿using BlueprintCore.Actions.Builder;
+using BlueprintCore.Actions.Builder.ContextEx;
+using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
 using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Utils;
+using Kingmaker.UnitLogic.Abilities.Blueprints;
+using TabletopTweaks.Core.Utilities;
 using TomeOfTheFirebird.Helpers;
 using TomeOfTheFirebird.New_Components;
 
@@ -16,17 +20,29 @@ namespace TomeOfTheFirebird.New_Content.Feats
 
         public static void Make()
         {
+            var icon = BlueprintTool.Get<BlueprintAbility>("14c90900b690cac429b229efdf416127").Icon;
+            //var icon = AssetLoader.LoadInternal(Main.TotFContext, "Spells", "Fly.png");
             FeatureConfigurator config = MakerTools.MakeFeature("KineticLeapFeature", LocalizationTool.GetString("KineticLeap.Name"), LocalizationTool.GetString("KineticLeap.Desc"));
             AbilityConfigurator baseAbilityConfig = MakerTools.MakeLocalizedAbility("KineticLeapBaseAbility", "KineticLeap.Name", "KineticLeapBaseAbility.Desc");
             AbilityConfigurator commitAbilityConfig = MakerTools.MakeLocalizedAbility("KineticLeapCommitBurnAbility", "KineticLeapCommitBurnAbility.Name", "KineticLeapCommitBurnAbility.Desc");
             BuffConfigurator commitBuffConfig = MakerTools.MakeLocalizedBuff("KineticLeapCommitBurnBuff", "KineticLeapCommitBurnAbility.Name", "KineticLeapCommitBurnAbility.Desc");//TODO GET ICON
             if (IsEnabled())
             {
+                config.SetIcon(icon);
                 config.AddPrerequisiteFeature("93efbde2764b5504e98e6824cab3d27c");
                 config.AddPrerequisiteStatValue(Kingmaker.EntitySystem.Stats.StatType.SkillMobility, 3);
                 config.AddFacts(facts: new() { "KineticLeapBaseAbility" });
                 baseAbilityConfig.AddAbilityVariants(new System.Collections.Generic.List<Blueprint<Kingmaker.Blueprints.BlueprintAbilityReference>>() { "KineticLeapCommitBurnAbility" });
+                baseAbilityConfig.SetIcon(icon);
                 commitAbilityConfig.AddAbilityCasterHasNoFacts(facts: new() { "KineticLeapCommitBurnBuff" });
+                commitAbilityConfig.AddAbilityEffectRunAction(actions: ActionsBuilder.New().ApplyBuffPermanent(buff: "KineticLeapCommitBurnBuff", isFromSpell: false, isNotDispelable: true, asChild: true));
+                commitAbilityConfig.AddAbilityKineticist(wildTalentBurnCost: 1);
+                commitAbilityConfig.SetIcon(icon);
+                commitAbilityConfig.AddChangeSpellCommandType(Kingmaker.UnitLogic.Abilities.Blueprints.AbilityType.Supernatural);
+                commitAbilityConfig.SetActionType(Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Free);
+                
+                
+
                 
                 
             }
@@ -35,6 +51,14 @@ namespace TomeOfTheFirebird.New_Content.Feats
             commitAbilityConfig.Configure();
             baseAbilityConfig.Configure();
             config.Configure();
+        }
+
+        public static void Finish()
+        {
+            if (IsEnabled())
+            {
+              
+            }
         }
 
         /*

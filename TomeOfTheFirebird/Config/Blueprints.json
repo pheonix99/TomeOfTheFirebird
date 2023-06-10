@@ -283,7 +283,22 @@
     "MetakinesisDoubleCheaperBuff": "187e1cb4-6252-4216-a0cb-2d8cb42a8e42",
     "MetakinesisDoubleFeature": "05582d62-e705-484f-a760-0981f6f6fb4b",
     "MetakinesisMasterDouble": "52661f4d-0add-48b2-be74-d627808679f5",
-    "MassFlySpell": "2ddc377f-87b9-4aba-9e8b-ab6c03f477e8"
+    "MassFlySpell": "2ddc377f-87b9-4aba-9e8b-ab6c03f477e8",
+    "AirsLeapFeature": "5c35be60-57bb-4d85-83de-a4e3ea64626a",
+    "BrutalDragoonFeature": "7103316b-3fb8-43d4-b33e-2e7b621ca5bb",
+    "DragoonDiveAbility": "51f18f60-69e4-450c-aac2-ecdf53ee9e22",
+    "DragoonDiveFeature": "61aae4f1-7509-4419-bfab-11cd2ef73b66",
+    "DragoonFrenzyFeature": "642fa5d4-7041-49eb-b7b5-de676b2a9162",
+    "DragoonLeapFeature": "e8ea9768-9fca-4b03-845d-cf15efa6960d",
+    "EnergyPounceFeature": "b20522d2-6b04-47fb-94f4-901fcdcfe6b0",
+    "FuriousDragoonFeature": "2e719bf6-83ab-4894-8f68-fa199682fd12",
+    "ImpalingCrashFeature": "538c7fa6-fcbb-4ea2-90fb-abadc0afa10a",
+    "ImpossibleLeapFeature": "01def8d7-4dc1-4cd2-a96e-7c78c4eda494",
+    "KineticLancerArchetype": "45052169-24b3-4aee-819d-c299cc9b20dc",
+    "KineticLeapBaseAbility": "cfc3da17-7635-4832-bfb6-4ff59cd20a88",
+    "KineticLeapCommitBurnAbility": "445750ce-4dbd-4858-ac0c-5259180a7240",
+    "KineticLeapCommitBurnBuff": "482a0c26-c020-4e9d-a74e-4359717fc141",
+    "KineticLeapFeature": "4b0a50af-8fd6-4a1d-abb0-18a1f82f7c52"
 
   },
   "DerivedBlueprintMasters": {

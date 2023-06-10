@@ -276,12 +276,14 @@ namespace TomeOfTheFirebird
                 if (Run) return; Run = true;
                 try
                 {
+
+
                     MythicKineticDefenses.MakeLater();
                     Kineticist.FixKEEAbilities();
 
                     Kineticist.PatchKinecicistLast();
 
-                   
+                    KineticLancer.FinalPass();
                 }
                 catch (Exception e)
                 {

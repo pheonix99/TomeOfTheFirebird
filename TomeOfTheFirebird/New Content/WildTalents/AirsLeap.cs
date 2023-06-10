@@ -1,4 +1,5 @@
 ﻿using BlueprintCore.Utils;
+using TabletopTweaks.Core.Utilities;
 using TomeOfTheFirebird.Helpers;
 
 namespace TomeOfTheFirebird.New_Content.WildTalents
@@ -7,14 +8,24 @@ namespace TomeOfTheFirebird.New_Content.WildTalents
     {
         public static void Make()
         {
-            var config = MakerTools.MakeFeature("AirsLeapFeature", LocalizationTool.GetString("AirsLeap.Name"), LocalizationTool.GetString("AirsLeap.Desc"));
+           
             if (Settings.EnableJumpContent())
             {
+                var icon = AssetLoader.LoadInternal(Main.TotFContext, "Spells", "Fly.png");
+                var featureconfig = MakerTools.MakeFeature("AirsLeapFeature", LocalizationTool.GetString("AirsLeap.Name"), LocalizationTool.GetString("AirsLeap.Desc"));
+                featureconfig.SetIcon(icon);
 
+                featureconfig.Configure();
+
+            }
+            else
+            {
+                MakerTools.MakeFeature("AirsLeapFeature", LocalizationTool.GetString("AirsLeap.Name"), LocalizationTool.GetString("AirsLeap.Desc")).Configure();
+                
             }
 
 
-            config.Configure();
+            
         }
         /*
          *  [PFS Legal] Air's Leap
