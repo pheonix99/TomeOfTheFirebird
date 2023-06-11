@@ -13,6 +13,11 @@ NOW REQUIRES TabletopTweaks Core Module and ModMenu
 
 ## Changelog
 
+### 1.4.16
+
+Fix Mass Fly being disabled making things explode
+
+
 ### 1.4.15
 
 Fixed Second Bloodline progression for Sage Eldritch Scion

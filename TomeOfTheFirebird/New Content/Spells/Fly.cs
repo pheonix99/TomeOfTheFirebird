@@ -110,7 +110,7 @@ namespace TomeOfTheFirebird.New_Content.Spells
             else
             {
                 AbilityConfigurator.New("FlySpell", spellGUID.ToString()).Configure();
-                AbilityConfigurator.New("MassFlySpell", spellGUID.ToString()).Configure();
+                AbilityConfigurator.New("MassFlySpell", massSpellGUID.ToString()).Configure();
                 AbilityConfigurator.New("FlySpellTouch", touchGUID.ToString()).Configure();
                 
                 BuffConfigurator.New("FlyBuff", buffGUID.ToString()).Configure();
