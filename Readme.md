@@ -13,6 +13,13 @@ NOW REQUIRES TabletopTweaks Core Module and ModMenu
 
 ## Changelog
 
+### 1.4.17
+
+Fixed duplication of new mercies in menu
+
+Interoperabilty fix for Kinetic Lancer - no longer gets double metakinesis
+
+
 ### 1.4.16
 
 Fix Mass Fly being disabled making things explode

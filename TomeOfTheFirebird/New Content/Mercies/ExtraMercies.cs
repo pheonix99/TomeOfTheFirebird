@@ -1,7 +1,9 @@
 ﻿using BlueprintCore.Actions.Builder;
 using BlueprintCore.Actions.Builder.ContextEx;
 using BlueprintCore.Blueprints.Configurators.Classes.Selection;
+using BlueprintCore.Blueprints.CustomConfigurators.Classes;
 using BlueprintCore.Blueprints.CustomConfigurators.Classes.Selection;
+using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs;
 using BlueprintCore.Conditions.Builder;
 using BlueprintCore.Conditions.Builder.ContextEx;
 using Kingmaker.Blueprints.Classes;
@@ -37,7 +39,7 @@ namespace TomeOfTheFirebird.New_Content.Mercies
 
                 BlueprintAbility dispel = BlueprintTools.GetBlueprint<BlueprintAbility>("b9be852b03568064b8d2275a6cf9e2de");
                 BlueprintCore.Blueprints.CustomConfigurators.Classes.FeatureConfigurator maker = MakerTools.MakeFeature("MercyEnsorcelled", "Mercy - Ensorcelled", "The paladin’s lay on hands also acts as dispel magic, using the paladin’s level as her caster level.", false, dispel.Icon);
-                maker.AddToGroups(FeatureGroup.Mercy);
+                //maker.AddToGroups(FeatureGroup.Mercy);
                 maker.AddPrerequisiteClassLevel("bfa11238e7ae3544bbeb4d0b92e897ec", 12);
                 maker.SetRanks(1);
 
@@ -84,8 +86,8 @@ namespace TomeOfTheFirebird.New_Content.Mercies
 
 
                 Sprite icon = BlueprintTools.GetBlueprint<BlueprintBuff>("9017213d83ccddb4ab720e0a0efe36ff").Icon;
-                BlueprintCore.Blueprints.CustomConfigurators.Classes.FeatureConfigurator maker = MakerTools.MakeFeature("MercyInjured", "Mercy - Injured", "The target gains fast healing 3 for a number of rounds equal to 1/2 the paladin’s level.", false, icon);
-                maker.AddToGroups(FeatureGroup.Mercy);
+                FeatureConfigurator maker = MakerTools.MakeFeature("MercyInjured", "Mercy - Injured", "The target gains fast healing 3 for a number of rounds equal to 1/2 the paladin’s level.", false, icon);
+                //maker.AddToGroups(FeatureGroup.Mercy);
                 maker.AddPrerequisiteClassLevel("bfa11238e7ae3544bbeb4d0b92e897ec", 9);
                 maker.SetRanks(1);
 
@@ -93,7 +95,7 @@ namespace TomeOfTheFirebird.New_Content.Mercies
 
                 injured = maker.Configure();
 
-                BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Buffs.BuffConfigurator MercyFastHealingBuff = MakerTools.MakeBuff("MercyInjuredBuff", "Mercy: Injured", "Granted Fast Healing 3 by Lay On Hands", icon);
+                BuffConfigurator MercyFastHealingBuff = MakerTools.MakeBuff("MercyInjuredBuff", "Mercy: Injured", "Granted Fast Healing 3 by Lay On Hands", icon);
                 MercyFastHealingBuff.AddEffectContextFastHealing(bonus: new ContextValue() { Value = 3 }).SetIsClassFeature(true);
                 MercyFastHealingBuff.SetRanks(1);
                 ConditionsBuilder conditionsBuilder = ConditionsBuilder.New().CasterHasFact(injured.AssetGuidThreadSafe);
@@ -142,31 +144,15 @@ namespace TomeOfTheFirebird.New_Content.Mercies
             //string TTTExtraMercies = "6e76496c2748405d9946949977bd3e8d";
             if (Settings.IsEnabled("mercyinjured"))
             {
-                FeatureSelectionConfigurator.For("02b187038a8dce545bb34bbfb346428d").AddToAllFeatures(injured.AssetGuidThreadSafe).Configure();
-                try
-                {
-                    //FeatureSelectionConfigurator.For(TTTExtraMercies).AddToAllFeatures(injured.AssetGuidThreadSafe).Configure();
-
-                   
-                }
-                catch (Exception e)
-                {
-                    Main.TotFContext.Logger.Log("Outright error throwin trying to add to TTT selector");
-                }
+                FeatureConfigurator.For(injured).AddToGroups(FeatureGroup.Mercy).Configure();
+                //FeatureSelectionConfigurator.For("02b187038a8dce545bb34bbfb346428d").AddToAllFeatures(injured.AssetGuidThreadSafe).Configure();
+                
             }
             if (Settings.IsEnabled("mercyensorcelled"))
             {
-                FeatureSelectionConfigurator.For("02b187038a8dce545bb34bbfb346428d").AddToAllFeatures(ensorcelled.AssetGuidThreadSafe).Configure();
-                try
-                {
-                    //FeatureSelectionConfigurator.For(TTTExtraMercies).AddToAllFeatures(ensorcelled.AssetGuidThreadSafe).Configure();
-
-
-                }
-                catch (Exception e)
-                {
-                    Main.TotFContext.Logger.Log("Outright error throwin trying to add to TTT selector");
-                }
+                FeatureConfigurator.For(ensorcelled).AddToGroups(FeatureGroup.Mercy).Configure();
+                //FeatureSelectionConfigurator.For("02b187038a8dce545bb34bbfb346428d").AddToAllFeatures(ensorcelled.AssetGuidThreadSafe).Configure();
+                
             }
         }
     }

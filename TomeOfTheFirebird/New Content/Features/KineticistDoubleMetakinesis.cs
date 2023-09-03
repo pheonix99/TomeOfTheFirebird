@@ -20,6 +20,7 @@ using TabletopTweaks.Core.MechanicsChanges;
 using TabletopTweaks.Core.Utilities;
 using TomeOfTheFirebird.Helpers;
 using TomeOfTheFirebird.New_Components;
+using UniRx;
 using static TabletopTweaks.Core.MechanicsChanges.MetamagicExtention;
 
 namespace TomeOfTheFirebird.New_Content.Features
@@ -87,6 +88,19 @@ namespace TomeOfTheFirebird.New_Content.Features
                 Main.TotFContext.Logger.LogPatch("Built Metakinesis (Double)", featurebuilt);
             }
 
+        }
+
+        public static void DoLast()
+        {
+            if (Settings.IsEnabled("TwinSpell"))
+            {
+                var lancer = BlueprintTool.Get<BlueprintArchetype>("022742CCA0CD414C98EED87F24AE5607");
+
+                if (lancer != null)
+                {
+                    ArchetypeConfigurator.For(lancer).AddToRemoveFeatures(17, "MetakinesisDoubleFeature");
+                }
+            }
         }
 
         private static void SharedToggleStuff(ActivatableAbilityConfigurator toggle)

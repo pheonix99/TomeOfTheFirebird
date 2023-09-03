@@ -236,11 +236,9 @@
     <Compile Include="New Components\UnitPartDoTwinSpell.cs" />
     <Compile Include="New Content\Archetypes\BanishingWarden.cs" />
     <Compile Include="New Content\Archetypes\Beastmorph.cs" />
-    <Compile Include="New Content\Archetypes\CinderAdept.cs" />
     <Compile Include="New Content\Archetypes\DivineConduit.cs" />
     <Compile Include="New Content\Archetypes\DragonbloodChymist.cs" />
     <Compile Include="New Content\Archetypes\EldritchScionSage.cs" />
-    <Compile Include="New Content\Archetypes\KineticLancer.cs" />
     <Compile Include="New Content\Archetypes\SeasonalWitch.cs" />
     <Compile Include="New Content\Bloodlines\PheonixBloodline.cs" />
     <Compile Include="New Content\Bloodlines\DragonBloodlines.cs" />
@@ -334,7 +332,6 @@
     <Compile Include="New Content\Spells\TODO\WardingWeapon.cs" />
     <Compile Include="New Content\Spells\TODO\WingThorns.cs" />
     <Compile Include="New Content\Spells\TODO\WreathOfBlades.cs" />
-    <Compile Include="New Content\WildTalents\AirsLeap.cs" />
     <Compile Include="New Content\WildTalents\AirsReach.cs" />
     <Compile Include="New Content\WildTalents\AngelicProtection.cs" />
     <Compile Include="New Content\WildTalents\BasicKinesis.cs" />
