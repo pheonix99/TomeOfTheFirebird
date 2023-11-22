@@ -38,7 +38,7 @@ namespace TomeOfTheFirebird.New_Content.Mercies
             {
 
                 BlueprintAbility dispel = BlueprintTools.GetBlueprint<BlueprintAbility>("b9be852b03568064b8d2275a6cf9e2de");
-                BlueprintCore.Blueprints.CustomConfigurators.Classes.FeatureConfigurator maker = MakerTools.MakeFeature("MercyEnsorcelled", "Mercy - Ensorcelled", "The paladin’s lay on hands also acts as dispel magic, using the paladin’s level as her caster level.", false, dispel.Icon);
+                BlueprintCore.Blueprints.CustomConfigurators.Classes.FeatureConfigurator maker = MakerTools.MakeFeature("MercyEnsorcelled", "Mercy — Ensorcelled", "The paladin’s lay on hands also acts as dispel magic, using the paladin’s level as her caster level.", false, dispel.Icon);
                 //maker.AddToGroups(FeatureGroup.Mercy);
                 maker.AddPrerequisiteClassLevel("bfa11238e7ae3544bbeb4d0b92e897ec", 12);
                 maker.SetRanks(1);
@@ -86,7 +86,7 @@ namespace TomeOfTheFirebird.New_Content.Mercies
 
 
                 Sprite icon = BlueprintTools.GetBlueprint<BlueprintBuff>("9017213d83ccddb4ab720e0a0efe36ff").Icon;
-                FeatureConfigurator maker = MakerTools.MakeFeature("MercyInjured", "Mercy - Injured", "The target gains fast healing 3 for a number of rounds equal to 1/2 the paladin’s level.", false, icon);
+                FeatureConfigurator maker = MakerTools.MakeFeature("MercyInjured", "Mercy — Injured", "The target gains fast healing 3 for a number of rounds equal to 1/2 the paladin’s level.", false, icon);
                 //maker.AddToGroups(FeatureGroup.Mercy);
                 maker.AddPrerequisiteClassLevel("bfa11238e7ae3544bbeb4d0b92e897ec", 9);
                 maker.SetRanks(1);
