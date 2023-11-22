@@ -1,10 +1,5 @@
 ﻿using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static Kingmaker.Armies.TacticalCombat.Grid.TacticalCombatGrid;
+
 
 namespace TomeOfTheFirebird.Helpers
 {
@@ -22,7 +17,13 @@ namespace TomeOfTheFirebird.Helpers
 
         public static AbilityConfigurator AddSpellToSummoner(this AbilityConfigurator spell, int level)
         {
-            
+            if (Settings.IsSummonerModEnabled())
+            {
+                spell.AddToSpellList(level, "d1ae05197677491eb236e0aa97080da1", true);
+
+                //Second summoner spell list
+                //92e4f9a45b6148dc87a7cc6aab966fd9
+            }
 
             return spell;
         }

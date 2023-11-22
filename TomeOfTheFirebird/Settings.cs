@@ -29,6 +29,13 @@ namespace TomeOfTheFirebird
              .Any();
         }
 
+        public static bool IsSummonerModEnabled()
+        {
+            return UnityModManager.modEntries.Where(
+               mod => mod.Info.Id.Equals("WOTR_MAKING_FRIENDS") && mod.Enabled && !mod.ErrorOnLoading)
+             .Any();
+        }
+
 
         private static string GetKey(string partialKey)
         {

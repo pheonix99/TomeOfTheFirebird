@@ -220,12 +220,12 @@ namespace TomeOfTheFirebird.Helpers
             
             LocalizedString name = null;
             LocalizedString desc = null;
-            Main.TotFContext.Logger.Log("About to try localization");
+            Main.LogDebug("About to try localization");
             try
             {
                 name = LocalizationTool.CreateString(systemName + ".Name", displayName);
                 desc = LocalizationTool.CreateString(systemName + ".Desc", description);
-                Main.TotFContext.Logger.Log("Localization done");
+                Main.LogDebug("Localization done");
             }
             catch(Exception e)
             {
@@ -235,6 +235,7 @@ namespace TomeOfTheFirebird.Helpers
 
 
             var config = AbilityConfigurator.NewSpell(systemName, guid.ToString(),school, specialization, descriptors).SetDisplayName(name).SetDescription(desc).AddSpellComponent(school).SetLocalizedSavingThrow(savestring);
+            Main.LogDebug("AbilityConfigurator.NewSpell called");
             if (icon != null)
                 config.SetIcon(icon);
             if (durationString != null)

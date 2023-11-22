@@ -13,6 +13,14 @@ NOW REQUIRES TabletopTweaks Core Module and ModMenu
 
 ## Changelog
 
+
+### 1.4.18
+
+Update for 2.2 / Lord Of Nothing (limited testing)
+
+Added Summoner Interop (untested until summoner updates)
+
+
 ### 1.4.17
 
 Fixed duplication of new mercies in menu

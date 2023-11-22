@@ -61,7 +61,7 @@ namespace TomeOfTheFirebird.New_Content.ModifySpellLists
          * 
          * Level 7
          * Prismatic Spray
-         * Holy Word / Word 
+         * Holy Word / Word Of Chaos
          * Greater Azata Aspect (as Angelic Aspect but custom)
          */
 

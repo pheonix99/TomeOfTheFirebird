@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlueprintCore.Blueprints.CustomConfigurators.UnitLogic.Abilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,20 @@ namespace TomeOfTheFirebird.New_Content.Spells
 {
     class EarthTremor
     {
+        public static void Make()
+        {
+
+
+
+        }
+
+        private static AbilityConfigurator SetupSubAbility(AbilityConfigurator abilityConfigurator)
+        {
+
+
+            return abilityConfigurator;
+        }
+
         /*
          *  [PFS Legal] Earth Tremor
 Source Ultimate Wilderness pg. 228

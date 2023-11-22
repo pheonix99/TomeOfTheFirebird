@@ -173,8 +173,8 @@ namespace TomeOfTheFirebird.New_Content
                 spells.Add("feb70aab86cc17f4bb64432c83737ac2");//COTW - command
                 spells.Add("fd4d9fd7f87575d47aafe2a64a6e2d8d");//COTW - laughter
                 spells.Add("e6048d85fc3294f4c92b21c8d7526b1f");//COTW - Cacophonus call
-                spells.Add("dd2918e4a77c50044acba1ac93494c36");//
-                spells.Add("d7cbd2004ce66a042aeab2e95a3c5c61");
+                spells.Add("dd2918e4a77c50044acba1ac93494c36");//Overwhelming Greif
+                spells.Add("d7cbd2004ce66a042aeab2e95a3c5c61");//Dominate Person
                 spells.Add("d316d3d94d20c674db2c24d7de96f6a7");//COTW - serentity
                 spells.Add("cbf3bafa8375340498b86a3313a11e2f");
                 spells.Add("");//irresiststable dange
@@ -212,13 +212,13 @@ namespace TomeOfTheFirebird.New_Content
                 spells.Add("85067a04a97416949b5d1dbf986d93f3");
                 spells.Add("5181c2ed0190fc34b8a1162783af5bf4");
                 spells.Add("EarthTremor");//COTW used battering blast, lolno go for that tremor attack spell
-                spells.Add("d1afa8bc28c99104da7d784115552de5");
+                spells.Add("d1afa8bc28c99104da7d784115552de5");//Spike Stones
                 spells.Add("7c5d556b9a5883048bf030e20daebe31");//COTW used stoneskin, communal - using
-                spells.Add("e243740dfdb17a246b116b334ed0b165");//COTW used Stone To Flesh - hilariously niche but I don't think this game could cope with Flesh To Stone. Using
+                spells.Add("e243740dfdb17a246b116b334ed0b165");//COTW used Stone To Flesh - hilariously niche but I don't think this game could cope with Flesh To Stone. Need Replacement!
                 spells.Add("3ecd589cf1a55df42a3b66940ee93ea4");//Summong Greater Earth Elemental 
 
                 spells.Add("65254c7a2cf18944287207e1de3e44e8");//Summong Elder Earth Elemental 
-                spells.Add("01300baad090d634cb1a1b2defe068d6");//Summong Elder Earth Elemental 
+                spells.Add("01300baad090d634cb1a1b2defe068d6");//Clashing Rocks
                 //Mountain (Heroes of the Wild pg. 13): 2nd — stone fist, 4th — stone call, 6th — stone shape, 8th — spike stones, 10th — wall of stone, 12th — flesh to stone, 14th — stone tell, 16th — repel metal or stone, 18th — clashing rocks.
             }
             
@@ -298,7 +298,7 @@ namespace TomeOfTheFirebird.New_Content
                 spells.Add("");//FlamingSphere - needs replacer
                 spells.Add("bf0accce250381a44b857d4af6c8e10d");//Searing Light
                 spells.Add("");//Greater flaming
-                spells.Add("WallOfFireAbility");//Wall of fire - from EC!
+                spells.Add("80189142f7c640f39195defdc9777b27");//Wall of fire - from EC!
                 spells.Add("093ed1d67a539ad4c939d9d05cfe192c");
                 spells.Add("1fca0ba2fdfe2994a8c8bc1f0f2fc5b1");//Sunbeam
                 spells.Add("e96424f70ff884947b06f41a765b7658");//Sunburst

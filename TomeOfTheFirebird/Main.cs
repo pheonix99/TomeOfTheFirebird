@@ -53,6 +53,14 @@ namespace TomeOfTheFirebird
 
         }
 
+        public static void LogDebug(string msg)
+        {
+#if DEBUG
+            Main.TotFContext.Logger.Log(msg);
+#endif
+
+        }
+
         
     }
 }
